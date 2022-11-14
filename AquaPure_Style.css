@@ -1,0 +1,179 @@
+ body {
+     margin: 0;
+     background: #ffffff;
+     font-family: 'Courier New', Courier, monospace;
+     font-weight: 400;
+ }
+ 
+ .container {
+     width: 95%;
+     margin: 0%;
+ }
+ 
+ header {
+     background: rgb(0, 0, 0);
+ }
+ 
+ header::after {
+     content: '';
+     display: table;
+     clear: both;
+ }
+ 
+ nav ul {
+     margin: 0;
+     padding: 0;
+     list-style: none;
+ }
+ 
+ nav li {
+     display: inline-block;
+     margin-left: 70px;
+     padding-top: 25px;
+     padding-bottom: 25px;
+     position: relative;
+ }
+ 
+ nav ul>li>a {
+     color: rgb(172, 172, 172);
+     text-decoration: none;
+     text-transform: uppercase;
+ }
+ 
+ nav ul>li>a:hover {
+     color: rgb(255, 255, 255);
+ }
+ 
+ nav ul>li>a::before {
+     content: ' ';
+     display: block;
+     height: 5px;
+     width: 100%;
+     background-color: rgb(255, 255, 255);
+     position: absolute;
+     top: 0;
+     width: 0%;
+     transition: all ease-in-out 330ms;
+ }
+ 
+ nav ul>li>a:hover::before {
+     width: 100%;
+ }
+ 
+ h1 {
+     font-size: 40px;
+     padding-left: 2%;
+ }
+ 
+ .Problem_Para {
+     font-size: 25px;
+     padding-left: 2.5%;
+     padding-right: 2.5%;
+     text-align: justify;
+ }
+ 
+ .Blue_Button {
+     margin-left: 2.5%;
+     height: 50px;
+     width: 150px;
+     background-color: #008CBA;
+     font-family: 'Courier New', Courier, monospace;
+     color: #ffffff;
+     font-size: 15px;
+     border-radius: 25px;
+     border: 2px solid #008CBA;
+     display: inline-block;
+     text-align: center;
+     text-decoration: none;
+     cursor: pointer;
+     transition: ease-out 350ms;
+     box-shadow: inset 0 0 0 0 #ffffff;
+ }
+ 
+ .Blue_Button:hover {
+     background-color: #ffffff;
+     color: #008CBA;
+     border: 2px solid #008CBA;
+     box-shadow: inset 150px 0 0 0 #ffffff;
+ }
+ 
+ .White_Button {
+     margin-left: 2.5%;
+     height: 50px;
+     width: 150px;
+     background-color: #ffffff;
+     font-family: 'Courier New', Courier, monospace;
+     color: #008CBA;
+     font-size: 15px;
+     border-radius: 25px;
+     border: 2px solid #ffffff;
+     display: inline-block;
+     text-align: center;
+     text-decoration: none;
+     cursor: pointer;
+     transition: ease-out 350ms;
+     box-shadow: inset 0 0 0 0 #008CBA;
+ }
+ 
+ .White_Button:hover {
+     background-color: #008CBA;
+     color: #ffffff;
+     border: 2px solid #ffffff;
+     box-shadow: inset 150px 0 0 0 #008CBA;
+ }
+ 
+ section {
+     position: relative;
+     width: 100%;
+     height: 100vh;
+     padding: 100px;
+ }
+ 
+ section img {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 90%;
+     height: 70%;
+     object-fit: cover;
+ }
+ 
+ .Thames-image {
+     min-height: 10px;
+     padding: 23.3em;
+     background-image: url("Thames.jpg");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+     background-position: center;
+     position: relative;
+ }
+ 
+ .inner_divr {
+     background-color: #008CBA;
+     border-radius: 25px;
+     height: 200px;
+     position: absolute;
+     width: 450px;
+     bottom: 0%;
+     left: 4%;
+     border-bottom-left-radius: 0%;
+     border-bottom-right-radius: 0%;
+ }
+ 
+ .inner_divr_Cont_Para {
+     margin: 3%;
+     font-size: 25px;
+     float: left;
+     color: #ffffff;
+     font-weight: bold;
+     text-align: left;
+ }
+ 
+ .inner_divr_Cont_Para_info {
+     margin: 3%;
+     font-size: 15px;
+     float: left;
+     color: #ffffff;
+     text-align: left;
+ }
