@@ -8,11 +8,13 @@ function App() {
       <nav className="Navbar">
         <div className="Navbar-left">
           <a className="Navbar-logo" href="#">
-            <img src={logo} alt="logo" width="112" height="28" />
+            <img src={logo} alt="logo" width="55" height="55" />
           </a>
           <ul className="Navbar-list">
             <li><a href="#">Home</a></li>
             <li><a href="#">Map</a></li>
+            <li><a href="#">Game</a></li>
+            <li><a href="#">Donations</a></li>
             <li><a href="#">Shop</a></li>
           </ul>
         </div>

@@ -24,7 +24,7 @@ body p {
 .Navbar-end {
   display: flex;
   align-items: center;
-  margin: 1em 1em 1em 1em;
+  margin: 0 1em 0 1em;
 }
 
 .Navbar-end > .Button-signup, .Navbar-end > .Button-signin {
@@ -60,8 +60,8 @@ body p {
 }
 
 .Navbar-logo {
-  margin-left: 1em;
-  margin-right: 3.4vw;
+  margin-left: 2.5vw;
+  margin-right: 4.4vw;
 }
 
 .Navbar ul {
@@ -72,8 +72,8 @@ body p {
 
 .Navbar li {
   display: inline-block;
-  margin-left: 3vw;
-  margin-right: 3vw;
+  margin-left: 2vw;
+  margin-right: 2vw;
   padding-top: 25px;
   padding-bottom: 25px;
   position: relative;
@@ -87,6 +87,22 @@ body p {
   color: rgb(255, 255, 255);
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.Navbar ul>li>a::before {
+  content: ' ';
+  display: block;
+  height: 5px;
+  width: 100%;
+  background-color: #61dafb;
+  position: absolute;
+  top: 0;
+  width: 0%;
+  transition: all ease-in-out 150ms;
+}
+
+.Navbar ul>li>a:hover::before {
+  width: 100%;
 }
 
 .Header {
@@ -205,7 +221,6 @@ hr.solid {
 
 .material-icons {
   color: #ffffff;
-  visibility: hidden;
 }
 
 .material-icons > a {
@@ -213,6 +228,7 @@ hr.solid {
   text-decoration: none;
   font-size: 1.5em;
   margin-right: 0.3em;
+  display: none;
 }
 
 @media screen and (max-width: 800px) {
@@ -227,12 +243,12 @@ hr.solid {
     display: none;
   }
 
-  .material-icons {
-    visibility: visible;
+  .material-icons > a {
+    display: inline;
   }
 
   .Navbar-logo {
-    margin-left: 0.3em;
+    margin-left: 1em;
   }
 
 }
