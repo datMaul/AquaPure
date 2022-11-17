@@ -1,38 +1,238 @@
 .App {
+  text-align: left;
+}
+
+.Home-contents {
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  margin: auto;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+body h1 {
+  font-size: 1.5em;
+  text-align: center;
+  color: #000000;
+}
+
+body p {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Navbar-end {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  margin: 1em 1em 1em 1em;
+}
+
+.Navbar-end > .Button-signup, .Navbar-end > .Button-signin {
+  background-color: #ffffff;
+  color: #008CBA;
+  border: 2px solid #ffffff;
+  border-radius: 15px;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 1em;
+  margin-left: 1em;
+}
+
+.Navbar-end > .Button-signin {
+  background-color: #ffffff00;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  background-color: #000000;
+  z-index: 1;
+}
+
+.Navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.Navbar-logo {
+  margin-left: 1em;
+  margin-right: 3.4vw;
+}
+
+.Navbar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.Navbar li {
+  display: inline-block;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  position: relative;
+}
+
+.Navbar ul>li>a:hover {
+  color: #008CBA;
+}
+
+.Navbar ul>li>a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.Header {
+  background-image: url(./Wave.svg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+}
+
+.Header-hero {
+  width: 75%;
+  margin: auto;
+  align-content: center;
+}
+
+.Header-content {
+  display: flex;
+  position: relative;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 56%;
+}
+
+.Header h1 {
+  font-size: 3em;
+  margin: 0;
+  padding: 0;
+}
+
+.Header h1, .Header p {
+  color: #ffffff;
+  text-align: left;
+}
+
+.Header p {
+  font-size: 1.2em;
+  margin-bottom: 0.7em;
+}
+
+.Header-buttons a {
+  margin-right: 2em;
+}
+
+.Header-buttons > .Button-readmore, .Header-buttons > .Button-signup {
+  background-color: #ffffff;
+  color: #008CBA;
+  border: 2px solid #ffffff;
+  border-radius: 15px;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.Button:hover {
+  background-color: rgba(255, 255, 255, 0);
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  transition: all ease-in-out 330ms;
+}
+
+.Button-signin:hover {
+  background-color: rgba(255, 255, 255);
+  color: #008CBA;
+  border: 2px solid #ffffff;
+  transition: all ease-in-out 330ms;
+}
+
+.Footer {
+  background-color: rgb(230, 230, 230);
+  padding-top: 0.6em;
+  padding-bottom: 1.2em;
+}
+
+.Footer content {
+  width: 60%;
+  margin: auto;
+  align-content: center;
+}
+
+.Footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.Footer ul>li {
+  display: inline-block;
+  padding-left: 1vh;
+  padding-right: 1vh;
+}
+
+.Footer ul>li>a {
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.Footer p {
+  font-size: 0.9em;
+}
+
+hr.solid {
+  border-top: 1px solid #bbb;
+  width: 60%;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.material-icons {
+  color: #ffffff;
+  visibility: hidden;
+}
+
+.material-icons > a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.5em;
+  margin-right: 0.3em;
+}
+
+@media screen and (max-width: 800px) {
+  .Home-contents, .Footer content, hr.solid, .Header-hero {
+    width: 85%;
   }
-  to {
-    transform: rotate(360deg);
+  .Header-content {
+    width: 100%;
   }
+
+  .Navbar-end > a, .Navbar-list {
+    display: none;
+  }
+
+  .material-icons {
+    visibility: visible;
+  }
+
+  .Navbar-logo {
+    margin-left: 0.3em;
+  }
+
 }
