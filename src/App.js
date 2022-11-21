@@ -20,15 +20,15 @@ function expandBurger() {
 
 /* Navbar bg color change on scroll */
 window.onscroll = function() {scrollFunction()};
-const navContainer = document.getElementById("Navbar-container");
 function scrollFunction() {
   if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-    navContainer.style.backgroundColor = "#162427";
+    document.getElementById("Navbar-container").style.backgroundColor = "#162427";
   } else if (window.innerWidth >= 950) {
-    navContainer.style.backgroundColor = "#16242700";
-    navContainer.style.transition = "background-color 0.15s ease-in-out";
+    document.getElementById("Navbar-container").style.backgroundColor = "#16242700";
+    document.getElementById("Navbar-container").style.transition = "background-color 0.15s ease-in-out";
   }
 }
+
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
