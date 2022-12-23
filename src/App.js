@@ -1,41 +1,30 @@
-import "./App.css";
-import React from "react";
-
-function expandBurger() {
-  var navList = document.getElementById("Navbar-list");
-  var contents = document.getElementsByClassName("Page-contents")[0];
-  var icon = document.getElementsByClassName("Burger")[0];
-  if (navList.className === "Navbar-list") {
-    navList.className += "-expanded";
-    contents.style.filter = "brightness(50%)";
-    icon.innerHTML = "<a href='javascript:void(0);'>close</a>";
-  } else {
-    navList.className = "Navbar-list";
-    contents.style.filter = "brightness(100%)";
-    icon.innerHTML = "<a href='javascript:void(0);'>menu</a>";
-  }
-}
-
-/* Navbar bg color change on scroll */
-window.onscroll = function () {
-  scrollFunction();
-};
-function scrollFunction() {
-  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-    document.getElementById("Navbar-container").style.backgroundColor =
-      "#162427";
-  } else if (window.innerWidth >= 950) {
-    document.getElementById("Navbar-container").style.backgroundColor =
-      "#16242700";
-    document.getElementById("Navbar-container").style.transition =
-      "background-color 0.15s ease-in-out";
-  }
-}
-
-/* eslint-disable jsx-a11y/anchor-is-valid */
+import Navbar from "./components/Navbar";
+import Donations from "./pages/donations/Donations";
+import Game from "./pages/game/Game";
+import Home from "./pages/home/Home";
+import Map from "./pages/map/Map";
+import Shop from "./pages/shop/Shop";
+import SignIn from "./pages/signin/SignIn";
+import Testkit from "./pages/testkit/Testkit";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <>
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/donations" element={<Donations />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/game" element={<Game />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/map" element={<Map />} />
+          <Route path="/testkit" element={<Testkit />} />
+        </Routes>
+      </div>
+    </>
+  );
 }
 
 export default App;
