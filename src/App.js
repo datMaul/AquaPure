@@ -6,6 +6,8 @@ import Map from "./pages/map/Map";
 import Shop from "./pages/shop/Shop";
 import SignIn from "./pages/signin/SignIn";
 import Testkit from "./pages/testkit/Testkit";
+import SignUp from "./pages/signin/signup/SignUp";
+import ForgotPassword from "./pages/signin/forgotpassword/ForgotPassword";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/map" element={<Map />} />
           <Route path="/testkit" element={<Testkit />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
         </Routes>
       </div>
     </>
