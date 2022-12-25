@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/pages/accounts/signin/SignIn.js
 import { Link } from 'react-router-dom';
 import './SignIn.css';
 
@@ -35,4 +36,8 @@ export default function SignIn() {
       </div>
     </div> 
   );
+=======
+export default function SignIn() {
+  return <h1>Sign In</h1>;
+>>>>>>> parent of 267dd81 (Sign In - Sign Up - Forgot Password):src/pages/signin/SignIn.js
 }
