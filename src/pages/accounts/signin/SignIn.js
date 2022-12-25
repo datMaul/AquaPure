@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import './SignIn.css';
 
 export default function SignIn() {
   return (
     <div className='SignIn'>
       <div className='SignIn-Content'>
-        <h3> Sign In </h3>
+        <h1> Sign In </h1>
         <br/> <br/>
         
           <form>
@@ -19,14 +20,17 @@ export default function SignIn() {
             <input type = "checkbox" id = "rememberMe" name = "rememberMe"/>
             <label for = "rememberMe"> Remember Me </label>
 
-            <input type = "submit" value = "Sign In"/>
-            <br/> <br/>    
+            <Link to = "/">
+              {/* This button should check if the required data has inputted */}
+              <button type = "submit" className = "logInButton" id = "logInButton"> Log In </button>
+            </Link>
+            <br/> <br/>
 
-            <Link to = "/ForgotPassword"> Forgot Password? </Link>
+            <Link to = "/accounts/password/reset"> Forgot Password? </Link>
             <br/> <br/>
 
             <label for = "SigningUp"> Don't have an account </label>
-            <Link to = "/signup"> Sign Up Here</Link>
+            <Link to = "/accounts/signup"> Sign Up Here</Link>
           </form>
       </div>
     </div> 

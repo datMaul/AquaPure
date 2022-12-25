@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
+import './SignUp.css';
 
 export default function SignUp() {
   return (
     <div className='SignUp'>
       <div className='SignUp-Content'>
-        <h3> Sign Up </h3>
+        
+        <Link to = "/accounts/login"> Back</Link>
+
+        <h1> Sign Up </h1>
         <br/> <br/>
 
         <form>
@@ -46,13 +50,16 @@ export default function SignUp() {
             <br/> <br/>
 
             <input type = "checkbox" id = "termsAndConditions" name = "termsAndConditions" required/>
-            <label for = "termsAndConditions"> I agree to all the Terms & Conditions</label>
+            <label for = "termsAndConditions"> I agree to all the Terms & Conditions </label>
 
-            <Link to = "/" className = "registerButton" id = "registerButton1"> Register </Link>
+            <Link to = "/">
+              {/* This button should check if the required data has inputted */}
+              <button type = "submit" className = "signUpButton" id = "signUpButton"> Sign Up </button>
+            </Link>
             <br/> <br/>
 
             <input type = "checkbox" id = "privacyPolicy" name = "privacyPolicy" required/>
-            <label for = "privacyPolicy"> I agree to all the Privacy Policy</label>
+            <label for = "privacyPolicy"> I agree to all the Privacy Policy </label>
         </form>  
       </div>
     </div> 

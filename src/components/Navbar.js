@@ -1,5 +1,6 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import logo from "./aqlogo.png";
+
 export default function Navbar() {
   return (
     <nav className="nav">
@@ -12,7 +13,8 @@ export default function Navbar() {
         <CustomLink to="/game">Game</CustomLink>
         <CustomLink to="/donations">Donations</CustomLink>
         <CustomLink to="/shop">Shop</CustomLink>
-        <CustomLink to="/signin">Sign In</CustomLink>
+        <CustomLink to="/accounts">Account</CustomLink>
+        <CustomLink to="/accounts/login">Sign In</CustomLink>
       </ul>
     </nav>
   );
