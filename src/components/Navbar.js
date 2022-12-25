@@ -12,8 +12,7 @@ export default function Navbar() {
         <CustomLink to="/game">Game</CustomLink>
         <CustomLink to="/donations">Donations</CustomLink>
         <CustomLink to="/shop">Shop</CustomLink>
-        <CustomLink to="/accounts">Account</CustomLink>
-        <CustomLink to="/accounts/login">Sign In</CustomLink>
+        <CustomLink to="/signin">Sign In</CustomLink>
       </ul>
     </nav>
   );
