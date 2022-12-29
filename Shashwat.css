@@ -1,0 +1,169 @@
+body {
+  margin: 0;
+  font-family: system-ui;
+}
+
+.pageWidth {
+    max-width: 940px;
+}
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+ background-color: black;
+ background-image: url(../image/sustaniablewater1.jpg);
+ color: white;
+ background-repeat: no-repeat;
+ background-size: 100% 100%;
+ 
+ 
+ padding-top: 100px;
+ padding-bottom: 200px; 
+}
+
+.link {
+font-weight: bold;
+color: white;
+}
+
+.description {
+ padding-left: 200px;
+ padding-right: 200px;
+ padding-top: 200px;
+ background-size: 300px 100px;
+}
+
+.image1 {
+    padding-top: 36px;
+    margin-left: 10px;
+    width: 50px;
+    border-radius: 50px;
+    float: left;
+    margin-right: 10px;
+}
+
+.header {
+    text-align: left;
+    background: rgb(13, 95, 219);
+    color: white;
+    font-size: 50px;
+    background-size: 600px;
+    font-weight: bold;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 40px;
+    font-style: italic;
+}
+
+.button1 {
+    background-color: rgb(74, 124, 193);
+    color: white;
+    border: none;
+    height: 80 px;
+    width: 130px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 8px;
+    font-weight: bold;
+    font-size: 25px;
+    transition: opacity 0.5s;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
+    right: -650px;
+    top: -80px;
+    position: relative;
+    margin-right: 25px;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+p {
+    width: 500px;
+}
+
+.seconddescription {
+    padding-right: 400px;
+    padding-left: 400px;
+}
+
+.charityimage1 {
+    padding-top: 36px;
+    margin-left: 5px;
+    width: 200px;
+    border-radius: 100px;
+    float: left;
+    margin-right: 10px;
+}
+
+.table1 {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+table,
+  th,
+  td {
+    border: 1px solid;
+    border-collapse: collapse;
+    width: 100px;
+    
+ 
+}
+
+
+
+button {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 10px;
+    transition: opacity 0.5s;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
+    position: relative;
+    height: 200 px;
+    width: 100px;
+    
+}
+
+a:link {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 40px;
+    font-style: italic;
+    transition: opacity 0.5s;
+  }
+  a:visited {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+    transition: opacity 0.5s;
+
+  }
+  a:hover {
+    color: white;
+    background-color: transparent;
+    text-decoration: underline;
+    transition: opacity 0.5s;
+
+  }
+  a:active {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: underline;
+    transition: opacity 0.5s;
+
+  }
