@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import Donations from "./pages/donations/Donations";
 import Game from "./pages/game/Game";
 import Home from "./pages/home/Home";
+import Phasetest from "./pages/phasetest/Phasetest";
 import Map from "./pages/map/Map";
 import Shop from "./pages/shop/Shop";
 import SignIn from "./pages/accounts/signin/SignIn";
@@ -27,8 +28,12 @@ function App() {
           <Route path="/testkit" element={<Testkit />} />
           <Route path="/accounts/signup" element={<SignUp />} />
           <Route path="/accounts/password/reset" element={<ForgotPassword />} />
-          <Route path="/accounts/password/reset/confirm" element={<ResetPassword />} />
+          <Route
+            path="/accounts/password/reset/confirm"
+            element={<ResetPassword />}
+          />
           <Route path="/accounts" element={<Accounts />} />
+          <Route path="/phasetest" element={<Phasetest />} />
         </Routes>
       </div>
     </>
