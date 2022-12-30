@@ -20,8 +20,10 @@
                     <li><a href="#">Our Game</a></li>
                     <li><a href="#">Testing Kit</a></li>
                     <li><a href="#">Shop</a></li>
-                    <li style="float:right"><a href="#">Log In</a></li>
+                    <li style="float:right"><a href="#">Log In</a> </li>
+                    
                 </ul>
+                
             </nav>
         </div>
     </header>
@@ -39,18 +41,32 @@
     </div>
 
     <!--shop code-->
+    <script>
+        let quant = 0;
+        function add_cart(){
+            quant++;
+            document.getElementById('count').innerText = quant
+        }   
+    </script>
+
+    <div class="cart_num" id="count"></div>
+
     <div class="item_list">
         <nav>
             <ul>
-                <li>
+                <li id="bottle">
                     <a href="item_frame.html"><img class="item_img" src="water_bottle.PNG"></img></a>
-
+                    <p class="item_info">AquaPure Sport Bottle Blue<br>£19.99</p>
+                    <button class="item_quick_add" type="button" onclick="add_cart()">Quick Add</button>
+                    
+                    
                 </li>
-                
-                
             </ul>
         </nav>
+        
     </div>
+
+    
 
 
 
