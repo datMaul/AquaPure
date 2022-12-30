@@ -140,7 +140,7 @@ section img {
 
 .Thames-image {
     min-height: 10px;
-    padding: 23.3em;
+    padding: 8.3em;
     background-image: url("Thames.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -179,12 +179,28 @@ section img {
 }
 
 .item_img{
-    width:250px;
-    height:250px;
+    width:450px;
+    height:450px;
     cursor: pointer;
+    border:transparent;
+    background-color: rgb(224, 224, 224);
 }
 .item_list{
     text-align: center;
     text-decoration: none;
     transition: ease-out 350ms;
+}
+
+.item_page{
+    margin-top: 5%;
+    margin-left:230px;
+    width:650px;
+    height:650px;
+    background-color: rgb(224, 224, 224);
+}
+.item_desc{
+    font-family: Verdana, Tahoma, sans-serif;
+    font-size:50px;
+    padding-left:470px;
+    
 }
