@@ -1,0 +1,146 @@
+.Test_Kit_Grid {
+    width: 100%;
+    height: auto;
+    display: grid;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 2% 0.5%;
+    gap: 1.5% 2%;
+    grid-template-columns: auto auto auto auto;
+}
+
+.Test_Kit_Grid h6 {
+    background-color: #008CBA;
+    color: rgb(255, 255, 255);
+    padding: 7px;
+    font-size: 14px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.WTK {
+    padding: auto auto;
+}
+
+.WTK p {
+    text-align: justify;
+}
+
+.WTK h5 {
+    text-align: center;
+}
+
+.WTK h6 {
+    text-align: center;
+}
+
+.WTK_P {
+    text-align: center;
+}
+
+.Testing_banner {
+    padding: 200px;
+    background-image: url("./testkit_images_videos/testkit_Scientist_logo.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+
+.Basic_Img {
+    padding: 15.5em 5em;
+    background-image: url("./testkit_images_videos/Basic.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 140% 115%;
+}
+
+.Standard_Img {
+    padding: 15.5em 5em;
+    background-image: url("./testkit_images_videos/Standard.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 140% 115%;
+}
+
+.Plus_Img {
+    padding: 15.5em 5em;
+    background-image: url("./testkit_images_videos/Plus.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 140% 115%;
+}
+
+.Premium_Img {
+    padding: 15.5em 5em;
+    background-image: url("./testkit_images_videos/Premium.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 140% 115%;
+}
+
+.Legionella_Img {
+    padding: 15.5em 5em;
+    background-image: url("./testkit_images_videos/Legionella.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 140% 115%;
+}
+
+.Bacteria_Img {
+    padding: 15.5em 5em;
+    background-image: url("./testkit_images_videos/Bacteria.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 140% 115%;
+}
+
+.Pool_Img {
+    padding: 15.5em 5em;
+    background-image: url("./testkit_images_videos/Pool.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 140% 115%;
+}
+
+.Test_Result_Map {
+    padding: 0px 400px;
+}
+
+.Test_Result_Map p {
+    text-align: justify;
+}
+
+.Test_Kit_Info {
+    padding: 0px 52px;
+}
+
+.Test_Kit_Info p {
+    text-align: justify;
+}
+
+#WTK_P_CART {
+    margin-left: 2.5%;
+    height: 40px;
+    width: 100px;
+    background-color: #008CBA;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 25px;
+    border: 2px solid #008CBA;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: ease-out 350ms;
+    box-shadow: inset 0 0 0 0 #ffffff;
+}
+
+#WTK_P_CART:hover {
+    background-color: #ffffff;
+    color: #008CBA;
+    border: 2px solid #008CBA;
+    box-shadow: inset 150px 0 0 0 #ffffff;
+}

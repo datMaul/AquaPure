@@ -1,0 +1,12 @@
+.AquaBot-Avatar{
+width: 40px;
+height: 40px;
+border-radius: 25%;
+justify-content: center;
+align-items: center;
+background-image: url("./phasetest_images_videos/chatbot-transparent-192.png");
+background-repeat: no-repeat;
+background-position: center;
+background-size:42px;
+margin-right: 15px;
+}
