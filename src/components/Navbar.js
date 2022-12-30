@@ -1,6 +1,6 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import logo from "./aqlogo.png";
-
+import { useState, useEffect } from "react";
 export default function Navbar() {
   return (
     <nav className="nav">
