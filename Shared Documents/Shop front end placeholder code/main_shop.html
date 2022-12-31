@@ -41,25 +41,18 @@
     </div>
 
     <!--shop code-->
-    <script>
-        let quant = 0;
-        function add_cart(){
-            quant++;
-            document.getElementById('count').innerText = quant
-        }   
-    </script>
-
-    <script>
-    // When the user clicks on div, open the popup
-    function cart_show() {
-      var popup = document.getElementById("cart");
-      popup.classList.toggle("show");
-    }
-    </script>
-
+    
     
     <div class="cart_num" id="count"></div>
     <div class="item_list">
+        
+        <div id="overlay">
+            <div id="checkout">
+                <button class="checkout_exit" onclick="cart_hide()">X</button>
+            </div>
+        </div>
+        <button onclick="cart_show()">cart</button>
+
         <nav>
             <ul>
                 <li id="bottle">
@@ -74,7 +67,22 @@
     </div>
 
     
+    <script>
+        let quant = 0;
+        function add_cart(){
+            quant++;
+            document.getElementById('count').innerText = quant
+        }   
+    </script>
 
+    <script>
+    function cart_show() {
+        document.getElementById('overlay').style.display = "block";
+    }
+    function cart_hide(){
+        document.getElementById('overlay').style.display = "none";
+    }
+    </script>
 
 
     
