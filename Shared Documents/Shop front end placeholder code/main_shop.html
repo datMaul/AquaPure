@@ -49,8 +49,16 @@
         }   
     </script>
 
-    <div class="cart_num" id="count"></div>
+    <script>
+    // When the user clicks on div, open the popup
+    function cart_show() {
+      var popup = document.getElementById("cart");
+      popup.classList.toggle("show");
+    }
+    </script>
 
+    
+    <div class="cart_num" id="count"></div>
     <div class="item_list">
         <nav>
             <ul>
@@ -63,7 +71,6 @@
                 </li>
             </ul>
         </nav>
-        
     </div>
 
     
