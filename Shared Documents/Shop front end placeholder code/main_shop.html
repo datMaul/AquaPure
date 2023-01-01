@@ -11,7 +11,12 @@
 
 <body>
     <header>
+        <div>
+            <span class="cart_num" id="count"></span>
+            <img class="cart" src="shopping-cart.png" onclick="cart_show()"></img>
+        </div>
         <div class="container">
+            <!--adding cart to nav bar-->
             <nav>
                 <ul class="navigation_Link">
                     <li><a href="#">Aqua Pure</a></li>
@@ -42,16 +47,18 @@
 
     <!--shop code-->
     
+
     
-    <div class="cart_num" id="count"></div>
     <div class="item_list">
         
+
+
         <div id="overlay">
             <div id="checkout">
                 <button class="checkout_exit" onclick="cart_hide()">X</button>
             </div>
         </div>
-        <button onclick="cart_show()">cart</button>
+        
 
         <nav>
             <ul>
@@ -67,22 +74,28 @@
     </div>
 
     
+
+
     <script>
         let quant = 0;
+        document.getElementById('count').style.display = "none";
         function add_cart(){
             quant++;
-            document.getElementById('count').innerText = quant
+            document.getElementById('count').style.display = "block";
+            document.getElementById('count').innerText = quant;
         }   
     </script>
 
     <script>
-    function cart_show() {
-        document.getElementById('overlay').style.display = "block";
-    }
-    function cart_hide(){
-        document.getElementById('overlay').style.display = "none";
-    }
+        function cart_show() {
+            document.getElementById('overlay').style.display = "block";
+        }
+        function cart_hide(){
+            document.getElementById('overlay').style.display = "none";
+        }
     </script>
+
+
 
 
     
