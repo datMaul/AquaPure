@@ -66,8 +66,6 @@
                     <a href="item_frame.html"><img class="item_img" src="water_bottle.PNG"></img></a>
                     <p class="item_info">AquaPure Sport Bottle Blue<br>£19.99</p>
                     <button class="item_quick_add" type="button" onclick="add_cart()">Quick Add</button>
-                    
-                    
                 </li>
             </ul>
         </nav>
@@ -83,17 +81,25 @@
             quant++;
             document.getElementById('count').style.display = "block";
             document.getElementById('count').innerText = quant;
+            
         }   
-    </script>
 
-    <script>
         function cart_show() {
             document.getElementById('overlay').style.display = "block";
         }
         function cart_hide(){
             document.getElementById('overlay').style.display = "none";
         }
+
+        class product {
+            constructor(productID, name, price){
+                this.productID = Id;
+                this.name = name;
+                this.price = price
+            }
+        }
     </script>
+
 
 
 
