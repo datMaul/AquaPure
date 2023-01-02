@@ -6,11 +6,12 @@
         Home: AquaPure
     </title>
     <link rel="icon" type="image/x-icon" href="AquaPure_Logo.png">
-    <link rel="stylesheet" href="AquaPure_Style.css">
+    <link rel="stylesheet" href="Shop_style.css">
 </head>
 
 <body>
     <header>
+        <!--cart show and notification badge-->
         <div>
             <span class="cart_num" id="count"></span>
             <img class="cart" src="shopping-cart.png" onclick="cart_show()"></img>
@@ -52,7 +53,7 @@
     <div class="item_list">
         
 
-
+        <!--cart page-->
         <div id="overlay">
             <div id="checkout">
                 <button class="checkout_exit" onclick="cart_hide()">X</button>
@@ -62,10 +63,10 @@
 
         <nav>
             <ul>
-                <li id="bottle">
+                <li>
                     <a href="item_frame.html"><img class="item_img" src="water_bottle.PNG"></img></a>
                     <p class="item_info">AquaPure Sport Bottle Blue<br>£19.99</p>
-                    <button class="item_quick_add" type="button" onclick="add_cart()">Quick Add</button>
+                    <button id="bottle" class="item_quick_add" type="button" onclick="add_cart()">Quick Add</button>
                 </li>
             </ul>
         </nav>
@@ -73,24 +74,25 @@
 
     
 
-
+    <!--add badge to cart icon; show/hide cart when click on icon-->
     <script>
         let quant = 0;
         document.getElementById('count').style.display = "none";
         function add_cart(){
             quant++;
             document.getElementById('count').style.display = "block";
-            document.getElementById('count').innerText = quant;
-            
-        }   
+            document.getElementById('count').innerText = quant;    
+        }
 
         function cart_show() {
             document.getElementById('overlay').style.display = "block";
         }
         function cart_hide(){
             document.getElementById('overlay').style.display = "none";
-        }
-
+        } 
+    </script>
+<!-- adding items to cart-->
+    <script>
         class product {
             constructor(productID, name, price){
                 this.productID = Id;
@@ -98,6 +100,11 @@
                 this.price = price
             }
         }
+        //bottle
+        const bottle = document.getElementById('bottle');
+        bottle.addEventListener('click',()=>{
+            document.getElementById('checkout').innerHTML += '<div style="background-color: white; width 100px; height 100px;">bottle</div>'
+        });
     </script>
 
 
