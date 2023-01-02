@@ -24,3 +24,4 @@ yarn-error.log*
 
 # custom files
 *.vpp.bak_*
+/.vscode
