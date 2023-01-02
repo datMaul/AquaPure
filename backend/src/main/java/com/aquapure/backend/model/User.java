@@ -1,6 +1,6 @@
-package com.example.demo.model;
+package com.aquapure.backend.model;
 
-import com.example.demo.UserType;
+import com.aquapure.backend.UserType;
 
 //Let's create a simple User class
 //In Spring Data we will look at how to persist this in a database

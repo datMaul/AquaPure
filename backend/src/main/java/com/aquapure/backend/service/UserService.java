@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.aquapure.backend.service;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.UserType;
-import com.example.demo.model.User;
+import com.aquapure.backend.UserType;
+import com.aquapure.backend.model.User;
 
 @Service
 public class UserService {

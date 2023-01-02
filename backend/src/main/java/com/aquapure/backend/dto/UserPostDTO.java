@@ -1,6 +1,6 @@
-package com.example.demo.dto;
+package com.aquapure.backend.dto;
 
-import com.example.demo.UserType;
+import com.aquapure.backend.UserType;
 
 public class UserPostDTO {
 	String name;
