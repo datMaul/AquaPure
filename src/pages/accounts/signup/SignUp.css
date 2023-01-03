@@ -395,19 +395,19 @@
     text-align: center;
 }
 
-h1 {
+.SignUp-Info-Content h1 {
     font-family: 'Lato', sans-serif;
     font-weight: 500;
-    font-size: 30px;
+    font-size: 50px;
     color: rgb(255, 255, 255);
     padding: 0;
     margin-top: 20px;
 }
 
-h2 {
+.SignUp-Info-Content h2 {
     font-family: 'Lato', sans-serif;
     font-weight: 500;
-    font-size: 27px;
+    font-size: 40px;
     color: rgb(255, 255, 255);
     padding: 0;
     margin-top: 20px;
