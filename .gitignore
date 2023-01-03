@@ -25,4 +25,4 @@ yarn-error.log*
 # custom files
 *.vpp.bak_*
 /.vscode
-.DS_Store
+*.DS_Store
