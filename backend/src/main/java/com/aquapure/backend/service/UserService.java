@@ -27,9 +27,12 @@ public class UserService {
 		User user1 = new User(1, "Bob","bob@sample.com", "bob_pass", UserType.BUYER);
 		User user2 = new User(2, "Alice", "alice@sample.com", "alice_pass", UserType.SELLER);
 		User user3 = new User(3, "Carol", "carol@sample.com", "carol_pass", UserType.BOTH);
+		User user4 = new User(4, "Caroffl", "cffarol@sample.com", "fffcarol_pass", UserType.BOTH);
+		
 		userList.add(user1);
 		userList.add(user2);
 		userList.add(user3);
+		userList.add(user4);
 		currentID=3;
 	}
 	
