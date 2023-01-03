@@ -8,6 +8,9 @@ export default function Accounts() {
             <h1> Account Page </h1>
 
             <div className = "AccountInformation-Content">
+                <button> Logout </button>
+                <br/> <br/>
+                
                 <h2> Account Information </h2>   
 
                 <text>Name: </text>

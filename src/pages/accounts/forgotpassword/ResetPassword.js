@@ -5,7 +5,9 @@ export default function ResetPassword() {
   return (
     <div className='ResetPassword'>
       <div className='ResetPassword-Content'>
-        <Link to = "/accounts/password/reset"> Back</Link>
+        <Link to = "/accounts/password/reset">
+          <button className = "backButton"> Back </button>
+        </Link>
 
         <h1> Enter New Password </h1>
         <br/> <br/>
