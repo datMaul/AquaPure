@@ -1,0 +1,21 @@
+.Test_Kit_Table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.Test_Kit_Table td,
+.Test_Kit_Table th {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+
+.Test_Kit_Table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #162427;
+    color: white;
+}

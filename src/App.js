@@ -11,6 +11,7 @@ import SignUp from "./pages/accounts/signup/SignUp";
 import ForgotPassword from "./pages/accounts/forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/accounts/forgotpassword/ResetPassword";
 import Accounts from "./pages/accounts/Accounts";
+import Testkitlog from "./pages/testkit/testkit_log/Testkitlog";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           />
           <Route path="/accounts" element={<Accounts />} />
           <Route path="/phasetest" element={<Phasetest />} />
+          <Route path="/testkitlog" element={<Testkitlog />} />
         </Routes>
       </div>
     </>
