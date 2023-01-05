@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Testkitlog.css";
+import { Link } from "react-router-dom";
 
 export default function TestkitLog() {
     const [testkits, setTestKit] = useState([])
@@ -20,6 +21,7 @@ export default function TestkitLog() {
                     <th scope="col">Test Kit Name</th>
                     <th scope="col">Test Kit Price</th>
                     <th scope="col">Stock Count</th>
+                    <th scope="col">Action</th>
                 </tr>
                 {
                     testkits.map((testkit, index) => (
@@ -28,11 +30,11 @@ export default function TestkitLog() {
                             <td>{testkit.test_Kit_Name}</td>
                             <td>{testkit.test_Kit_Price}</td>
                             <td>{testkit.test_Kit_Stock_Count}</td>
+                            <td><Link className="Edit_Kit_Price" to={`/testkitlog/overwrite/${testkit.test_Kit_ID}`}>Overwrite</Link></td>
                         </tr>
                     ))
                 }
             </table>
-
         </div>
     );
 }

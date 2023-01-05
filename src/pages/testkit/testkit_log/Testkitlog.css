@@ -19,3 +19,25 @@
     background-color: #162427;
     color: white;
 }
+
+.Edit_Kit_Price {
+    padding: 5px;
+    background-color: #162427;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 25px;
+    border: 2px solid #162427;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: ease-out 350ms;
+    box-shadow: inset 0 0 0 0 #ffffff;
+}
+
+.Edit_Kit_Price:hover {
+    background-color: #ffffff;
+    color: #162427;
+    border: 2px solid #162427;
+    box-shadow: inset 150px 0 0 0 #ffffff;
+}
