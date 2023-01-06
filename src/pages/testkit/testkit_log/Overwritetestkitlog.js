@@ -50,6 +50,7 @@ export default function Overwritetestkitlog() {
                                 className="from-control"
                                 placeholder="Name of Test Kit"
                                 name="test_Kit_Name"
+                                readOnly
                                 value={test_Kit_Name}
                                 onChange={(e) => onInputChange(e)} />
                         </div>
