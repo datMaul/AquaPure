@@ -1,6 +1,7 @@
+import "./game.css";
 export default function Gmae() {
 
-<link rel="stylesheet" href="game.css"></link>
+
 
 
 const questionCard = document.querySelector('.question')
@@ -57,7 +58,7 @@ function gameStart(){
 function nextQuestion(){
     if(questionList.length === 0 || questionIndex > MAX_QUESTIONS){
         localStorage.setItem('mostRecentScore', score)
-        return window.location.assign('endScreen.html')
+        return window.location.assign('game-endscreen.js')
     }
 
     const questionCounter = Math.floor(Math.random() * questionList.length)
@@ -102,18 +103,18 @@ function selectAnswer(selection){
 }
 
   return (
-  <div>
-    <div class="green" ></div>
-    <div class="red"></div>
-    <div class = "card">
-        <h1 class = "question">test</h1>
-        <div class = "button-group">
-            <button class = "answer-button" data-number="1">ans1</button>
-            <button class = "answer-button" data-number="2">ans2</button>
-            <button class = "answer-button" data-number="3">ans3</button>
-            <button class = "answer-button" data-number="4">ans4</button>
+  <div className="body">
+    <div className="green" ></div>
+    <div className="red"></div>
+    <div className= "card">
+        <h1 className= "question">test</h1>
+        <div className= "button-group">
+            <button className= "answer-button" data-number="1">ans1</button>
+            <button className= "answer-button" data-number="2">ans2</button>
+            <button className= "answer-button" data-number="3">ans3</button>
+            <button className= "answer-button" data-number="4">ans4</button>
         </div>
-        <div class="score">Score  0</div>
+        <div className="score">Score  0</div>
     </div>
     <script src="webpage.js"></script>
   </div>
