@@ -1,0 +1,16 @@
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.options-button {
+    margin: 5px;
+    border-radius: 25px;
+    border: 1px solid;
+    padding: 8px;
+    border-color: #0db4ad;
+    background: #0db4ad;
+    color: #f0f8ff;
+    text-align: center;
+    box-shadow: none;
+}
