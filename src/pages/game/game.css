@@ -1,0 +1,154 @@
+:root{
+    --gradient: linear-gradient(
+        45deg,
+        rgb(0, 77, 109),
+        rgb(0, 93, 208),
+        rgb(47, 163, 205),
+        rgb(147, 214, 234),
+        rgb(127, 223, 220)
+        ) ;
+
+    --wrong: linear-gradient(
+        45deg,
+        #FF6962,
+        #FF7974,
+        #FF8986,
+        #FF9997,
+        #FFA9A9
+    );
+
+    --correct: linear-gradient(
+        45deg,
+        #A9DDB1,
+        #C3EBC6,
+        #D1F1D1,
+        #DEF8DB,
+        #EBFFE6
+    );
+}
+
+body{
+    background: var(--gradient);
+
+    background-attachment: fixed;
+    background-size: 400%;
+    animation: bg-animation 25s infinite alternate; 
+    font-family: 'Gotham', sans-serif;
+}
+
+@keyframes bg-animation {
+    0%{
+        background-position: left;
+    }
+    100%{
+        background-position: right;
+    }
+}
+
+.card{
+    background: white;
+    width: 30vw;
+    padding: 3em;
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 3em rgb(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.question{
+    text-align: center;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: transparent;
+    margin: 5px;
+    list-style: 0.5;
+    background-image: var(--gradient);
+    -webkit-background-clip: text;
+    margin-bottom: 15px;
+}
+
+.button-group button{
+    text-align: left;
+    cursor: pointer;
+    width: 30vw;
+    height: auto;
+    padding: 15px 10px;
+    display: block;
+    margin: 0 0 10px 0;
+    transition-duration: 0.3s;
+
+    background-color: white;
+    border: 1px solid lightblue;
+}
+
+.button-group button:hover{
+    box-shadow: 0 0 5px lightblue;
+    transform: scale(1.05);
+
+}
+
+
+.answer-button.correct{
+    background-image: var(--correct);
+    color: darkgreen;
+    font-weight: bold;
+    box-shadow: 0 0 5px lightgreen;
+    border: 1px solid transparent;
+}
+.answer-button.wrong{
+    background-image: var(--wrong);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 5px lightcoral;
+    border: 1px solid transparent;
+}
+
+.score{
+    text-align: center;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: transparent;
+    margin: 5px;
+    margin-top: 10px;
+    list-style: 0.5;
+    background-image: var(--gradient);
+    -webkit-background-clip: text;
+    margin-bottom: 15px;
+}
+
+.green{
+    background-image: var(--correct);
+    transition-duration: 1s;
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: absolute;
+    
+}
+.red{
+    background-image: var(--wrong);
+    transition-duration: 1s;
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+body.correct .green{
+    opacity: 1;
+}
+body.wrong .red{
+    opacity: 1;
+}
+
+button{
+    font-family: 'Gotham', sans-serif;
+    font-size:medium;
+}
+
