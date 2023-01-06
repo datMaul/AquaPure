@@ -29,21 +29,23 @@
 
 .body{
     background: var(--gradient);
-
+    position: absolute;
+    width: 100%;
+    height: 100%;
     background-attachment: fixed;
-    background-size: 400%;
-    animation: bg-animation 25s infinite alternate; 
+    background-size: 100%;
+/*     animation: bg-animation 25s infinite alternate; */
     font-family: 'Gotham', sans-serif;
 }
 
-@keyframes bg-animation {
+/* @keyframes bg-animation {
     0%{
         background-position: left;
     }
     100%{
         background-position: right;
     }
-}
+} */
 
 .card{
     background: white;
@@ -140,10 +142,10 @@
     position: absolute;
 }
 
-body.correct .green{
+.body.correct .green{
     opacity: 1;
 }
-body.wrong .red{
+.body.wrong .red{
     opacity: 1;
 }
 
