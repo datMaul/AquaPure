@@ -5,7 +5,7 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-body{
+.bodyS{
   margin: 0;
   padding: 0;
   background: linear-gradient(120deg,#2980b9, #8e44ad);
@@ -104,10 +104,10 @@ input[type="submit"]:hover{
   font-size: 16px;
   color: #666666;
 }
-.SignIn a{
+.signin a{
   color: #2691d9;
   text-decoration: none;
 }
-.SignIn a:hover{
+.signin a:hover{
   text-decoration: underline;
 }
