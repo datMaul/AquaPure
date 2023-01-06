@@ -27,7 +27,7 @@
     );
 }
 
-body{
+.body{
     background: var(--gradient);
 
     background-attachment: fixed;
