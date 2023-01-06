@@ -53,7 +53,7 @@
     padding: 3em;
     position: absolute;
     left: 50%;
-    top: 25%;
+    top: 15%;
     transform: translateX(-50%);
     box-shadow: 0 0 3em rgb(0, 0, 0, 0.25);
     text-align: center;
@@ -74,7 +74,7 @@
 .button-group button{
     text-align: left;
     cursor: pointer;
-    width: 30vw;
+    width: 25vw;
     height: auto;
     padding: 15px 10px;
     display: block;
@@ -92,7 +92,7 @@
 }
 
 
-.answer-button.correct{
+ .answer-button.correct{
     background-image: var(--correct);
     color: darkgreen;
     font-weight: bold;
@@ -105,7 +105,7 @@
     font-weight: bold;
     box-shadow: 0 0 5px lightcoral;
     border: 1px solid transparent;
-}
+} 
 
 .score{
     text-align: center;
@@ -154,3 +154,39 @@ button{
     font-size:medium;
 }
 
+.invisible{
+    opacity: 0;
+}
+
+.endscreen{
+    background: white;
+    width: 30vw;
+    padding: 3em;
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 3em rgb(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.restart-button{
+    text-align: center;
+    cursor: pointer;
+    width: 10vw;
+    height: auto;
+    padding: 15px 10px;
+    display: block;
+    margin: 0 0 0 0;
+    transition-duration: 0.3s;
+    left: 50vw;
+    transform: translateX(+75%);
+    background-color: white;
+    border: 1px solid lightblue;
+}
+
+.restart-button:hover{
+    box-shadow: 0 0 5px lightblue;
+    transform: scale(1.05) translateX(+70%);
+
+}
