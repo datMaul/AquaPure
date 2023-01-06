@@ -1,8 +1,3 @@
-const questionCard = document.querySelector('.question')
-const choices = Array.from(document.querySelectorAll('.answer-button'))
-const scoreText = document.querySelector('.score')
-const body = document.querySelector('.body')
-
 window.addEventListener('load', gameStart)
 
 var currentQuestion = {}
@@ -17,27 +12,33 @@ const MAX_QUESTIONS = 3
 var questions = [
     {
         question: 'what is a',
-        choice1:  'a',
-        choice2:  'b',
-        choice3:  'c',
-        choice4:  'd',
-        answer: 3,
+        choices:[
+        'aa',
+        'b',
+        'c',
+        'd',
+        ],
+        answer: 0,
     },
     {
         question: 'what is b',
-        choice1:  'a',
-        choice2:  'aaaab',
-        choice3:  'c',
-        choice4:  'd',
-        answer: 3,
+        choices:[
+            'a',
+            'bb',
+            'c',
+            'd',
+            ],
+        answer: 1,
     },
     {
         question: 'what is c',
-        choice1:  'a',
-        choice2:  'bddd',
-        choice3:  'c',
-        choice4:  'd',
-        answer: 3,
+        choices:[
+            'a',
+            'b',
+            'cc',
+            'd',
+            ],
+        answer: 2,
     }
 ]
 
@@ -93,6 +94,4 @@ function selectAnswer(selection){
     body.classList.remove(appliedClass)
         nextQuestion()
     }, 2000)
-
-
 }
