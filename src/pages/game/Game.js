@@ -8,8 +8,6 @@ const questionCard = document.querySelector('.question')
 const choices = Array.from(document.querySelectorAll('.answer-button'))
 const scoreText = document.querySelector('.score')
 const body = document.querySelector('.body')
-const selector = null
-const input = selector || {}
 
 window.addEventListener('load', gameStart)
 
