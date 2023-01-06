@@ -5,6 +5,7 @@ export default function Map() {
   return (
     <div>
       <h1>Map</h1>
+      <h2>hello</h2>
 
       {/*
       <Map mapLib={maplibregl}
@@ -72,7 +73,7 @@ export default function Map() {
               <div className="legend_text">7</div>
             </li>
           </ul>
-            
+
         </div>
 
         <button type="locate_gps">GPS</button>
