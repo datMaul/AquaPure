@@ -114,7 +114,7 @@ function selectAnswer(selection){
             <button className= "answer-button" data-number="3">ans3</button>
             <button className= "answer-button" data-number="4">ans4</button>
         </div>
-        <div className="score">Score  0</div>
+        <div className="score">Score <br>0</br></div>
     </div>
     <script src="webpage.js"></script>
   </div>
