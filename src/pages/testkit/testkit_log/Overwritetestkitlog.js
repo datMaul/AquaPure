@@ -23,7 +23,7 @@ export default function Overwritetestkitlog() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.put(`htttp://localhost:8080/Test_Kit/${test_Kit_ID}`, testkit)
+        await axios.put(`http://localhost:8080/Test_Kit/${test_Kit_ID}`, testkit)
         navigate("/testkit")
     }
 
@@ -32,7 +32,7 @@ export default function Overwritetestkitlog() {
     }, []);
 
     const loadTestkit = async () => {
-        const result = await axios.get(`htttp://localhost:8080/Test_Kit/${test_Kit_ID}`)
+        const result = await axios.get(`http://localhost:8080/Test_Kit/${test_Kit_ID}`)
         setTestKit(result.data)
     }
 
