@@ -12,7 +12,7 @@ class ActionProvider {
 
   limitKnowledge = () => {
     const message = this.createChatBotMessage(
-      "Sorry, My responses are limited fukoo"
+      "Sorry, My responses are limited. lets try that again!"
     );
     this.addMessageToState(message);
   };
@@ -63,7 +63,7 @@ class ActionProvider {
   //About Us Caller
   AboutUs = () => {
     const message = this.createChatBotMessage(
-      "You can Find US at Room 212 WWSTM.", {
+      "You can find us at WLFB 202 at Brunel University!", {
       widget: "AboutUs",
     });
     this.addMessageToState(message);

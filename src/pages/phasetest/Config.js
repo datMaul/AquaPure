@@ -40,9 +40,9 @@ const config = {
             id: 1,
           },
           {
-            question: "Explain prototypal inheritance",
+            question: "How do I use the Test Kit?",
             answer:
-              "Prototypal inheritance is a link between an object and an object store that holds shared properties. If a property is not found on the host object, javascript will check the prototype object.",
+              "Each Test Kit has different application procedures, and their direction of use can be found on the box and in the included instruction manual",
             id: 2,
           },
         ],
@@ -54,13 +54,13 @@ const config = {
       props: {
         questions: [
           {
-            question: "Want to pH in your Area?",
+            question: "Want to know pH in your area?",
             answer: "LOL.",
             id: 1,
           },
           {
-            question: "Want to Add your results?",
-            answer: "Nice",
+            question: "Can I update the Map with my test kit results?",
+            answer: "Yes, you can! All AquaPure test kits come with a unique code which can be used to update the map.",
             id: 2,
           },
         ],
@@ -74,12 +74,12 @@ const config = {
           {
             question: "How can I buy the available products?",
             answer:
-              "If you want to buy the products, you will require to be registered and have an account within the AquaPure.",
+              "If you want to buy the products, you are require to be registered and have an account with AquaPure.",
             id: 1,
           },
           {
-            question: "Want to Add your results?",
-            answer: "Nice",
+            question: "What is the estimated time of delivery?",
+            answer: "Thought it is subjected to your shipping address, AquaPure tries its' best to have your productes dispached within 2-3 business days and once confirmed dispach, the tracking details are emailed to your registed email address.",
             id: 2,
           },
         ],
