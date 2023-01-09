@@ -3,11 +3,11 @@
     height:450px;
     cursor: pointer;
     transition: ease-out 150ms;
-    background-color: rgb(224, 224, 224);
+    background-color: rgb(174, 216, 255);
     
 }
 .item_img:hover{
-    background-color:rgb(174, 202, 255);
+    background-color:rgb(174, 174, 255);
     border:50px;
     border-color:black;
     
@@ -16,12 +16,14 @@
 .item_info{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size:20px;
-    text-align: left;
+    text-align: center;
+
 }
 
 .item_list{
     text-align: center;
     text-decoration: none;
+    background-color: rgb(255, 255, 255);
     transition: ease-out 350ms;
 }
 

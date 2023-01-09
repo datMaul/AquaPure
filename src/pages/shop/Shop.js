@@ -1,4 +1,5 @@
-import "./Shop_Style.css"
+import "./Shop_Style.css";
+import water from "./shop_assets/water_bottle.PNG";
 export default function Shop() {
   
 
@@ -11,7 +12,7 @@ export default function Shop() {
         <nav>
           <ul>
             <li>
-              <a href=".\item_pages\item_frame.js"><img className="item_img" src=".\shop_assets\water_bottle.PNG"></img></a>
+              <a href=".\item_pages\item_frame.js"><img alt="water" className="item_img" src={water}></img></a>
               <p className="item_info">AquaPure Sport Bottle Blue</p>
               <button id="bottle" className="item_quick_add" type="button">Quick Add</button>
             </li>

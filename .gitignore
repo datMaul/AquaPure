@@ -24,3 +24,5 @@ yarn-error.log*
 
 # custom files
 *.vpp.bak_*
+package-lock.json
+package.json
