@@ -37,10 +37,10 @@ export default function SignUp() {
   };
 
   const onSubmit = async (e) => {
+    e.preventDefault();
     if (password !== firstName) {
       alert("Passwords do not match");
     } else {
-      e.preventDefault();
       await axios.post("http://localhost:8080/Sign_Up", User);
       navigate("/");
     }
