@@ -51,7 +51,7 @@ export default function SignUp() {
             <br /> <br />
 
             <input type="text" id="areaCodeInput" name="areaCode" placeholder="Area Code" />
-            <input type="text" id="phoneNumberInput" name="phoneNumber" placeholder="Phone Number" value={phoneNumber} onChange={(e) => onInputChange(e)} />
+            <input type="number" id="phoneNumberInput" name="phoneNumber" placeholder="Phone Number" value={phoneNumber} onChange={(e) => onInputChange(e)} />
             <input type="date" id="dateOfBirthInput" name="doB" placeholder="Date of Birth" value={doB} onChange={(e) => onInputChange(e)} />
             <br /> <br />
 
@@ -65,7 +65,7 @@ export default function SignUp() {
             <input type="text" id="addressLine2Input" name="addressLine2" placeholder="Address Line 2" value={addressLine2} onChange={(e) => onInputChange(e)} />
             <br /> <br />
 
-            <input type="text" id="townOrCityInput" name="addressTC" placeholder="Town / City" value={addressTC} />
+            <input type="text" id="townOrCityInput" name="addressTC" placeholder="Town / City" value={addressTC} onChange={(e) => onInputChange(e)} />
             <input type="text" id="postcodeInput" name="addressPostcode" placeholder="Postcode" value={addressPostcode} onChange={(e) => onInputChange(e)} />
             <br /> <br />
 
