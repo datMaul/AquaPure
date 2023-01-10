@@ -65,7 +65,7 @@ export default function SignUp() {
             <input type="text" id="addressLine2Input" name="addressLine2" placeholder="Address Line 2" value={addressLine2} onChange={(e) => onInputChange(e)} />
             <br /> <br />
 
-            <input type="text" id="townOrCityInput" name="townOrCity" placeholder="Town / City" />
+            <input type="text" id="townOrCityInput" name="addressTC" placeholder="Town / City" value={addressTC} />
             <input type="text" id="postcodeInput" name="addressPostcode" placeholder="Postcode" value={addressPostcode} onChange={(e) => onInputChange(e)} />
             <br /> <br />
 
