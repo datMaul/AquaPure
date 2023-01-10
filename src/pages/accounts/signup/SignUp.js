@@ -13,6 +13,7 @@ export default function SignUp() {
     phoneNumber: "",
     doB: "",
     password: "",
+    confirmPassword: "",
     addressLine1: "",
     addressLine2: "",
     addressTC: "",
@@ -26,6 +27,7 @@ export default function SignUp() {
     phoneNumber,
     doB,
     password,
+    confirmPassword,
     addressLine1,
     addressLine2,
     addressPostcode,
@@ -38,7 +40,7 @@ export default function SignUp() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (password !== firstName) {
+    if (password !== confirmPassword) {
       alert("Passwords do not match");
     } else {
       await axios.post("http://localhost:8080/Sign_Up", User);
@@ -63,6 +65,7 @@ export default function SignUp() {
               id="firstNameInput"
               name="firstName"
               placeholder="First Name"
+              required
               value={firstName}
               onChange={(e) => onInputChange(e)}
             />
@@ -71,6 +74,7 @@ export default function SignUp() {
               id="lastNameInput"
               name="lastName"
               placeholder="Last Name"
+              required
               value={lastName}
               onChange={(e) => onInputChange(e)}
             />
@@ -80,6 +84,7 @@ export default function SignUp() {
               id="emailInput"
               name="eMail"
               placeholder="Email"
+              required
               value={eMail}
               onChange={(e) => onInputChange(e)}
             />
@@ -89,6 +94,7 @@ export default function SignUp() {
               id="phoneNumberInput"
               name="phoneNumber"
               placeholder="Phone Number"
+              required
               value={phoneNumber}
               onChange={(e) => onInputChange(e)}
             />
@@ -97,6 +103,7 @@ export default function SignUp() {
               id="dateOfBirthInput"
               name="doB"
               placeholder="Date of Birth"
+              required
               value={doB}
               onChange={(e) => onInputChange(e)}
             />
@@ -114,6 +121,9 @@ export default function SignUp() {
               id="confirmPasswordInput"
               name="confirmPassword"
               placeholder="Confirm Password"
+              required
+              value={confirmPassword}
+              onChange={(e) => onInputChange(e)}
             />
             <br /> <br />
             <input
@@ -121,6 +131,7 @@ export default function SignUp() {
               id="addressLine1Input"
               name="addressLine1"
               placeholder="Address Line 1"
+              required
               value={addressLine1}
               onChange={(e) => onInputChange(e)}
             />
@@ -130,6 +141,7 @@ export default function SignUp() {
               id="addressLine2Input"
               name="addressLine2"
               placeholder="Address Line 2"
+              required
               value={addressLine2}
               onChange={(e) => onInputChange(e)}
             />
@@ -139,6 +151,7 @@ export default function SignUp() {
               id="townOrCityInput"
               name="addressTC"
               placeholder="Town / City"
+              required
               value={addressTC}
               onChange={(e) => onInputChange(e)}
             />
@@ -147,6 +160,7 @@ export default function SignUp() {
               id="postcodeInput"
               name="addressPostcode"
               placeholder="Postcode"
+              required
               value={addressPostcode}
               onChange={(e) => onInputChange(e)}
             />
@@ -155,6 +169,7 @@ export default function SignUp() {
               type="checkbox"
               id="termsAndConditionsInput"
               name="termsAndConditions"
+              required
             />
             <label for="termsAndConditions" id="termsAndConditionsLabel">
               {" "}
@@ -165,6 +180,7 @@ export default function SignUp() {
               type="checkbox"
               id="privacyPolicyInput"
               name="privacyPolicy"
+              required
             />
             <label for="privacyPolicy" id="privacyPolicyLabel">
               {" "}
