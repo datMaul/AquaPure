@@ -1,29 +1,41 @@
-import React from 'react'
-import maplibregl from 'maplibre-gl'
+import React, { useRef, useEffect, useState } from 'react';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import './map.css';
 
 export default function Map() {
+  const mapContainer = useRef(null);
+  const map = useRef(null);
+  const [lng] = useState(-4);
+  const [lat] = useState(54);
+  const [zoom] = useState(5);
+  const [API_KEY] = useState('OXjioEfDUH0gP7RYRS4S');
+
+  useEffect(() => {
+    if (map.current) return;
+    map.current = new maplibregl.Map({
+      container: mapContainer.current,
+      style: `https://api.maptiler.com/maps/streets-v2/style.json?key=${API_KEY}`,
+      center: [lng, lat],
+      zoom: zoom
+    });
+    map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
+    map.current.addControl(new maplibregl.GeolocateControl(), 'bottom-right');
+
+  });
+
   return (
     <div>
-      <h1>Map</h1>
-
-      {/*
-      <Map mapLib={maplibregl}
-        initialViewState={{
-          longitude: 16.62662018,
-          latitude: 49.2125578,
-          zoom: 14
-        }}
-        style={{width: "100%", height: "100vh"}}
-        mapStyle="https://api.maptiler.com/maps/basic-v2/?key=OXjioEfDUH0gP7RYRS4S#1.0"
-      ></Map>
-      */}
+      <div className="map-wrap">
+        <div ref={mapContainer} className="map" />
+      </div>
 
       <div id="search_bar">
         <input type="text" placeholder="Search" />
         <button type="submit">Search</button>
       </div>
 
-      <div id="water_body_filters">
+      <div id="water_body_filters" className="water_body_filters">
         <h3>Water Body Filter</h3>
         <button type="button" className="btn btn-primary">All</button>
         <input type="checkbox" id="river" name="river" value="river" />
@@ -42,7 +54,7 @@ export default function Map() {
         <label for="estuary_sediment">Estuary Sediment</label>
       </div>
 
-      <div id="parameter_filters">
+      <div id="parameter_filters" className="parameter_filters">
         <h3>Parameter Filter</h3>
         <div className="select_filter">
           <select name="filter" id="filter">
@@ -65,7 +77,7 @@ export default function Map() {
           </select>
         </div>
 
-        <div id="parameter_filter_legend">
+        <div id="parameter_filter_legend" className="parameter_filter_legend">
           <h4>Legend</h4>
           <ul className="legend_list">
             <li className="legend_item">
@@ -74,8 +86,6 @@ export default function Map() {
           </ul>
             
         </div>
-
-        <button type="locate_gps">GPS</button>
 
       </div>
     </div>
