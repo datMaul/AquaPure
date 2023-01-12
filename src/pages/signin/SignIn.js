@@ -6,8 +6,8 @@ export default function SignIn() {
     <>
   <meta charSet="utf-8" />
   <link rel="stylesheet" href="signin.css" />
-  <body className="bodyS">
   <div className="center">
+    <body className="bodyS">
     <h1>Login</h1>
     <form method="post">
       <div className="txt_field">
@@ -26,8 +26,8 @@ export default function SignIn() {
         Not a member? <a href="#">Signup</a> 
       </div> 
     </form>
-  </div>
   </body>
+  </div>
 </>
   );
   
