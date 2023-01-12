@@ -84,7 +84,7 @@ export default function Map() {
               <div className="legend_text">7</div>
             </li>
           </ul>
-            
+
         </div>
 
       </div>
