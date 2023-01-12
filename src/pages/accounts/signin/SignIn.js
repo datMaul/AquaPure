@@ -3,8 +3,9 @@ import './SignIn.css';
 
 export default function SignIn() {
   return (
-    <><meta charSet="utf-8" /><link rel="stylesheet" href="SignIn.css" /><div className="center">
-      <body className='body1'>
+    <><meta charSet="utf-8" /><link rel="stylesheet" href="SignIn.css" />
+    <body className='body1'>
+      <div className="center">
       <h1>Login</h1>
       <form method="post">
         <div className="txt_field">
@@ -23,7 +24,8 @@ export default function SignIn() {
           Not a member? <Link href="SignUp.css">Signup</Link>
         </div>
       </form>
-      </body>
-    </div></>
+    </div>
+    </body>
+    </>
   );
 }
