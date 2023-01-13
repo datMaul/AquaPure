@@ -24,7 +24,7 @@
     margin: 5px;
     outline: none;
     text-align: center;
-    width: 100px;
+    width: 60px;
     height: 30px;
     border: 2px solid #000;
     font-family: 'Lato', sans-serif;
@@ -33,8 +33,9 @@
     transition: all 0.3s ease;
     position: relative;
     display: inline-block;
+    border-radius: 10px;
 
-    background: #000;
+    background: #2165a5;
     color: #fff;
     z-index: 1;
 }
@@ -48,12 +49,13 @@
     left: 0;
     direction: rtl;
     z-index: -1;
-    background: #e0e5ec;
+    background: #fff;
     transition: all 0.3s ease;
+    border-radius: 10px;
 }
 
 #backButton:hover {
-    color: #000;
+    color: #2165a5;
 }
 
 #backButton:hover:after {
@@ -312,62 +314,25 @@
 
 
 /* Submit Button */
+
 #submitButton {
-    margin: 5px;
-    outline: none;
-    text-align: center;
-    width: 150px;
-    height: 40px;
-    border: 2px solid #000;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
     display: inline-block;
-
-    background: #000;
+    background: #2165a5;
     color: #fff;
-    line-height: 42px;
-    padding: 0;
-    border: none;
-    z-index: 1;
-    -webkit-transition: all 0.3s linear;
-    transition: all 0.3s linear;
-}
-
-#submitButton:hover {
-    background: transparent;
-    color: #000;
-}
-
-#submitButton:before,
-#submitButton:after {
-    position: absolute;
-    content: "";
-    left: 0;
-    width: 100%;
-    height: 50%;
-    right: 0;
-    z-index: -1;
-    background: #000;
-    transition: all 0.3s ease;
-}
-
-#submitButton:before {
-    top: 0;
-}
-
-#submitButton:after {
-    bottom: 0;
-}
-
-#submitButton:hover:before,
-#submitButton:hover:after {
-    height: 0;
-    background-color: #000;
-}
-
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 35px;
+    border-radius: 50px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 170px;
+  }
+  
+  #submitButton:hover {
+    background: #fff;
+    color: #2165a5;
+    box-shadow: 0 4px 4px rgba(36, 168, 234, 0.32);
+  }
 
 
 /* Info Div */
