@@ -108,6 +108,7 @@ form .txt_field{
 }
 
 .logInButton {
+    display: inline-block;
     background: #339DFF;
     color: #fff;
     text-decoration: none;
