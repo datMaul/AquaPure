@@ -8,10 +8,34 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    z-index: 0;
 }
 
-search_bar, water_body_filters, parameter_filters, parameter_filter_legend, locate_gps {
-    display: absolute;
-    top: 0;
-    left: 0;
+#search_bar, #water_body_filters, #parameter_filters{
+    position: absolute;
+    z-index: 1;
+}
+
+#search_bar {
+    top: 81px;
+    left: 10px;
+}
+
+#water_body_filters {
+    top: 121px;
+    left: 10px;
+    width: 25%;
+}
+
+#parameter_filters {
+    top: 281px;
+    left: 10px;
+}
+
+
+.white-box {
+    opacity: 0.8;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
 }

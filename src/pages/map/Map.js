@@ -26,6 +26,7 @@ export default function Map() {
 
   return (
     <div>
+
       <div className="map-wrap">
         <div ref={mapContainer} className="map" />
       </div>
@@ -35,7 +36,7 @@ export default function Map() {
         <button type="submit">Search</button>
       </div>
 
-      <div id="water_body_filters" className="water_body_filters">
+      <div id="water_body_filters" className="water_body_filters white-box">
         <h3>Water Body Filter</h3>
         <button type="button" className="btn btn-primary">All</button>
         <input type="checkbox" id="river" name="river" value="river" />
@@ -54,7 +55,7 @@ export default function Map() {
         <label for="estuary_sediment">Estuary Sediment</label>
       </div>
 
-      <div id="parameter_filters" className="parameter_filters">
+      <div id="parameter_filters" className="parameter_filters white-box">
         <h3>Parameter Filter</h3>
         <div className="select_filter">
           <select name="filter" id="filter">
@@ -75,19 +76,20 @@ export default function Map() {
             <option value="Bromine">Bromine</option>
             <option value="Carbonate">Carbonate</option>
           </select>
+          <div id="parameter_filter_legend" className="parameter_filter_legend">
+            <h4>Legend</h4>
+            <ul className="legend_list">
+              <li className="legend_item">
+                <div className="legend_text">7</div>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div id="parameter_filter_legend" className="parameter_filter_legend">
-          <h4>Legend</h4>
-          <ul className="legend_list">
-            <li className="legend_item">
-              <div className="legend_text">7</div>
-            </li>
-          </ul>
-
-        </div>
+        
 
       </div>
+
     </div>
   )
 }
