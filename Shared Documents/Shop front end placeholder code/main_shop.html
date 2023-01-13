@@ -97,14 +97,19 @@
             constructor(productID, name, price){
                 this.productID = Id;
                 this.name = name;
-                this.price = price
+                this.price = price;
+                this.description = desc;
             }
         }
         //bottle
-        const bottle = document.getElementById('bottle');
+        //const bottle = document.getElementById('bottle');
+        const bottle = new product(0,"AquaPure Sports Bottle", 19.99, "This bottle which is made from 100% recycled plastic");
         bottle.addEventListener('click',()=>{
             document.getElementById('checkout').innerHTML += '<div style="background-color: white; width 100px; height 200px; margin-top:8%;"> <img src="water_bottle.png" style="width:50px; height:50px; margin-right:50px;"></img> </div>'
         });
+
+        //Sports Jumper
+        const jumper = new product(1,"AquaPure Hooded Jumper",29.99,"Nice and warm");
     </script>
 
 
