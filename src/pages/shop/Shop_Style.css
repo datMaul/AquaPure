@@ -1,6 +1,14 @@
+.item_list{
+    padding-top:50px;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgb(255, 255, 255);
+    transition: ease-out 350ms;
+}
+
 .item_img{
-    width:450px;
-    height:450px;
+    width:350px;
+    height:350px;
     cursor: pointer;
     transition: ease-out 150ms;
     background-color: rgb(174, 216, 255);
@@ -12,38 +20,6 @@
     border-color:black;
     
     
-}
-.item_info{
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size:20px;
-    text-align: center;
-
-}
-
-.item_list{
-    text-align: center;
-    text-decoration: none;
-    background-color: rgb(255, 255, 255);
-    transition: ease-out 350ms;
-}
-
-
-.item_desc{
-    width:25%;
-    background-color:rgb(207, 207, 207);
-    float:left;
-    margin-top:5%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:40px;
-    margin-left:5%;
-
-}
-
-.item_image{
-    background-color:rgb(214, 214, 214);
-    margin-top:5%;
-    float:left;
-    margin-left:20%;
 }
 
 .item_quick_add{
@@ -57,15 +33,41 @@
     border: 5px solid #ffffff;
     text-align: center;
     cursor: pointer;
-    transition: ease-out 50ms;
+    transition: ease 350ms;
     box-shadow: inset 0 0 0 0 #ffffff;
 }
 .item_quick_add:hover{
-    background-color:white;
-    color:#a5c1ff;
-    border-color:#a5c1ff;
-    border-width: 2px;
+    background-color:#c0a5ff;
 }
+
+.item_text{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:15px;
+    text-align: center;
+}
+
+
+
+
+.item_desc{
+    width:25%;
+    background-color:rgb(207, 207, 207);
+    float:left;
+    margin-top:5%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:30px;
+    margin-left:5%;
+
+}
+
+.item_page_image{
+    background-color:rgb(214, 214, 214);
+    margin-top:5%;
+    float:left;
+    margin-left:20%;
+}
+
+
 
 
 
