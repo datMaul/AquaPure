@@ -1,0 +1,379 @@
+/* Page */
+.SignUp {
+    width: 100%;
+    height: auto;
+    display: grid;
+    flex-direction: row;
+    grid-template-columns: auto auto;
+}
+
+
+
+/* Form Div */
+.SignUp-Form-Content {
+    position: absolute;
+	top: 1;
+    right: 50%;
+    width: 50%;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+}
+
+/* Back Button */
+#backButton {
+    margin: 5px;
+    outline: none;
+    text-align: center;
+    width: 60px;
+    height: 30px;
+    border: 2px solid #000;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    border-radius: 10px;
+
+    background: #2165a5;
+    color: #fff;
+    z-index: 1;
+}
+
+#backButton:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    direction: rtl;
+    z-index: -1;
+    background: #fff;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+#backButton:hover {
+    color: #2165a5;
+}
+
+#backButton:hover:after {
+    left: auto;
+    right: 0;
+    width: 100%;
+}
+
+#backButton:active {
+    top: 2px;
+}
+
+
+/* Form */
+.Container-SignUp-Form {
+    text-align: center;
+}
+
+#firstNameInput {
+    margin: 5px;
+    width: 175px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+#lastNameInput {
+    margin: 5px;
+    width: 175px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+#emailInput {
+    margin: 5px;
+    width: 350px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+#areaCodeInput {
+    margin: 5px;
+    width: 80px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+#phoneNumberInput {
+    margin: 5px;
+    width: 175px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+#dateOfBirthInput {
+    margin: 5px;
+    width: 175px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+#passwordInput {
+    margin: 5px;
+    width: 175px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+#confirmPasswordInput {
+    margin: 5px;
+    width: 175px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+#addressLine1Input {
+    margin: 5px;
+    width: 350px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+#addressLine2Input {
+    margin: 5px;
+    width: 350px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+#townOrCityInput {
+    margin: 5px;
+    width: 175px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+#postcodeInput {
+    margin: 5px;
+    width: 175px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+#termsAndConditionsLabel {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: black;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#termsAndConditionsInput {
+    margin: 5px;
+    outline: none;
+    text-align: center;
+    border: 2px solid #000;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+#privacyPolicyLabel {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: black;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#privacyPolicyInput {
+    margin: 5px;
+    outline: none;
+    text-align: center;
+    border: 2px solid #000;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+
+/* Submit Button */
+
+#submitButton {
+    display: inline-block;
+    background: #2165a5;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 35px;
+    border-radius: 50px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 170px;
+  }
+  
+  #submitButton:hover {
+    background: #fff;
+    color: #2165a5;
+    box-shadow: 0 4px 4px rgba(36, 168, 234, 0.32);
+  }
+
+
+/* Info Div */
+.SignUp-Info {
+    position: absolute;
+	top: 1;
+	left: 50%;
+	width: 50%;
+	height: 105.5%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+    background-size: cover;
+    background-image: url(Thames.jpg);
+    
+}
+
+.SignUp-Info-Content{
+    margin: 0;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.SignUp-Info-Content h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+    padding: 0;
+    margin-top: 20px;
+}
+
+.SignUp-Info-Content h2 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    padding: 0;
+    margin-top: 20px;
+}

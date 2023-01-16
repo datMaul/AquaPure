@@ -1,133 +1,206 @@
-import { Link, useNavigate } from 'react-router-dom';
-import './SignUp.css';
+import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import axios from "axios";
+import "./SignUp.css";
 
 export default function SignUp() {
   const navigate = useNavigate();
 
-  function submitForm(form) {
-    form.preventDefault(); // Prevents AutoSubmitting
+  const [User, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    eMail: "",
+    phoneNumber: "",
+    doB: "",
+    password: "",
+    confirmPassword: "",
+    addressLine1: "",
+    addressLine2: "",
+    addressTC: "",
+    addressPostcode: "",
+  });
 
-    const firstName = form.target.firstName.value;
-    const lastName = form.target.lastName.value;
-    const email = form.target.email.value;
-    const areaCode = form.target.areaCode.value;
-    const phoneNumber = form.target.phoneNumber.value;
-    const dateOfBirth = form.target.dateOfBirth.value;
-    const password = form.target.password.value;
-    const confirmPassword = form.target.confirmPassword.value;
-    const addressLine1 = form.target.addressLine1.value;
-    const addressLine2 = form.target.addressLine2.value;
-    const townOrCity = form.target.townOrCity.value;
-    const postcode = form.target.postcode.value;
-    const termsAndConditions = form.target.termsAndConditions.value;
-    const privacyPolicy = form.target.privacyPolicy.value;
+  const {
+    firstName,
+    lastName,
+    eMail,
+    phoneNumber,
+    doB,
+    password,
+    confirmPassword,
+    addressLine1,
+    addressLine2,
+    addressPostcode,
+    addressTC,
+  } = User;
 
-    // const areaCodeRegex = /(?:\+?(\d{1,3}))?/;
-    // const phoneNumberRegex = /(\d{3})(\d{3})(\d{4})(?: *x(\d+))?/;
+  const onInputChange = (e) => {
+    setUser({ ...User, [e.target.name]: e.target.value });
+  };
 
-    // if () {
-    //   alert("Invalid Area Code!");
-    //   return;
-    // } else if () {
-    //   alert("Invalid Phone Number!");
-    //   return;
-    // } else if (password !== confirmPassword) {
-    //   alert("Passwords do not match!");
-    //   return;
-    // } else {
-    //   console.log("Full Name: " + firstName + " " + lastName);
-    //   console.log("Email: " + email);
-    //   console.log("Phone Number: " +areaCode + phoneNumber);
-    //   console.log("Date of Birth: " + dateOfBirth);
-    //   console.log("Password: " + password);
-    //   console.log("Address Line 1: " + addressLine1);
-    //   console.log("Address Line 2: " + addressLine2);
-    //   console.log("Town or City: " + townOrCity);
-    //   console.log("Postcode: " + postcode);
-    //   console.log("Terms and Conditions: " + termsAndConditions);
-    //   console.log("Privacy Policy: " + privacyPolicy);
-
-    //   navigate('/');
-    // }
-
+  const onSubmit = async (e) => {
+    e.preventDefault();
     if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
+      alert("Passwords do not match");
     } else {
-      console.log("Full Name: " + firstName + " " + lastName);
-      console.log("Email: " + email);
-      console.log("Phone Number: " +areaCode + phoneNumber);
-      console.log("Date of Birth: " + dateOfBirth);
-      console.log("Password: " + password);
-      console.log("Address Line 1: " + addressLine1);
-      console.log("Address Line 2: " + addressLine2);
-      console.log("Town or City: " + townOrCity);
-      console.log("Postcode: " + postcode);
-      console.log("Terms and Conditions: " + termsAndConditions);
-      console.log("Privacy Policy: " + privacyPolicy);
-
-      navigate('/');
+      await axios.post("http://localhost:8080/Sign_Up", User);
+      navigate("/");
     }
-    
-  }
+  };
 
   return (
-    <div className='SignUp'>
-      <div className='SignUp-Content'>
-
-        <Link to="/accounts/login"> Back</Link>
-
-        <h1> Sign Up </h1>
+    <div className="SignUp">
+      <div className="SignUp-Form-Content">
+        <Link to="/accounts/login">
+          <button className="backButton" id="backButton">
+            {" "}
+            Back{" "}
+          </button>
+        </Link>
         <br /> <br />
+        <div className="Container-SignUp-Form">
+          <form onSubmit={(e) => onSubmit(e)}>
+            <input
+              type="text"
+              id="firstNameInput"
+              name="firstName"
+              placeholder="First Name"
+              required
+              value={firstName}
+              onChange={(e) => onInputChange(e)}
+            />
+            <input
+              type="text"
+              id="lastNameInput"
+              name="lastName"
+              placeholder="Last Name"
+              required
+              value={lastName}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="email"
+              id="emailInput"
+              name="eMail"
+              placeholder="Email"
+              required
+              value={eMail}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="number"
+              id="phoneNumberInput"
+              name="phoneNumber"
+              placeholder="Phone Number"
+              required
+              value={phoneNumber}
+              onChange={(e) => onInputChange(e)}
+            />
+            <input
+              type="date"
+              id="dateOfBirthInput"
+              name="doB"
+              placeholder="Date of Birth"
+              required
+              value={doB}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="password"
+              id="passwordInput"
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => onInputChange(e)}
+            />
+            <input
+              type="password"
+              id="confirmPasswordInput"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              required
+              value={confirmPassword}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="text"
+              id="addressLine1Input"
+              name="addressLine1"
+              placeholder="Address Line 1"
+              required
+              value={addressLine1}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="text"
+              id="addressLine2Input"
+              name="addressLine2"
+              placeholder="Address Line 2"
+              required
+              value={addressLine2}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="text"
+              id="townOrCityInput"
+              name="addressTC"
+              placeholder="Town / City"
+              required
+              value={addressTC}
+              onChange={(e) => onInputChange(e)}
+            />
+            <input
+              type="text"
+              id="postcodeInput"
+              name="addressPostcode"
+              placeholder="Postcode"
+              required
+              value={addressPostcode}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="checkbox"
+              id="termsAndConditionsInput"
+              name="termsAndConditions"
+              required
+            />
+            <label for="termsAndConditions" id="termsAndConditionsLabel">
+              {" "}
+              I agree to all the Terms & Conditions{" "}
+            </label>
+            <br /> <br />
+            <input
+              type="checkbox"
+              id="privacyPolicyInput"
+              name="privacyPolicy"
+              required
+            />
+            <label for="privacyPolicy" id="privacyPolicyLabel">
+              {" "}
+              I agree to all the Privacy Policy{" "}
+            </label>
+            <br /> <br />
+            <button type="submit" id="submitButton">
+              {" "}
+              Sign Up{" "}
+            </button>
+          </form>
+        </div>
+      </div>
 
-        <form onSubmit={submitForm}>
-          <label for="firstName"> First Name: </label>
-          <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
+      <div className="SignUp-Info">
+        <div className="SignUp-Info-Content">
+          <h1>Sign Up</h1>
 
-          <label for="lastName"> Last Name: </label>
-          <input type="text" id="lastName" name="lastName" placeholder="Last Name" required />
-          <br /> <br />
-
-          <label for="email"> Email: </label>
-          <input type="email" id="email" name="email" placeholder="Email" required />
-          <br /> <br />
-
-          <label for="phoneNumber"> Phone Number: </label>
-          <input type="text" id="areaCode" name="areaCode" placeholder="Area Code" required />
-          <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required />
-
-          <label for="dateOfBirth"> Date of Birth: </label>
-          <input type="date" id="dateOfBirth" name="dateOfBirth" placeholder="Date of Birth" required />
-          <br /> <br />
-
-          <label for="password"> Password: </label>
-          <input type="password" id="password" name="password" placeholder="Password" required />
-
-          <label for="confirmPassword"> Confirm Password: </label>
-          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required />
-          <br /> <br />
-
-          <label for="address"> Address: </label>
-          <input type="text" id="addressLine1" name="addressLine1" placeholder="Address Line 1" required />
-          <br /> <br />
-
-          <input type="text" id="addressLine2" name="addressLine2" placeholder="Address Line 2" required />
-          <br /> <br />
-
-          <input type="text" id="townOrCity" name="townOrCity" placeholder="Town / City" required />
-
-          <input type="text" id="postcode" name="postcode" placeholder="Postcode" required />
-          <br /> <br />
-
-          <input type="checkbox" id="termsAndConditions" name="termsAndConditions" required />
-          <label for="termsAndConditions"> I agree to all the Terms & Conditions </label>
-
-          <button type="submit" className="signUpButton" id="signUpButton"> Sign Up </button>
-          <br /> <br />
-
-          <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required />
-          <label for="privacyPolicy"> I agree to all the Privacy Policy </label>
-        </form>
+          <h2>Welcome to AquaPure</h2>
+        </div>
       </div>
     </div>
   );

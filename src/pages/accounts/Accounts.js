@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
 import './Accounts.css';
 
 export default function Accounts() {
     return (
     <div className='Accounts'>
         <div className='Accounts-Content'>
-            <h1> Account Page </h1>
+            
+            <button id="logoutButton"> Logout </button>
+            <br/> <br/>
+            
 
             <div className = "AccountInformation-Content">
                 <h2> Account Information </h2>   
@@ -36,7 +38,7 @@ export default function Accounts() {
                 <p> Address </p>
                 <br/> <br/>
         
-                <button> Edit </button>
+                <button id="editButton"> Edit </button>
             </div>
             <br/> <br/>
 

@@ -10,7 +10,13 @@ import Testkit from "./pages/testkit/Testkit";
 import SignUp from "./pages/accounts/signup/SignUp";
 import ForgotPassword from "./pages/accounts/forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/accounts/forgotpassword/ResetPassword";
-import Accounts from "./pages/accounts/Accounts";
+// import Accounts from "./pages/accounts/Accounts";
+import AccountsSettings from "./pages/accounts/accountPageSections/AccountsSettings";
+import PasswordSettings from "./pages/accounts/accountPageSections/PasswordSettings";
+import PurchaseHistory from "./pages/accounts/accountPageSections/PurchaseHistory";
+import LoyaltyPoints from "./pages/accounts/accountPageSections/LoyaltyPoints";
+import Testkitlog from "./pages/testkit/testkit_log/Testkitlog";
+import Overwritetestkitlog from "./pages/testkit/testkit_log/Overwritetestkitlog";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -28,12 +34,15 @@ function App() {
           <Route path="/testkit" element={<Testkit />} />
           <Route path="/accounts/signup" element={<SignUp />} />
           <Route path="/accounts/password/reset" element={<ForgotPassword />} />
-          <Route
-            path="/accounts/password/reset/confirm"
-            element={<ResetPassword />}
-          />
-          <Route path="/accounts" element={<Accounts />} />
+          <Route path="/accounts/password/reset/confirm" element={<ResetPassword />} />
+          {/* <Route path="/accounts" element={<Accounts />} /> */}
+          <Route path="/accounts" element={<AccountsSettings />} />
+          <Route path="/accounts/passwordSettings" element={<PasswordSettings />} />
+          <Route path="/accounts/purchaseHistory" element={<PurchaseHistory />} />
+          <Route path="/accounts/loyaltyPoints" element={<LoyaltyPoints />} />
           <Route path="/phasetest" element={<Phasetest />} />
+          <Route path="/testkitlog" element={<Testkitlog />} />
+          <Route exact path="/testkitlog/overwrite/:test_Kit_ID" element={<Overwritetestkitlog />} />
         </Routes>
       </div>
     </>
