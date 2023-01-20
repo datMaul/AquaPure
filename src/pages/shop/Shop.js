@@ -1,13 +1,15 @@
 import "./Shop_Style.css";
 import water from "./shop_assets/water_bottle.PNG";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+
 import { Link } from "react-router-dom";
-import item_frame from "./item_pages/item_frame.js";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import item_frame from "./item_pages/item_frame";
+
+
+
+
+
+
 export default function Shop() {
   return (
     

@@ -11,6 +11,7 @@ import SignUp from "./pages/accounts/signup/SignUp";
 import ForgotPassword from "./pages/accounts/forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/accounts/forgotpassword/ResetPassword";
 import Accounts from "./pages/accounts/Accounts";
+import item_frame from "./pages/shop/item_pages/item_frame";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           />
           <Route path="/accounts" element={<Accounts />} />
           <Route path="/phasetest" element={<Phasetest />} />
+          <Route path="/shop/item_pages/item_frame." element={<item_frame />} />
         </Routes>
       </div>
     </>
