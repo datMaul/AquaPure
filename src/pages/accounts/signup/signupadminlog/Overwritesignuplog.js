@@ -15,15 +15,15 @@ export default function Overwritetestkitlog() {
         test_Kit_Stock_Count: ""
     });
 
-    const { test_Kit_Name, test_Kit_Price, test_Kit_Stock_Count } = kit;
+    const { test_Kit_Name, test_Kit_Price, test_Kit_Stock_Count } = user;
 
     const onInputChange = (e) => {
-        setUser({ ...kit, [e.target.name]: e.target.value });
+        setUser({ ...user, [e.target.name]: e.target.value });
     };
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:8080/Test_Kit/${test_Kit_ID}`, kit);
+        await axios.put(`http://localhost:8080/User/${user_ID}`, user);
         navigate("/testkitlog")
     };
 
@@ -32,7 +32,7 @@ export default function Overwritetestkitlog() {
     }, []);
 
     const loadUser = async () => {
-        const result = await axios.get(`http://localhost:8080/Test_Kit/${test_Kit_ID}`)
+        const result = await axios.get(`http://localhost:8080/User/${user_ID}`)
         setUser(result.data)
     };
 
@@ -44,32 +44,102 @@ export default function Overwritetestkitlog() {
                     <h2 className="Kit_info">Overwrite Test Kit</h2>
                     <form onSubmit={(e) => onSubmit(e)}>
                         <div>
-                            <label htmlFor="Name" className="OW_TK_Labes"> Test Kit Name:</label>
+                            <label htmlFor="Name" className="OW_TK_Labes"> User First Name : </label>
                             <input
                                 type={"text"}
                                 className="from-control"
-                                placeholder="Name of Test Kit"
+                                placeholder="First Name of The User"
+                                name="test_Kit_Name"
+                                readOnly
+                                value={test_Kit_Name}
+                                onChange={(e) => onInputChange(e)} />
+                        </div><div>
+                            <label htmlFor="Name" className="OW_TK_Labes"> User Last Name : </label>
+                            <input
+                                type={"text"}
+                                className="from-control"
+                                placeholder="Last Name of The User"
                                 name="test_Kit_Name"
                                 readOnly
                                 value={test_Kit_Name}
                                 onChange={(e) => onInputChange(e)} />
                         </div>
                         <div>
-                            <label className="OW_TK_Labes"> Test Kit Price</label>
+                            <label className="OW_TK_Labes"> Address Line 1 : </label>
                             <input
-                                type={"number"}
+                                type={"text"}
                                 className="from-control"
-                                placeholder="Enter Price Overwrite"
+                                placeholder="First Address Line of The User"
                                 name="test_Kit_Price"
                                 value={test_Kit_Price}
                                 onChange={(e) => onInputChange(e)} />
                         </div>
                         <div>
-                            <label className="OW_TK_Labes"> Test Kit Stock Count</label>
+                            <label className="OW_TK_Labes"> Address Line 2 : </label>
+                            <input
+                                type={"text"}
+                                className="from-control"
+                                placeholder="Last Address Line of The User"
+                                name="test_Kit_Stock_Count"
+                                value={test_Kit_Stock_Count}
+                                onChange={(e) => onInputChange(e)} />
+                        </div>
+                        <div>
+                            <label className="OW_TK_Labes"> Town/City : </label>
+                            <input
+                                type={"text"}
+                                className="from-control"
+                                placeholder="Tow/City Of The User"
+                                name="test_Kit_Stock_Count"
+                                value={test_Kit_Stock_Count}
+                                onChange={(e) => onInputChange(e)} />
+                        </div>
+                        <div>
+                            <label className="OW_TK_Labes"> Postcode : </label>
+                            <input
+                                type={"text"}
+                                className="from-control"
+                                placeholder="Enter Post Code"
+                                name="test_Kit_Stock_Count"
+                                value={test_Kit_Stock_Count}
+                                onChange={(e) => onInputChange(e)} />
+                        </div>
+                        <div>
+                            <label className="OW_TK_Labes"> Date of Birth : </label>
+                            <input
+                                type={"date"}
+                                className="from-control"
+                                placeholder="Enter Date of Birth"
+                                name="test_Kit_Stock_Count"
+                                value={test_Kit_Stock_Count}
+                                onChange={(e) => onInputChange(e)} />
+                        </div>
+                        <div>
+                            <label className="OW_TK_Labes"> Password : </label>
+                            <input
+                                type={"text"}
+                                className="from-control"
+                                placeholder="Enter Overwrite Password"
+                                name="test_Kit_Stock_Count"
+                                value={test_Kit_Stock_Count}
+                                onChange={(e) => onInputChange(e)} />
+                        </div>
+                        <div>
+                            <label className="OW_TK_Labes"> Phone Number : </label>
                             <input
                                 type={"number"}
                                 className="from-control"
-                                placeholder="Enter Count Overwrite"
+                                placeholder="Enter Phone Number"
+                                name="test_Kit_Stock_Count"
+                                value={test_Kit_Stock_Count}
+                                onChange={(e) => onInputChange(e)} />
+                        </div>
+                        <div>
+                            <label className="OW_TK_Labes"> E-Mail : </label>
+                            <input
+                                type={"text"}
+                                className="from-control"
+                                placeholder="Enter EMail"
                                 name="test_Kit_Stock_Count"
                                 value={test_Kit_Stock_Count}
                                 onChange={(e) => onInputChange(e)} />

@@ -13,8 +13,8 @@ import ResetPassword from "./pages/accounts/forgotpassword/ResetPassword";
 import Accounts from "./pages/accounts/Accounts";
 import Testkitlog from "./pages/testkit/testkit_log/Testkitlog";
 import Overwritetestkitlog from "./pages/testkit/testkit_log/Overwritetestkitlog";
-import SignUpAdminlog from "./pages/testkit/testkit_log/Testkitlog";
-import OverwriteSignUpAdminlog from "./pages/testkit/testkit_log/Overwritetestkitlog";
+import SignUpAdminlog from "./pages/accounts/signup/signupadminlog/Signupadminlog";
+import OverwriteSignUpAdminlog from "./pages/accounts/signup/signupadminlog/Overwritesignuplog";
 import { Route, Routes } from "react-router-dom";
 function App() {
   return (
