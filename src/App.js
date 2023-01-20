@@ -13,6 +13,8 @@ import ResetPassword from "./pages/accounts/forgotpassword/ResetPassword";
 import Accounts from "./pages/accounts/Accounts";
 import Testkitlog from "./pages/testkit/testkit_log/Testkitlog";
 import Overwritetestkitlog from "./pages/testkit/testkit_log/Overwritetestkitlog";
+import SignUpAdminlog from "./pages/testkit/testkit_log/Testkitlog";
+import OverwriteSignUpAdminlog from "./pages/testkit/testkit_log/Overwritetestkitlog";
 import { Route, Routes } from "react-router-dom";
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
           <Route path="/phasetest" element={<Phasetest />} />
           <Route path="/testkitlog" element={<Testkitlog />} />
           <Route exact path="/testkitlog/overwrite/:test_Kit_ID" element={<Overwritetestkitlog />} />
+          <Route path="/SignUpAdminlog" element={<SignUpAdminlog />} />
+          <Route exact path="/SignUpAdminlog/overwrite/:user_ID" element={<OverwriteSignUpAdminlog />} />
         </Routes>
       </div>
     </>
