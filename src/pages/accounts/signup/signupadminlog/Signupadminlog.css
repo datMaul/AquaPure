@@ -1,7 +1,7 @@
 .Test_Kit_Table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: fit-content;
 }
 
 .Test_Kit_Table td,

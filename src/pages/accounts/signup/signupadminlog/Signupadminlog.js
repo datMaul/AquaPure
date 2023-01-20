@@ -44,7 +44,7 @@ export default function UsersLog() {
                             <td>{user.password}</td>
                             <td>{user.phoneNumber}</td>
                             <td>{user.eMail}</td>
-                            <td><Link className="Edit_Kit_Price" to={`/testkitlog/overwrite/${user.test_Kit_ID}`}>Overwrite</Link></td>
+                            <td><Link className="Edit_Kit_Price" to={`/SignUpAdminlog/overwrite/${user.user_ID}`}>Overwrite</Link></td>
                         </tr>
                     ))
                 }

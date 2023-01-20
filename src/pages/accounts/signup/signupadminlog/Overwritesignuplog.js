@@ -10,12 +10,19 @@ export default function Overwritetestkitlog() {
     const { user_ID } = useParams()
 
     const [user, setUser] = useState({
-        test_Kit_Name: "",
-        test_Kit_Price: "",
-        test_Kit_Stock_Count: ""
+        eMail:"",
+        firstName:"",
+        lastName:"",
+        phoneNumber:"", 
+        password:"",
+        addressLine2:"",
+        addressLine1:"",
+        addressTC:"",
+        addressPostcode:"",
+        doB:""
     });
 
-    const { test_Kit_Name, test_Kit_Price, test_Kit_Stock_Count } = user;
+    const { eMail, firstName, lastName,phoneNumber, password,addressLine2,addressLine1,addressTC,addressPostcode,doB} = user;
 
     const onInputChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -24,7 +31,7 @@ export default function Overwritetestkitlog() {
     const onSubmit = async (e) => {
         e.preventDefault();
         await axios.put(`http://localhost:8080/User/${user_ID}`, user);
-        navigate("/testkitlog")
+        navigate("/SignUpAdminlog")
     };
 
     useEffect(() => {
@@ -51,7 +58,7 @@ export default function Overwritetestkitlog() {
                                 placeholder="First Name of The User"
                                 name="test_Kit_Name"
                                 readOnly
-                                value={test_Kit_Name}
+                                value={firstName}
                                 onChange={(e) => onInputChange(e)} />
                         </div><div>
                             <label htmlFor="Name" className="OW_TK_Labes"> User Last Name : </label>
@@ -61,7 +68,7 @@ export default function Overwritetestkitlog() {
                                 placeholder="Last Name of The User"
                                 name="test_Kit_Name"
                                 readOnly
-                                value={test_Kit_Name}
+                                value={lastName}
                                 onChange={(e) => onInputChange(e)} />
                         </div>
                         <div>
@@ -71,7 +78,7 @@ export default function Overwritetestkitlog() {
                                 className="from-control"
                                 placeholder="First Address Line of The User"
                                 name="test_Kit_Price"
-                                value={test_Kit_Price}
+                                value={addressLine1}
                                 onChange={(e) => onInputChange(e)} />
                         </div>
                         <div>
@@ -81,7 +88,7 @@ export default function Overwritetestkitlog() {
                                 className="from-control"
                                 placeholder="Last Address Line of The User"
                                 name="test_Kit_Stock_Count"
-                                value={test_Kit_Stock_Count}
+                                value={addressLine2}
                                 onChange={(e) => onInputChange(e)} />
                         </div>
                         <div>
@@ -91,7 +98,7 @@ export default function Overwritetestkitlog() {
                                 className="from-control"
                                 placeholder="Tow/City Of The User"
                                 name="test_Kit_Stock_Count"
-                                value={test_Kit_Stock_Count}
+                                value={addressTC}
                                 onChange={(e) => onInputChange(e)} />
                         </div>
                         <div>
@@ -101,7 +108,7 @@ export default function Overwritetestkitlog() {
                                 className="from-control"
                                 placeholder="Enter Post Code"
                                 name="test_Kit_Stock_Count"
-                                value={test_Kit_Stock_Count}
+                                value={addressPostcode}
                                 onChange={(e) => onInputChange(e)} />
                         </div>
                         <div>
@@ -111,7 +118,7 @@ export default function Overwritetestkitlog() {
                                 className="from-control"
                                 placeholder="Enter Date of Birth"
                                 name="test_Kit_Stock_Count"
-                                value={test_Kit_Stock_Count}
+                                value={doB}
                                 onChange={(e) => onInputChange(e)} />
                         </div>
                         <div>
@@ -121,7 +128,7 @@ export default function Overwritetestkitlog() {
                                 className="from-control"
                                 placeholder="Enter Overwrite Password"
                                 name="test_Kit_Stock_Count"
-                                value={test_Kit_Stock_Count}
+                                value={password}
                                 onChange={(e) => onInputChange(e)} />
                         </div>
                         <div>
@@ -131,7 +138,7 @@ export default function Overwritetestkitlog() {
                                 className="from-control"
                                 placeholder="Enter Phone Number"
                                 name="test_Kit_Stock_Count"
-                                value={test_Kit_Stock_Count}
+                                value={phoneNumber}
                                 onChange={(e) => onInputChange(e)} />
                         </div>
                         <div>
@@ -141,11 +148,11 @@ export default function Overwritetestkitlog() {
                                 className="from-control"
                                 placeholder="Enter EMail"
                                 name="test_Kit_Stock_Count"
-                                value={test_Kit_Stock_Count}
+                                value={eMail}
                                 onChange={(e) => onInputChange(e)} />
                         </div>
                         <button className="SubmitBTN_OW_TK" type="submit">Submit</button>
-                        <Link className="CancelBTN_OW_TK" to="/testkitlog">Cancel</Link>
+                        <Link className="CancelBTN_OW_TK" to="/SignUpAdminlog">Cancel</Link>
                     </form>
                 </div>
             </div>

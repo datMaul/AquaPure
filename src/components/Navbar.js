@@ -12,7 +12,7 @@ export default function Navbar() {
       </Link>
       <ul className="shipcon">
         <CustomLink to="/map">Map</CustomLink>
-        <CustomLink to="/testkit"><IoBoatSharp fontSize={21} className="shipcon_1" />Test Kit</CustomLink>
+        <CustomLink to="/testkit">Test Kit</CustomLink>
         <CustomLink to="/game">Game</CustomLink>
         <CustomLink to="/donations" className="shipcon" >Donations</CustomLink>
         <CustomLink to="/cart"><IoBoatSharp fontSize={21} className="shipcon_1" /></CustomLink>
