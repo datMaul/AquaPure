@@ -1,4 +1,4 @@
-import "./testkit.css";
+import "./Testkit.css";
 export default function Testkit() {
   return (
     <div>

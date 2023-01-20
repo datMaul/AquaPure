@@ -2,9 +2,7 @@
 export default function item_frame() {
     return(
         <div>
-            <div>
-                hi
-            </div>
+            <h1>Hello</h1>            
         </div>
-    )
+    );
 }
