@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Signupadminlog.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function UsersLog() {
     const [users, setUsers] = useState([])
+    const { id } = useParams()
+
     useEffect(() => {
         loadTestkit();
     }, []);
@@ -12,6 +14,11 @@ export default function UsersLog() {
     const loadTestkit = async () => {
         const Users_Result = await axios.get("http://localhost:8080/Sign_Up_log");
         setUsers(Users_Result.data);
+    }
+
+    const deleteUser = async (id) => {
+        await axios.delete(`http://localhost:8080/User/${id}`);
+        loadTestkit();
     }
     return (
         <div className="Testkit_log_Container">
@@ -24,7 +31,7 @@ export default function UsersLog() {
                     <th scope="col">Address Line 2</th>
                     <th scope="col">Town/City</th>
                     <th scope="col">Postcode</th>
-                    <th scope="col">Date Of Birth</th>                 
+                    <th scope="col">Date Of Birth</th>
                     <th scope="col">Password</th>
                     <th scope="col">Phone Number</th>
                     <th scope="col">E-mail</th>
@@ -44,7 +51,7 @@ export default function UsersLog() {
                             <td>{user.password}</td>
                             <td>{user.phoneNumber}</td>
                             <td>{user.eMail}</td>
-                            <td><Link className="Edit_Kit_Price" to={`/SignUpAdminlog/overwrite/${user.user_ID}`}>Overwrite</Link></td>
+                            <td><Link className="Edit_Kit_Price" to={`/SignUpAdminlog/overwrite/${user.user_ID}`}>Overwrite</Link> <button className="Delete_User" onClick={() => deleteUser(user.user_ID)}>Delete User</button></td>
                         </tr>
                     ))
                 }
