@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar";
 import Donations from "./pages/donations/Donations";
 import Game from "./pages/game/Game";
-import Game1 from "./pages/game/shopee";
+import Game1 from "./pages/shop/item_frame";
 import Home from "./pages/home/Home";
 import Phasetest from "./pages/phasetest/Phasetest";
 import Map from "./pages/map/Map";
@@ -12,7 +12,7 @@ import SignUp from "./pages/accounts/signup/SignUp";
 import ForgotPassword from "./pages/accounts/forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/accounts/forgotpassword/ResetPassword";
 import Accounts from "./pages/accounts/Accounts";
-import shope_item from "./pages/shop/item_pages/item_frame";
+
 import { Route, Routes } from "react-router-dom";
 
 function App() {

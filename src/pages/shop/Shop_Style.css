@@ -47,28 +47,41 @@
 }
 .item_img:hover{
     background-color:rgb(238, 238, 255);
-
+    
 }
+
 
 
 .item_quick_add{
     width: 120px;
     height: 30px;
     margin-top:5px;
-    background-color: #a5c1ff;
-    color: #ffffff;
+
+    color: #0095c2;
     font-size: 15px;
-    border:none;
-    border-radius: 8px;
+    border:solid;
+    border-color: #008CBA;
+    border-radius: 2px;
+    border-width: 2px;
     cursor: pointer;
-    transition: ease 350ms;
+    transition: ease 250ms;
     
     
 
 }
 .item_quick_add:hover{
-    background-color:#c0a5ff;
-}
+    color:rgb(255, 255, 255);
+    background-color:#008CBA;
+    width:100%;
+} 
+
+
+
+
+
+
+
+
 
 
 
