@@ -36,7 +36,16 @@ form .txt_field{
   border-bottom: 2px solid #adadad;
   margin: 30px 0;
 }
-.txt_field input{
+.txt_field #email{
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+.txt_field #password{
   width: 100%;
   padding: 0 5px;
   height: 40px;
