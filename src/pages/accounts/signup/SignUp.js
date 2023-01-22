@@ -197,9 +197,7 @@ export default function SignUp() {
 
       <div className="SignUp-Info">
         <div className="SignUp-Info-Content">
-          <h1>Sign Up</h1>
-
-          <h2>Welcome to AquaPure</h2>
+          <h1>Welcome to AquaPure Family</h1>
         </div>
       </div>
     </div>

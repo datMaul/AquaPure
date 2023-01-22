@@ -7,8 +7,6 @@
     grid-template-columns: auto auto;
 }
 
-
-
 /* Form Div */
 .SignUp-Form-Content {
     position: absolute;
@@ -71,6 +69,12 @@
 
 /* Form */
 .Container-SignUp-Form {
+    margin: 0;
+    position: relative;
+    top: 42.5%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     text-align: center;
 }
 
@@ -338,10 +342,9 @@
 /* Info Div */
 .SignUp-Info {
     position: absolute;
-	top: 1;
 	left: 50%;
 	width: 50%;
-	height: 105.5%;
+	height: 100%;
 	overflow: hidden;
 	transition: transform 0.6s ease-in-out;
 	z-index: 100;
@@ -353,7 +356,7 @@
 .SignUp-Info-Content{
     margin: 0;
     position: relative;
-    top: 50%;
+    top: 42.5%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
