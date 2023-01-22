@@ -14,9 +14,11 @@ import AccountsSettings from "./pages/accounts/accountPageSections/AccountsSetti
 import PasswordSettings from "./pages/accounts/accountPageSections/PasswordSettings";
 import PurchaseHistory from "./pages/accounts/accountPageSections/PurchaseHistory";
 import LoyaltyPoints from "./pages/accounts/accountPageSections/LoyaltyPoints";
-import Testkitlog from "./pages/testkit/testkit_log/Testkitlog";
-import Overwritetestkitlog from "./pages/testkit/testkit_log/Overwritetestkitlog";
-import AdminPage from "./pages/accounts/admin/AdminPage";
+import Testkitlog from "./pages/admin/TestKit_Admin/Testkitlog";
+import Overwritetestkitlog from "./pages/admin/TestKit_Admin/Overwritetestkitlog";
+import Signupadminlog from "./pages/admin/User_Admin/Signupadminlog";
+import Overwritesignupadminlog from "./pages/admin/User_Admin/Overwritesignuplog";
+import AdminPage from "./pages/admin/AdminPage";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -49,11 +51,16 @@ function App() {
           />
           <Route path="/accounts/loyaltyPoints" element={<LoyaltyPoints />} />
           <Route path="/phasetest" element={<Phasetest />} />
-          <Route path="/testkitlog" element={<Testkitlog />} />
+          <Route path="/admin/testkitlog" element={<Testkitlog />} />
           <Route
             exact
-            path="/testkitlog/overwrite/:test_Kit_ID"
+            path="/admin/testkitlog/overwrite/:test_Kit_ID"
             element={<Overwritetestkitlog />}
+          />
+          <Route path="/admin/signuplog" element={<Signupadminlog />} />
+          <Route
+            path="admin/signuplog/overwrite/:user_ID"
+            element={<Overwritesignupadminlog />}
           />
           <Route path="/admin" element={<AdminPage />} />
         </Routes>
