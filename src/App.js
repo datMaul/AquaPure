@@ -19,6 +19,7 @@ import Overwritetestkitlog from "./pages/admin/TestKit_Admin/Overwritetestkitlog
 import Signupadminlog from "./pages/admin/User_Admin/Signupadminlog";
 import Overwritesignupadminlog from "./pages/admin/User_Admin/Overwritesignuplog";
 import AdminPage from "./pages/admin/AdminPage";
+import JC from "./pages/accounts/signup/DateTest"
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/map" element={<Map />} />
           <Route path="/testkit" element={<Testkit />} />
           <Route path="/accounts/signup" element={<SignUp />} />
+          <Route path="/JC" element={<JC />} />
           <Route path="/accounts/password/reset" element={<ForgotPassword />} />
           <Route
             path="/accounts/password/reset/confirm"
