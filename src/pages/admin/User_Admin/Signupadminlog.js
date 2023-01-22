@@ -8,17 +8,17 @@ export default function UsersLog() {
   const { id } = useParams();
 
   useEffect(() => {
-    loadTestkit();
+    loadUser();
   }, []);
 
-  const loadTestkit = async () => {
+  const loadUser = async () => {
     const Users_Result = await axios.get("http://localhost:8080/Sign_Up_log");
     setUsers(Users_Result.data);
   };
 
   const deleteUser = async (id) => {
     await axios.delete(`http://localhost:8080/User/${id}`);
-    loadTestkit();
+    loadUser();
   };
   return (
     <div className="Testkit_log_Container">

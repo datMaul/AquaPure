@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./Overwritesignuplog.css";
 
-export default function Overwritetestkitlog() {
+export default function Overwritesignuplog() {
   let navigate = useNavigate();
 
   const { user_ID } = useParams();
