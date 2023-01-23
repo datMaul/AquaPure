@@ -23,7 +23,7 @@ export default function Overwritetestkitlog() {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios.put(`http://localhost:8080/Test_Kit/${test_Kit_ID}`, kit);
-    navigate("/admin/testkitlog");
+    navigate("/admin");
   };
 
   useEffect(() => {
@@ -83,7 +83,7 @@ export default function Overwritetestkitlog() {
             <button className="SubmitBTN_OW_TK" type="submit">
               Submit
             </button>
-            <Link className="CancelBTN_OW_TK" to="/admin/testkitlog">
+            <Link className="CancelBTN_OW_TK" to="/admin">
               Cancel
             </Link>
           </form>
