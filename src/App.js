@@ -19,7 +19,7 @@ import Overwritetestkitlog from "./pages/admin/TestKit_Admin/Overwritetestkitlog
 import Signupadminlog from "./pages/admin/User_Admin/Signupadminlog";
 import Overwritesignupadminlog from "./pages/admin/User_Admin/Overwritesignuplog";
 import AdminPage from "./pages/admin/AdminPage";
-import JC from "./pages/accounts/signup/DateTest"
+import JC from "./pages/accounts/signup/DateTest";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
