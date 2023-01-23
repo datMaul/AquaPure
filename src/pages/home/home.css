@@ -59,13 +59,18 @@ body {
     text-align: justify;
 }
 
-.Text-Overlay {
+.Text-Overlay-Container {
     position: absolute;
-    top: 40%;
-    left: 38%;
+    top: 38vh;
+    width: 100%;
+}
+
+.Text-Overlay {
+    position: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     color: white;
-    background: transparent;
 }
 
 .Text-Overlay h1 {

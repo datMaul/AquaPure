@@ -10,12 +10,14 @@ export default function Home() {
       <div className="MainPage-Container">
         <div className="Back_Video">
           <video className="Home_BG_Vid" src={Waves} autoPlay loop muted />
-          <div className="Text-Overlay">
-            {/* I don't know if this is aligned center or not */}
-            <h3>Welcome to</h3>
-            <h1>AquaPure</h1>
-            <br />
-            <p>Transform Water Into Its' Purest Form Again...</p>
+          <div className="Text-Overlay-Container">
+            <div className="Text-Overlay">
+              {/* I don't know if this is aligned center or not */}
+              <h3>Welcome to</h3>
+              <h1>AquaPure</h1>
+              <br />
+              <p>Transform Water Into Its' Purest Form Again...</p>
+            </div>
           </div>
         </div>
         <div className="MainPage-Info">
