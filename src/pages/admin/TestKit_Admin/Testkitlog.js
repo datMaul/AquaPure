@@ -17,9 +17,6 @@ export default function TestkitLog() {
   };
   return (
     <div className="Testkit_log_Container">
-      <Link to="/admin">
-        <button> Back </button>
-      </Link>
       <table className="Test_Kit_Table">
         <tr>
           <th scope="col">ID</th>

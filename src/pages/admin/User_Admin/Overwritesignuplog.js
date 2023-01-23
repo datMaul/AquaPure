@@ -41,7 +41,7 @@ export default function Overwritesignuplog() {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios.put(`http://localhost:8080/User/${user_ID}`, user);
-    navigate("/admin/signuplog");
+    navigate("/admin");
   };
 
   useEffect(() => {
@@ -178,7 +178,7 @@ export default function Overwritesignuplog() {
             <button className="SubmitBTN_OW_TK" type="submit">
               Submit
             </button>
-            <Link className="CancelBTN_OW_TK" to="/admin/signuplog">
+            <Link className="CancelBTN_OW_TK" to="/admin">
               Cancel
             </Link>
           </form>

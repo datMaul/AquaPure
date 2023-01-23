@@ -20,6 +20,8 @@ import Signupadminlog from "./pages/admin/User_Admin/Signupadminlog";
 import Overwritesignupadminlog from "./pages/admin/User_Admin/Overwritesignuplog";
 import AdminPage from "./pages/admin/AdminPage";
 import JC from "./pages/accounts/signup/DateTest";
+import TermsAndContitions from "./pages/accounts/signup/TextFiles/TermsAndConditions";
+import PrivacyPolicy from "./pages/accounts/signup/TextFiles/PrivacyPolicy";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -65,6 +67,14 @@ function App() {
             element={<Overwritesignupadminlog />}
           />
           <Route path="/admin" element={<AdminPage />} />
+          <Route
+            path="/accounts/signup/termsandconditions"
+            element={<TermsAndContitions />}
+          />
+          <Route
+            path="/accounts/signup/privacypolicy"
+            element={<PrivacyPolicy />}
+          />
         </Routes>
       </div>
     </>
