@@ -6,7 +6,7 @@ export default function Shop() {
   return (
     <div>    
       <div className="page">
-        <h1>AquaPure Shop</h1>
+        <h1 className="shop_title">AquaPure Shop</h1>
         <nav>
           <ul className="item_list">
             <li className="item">
