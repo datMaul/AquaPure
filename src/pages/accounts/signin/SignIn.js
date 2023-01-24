@@ -16,6 +16,7 @@ export default function SignIn() {
         localStorage.setItem('token', res.data.token);
         window.location = '/';
         console.log("Ladies and Gentlemen, we got'em!");
+        console.log(res.data.token);
       })
       .catch(err => {
         //Sign In error
