@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate,Navigate, useParams } from "react-router-dom";
 import "./AccountsSettings.css";
 
 export default function AccountsSettings() {
-  let navigate = useNavigate();
+  let navigating = useNavigate();
 
   console.log("User ID.1: " + localStorage.getItem("user_ID"));
 
@@ -33,6 +33,7 @@ export default function AccountsSettings() {
     doB,
   } = user;
 
+
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -43,7 +44,7 @@ export default function AccountsSettings() {
       `http://localhost:8080/User/${localStorage.getItem("user_ID")}`,
       user
     );
-    navigate("/accounts");
+    navigating("/accounts");
   };
 
   useEffect(() => {
@@ -56,6 +57,25 @@ export default function AccountsSettings() {
     );
     setUser(result.data);
   };
+
+//   if (!localStorage.getItem("token")){
+//     return<Link to="/"/>;
+//   }
+//   const handleLogout=()=>{
+//     axios.post("http://localhost:8080/logout", null,{
+//         headers:{
+//             Authorization:Bearer ${localStorage.getItem("token")}
+//         }
+//         }).then(res=>{
+//             console.log(res.data);
+//             localStorage.removeItem("token");
+//             window.location="/";
+//         }).catch(err=>{
+//             console.log(err);
+//             console.log("there was an error");
+//         });
+// }
+
   return (
     <div className="AccountsSettings">
       <div className="Accounts-Navbar">
@@ -80,7 +100,7 @@ export default function AccountsSettings() {
           </Link>
         </li>
         <li>
-          <Link to="/">Logout</Link>
+        <button onClick={handleLogout}> Logout </button>
         </li>
       </div>
 
