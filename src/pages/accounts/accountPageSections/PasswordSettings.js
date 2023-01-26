@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./PasswordSettings.css";
 
 export default function PasswordSettings() {
@@ -46,6 +46,28 @@ export default function PasswordSettings() {
     );
     setUser(result.data);
   };
+
+  if (!localStorage.getItem("token")) {
+    return <Link to="/" />;
+  }
+  const handleLogout = () => {
+    axios
+      .post("http://localhost:8080/logout", null, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        localStorage.removeItem("token");
+        window.location = "/";
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("there was an error");
+      });
+  };
+
   return (
     <div className="PasswordSettings">
       <div className="Accounts-Navbar">
@@ -70,7 +92,7 @@ export default function PasswordSettings() {
           </Link>
         </li>
         <li>
-          <Link to="/">Logout</Link>
+          <button onClick={handleLogout}> Logout </button>
         </li>
       </div>
 
