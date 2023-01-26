@@ -78,196 +78,28 @@
     text-align: center;
 }
 
-.Container-SignUp-Form #firstNameInput {
+.input-text {
     margin: 5px;
+    width: 360px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+.fullw {
+    width: 360px;
+}
+
+.halfw {
     width: 175px;
-    height: 35px;
-    padding: 20px 0px;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid #000000;
-    outline: none;
-    cursor: text;
-    color: #000000;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-}
-
-.Container-SignUp-Form #lastNameInput {
-    margin: 5px;
-    width: 175px;
-    height: 35px;
-    padding: 20px 0px;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid #000000;
-    outline: none;
-    cursor: text;
-    color: #000000;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-}
-
-.Container-SignUp-Form #emailInput {
-    margin: 5px;
-    width: 350px;
-    height: 35px;
-    padding: 20px 0px;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid #000000;
-    outline: none;
-    cursor: text;
-    color: #000000;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-}
-
-.Container-SignUp-Form #areaCodeInput {
-    margin: 5px;
-    width: 80px;
-    height: 35px;
-    padding: 20px 0px;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid #000000;
-    outline: none;
-    cursor: text;
-    color: #000000;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-}
-
-.Container-SignUp-Form #phoneNumberInput {
-    margin: 5px;
-    width: 175px;
-    height: 35px;
-    padding: 20px 0px;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid #000000;
-    outline: none;
-    cursor: text;
-    color: #000000;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-}
-
-.Container-SignUp-Form #dateOfBirthInput {
-    margin: 5px;
-    width: 175px;
-    height: 35px;
-    padding: 20px 0px;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid #000000;
-    outline: none;
-    cursor: text;
-    color: #000000;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-}
-
-.Container-SignUp-Form #passwordInput {
-    margin: 5px;
-    width: 175px;
-    height: 35px;
-    padding: 20px 0px;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid #000000;
-    outline: none;
-    cursor: text;
-    color: #000000;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-}
-
-.Container-SignUp-Form #confirmPasswordInput {
-    margin: 5px;
-    width: 175px;
-    height: 35px;
-    padding: 20px 0px;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid #000000;
-    outline: none;
-    cursor: text;
-    color: #000000;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-}
-
-.Container-SignUp-Form #addressLine1Input {
-    margin: 5px;
-    width: 350px;
-    height: 35px;
-    padding: 20px 0px;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid #000000;
-    outline: none;
-    cursor: text;
-    color: #000000;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-}
-
-.Container-SignUp-Form #addressLine2Input {
-    margin: 5px;
-    width: 350px;
-    height: 35px;
-    padding: 20px 0px;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid #000000;
-    outline: none;
-    cursor: text;
-    color: #000000;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-}
-
-.Container-SignUp-Form #townOrCityInput {
-    margin: 5px;
-    width: 175px;
-    height: 35px;
-    padding: 20px 0px;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid #000000;
-    outline: none;
-    cursor: text;
-    color: #000000;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-}
-
-.Container-SignUp-Form #postcodeInput {
-    margin: 5px;
-    width: 175px;
-    height: 35px;
-    padding: 20px 0px;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid #000000;
-    outline: none;
-    cursor: text;
-    color: #000000;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
 }
 
 .Container-SignUp-Form #termsAndConditionsLabel {

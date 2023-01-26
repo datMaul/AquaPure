@@ -63,6 +63,7 @@ export default function SignUp() {
             <input
               type="text"
               id="firstNameInput"
+              className="input-text halfw"
               name="firstName"
               placeholder="First Name"
               required
@@ -72,6 +73,7 @@ export default function SignUp() {
             <input
               type="text"
               id="lastNameInput"
+              className="input-text halfw"
               name="lastName"
               placeholder="Last Name"
               required
@@ -82,6 +84,7 @@ export default function SignUp() {
             <input
               type="email"
               id="emailInput"
+              className="input-text fullw"
               name="eMail"
               placeholder="Email"
               required
@@ -92,6 +95,7 @@ export default function SignUp() {
             <input
               type="number"
               id="phoneNumberInput"
+              className="input-text halfw"
               name="phoneNumber"
               placeholder="Phone Number"
               required
@@ -101,6 +105,7 @@ export default function SignUp() {
             <input
               type="date"
               id="dateOfBirthInput"
+              className="input-text halfw"
               name="doB"
               placeholder="Date of Birth"
               required
@@ -111,6 +116,7 @@ export default function SignUp() {
             <input
               type="password"
               id="passwordInput"
+              className="input-text halfw"
               name="password"
               placeholder="Password"
               value={password}
@@ -119,6 +125,7 @@ export default function SignUp() {
             <input
               type="password"
               id="confirmPasswordInput"
+              className="input-text halfw"
               name="confirmPassword"
               placeholder="Confirm Password"
               required
@@ -129,6 +136,7 @@ export default function SignUp() {
             <input
               type="text"
               id="addressLine1Input"
+              className="input-text fullw"
               name="addressLine1"
               placeholder="Address Line 1"
               required
@@ -139,6 +147,7 @@ export default function SignUp() {
             <input
               type="text"
               id="addressLine2Input"
+              className="input-text fullw"
               name="addressLine2"
               placeholder="Address Line 2"
               required
@@ -149,6 +158,7 @@ export default function SignUp() {
             <input
               type="text"
               id="townOrCityInput"
+              className="input-text halfw"
               name="addressTC"
               placeholder="Town / City"
               required
@@ -158,6 +168,7 @@ export default function SignUp() {
             <input
               type="text"
               id="postcodeInput"
+              className="input-text halfw"
               name="addressPostcode"
               placeholder="Postcode"
               required
