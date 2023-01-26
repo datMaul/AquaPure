@@ -10,51 +10,30 @@
 }
 
 /* Back Button */
-#backButton {
+
+/* Submit Button */
+.SignUp-Form-Content #backButton {
     margin: 5px;
-    outline: none;
-    text-align: center;
-    width: 60px;
     height: 30px;
-    border: 2px solid #000;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
+    width: 60px;
+    background-color: #008CBA;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 25px;
+    border: 2px solid #008CBA;
     display: inline-block;
-    border-radius: 10px;
-    background: #2165a5;
-    color: #fff;
-    z-index: 1;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: ease-out 350ms;
+    box-shadow: inset 0 0 0 0 #ffffff;
 }
-
-#backButton:after {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 100%;
-    top: 0;
-    left: 0;
-    direction: rtl;
-    z-index: -1;
-    background: #fff;
-    transition: all 0.3s ease;
-    border-radius: 10px;
-}
-
-#backButton:hover {
-    color: #2165a5;
-}
-
-#backButton:hover:after {
-    left: auto;
-    right: 0;
-    width: 100%;
-}
-
-#backButton:active {
-    top: 2px;
+  
+.SignUp-Form-Content #backButton:hover {
+    background-color: #ffffff;
+    color: #008CBA;
+    border: 2px solid #008CBA;
+    box-shadow: inset 150px 0 0 0 #ffffff;
 }
 
 
@@ -141,22 +120,27 @@
 
 /* Submit Button */
 .Container-SignUp-Form #submitButton {
-    display: inline-block;
-    background: #2165a5;
-    color: #fff;
-    text-decoration: none;
-    font-size: 13px;
-    line-height: 35px;
-    border-radius: 50px;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
+    margin: 5px;
+    height: 45px;
     width: 170px;
+    background-color: #008CBA;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 25px;
+    border: 2px solid #008CBA;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: ease-out 350ms;
+    box-shadow: inset 0 0 0 0 #ffffff;
 }
   
 .Container-SignUp-Form #submitButton:hover {
-    background: #fff;
-    color: #2165a5;
-    box-shadow: 0 4px 4px rgba(36, 168, 234, 0.32);
+    background-color: #ffffff;
+    color: #008CBA;
+    border: 2px solid #008CBA;
+    box-shadow: inset 150px 0 0 0 #ffffff;
 }
 
 
