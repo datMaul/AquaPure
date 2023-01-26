@@ -46,6 +46,7 @@ export default function SignIn() {
             </p>
             <input
               type="email"
+              className="input-text"
               id="emailInput"
               name="eMail"
               placeholder="Email"
@@ -57,6 +58,7 @@ export default function SignIn() {
             <input
               type="password"
               id="passwordInput"
+              className="input-text"
               name="password"
               placeholder="Password"
               onChange={(e) => setPwd(e.target.value)}
@@ -69,10 +71,7 @@ export default function SignIn() {
               <label htmlFor="rememberMe"> Remember Me </label>
               <br /> <br />
             </div> */}
-            <button type="submit" id="submitButton">
-              {" "}
-              Log In{" "}
-            </button>
+            <button type="submit" id="submitButton">Log In</button>
           </div>
           <br />
           <div className="Container-ForgotPassword">
@@ -84,13 +83,13 @@ export default function SignIn() {
             <label for="SigningUp"> Don't have an account </label>
             <Link to="/accounts/signup"> Sign-Up Here</Link>
           </div>
+          <div className="Container-Admin">
+            <Link to="/admin">
+              <button id="adminButton"> Admin </button>
+            </Link>
+          </div>
         </form>
         <br />
-        <div className="Container-Admin">
-          <Link to="/admin">
-            <button id="adminButton"> Admin </button>
-          </Link>
-        </div>
       </div>
     </div>
   );
