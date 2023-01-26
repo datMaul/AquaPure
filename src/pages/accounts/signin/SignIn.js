@@ -71,14 +71,16 @@ export default function SignIn() {
               <label htmlFor="rememberMe"> Remember Me </label>
               <br /> <br />
             </div> */}
-            <button type="submit" id="submitButton">Log In</button>
+            <button type="submit" id="submitButton">
+              Log In
+            </button>
           </div>
-          <br />
-          <div className="Container-ForgotPassword">
+          <br /> <br />
+          {/* <div className="Container-ForgotPassword">
             <label for="ForgotPassword"> Forgot Password? </label>
             <Link to="/accounts/password/reset"> Click Here to Reset </Link>
-          </div>
-          <br />
+            <br />
+          </div> */}
           <div className="Container-SignUp">
             <label for="SigningUp"> Don't have an account </label>
             <Link to="/accounts/signup"> Sign-Up Here</Link>
