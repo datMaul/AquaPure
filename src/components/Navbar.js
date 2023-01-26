@@ -4,20 +4,24 @@ import { useState, useEffect } from "react";
 export default function Navbar() {
   return (
     <div className="nav-container">
-      <nav className="nav">
-        <Link to="/" className="site-title">
-          <img src={logo} alt="logo" width="151" height="43" />
-        </Link>
-        <ul>
-          <CustomLink to="/map">Map</CustomLink>
-          <CustomLink to="/testkit">Test Kit</CustomLink>
-          <CustomLink to="/game">Game</CustomLink>
-          <CustomLink to="/donations">Donations</CustomLink>
-          <CustomLink to="/shop">Shop</CustomLink>
-          <CustomLink to="/accounts">Account</CustomLink>
-          <CustomLink to="/accounts/login" className="sign-in-btn button">Sign In</CustomLink>
-        </ul>
-      </nav>
+      <div className="navbar">
+        <nav className="nav">
+          <Link to="/" className="site-title">
+            <img src={logo} alt="logo" width="151" height="43" />
+          </Link>
+          <div className="nav-right">
+            <ul>
+              <CustomLink to="/map">Map</CustomLink>
+              <CustomLink to="/testkit">Test Kit</CustomLink>
+              <CustomLink to="/game">Game</CustomLink>
+              <CustomLink to="/donations">Donations</CustomLink>
+              <CustomLink to="/shop">Shop</CustomLink>
+              <CustomLink to="/accounts">Account</CustomLink>
+            </ul>
+            <CustomLink to="/accounts/login" className="signin-btn button">Sign In</CustomLink>
+          </div>
+        </nav>
+      </div>
     </div>
   );
 }
