@@ -10,8 +10,6 @@
 }
 
 /* Back Button */
-
-/* Submit Button */
 .SignUp-Form-Content #backButton {
     margin: 5px;
     height: 30px;
@@ -174,7 +172,6 @@
     font-size: 50px;
     color: rgb(255, 255, 255);
     padding: 0;
-    margin-top: 20px;
 }
 
 .SignUp-Info-Content h2 {
@@ -183,5 +180,12 @@
     font-size: 40px;
     color: rgb(255, 255, 255);
     padding: 0;
-    margin-top: 20px;
+}
+
+.SignUp-Info-Content h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    padding: 0;
 }
