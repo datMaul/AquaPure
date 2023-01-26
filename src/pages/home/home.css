@@ -35,6 +35,10 @@ body {
     padding: 0 12.5%;
 }
 
+.MainPage-Info #ContactUs {
+    text-align: center;
+}
+
 .SDGImages {
     text-align: center;
 }

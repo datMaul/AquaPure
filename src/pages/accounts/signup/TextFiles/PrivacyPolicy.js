@@ -123,7 +123,7 @@ export default function TermsAndContitions() {
         <p>
           <b>Contact Us:</b> If you have any questions or concerns about this
           Privacy Policy or our collection, use, and disclosure of your personal
-          information, please contact us at{" "}
+          information, please contact us at:{" "}
           <a href="mailto:aquapure.customerservice@gmail.com">
             aquapure.customerservice@gmail.com
           </a>

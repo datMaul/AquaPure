@@ -121,6 +121,14 @@ export default function Home() {
               will hopefully hit our goal for clean water and making life below
               water more convenient.
             </p>
+            <p id="ContactUs">
+              <b>Contact Us:</b> If you have any questions, please contact us
+              at:{" "}
+              <a href="mailto:aquapure.customerservice@gmail.com">
+                aquapure.customerservice@gmail.com
+              </a>
+              .
+            </p>
           </div>
           <br />
         </div>
