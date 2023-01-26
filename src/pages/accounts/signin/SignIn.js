@@ -33,47 +33,65 @@ export default function SignIn() {
 
   return (
     <div className="SignIn">
-      <h1> Sign In </h1>
-      <form onSubmit={handleSubmit}>
-        <p className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">
-          {errMsg}
-        </p>
-        <label htmlFor="email"> Email: </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          onChange={(e) => setUser(e.target.value)}
-          value={user}
-          required
-        />
+      <div className="SignIn-Form-Content">
+        <h1> Sign In </h1>
         <br /> <br />
-        <label htmlFor="password"> Password: </label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Password"
-          onChange={(e) => setPwd(e.target.value)}
-          value={pwd}
-          required
-        />
-        <br /> <br />
-        <input type="checkbox" id="rememberMe" name="rememberMe" />
-        <label htmlFor="rememberMe"> Remember Me </label>
-        <button type="submit" className="logInButton" id="logInButton">
-          {" "}
-          Log In{" "}
-        </button>
-        <br /> <br />
-        <label for="ForgotPassword"> Forgot Password? </label>
-        <Link to="/accounts/password/reset"> Click Here to Reset </Link>
-        <br /> <br />
-        <label for="SigningUp"> Don't have an account </label>
-        <Link to="/accounts/signup"> Sign-Up Here</Link>
+        <form onSubmit={handleSubmit}>
+          <div className="Container-SignIn-Form">
+            <p
+              className={errMsg ? "errmsg" : "offscreen"}
+              aria-live="assertive"
+            >
+              {errMsg}
+            </p>
+            <input
+              type="email"
+              id="emailInput"
+              name="eMail"
+              placeholder="Email"
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
+              required
+            />
+            <br /> <br />
+            <input
+              type="password"
+              id="passwordInput"
+              name="password"
+              placeholder="Password"
+              onChange={(e) => setPwd(e.target.value)}
+              value={pwd}
+              required
+            />
+            <br /> <br />
+            {/* <div className="Container-RememberUser">
+              <input type="checkbox" id="rememberMe" name="rememberMe" />
+              <label htmlFor="rememberMe"> Remember Me </label>
+              <br /> <br />
+            </div> */}
+            <button type="submit" id="submitButton">
+              {" "}
+              Log In{" "}
+            </button>
+          </div>
+          <br />
+          <div className="Container-ForgotPassword">
+            <label for="ForgotPassword"> Forgot Password? </label>
+            <Link to="/accounts/password/reset"> Click Here to Reset </Link>
+          </div>
+          <br />
+          <div className="Container-SignUp">
+            <label for="SigningUp"> Don't have an account </label>
+            <Link to="/accounts/signup"> Sign-Up Here</Link>
+          </div>
+        </form>
         <br />
-      </form>
+        <div className="Container-Admin">
+          <Link to="/admin">
+            <button id="adminButton"> Admin </button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

@@ -78,7 +78,7 @@
     text-align: center;
 }
 
-#firstNameInput {
+.Container-SignUp-Form #firstNameInput {
     margin: 5px;
     width: 175px;
     height: 35px;
@@ -94,7 +94,7 @@
     font-weight: 500;
 }
 
-#lastNameInput {
+.Container-SignUp-Form #lastNameInput {
     margin: 5px;
     width: 175px;
     height: 35px;
@@ -110,7 +110,7 @@
     font-weight: 500;
 }
 
-#emailInput {
+.Container-SignUp-Form #emailInput {
     margin: 5px;
     width: 350px;
     height: 35px;
@@ -126,7 +126,7 @@
     font-weight: 500;
 }
 
-#areaCodeInput {
+.Container-SignUp-Form #areaCodeInput {
     margin: 5px;
     width: 80px;
     height: 35px;
@@ -142,7 +142,7 @@
     font-weight: 500;
 }
 
-#phoneNumberInput {
+.Container-SignUp-Form #phoneNumberInput {
     margin: 5px;
     width: 175px;
     height: 35px;
@@ -158,7 +158,7 @@
     font-weight: 500;
 }
 
-#dateOfBirthInput {
+.Container-SignUp-Form #dateOfBirthInput {
     margin: 5px;
     width: 175px;
     height: 35px;
@@ -174,7 +174,7 @@
     font-weight: 500;
 }
 
-#passwordInput {
+.Container-SignUp-Form #passwordInput {
     margin: 5px;
     width: 175px;
     height: 35px;
@@ -190,7 +190,7 @@
     font-weight: 500;
 }
 
-#confirmPasswordInput {
+.Container-SignUp-Form #confirmPasswordInput {
     margin: 5px;
     width: 175px;
     height: 35px;
@@ -206,7 +206,7 @@
     font-weight: 500;
 }
 
-#addressLine1Input {
+.Container-SignUp-Form #addressLine1Input {
     margin: 5px;
     width: 350px;
     height: 35px;
@@ -222,7 +222,7 @@
     font-weight: 500;
 }
 
-#addressLine2Input {
+.Container-SignUp-Form #addressLine2Input {
     margin: 5px;
     width: 350px;
     height: 35px;
@@ -238,7 +238,7 @@
     font-weight: 500;
 }
 
-#townOrCityInput {
+.Container-SignUp-Form #townOrCityInput {
     margin: 5px;
     width: 175px;
     height: 35px;
@@ -254,7 +254,7 @@
     font-weight: 500;
 }
 
-#postcodeInput {
+.Container-SignUp-Form #postcodeInput {
     margin: 5px;
     width: 175px;
     height: 35px;
@@ -270,7 +270,7 @@
     font-weight: 500;
 }
 
-#termsAndConditionsLabel {
+.Container-SignUp-Form #termsAndConditionsLabel {
     font-family: 'Lato', sans-serif;
     font-weight: 500;
     font-size: 17px;
@@ -280,7 +280,7 @@
     text-align: center;
 }
 
-#termsAndConditionsInput {
+.Container-SignUp-Form #termsAndConditionsInput {
     margin: 5px;
     outline: none;
     text-align: center;
@@ -293,7 +293,7 @@
     display: inline-block;
 }
 
-#privacyPolicyLabel {
+.Container-SignUp-Form #privacyPolicyLabel {
     font-family: 'Lato', sans-serif;
     font-weight: 500;
     font-size: 17px;
@@ -303,7 +303,7 @@
     text-align: center;
 }
 
-#privacyPolicyInput {
+.Container-SignUp-Form #privacyPolicyInput {
     margin: 5px;
     outline: none;
     text-align: center;
@@ -318,8 +318,7 @@
 
 
 /* Submit Button */
-
-#submitButton {
+.Container-SignUp-Form #submitButton {
     display: inline-block;
     background: #2165a5;
     color: #fff;
@@ -330,13 +329,13 @@
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
     width: 170px;
-  }
+}
   
-  #submitButton:hover {
+.Container-SignUp-Form #submitButton:hover {
     background: #fff;
     color: #2165a5;
     box-shadow: 0 4px 4px rgba(36, 168, 234, 0.32);
-  }
+}
 
 
 /* Info Div */

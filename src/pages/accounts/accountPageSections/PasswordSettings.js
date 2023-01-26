@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./PasswordSettings.css";
 
 export default function PasswordSettings() {
-  let navigate = useNavigate();
+  let navigating = useNavigate();
 
   console.log("User ID.1: " + localStorage.getItem("user_ID"));
 
@@ -29,11 +29,20 @@ export default function PasswordSettings() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(
-      `http://localhost:8080/User/${localStorage.getItem("user_ID")}`,
-      user
-    );
-    navigate("/accounts");
+
+    try {
+      const res = await axios.put(
+        `http://localhost:8080/User/${localStorage.getItem("user_ID")}`,
+        user
+      );
+      console.log(res.data);
+      alert("Your Changes Have Been Saved!");
+      navigating("/accounts/passwordSettings");
+    } catch (err) {
+      console.log(err);
+      alert("Your Changes Have Not Been Saved!");
+      navigating("/accounts/passwordSettings");
+    }
   };
 
   useEffect(() => {

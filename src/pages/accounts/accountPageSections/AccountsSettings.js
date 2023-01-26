@@ -39,11 +39,20 @@ export default function AccountsSettings() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(
-      `http://localhost:8080/User/${localStorage.getItem("user_ID")}`,
-      user
-    );
-    navigating("/accounts");
+
+    try {
+      const res = await axios.put(
+        `http://localhost:8080/User/${localStorage.getItem("user_ID")}`,
+        user
+      );
+      console.log(res.data);
+      alert("Your Changes Have Been Saved!");
+      navigating("/accounts");
+    } catch (err) {
+      console.log(err);
+      alert("Your Changes Have Not Been Saved!");
+      navigating("/accounts");
+    }
   };
 
   useEffect(() => {

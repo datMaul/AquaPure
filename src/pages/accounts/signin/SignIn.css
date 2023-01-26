@@ -1,0 +1,93 @@
+/* Page */
+.SignIn {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    grid-template-columns: auto auto;
+}
+
+/* Form Div */
+.SignIn-Form-Content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	top: 1;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+}
+
+/* Form */
+.Container-SignIn-Form {
+    margin: 0;
+    position: relative;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.Container-SignIn-Form #emailInput {
+    width: 350px;
+    height: 35px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+.Container-SignIn-Form #passwordInput {
+    width: 350px;
+    height: 35px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+/* Submit Button */
+.Container-SignIn-Form #submitButton {
+    display: inline-block;
+    background: #2165a5;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 35px;
+    border-radius: 50px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 170px;
+}
+
+.Container-SignIn-Form #submitButton:hover {
+    background: #fff;
+    color: #2165a5;
+    box-shadow: 0 4px 4px rgba(36, 168, 234, 0.32);
+}
+
+/* Forgot Password */
+.Container-ForgotPassword {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+/* SignUp */
+.Container-SignUp {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
