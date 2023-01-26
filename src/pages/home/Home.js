@@ -1,4 +1,4 @@
-import "./Home.css";
+import "./home.css";
 import Waves from "./home_page_videos/Beach_Waves.mp4";
 import SDGImage from "./home_page_images/SDG.png";
 import SDG6Image from "./home_page_images/SDG6.png";
