@@ -1,12 +1,3 @@
-/* Page */
-.SignUp {
-    width: 100%;
-    height: auto;
-    display: grid;
-    flex-direction: row;
-    grid-template-columns: auto auto;
-}
-
 /* Form Div */
 .SignUp-Form-Content {
     position: absolute;
@@ -15,6 +6,7 @@
     width: 50%;
 	height: 100%;
 	transition: all 0.6s ease-in-out;
+    height: calc(100vh - 70px);
 }
 
 /* Back Button */
@@ -32,7 +24,6 @@
     position: relative;
     display: inline-block;
     border-radius: 10px;
-
     background: #2165a5;
     color: #fff;
     z-index: 1;
@@ -80,7 +71,6 @@
 
 .input-text {
     margin: 5px;
-    width: 360px;
     height: 35px;
     padding: 20px 0px;
     background: transparent;
@@ -175,7 +165,7 @@
     position: absolute;
 	left: 50%;
 	width: 50%;
-	height: 100%;
+	height: calc(100vh - 70px);
 	overflow: hidden;
 	transition: transform 0.6s ease-in-out;
 	z-index: 2;
