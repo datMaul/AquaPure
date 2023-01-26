@@ -80,29 +80,34 @@ export default function PasswordSettings() {
   return (
     <div className="PasswordSettings">
       <div className="Accounts-Navbar">
-        <li>
-          <Link to="/accounts" id="AccountSettings-Link">
-            Account Settings
-          </Link>
-        </li>
-        <li>
-          <Link to="/accounts/passwordSettings" id="PasswordSettings-Link">
-            Password Settings
-          </Link>
-        </li>
-        <li>
-          <Link to="/accounts/purchaseHistory" id="PurchaseHistory-Link">
-            Purchase History
-          </Link>
-        </li>
-        <li>
-          <Link to="/accounts/loyaltyPoints" id="LoyaltPoints-Link">
-            Loyalty Points
-          </Link>
-        </li>
-        <li>
-          <button onClick={handleLogout}> Logout </button>
-        </li>
+        <Link to="/accounts" className="AccountLinks" id="AccountSettings-Link">
+          Account Settings
+        </Link>
+        <Link
+          to="/accounts/passwordSettings"
+          className="AccountLinks"
+          id="PasswordSettings-Link"
+        >
+          Password Settings
+        </Link>
+        <Link
+          to="/accounts/purchaseHistory"
+          className="AccountLinks"
+          id="PurchaseHistory-Link"
+        >
+          Purchase History
+        </Link>
+        <Link
+          to="/accounts/loyaltyPoints"
+          className="AccountLinks"
+          id="LoyaltPoints-Link"
+        >
+          Loyalty Points
+        </Link>
+        <button onClick={handleLogout} className="AccountLinks">
+          {" "}
+          Logout{" "}
+        </button>
       </div>
 
       <div className="PasswordSettings-Content">

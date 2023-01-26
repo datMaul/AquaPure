@@ -1,0 +1,55 @@
+.PurchaseHistory {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.Accounts-Navbar {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Accounts-Content {
+    background-color: #fff;
+}
+
+.AccountLinks {
+    text-align: center;
+    display: block;
+    width: 100%;
+    position: relative;
+    margin-bottom: 15px;
+    background-color: #f5f5f5;
+    font-size: 20px;
+    border: none;
+    text-decoration: none;
+    color: #000;
+}
+
+.AccountLinks:hover {
+    color: #5bced5;
+}
+
+.AccountLinks::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 4px;
+    background-color: #5bced5;
+    transition: width 0.3s;
+    margin: -5px 0;
+}
+
+.AccountLinks:hover::before {
+    width: 100%;
+}
+
+.AccountLinks.active::before,
+.AccountLinks:hover::before {
+    width: 100%;
+}
