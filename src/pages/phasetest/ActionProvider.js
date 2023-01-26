@@ -6,7 +6,7 @@ class ActionProvider {
   }
 
   greet = () => {
-    const message = this.createChatBotMessage("I'm GAY!!");
+    const message = this.createChatBotMessage("Hello There!!");
     this.addMessageToState(message);
   };
 
