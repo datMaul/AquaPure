@@ -1,72 +1,78 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./SignIn.css";
+import axios from "axios";
 
 export default function SignIn() {
+  const [user, setUser] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    axios
+      .post("http://localhost:8080/login", { email: user, password: pwd })
+      .then((res) => {
+        //Sign In success
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user_ID", res.data.userId);
+        window.location = "/";
+        console.log("User ID: " + localStorage.getItem("user_ID"));
+        console.log(res.data);
+        console.log(res.data.message);
+        console.log("Ladies and Gentlemen, we got'em!");
+        console.log(res.data.token);
+      })
+      .catch((err) => {
+        //Sign In error
+        //setErrMsg(err.response.data.message);
+        setErrMsg("Wrong Inputs");
+        console.log("Error Chief!!!");
+      });
+  }
+
   return (
     <div className="SignIn">
-      <div className="SignIn-Content">
-        <h1> Sign In </h1>
-        <form>
-          <div className="txt_field">
-            <input type="email" id="email" name="email" required />
-            <span />
-            <label for="email"> Email: </label>
-          </div>
-          <div className="txt_field">
-            <input type="password" id="password" name="password" required />
-            <span />
-            <label for="password"> Password: </label>
-          </div>
-          <div className="RememberMeBox">
-            <input type="checkbox" id="rememberMe" name="rememberMe" />
-            <label for="rememberMe"> Remember Me </label>
-          </div>
-          <br /> <br />
-          <div className="SignIn-Button-Section">
-            <Link to="/">
-              {/* This button should check if the required data has inputted */}
-              <button type="submit" className="logInButton" id="logInButton">
-                {" "}
-                Log In{" "}
-              </button>
-            </Link>
-          </div>
-          <div className="ForgotPassword-Section">
-            <label for="ForgotPassword"> Forgot Password? </label>
-            <Link to="/accounts/password/reset"> Click Here to Reset </Link>
-          </div>
-          <div className="SignUp-Section">
-            <label for="SigningUp"> Don't have an account </label>
-            <Link to="/accounts/signup"> Sign-Up Here</Link>
-          </div>
-          <br />
-        </form>
-      </div>
+      <h1> Sign In </h1>
+      <form onSubmit={handleSubmit}>
+        <p className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">
+          {errMsg}
+        </p>
+        <label htmlFor="email"> Email: </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          onChange={(e) => setUser(e.target.value)}
+          value={user}
+          required
+        />
+        <br /> <br />
+        <label htmlFor="password"> Password: </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          onChange={(e) => setPwd(e.target.value)}
+          value={pwd}
+          required
+        />
+        <br /> <br />
+        <input type="checkbox" id="rememberMe" name="rememberMe" />
+        <label htmlFor="rememberMe"> Remember Me </label>
+        <button type="submit" className="logInButton" id="logInButton">
+          {" "}
+          Log In{" "}
+        </button>
+        <br /> <br />
+        <label for="ForgotPassword"> Forgot Password? </label>
+        <Link to="/accounts/password/reset"> Click Here to Reset </Link>
+        <br /> <br />
+        <label for="SigningUp"> Don't have an account </label>
+        <Link to="/accounts/signup"> Sign-Up Here</Link>
+        <br />
+      </form>
     </div>
   );
-}
-
-{
-  /* <>
-  <div className="center">
-    <h1>Login</h1>
-    <form method="post">
-      <div className="txt_field">
-        <input type="text" required="" />
-        <span />
-        <label>Username</label>
-      </div>
-      <div className="txt_field">
-        <input type="password" required="" />
-        <span />
-        <label>Password</label>
-      </div>
-      <div className="pass">Forgot Password?</div>
-      <input type="submit" defaultValue="Login" />
-      <div className="SignUp">
-        Not a member? <a href="#">Signup</a>
-      </div>
-    </form>
-  </div>
-</>; */
 }

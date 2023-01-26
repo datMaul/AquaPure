@@ -57,7 +57,7 @@ export default function Overwritesignuplog() {
     <div className="Overwrite_Container">
       <div className="row">
         <div className="TestKit_infor">
-          <h2 className="Kit_info">Overwrite Test Kit</h2>
+          <h2 className="Kit_info">Overwrite User</h2>
           <form onSubmit={(e) => onSubmit(e)}>
             <div>
               <label htmlFor="Name" className="OW_TK_Labes">
