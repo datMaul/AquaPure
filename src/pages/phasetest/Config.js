@@ -10,7 +10,7 @@ const config = {
   },
   customStyles: {
     botMessageBox: {
-      backgroundColor: "#0db4ad",
+      backgroundColor: "#006bb5",
     },
   },
   // Messages
@@ -26,6 +26,10 @@ const config = {
     },
     {
       widgetName: "AboutUs",
+      widgetFunc: (props) => <Options {...props} />,
+    },
+    {
+      widgetName: "Admin",
       widgetFunc: (props) => <Options {...props} />,
     },
     {
