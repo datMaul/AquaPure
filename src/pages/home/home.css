@@ -6,7 +6,7 @@ body {
 
 .Back_Video{
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 70px);
 }
 
 .Home_BG_Vid{
@@ -32,7 +32,7 @@ body {
 
 .MainPage-Info p{
     text-align: justify;
-    padding: 0 15%;
+    padding: 0 12.5%;
 }
 
 .SDGImages {
@@ -61,7 +61,7 @@ body {
 
 .Text-Overlay-Container {
     position: absolute;
-    top: 38vh;
+    top: 39vh;
     width: 100%;
 }
 
