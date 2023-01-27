@@ -1,8 +1,9 @@
-import "./Home.css";
+import "./home.css";
 import Waves from "./home_page_videos/Beach_Waves.mp4";
 import SDGImage from "./home_page_images/SDG.png";
 import SDG6Image from "./home_page_images/SDG6.png";
 import SDG14Image from "./home_page_images/SDG14.png";
+import Footer from "../../components/Footer";
 
 export default function Home() {
   return (
@@ -132,6 +133,7 @@ export default function Home() {
           </div>
           <br />
         </div>
+        <Footer/>
       </div>
     </div>
   );
