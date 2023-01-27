@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./SignUp.css";
 
 export default function SignUp() {
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   const [User, setUser] = useState({
@@ -47,6 +48,17 @@ export default function SignUp() {
       navigate("/");
     }
   };
+  const loadUser = async () => {
+    const Users_Result = await axios.get("http://localhost:8080/Sign_Up_log");
+    const emailArr = Users_Result.data.map(User => User.eMail);
+    console.log(emailArr);
+    setUsers(Users_Result.data);
+    console.log(Users_Result.data);
+  };
+
+  useEffect(() => {
+    loadUser();
+  }, []);
 
   return (
     <div className="SignUp">
