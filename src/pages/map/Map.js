@@ -86,7 +86,7 @@ export default function Map() {
           </div>
         </div>
 
-        
+
 
       </div>
 
