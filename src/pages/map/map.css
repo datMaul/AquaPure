@@ -1,9 +1,10 @@
 .map-wrap {
     position: relative;
     width: 100%;
-    height: calc(100vh - 71px); /* calculate height of the screen minus the heading */
+    height: calc(100vh - 71px);
+    /* calculate height of the screen minus the heading */
 }
-  
+
 .map {
     position: absolute;
     width: 100%;
@@ -11,7 +12,9 @@
     z-index: 0;
 }
 
-#search_bar, #water_body_filters, #parameter_filters{
+#search_bar,
+#water_body_filters,
+#parameter_filters {
     position: absolute;
     z-index: 1;
 }
