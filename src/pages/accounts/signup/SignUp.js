@@ -39,18 +39,9 @@ export default function SignUp() {
     setUser({ ...User, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords do not match");
-    } else {
-      await axios.post("http://localhost:8080/Sign_Up", User);
-      navigate("/");
-    }
-  };
   const loadUser = async () => {
     const Users_Result = await axios.get("http://localhost:8080/Sign_Up_log");
-    const emailArr = Users_Result.data.map(User => User.eMail);
+    const emailArr = Users_Result.data.map((User) => User.eMail);
     console.log(emailArr);
     setUsers(Users_Result.data);
     console.log(Users_Result.data);
@@ -59,6 +50,18 @@ export default function SignUp() {
   useEffect(() => {
     loadUser();
   }, []);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (users.some((user) => user.eMail === eMail)) {
+      alert("Email already exists");
+    } else if (password !== confirmPassword) {
+      alert("Passwords do not match");
+    } else {
+      await axios.post("http://localhost:8080/Sign_Up", User);
+      navigate("/");
+    }
+  };
 
   return (
     <div className="SignUp">
