@@ -86,7 +86,7 @@ export default function Map() {
           </div>
         </div>
         <div id="Test Results" className="Test Results">
-          <h3>Water Body Filter</h3>
+          <h3>Test Kit Data</h3>
           <button type="button" className="btn btn-primary">Enter Test Kit results</button>
 
         </div>
