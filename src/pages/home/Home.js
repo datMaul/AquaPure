@@ -4,17 +4,19 @@ import SDGImage from "./home_page_images/SDG.png";
 import SDG6Image from "./home_page_images/SDG6.png";
 import SDG14Image from "./home_page_images/SDG14.png";
 import Chatbot from "../phasetest/Phasetest";
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function Home() {
   const [isChatbotVisible, setIsChatbotVisible] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+  const wrapperRef = useRef(null);
 
-  function toggleChatbotVisibility() {
+  function toggleAquabotVisibility() {
     setIsChatbotVisible(!isChatbotVisible);
   }
 
   function handleClickOutside(event) {
-    if (event.target.className !== "Aquabot_button") {
+    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
       setIsChatbotVisible(false);
     }
   }
@@ -23,6 +25,20 @@ export default function Home() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (window.scrollY > 80) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    }
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
   return (
@@ -144,9 +160,9 @@ export default function Home() {
           </div>
           <br />
         </div>
+      </div><div ref={wrapperRef}>
+        {isChatbotVisible ? <Chatbot /> : showButton ? <button className="AquaBot_button" onClick={toggleAquabotVisibility} /> : null}
       </div>
-      {isChatbotVisible ? <Chatbot /> : null}
-      {!isChatbotVisible ?<button className="AquaBot_button"onClick={toggleChatbotVisibility}/>:null}
     </div>
   );
 }
