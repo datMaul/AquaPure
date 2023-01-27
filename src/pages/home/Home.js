@@ -4,7 +4,27 @@ import SDGImage from "./home_page_images/SDG.png";
 import SDG6Image from "./home_page_images/SDG6.png";
 import SDG14Image from "./home_page_images/SDG14.png";
 import Chatbot from "../phasetest/Phasetest";
+import React, { useState,useEffect } from 'react';
+
 export default function Home() {
+  const [isChatbotVisible, setIsChatbotVisible] = useState(false);
+
+  function toggleChatbotVisibility() {
+    setIsChatbotVisible(!isChatbotVisible);
+  }
+
+  function handleClickOutside(event) {
+    if (event.target.className !== "Aquabot_button") {
+      setIsChatbotVisible(false);
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <div className="MainPage">
       <div className="MainPage-Container">
@@ -125,8 +145,8 @@ export default function Home() {
           <br />
         </div>
       </div>
-      <button className="AquaBot_button"/>
-      {/* <Chatbot/> */}
+      {isChatbotVisible ? <Chatbot /> : null}
+      {!isChatbotVisible ?<button className="AquaBot_button"onClick={toggleChatbotVisibility}/>:null}
     </div>
   );
 }
