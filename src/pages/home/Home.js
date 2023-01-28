@@ -3,9 +3,45 @@ import Waves from "./home_page_videos/Beach_Waves.mp4";
 import SDGImage from "./home_page_images/SDG.png";
 import SDG6Image from "./home_page_images/SDG6.png";
 import SDG14Image from "./home_page_images/SDG14.png";
+import Chatbot from "../phasetest/Phasetest";
+import React, { useState, useEffect, useRef } from 'react';
 import Footer from "../../components/Footer";
 
 export default function Home() {
+  const [isChatbotVisible, setIsChatbotVisible] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+  const wrapperRef = useRef(null);
+
+  function toggleAquabotVisibility() {
+    setIsChatbotVisible(!isChatbotVisible);
+  }
+
+  function handleClickOutside(event) {
+    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+      setIsChatbotVisible(false);
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (window.scrollY > 80) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    }
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div className="MainPage">
       <div className="MainPage-Container">
@@ -132,8 +168,11 @@ export default function Home() {
             </p>
           </div>
           <br />
+          <div ref={wrapperRef}>
+            {isChatbotVisible ? <Chatbot /> : showButton ? <button className="AquaBot_button" onClick={toggleAquabotVisibility} /> : null}
+          </div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </div>
   );
