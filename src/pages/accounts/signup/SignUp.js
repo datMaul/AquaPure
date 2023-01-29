@@ -66,12 +66,12 @@ export default function SignUp() {
   return (
     <div className="SignUp">
       <div className="SignUp-Form-Content">
-        <Link to="/accounts/login">
+        {/* <Link to="/accounts/login">
           <button className="backButton" id="backButton">
             {" "}
             Back{" "}
           </button>
-        </Link>
+        </Link> */}
         <br /> <br />
         <div className="Container-SignUp-Form">
           <form onSubmit={(e) => onSubmit(e)}>

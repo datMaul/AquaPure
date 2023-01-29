@@ -4,9 +4,9 @@ import "./TermsAndConditions.css";
 export default function TermsAndContitions() {
   return (
     <div className="TermsAndConditions-Page">
-      <Link to="/accounts/signup">
+      {/* <Link to="/accounts/signup">
         <button id="backButton"> Back </button>
-      </Link>
+      </Link> */}
       <div className="TermsAndConditions-Content">
         <h1>AquaPure Terms and Conditions</h1>
         <p>

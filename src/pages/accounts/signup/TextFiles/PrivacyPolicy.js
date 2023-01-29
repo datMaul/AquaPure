@@ -4,9 +4,9 @@ import "./PrivacyPolicy.css";
 export default function TermsAndContitions() {
   return (
     <div className="PrivacyPolicy-Page">
-      <Link to="/accounts/signup">
+      {/* <Link to="/accounts/signup">
         <button id="backButton"> Back </button>
-      </Link>
+      </Link> */}
       <div className="PrivacyPolicy-Content">
         <h1>AquaPure Privacy Policy</h1>
         <p>

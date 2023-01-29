@@ -123,7 +123,9 @@ export default function PasswordSettings() {
               onChange={(e) => onInputChange(e)}
             />
           </div>
-          <button type="submit">Submit</button>
+          <button id="submitButton" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     </div>
