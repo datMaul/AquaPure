@@ -19,9 +19,9 @@ export default function SignIn() {
           <label>Password</label>
         </div>
         <div className="pass">Forgot Password?</div>
-        <input type="submit" defaultValue="Login" />
-        <div className="SignIn">
-          Not a member? <Link href="SignUp.css">Signup</Link>
+        <input type="submit" defaultValue="SignIn" />
+        <div className="SignUp">
+          Not a member? <Link to="./pages/accounts/signup/SignUp">Signup</Link>
         </div>
       </form>
     </div>
