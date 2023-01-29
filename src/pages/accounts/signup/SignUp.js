@@ -1,67 +1,234 @@
-import { Link } from 'react-router-dom';
-import './SignUp.css';
+import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./SignUp.css";
 
 export default function SignUp() {
+  const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
+
+  const [User, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    eMail: "",
+    phoneNumber: "",
+    doB: "",
+    password: "",
+    confirmPassword: "",
+    addressLine1: "",
+    addressLine2: "",
+    addressTC: "",
+    addressPostcode: "",
+  });
+
+  const {
+    firstName,
+    lastName,
+    eMail,
+    phoneNumber,
+    doB,
+    password,
+    confirmPassword,
+    addressLine1,
+    addressLine2,
+    addressPostcode,
+    addressTC,
+  } = User;
+
+  const onInputChange = (e) => {
+    setUser({ ...User, [e.target.name]: e.target.value });
+  };
+
+  const loadUser = async () => {
+    const Users_Result = await axios.get("http://localhost:8080/Sign_Up_log");
+    const emailArr = Users_Result.data.map((User) => User.eMail);
+    console.log(emailArr);
+    setUsers(Users_Result.data);
+    console.log(Users_Result.data);
+  };
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (users.some((user) => user.eMail === eMail)) {
+      alert("Email already exists");
+    } else if (password !== confirmPassword) {
+      alert("Passwords do not match");
+    } else {
+      await axios.post("http://localhost:8080/Sign_Up", User);
+      navigate("/");
+    }
+  };
+
   return (
-    <div className='SignUp'>
-      <div className='SignUp-Content'>
-        
-        <Link to = "/accounts/login"> Back</Link>
-
-        <h1> Sign Up </h1>
-        <br/> <br/>
-
-        <form>
-            <label for = "firstName"> First Name: </label>
-            <input type = "text" id = "firstName" name = "firstName" placeholder = "First Name" required/>
-
-            <label for = "lastName"> Last Name: </label>
-            <input type = "text" id = "lastName" name = "lastName" placeholder = "Last Name" required/>
-            <br/> <br/>
-
-            <label for = "email"> Email: </label>
-            <input type = "email" id = "email" name = "email" placeholder = "Email" required/>
-            <br/> <br/>
-
-            <label for = "phoneNumber"> Phone Number: </label>
-            <input type = "text" id = "phoneNumber" name = "phoneNumber" placeholder = "Phone Number" required/>
-
-            <label for = "dateOfBirth"> Date of Birth: </label>
-            <input type = "date" id = "dateOfBirth" name = "dateOfBirth" placeholder = "Date of Birth" required/>
-            <br/> <br/>
-
-            <label for = "password"> Password: </label>
-            <input type = "password" id = "password" name = "password" placeholder = "Password" required/>
-
-            <label for = "confirmPassword"> Confirm Password: </label>
-            <input type = "password" id = "confirmPassword" name = "confirmPassword" placeholder = "Confirm Password" required/>
-            <br/> <br/>
-
-            <label for = "address"> Address: </label>
-            <input type = "text" id = "addressLine1" name = "addressLine1" placeholder = "Address Line 1" required/>
-            <br/> <br/>
-              
-            <input type = "text" id = "addressLine2" name = "addressLine2" placeholder = "Address Line 2" required/>
-            <br/> <br/>
-              
-            <input type = "text" id = "townOrCity" name = "townOrCity" placeholder = "Town / City" required/>
-              
-            <input type = "text" id = "postcode" name = "postcode" placeholder = "Postcode" required/>
-            <br/> <br/>
-
-            <input type = "checkbox" id = "termsAndConditions" name = "termsAndConditions" required/>
-            <label for = "termsAndConditions"> I agree to all the Terms & Conditions </label>
-
-            <Link to = "/">
-              {/* This button should check if the required data has inputted */}
-              <button type = "submit" className = "signUpButton" id = "signUpButton"> Sign Up </button>
-            </Link>
-            <br/> <br/>
-
-            <input type = "checkbox" id = "privacyPolicy" name = "privacyPolicy" required/>
-            <label for = "privacyPolicy"> I agree to all the Privacy Policy </label>
-        </form>  
+    <div className="SignUp">
+      <div className="SignUp-Form-Content">
+        {/* <Link to="/accounts/login">
+          <button className="backButton" id="backButton">
+            {" "}
+            Back{" "}
+          </button>
+        </Link> */}
+        <br /> <br />
+        <div className="Container-SignUp-Form">
+          <form onSubmit={(e) => onSubmit(e)}>
+            <input
+              type="text"
+              id="firstNameInput"
+              className="input-text halfw"
+              name="firstName"
+              placeholder="First Name"
+              required
+              value={firstName}
+              onChange={(e) => onInputChange(e)}
+            />
+            <input
+              type="text"
+              id="lastNameInput"
+              className="input-text halfw"
+              name="lastName"
+              placeholder="Last Name"
+              required
+              value={lastName}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="email"
+              id="emailInput"
+              className="input-text fullw"
+              name="eMail"
+              placeholder="Email"
+              required
+              value={eMail}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="number"
+              id="phoneNumberInput"
+              className="input-text halfw"
+              name="phoneNumber"
+              placeholder="Phone Number"
+              required
+              value={phoneNumber}
+              onChange={(e) => onInputChange(e)}
+            />
+            <input
+              type="date"
+              id="dateOfBirthInput"
+              className="input-text halfw"
+              name="doB"
+              placeholder="Date of Birth"
+              required
+              value={doB}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="password"
+              id="passwordInput"
+              className="input-text halfw"
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => onInputChange(e)}
+            />
+            <input
+              type="password"
+              id="confirmPasswordInput"
+              className="input-text halfw"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              required
+              value={confirmPassword}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="text"
+              id="addressLine1Input"
+              className="input-text fullw"
+              name="addressLine1"
+              placeholder="Address Line 1"
+              required
+              value={addressLine1}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="text"
+              id="addressLine2Input"
+              className="input-text fullw"
+              name="addressLine2"
+              placeholder="Address Line 2"
+              required
+              value={addressLine2}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="text"
+              id="townOrCityInput"
+              className="input-text halfw"
+              name="addressTC"
+              placeholder="Town / City"
+              required
+              value={addressTC}
+              onChange={(e) => onInputChange(e)}
+            />
+            <input
+              type="text"
+              id="postcodeInput"
+              className="input-text halfw"
+              name="addressPostcode"
+              placeholder="Postcode"
+              required
+              value={addressPostcode}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br /> <br />
+            <input
+              type="checkbox"
+              id="termsAndConditionsInput"
+              name="termsAndConditions"
+              required
+            />
+            <label for="termsAndConditions" id="termsAndConditionsLabel">
+              {" "}
+              I agree to all the{" "}
+              <Link to="/termsAndConditions">Terms & Conditions</Link>
+            </label>
+            <br /> <br />
+            <input
+              type="checkbox"
+              id="privacyPolicyInput"
+              name="privacyPolicy"
+              required
+            />
+            <label for="privacyPolicy" id="privacyPolicyLabel">
+              {" "}
+              I agree to all the <Link to="/privacyPolicy">Privacy Policy</Link>
+            </label>
+            <br /> <br />
+            <button type="submit" id="submitButton">
+              {" "}
+              Sign Up{" "}
+            </button>
+          </form>
+        </div>
       </div>
-    </div> 
+
+      <div className="SignUp-Info">
+        <div className="SignUp-Info-Content">
+          <h2>Welcome</h2>
+          <h3>To</h3>
+          <h1>AquaPure Family</h1>
+        </div>
+      </div>
+    </div>
   );
 }

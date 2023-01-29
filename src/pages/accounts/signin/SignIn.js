@@ -1,38 +1,98 @@
-import { Link } from 'react-router-dom';
-import './SignIn.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "./SignIn.css";
 
 export default function SignIn() {
+  const [user, setUser] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    axios
+      .post("http://localhost:8080/login", { email: user, password: pwd })
+      .then((res) => {
+        //Sign In success
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user_ID", res.data.userId);
+        window.location = "/";
+        console.log("User ID: " + localStorage.getItem("user_ID"));
+        console.log(res.data);
+        console.log(res.data.message);
+        console.log("Ladies and Gentlemen, we got'em!");
+        console.log(res.data.token);
+      })
+      .catch((err) => {
+        //Sign In error
+        //setErrMsg(err.response.data.message);
+        alert("Please check your email and password and try again!");
+        console.log("Error Chief!!!");
+      });
+  }
+
   return (
-    <div className='SignIn'>
-      <div className='SignIn-Content'>
+    <div className="SignIn">
+      <div className="SignIn-Form-Content">
         <h1> Sign In </h1>
-        <br/> <br/>
-        
-          <form>
-            <label for = "email"> Email: </label>
-            <input type = "email" id = "email" name = "email" placeholder = "Email" required/>
-            <br/> <br/>
-
-            <label for = "password"> Password: </label>
-            <input type = "password" id = "password" name = "password" placeholder = "Password" required/>
-            <br/> <br/>
-
-            <input type = "checkbox" id = "rememberMe" name = "rememberMe"/>
-            <label for = "rememberMe"> Remember Me </label>
-
-            <Link to = "/">
-              {/* This button should check if the required data has inputted */}
-              <button type = "submit" className = "logInButton" id = "logInButton"> Log In </button>
+        <br /> <br />
+        <form onSubmit={handleSubmit}>
+          <div className="Container-SignIn-Form">
+            <p
+              className={errMsg ? "errmsg" : "offscreen"}
+              aria-live="assertive"
+            >
+              {errMsg}
+            </p>
+            <input
+              type="email"
+              className="input-text"
+              id="emailInput"
+              name="eMail"
+              placeholder="Email"
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
+              required
+            />
+            <br /> <br />
+            <input
+              type="password"
+              id="passwordInput"
+              className="input-text"
+              name="password"
+              placeholder="Password"
+              onChange={(e) => setPwd(e.target.value)}
+              value={pwd}
+              required
+            />
+            <br /> <br />
+            {/* <div className="Container-RememberUser">
+              <input type="checkbox" id="rememberMe" name="rememberMe" />
+              <label htmlFor="rememberMe"> Remember Me </label>
+              <br /> <br />
+            </div> */}
+            <button type="submit" id="submitButton">
+              Log In
+            </button>
+          </div>
+          <br /> <br />
+          {/* <div className="Container-ForgotPassword">
+            <label for="ForgotPassword"> Forgot Password? </label>
+            <Link to="/accounts/password/reset"> Click Here to Reset </Link>
+            <br />
+          </div> */}
+          <div className="Container-SignUp">
+            <label for="SigningUp"> Don't have an account </label>
+            <Link to="/accounts/signup"> Sign-Up Here</Link>
+          </div>
+          <div className="Container-Admin">
+            <Link to="/admin">
+              <button id="adminButton"> Admin </button>
             </Link>
-            <br/> <br/>
-
-            <Link to = "/accounts/password/reset"> Forgot Password? </Link>
-            <br/> <br/>
-
-            <label for = "SigningUp"> Don't have an account </label>
-            <Link to = "/accounts/signup"> Sign Up Here</Link>
-          </form>
+          </div>
+        </form>
+        <br />
       </div>
-    </div> 
+    </div>
   );
 }

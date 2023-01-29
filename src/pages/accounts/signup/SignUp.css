@@ -1,0 +1,191 @@
+/* Form Div */
+.SignUp-Form-Content {
+    position: absolute;
+	top: 1;
+    right: 50%;
+    width: 50%;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+    height: calc(100vh - 70px);
+}
+
+/* Back Button */
+/* .SignUp-Form-Content #backButton {
+    margin: 5px;
+    height: 30px;
+    width: 60px;
+    background-color: #008CBA;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 25px;
+    border: 2px solid #008CBA;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: ease-out 350ms;
+    box-shadow: inset 0 0 0 0 #ffffff;
+}
+  
+.SignUp-Form-Content #backButton:hover {
+    background-color: #ffffff;
+    color: #008CBA;
+    border: 2px solid #008CBA;
+    box-shadow: inset 150px 0 0 0 #ffffff;
+} */
+
+
+/* Form */
+.Container-SignUp-Form {
+    margin: 0;
+    position: relative;
+    top: 42.5%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.input-text {
+    margin: 5px;
+    height: 35px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    cursor: text;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+
+.fullw {
+    width: 360px;
+}
+
+.halfw {
+    width: 175px;
+}
+
+.Container-SignUp-Form #termsAndConditionsLabel {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: black;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.Container-SignUp-Form #termsAndConditionsInput {
+    margin: 5px;
+    outline: none;
+    text-align: center;
+    border: 2px solid #000;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.Container-SignUp-Form #privacyPolicyLabel {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: black;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.Container-SignUp-Form #privacyPolicyInput {
+    margin: 5px;
+    outline: none;
+    text-align: center;
+    border: 2px solid #000;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+
+/* Submit Button */
+.Container-SignUp-Form #submitButton {
+    margin: 5px;
+    height: 45px;
+    width: 170px;
+    background-color: #008CBA;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 25px;
+    border: 2px solid #008CBA;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: ease-out 350ms;
+    box-shadow: inset 0 0 0 0 #ffffff;
+}
+  
+.Container-SignUp-Form #submitButton:hover {
+    background-color: #ffffff;
+    color: #008CBA;
+    border: 2px solid #008CBA;
+    box-shadow: inset 150px 0 0 0 #ffffff;
+}
+
+
+/* Info Div */
+.SignUp-Info {
+    position: absolute;
+	left: 50%;
+	width: 50%;
+	height: calc(100vh - 70px);
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 2;
+    background-size: cover;
+    background-image: url(Thames.jpg);
+    
+}
+
+.SignUp-Info-Content{
+    margin: 0;
+    position: relative;
+    top: 42.5%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.SignUp-Info-Content h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+    padding: 0;
+}
+
+.SignUp-Info-Content h2 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    padding: 0;
+}
+
+.SignUp-Info-Content h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    padding: 0;
+}
