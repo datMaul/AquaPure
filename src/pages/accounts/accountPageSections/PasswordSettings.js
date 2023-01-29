@@ -91,6 +91,13 @@ export default function PasswordSettings() {
           Password Settings
         </Link>
         <Link
+          to="/accounts/testkitEntry"
+          className="AccountLinks"
+          id="TestKitEntry-Link"
+        >
+          Testkit Entry
+        </Link>
+        <Link
           to="/accounts/purchaseHistory"
           className="AccountLinks"
           id="PurchaseHistory-Link"

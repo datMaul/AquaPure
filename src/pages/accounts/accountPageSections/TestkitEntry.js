@@ -1,8 +1,8 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./LoyaltyPoints.css";
+import "./TestkitEntry.css";
 
-export default function LoyaltyPoints() {
+export default function TestkitEntry() {
   if (!localStorage.getItem("token")) {
     return <Link to="/" />;
   }
@@ -24,7 +24,7 @@ export default function LoyaltyPoints() {
       });
   };
   return (
-    <div className="LoyaltyPoints">
+    <div className="TestKitEntry">
       <div className="Accounts-Navbar">
         <Link to="/accounts" className="AccountLinks" id="AccountSettings-Link">
           Account Settings
@@ -63,11 +63,8 @@ export default function LoyaltyPoints() {
         </button>
       </div>
 
-      <div className="LoyaltyPoints-Content">
-        <h2> Loyalty Points </h2>
-
-        <text>Loyalty Points: </text>
-        <p> Points </p>
+      <div className="TestKitEntry-Content">
+        <h2> Testkit Entry </h2>
       </div>
     </div>
   );

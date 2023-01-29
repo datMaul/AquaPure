@@ -200,9 +200,7 @@ export default function SignUp() {
             <label for="termsAndConditions" id="termsAndConditionsLabel">
               {" "}
               I agree to all the{" "}
-              <Link to="/accounts/signup/termsandconditions">
-                Terms & Conditions
-              </Link>
+              <Link to="/termsAndConditions">Terms & Conditions</Link>
             </label>
             <br /> <br />
             <input
@@ -213,8 +211,7 @@ export default function SignUp() {
             />
             <label for="privacyPolicy" id="privacyPolicyLabel">
               {" "}
-              I agree to all the{" "}
-              <Link to="/accounts/signup/privacypolicy">Privacy Policy</Link>
+              I agree to all the <Link to="/privacyPolicy">Privacy Policy</Link>
             </label>
             <br /> <br />
             <button type="submit" id="submitButton">

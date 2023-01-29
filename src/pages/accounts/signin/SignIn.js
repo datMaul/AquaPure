@@ -26,7 +26,7 @@ export default function SignIn() {
       .catch((err) => {
         //Sign In error
         //setErrMsg(err.response.data.message);
-        setErrMsg("Wrong Inputs");
+        alert("Please check your email and password and try again!");
         console.log("Error Chief!!!");
       });
   }

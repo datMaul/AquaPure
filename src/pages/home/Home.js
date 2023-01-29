@@ -4,7 +4,7 @@ import SDGImage from "./home_page_images/SDG.png";
 import SDG6Image from "./home_page_images/SDG6.png";
 import SDG14Image from "./home_page_images/SDG14.png";
 import Chatbot from "../phasetest/Phasetest";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import Footer from "../../components/Footer";
 
 export default function Home() {
@@ -107,7 +107,7 @@ export default function Home() {
               they understand and take action to clean their water in their
               local areas. For more information please continue to{" "}
               <a href="https://www.undp.org/sustainable-development-goals?utm_source=EN&utm_medium=GSR&utm_content=US_UNDP_PaidSearch_Brand_English&utm_campaign=CENTRAL&c_src=CENTRAL&c_src2=GSR&gclid=CjwKCAiA2rOeBhAsEiwA2Pl7Q2U3gztwB-keft7wLdh3EZ4aZ3PTcwV0dpD0-T3jFMYUW_r6mswekBoCqGYQAvD_BwE">
-                United Nations Development Program - Sustainability Goals - Page
+                United Nations Development Program - Sustainability Goals Page
               </a>
               .
             </p>
@@ -158,18 +158,17 @@ export default function Home() {
               will hopefully hit our goal for clean water and making life below
               water more convenient.
             </p>
-            <p id="ContactUs">
-              <b>Contact Us:</b> If you have any questions, please contact us
-              at:{" "}
-              <a href="mailto:aquapure.customerservice@gmail.com">
-                aquapure.customerservice@gmail.com
-              </a>
-              .
-            </p>
           </div>
           <br />
           <div ref={wrapperRef}>
-            {isChatbotVisible ? <Chatbot /> : showButton ? <button className="AquaBot_button" onClick={toggleAquabotVisibility} /> : null}
+            {isChatbotVisible ? (
+              <Chatbot />
+            ) : showButton ? (
+              <button
+                className="AquaBot_button"
+                onClick={toggleAquabotVisibility}
+              />
+            ) : null}
           </div>
         </div>
         <Footer />
