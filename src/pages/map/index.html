@@ -2,7 +2,23 @@
 <html lang="en">
 
 <head>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" contect="ie=edge" />
+    <title>CSV reader</title>
 </head>
+
+<body>
+    <script>
+        //Data from: https://environment.data.gov.uk/water-quality
+
+        getData();
+        async function getData() {
+            const response = await fetch('2023.csv');
+            const data = await response.text();
+            console.log(data);
+        }
+    </script>
+</body>
 
 </html>
