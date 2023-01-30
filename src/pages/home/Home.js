@@ -49,7 +49,6 @@ export default function Home() {
           <video className="Home_BG_Vid" src={Waves} autoPlay loop muted />
           <div className="Text-Overlay-Container">
             <div className="Text-Overlay">
-              {/* I don't know if this is aligned center or not */}
               <h3>Welcome to</h3>
               <h1>AquaPure</h1>
               <br />
