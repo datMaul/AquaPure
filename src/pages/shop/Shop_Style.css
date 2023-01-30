@@ -1,12 +1,13 @@
 .shop_title{
-    background-color: white;
+    background-color: rgb(255, 255, 255);
+    
 }
-.page{
+.page{  
     overflow-y:scroll ;
     width: 100%;
     height: 100%;
     margin-top:50px;
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(255, 255, 255);
     display:table;
 }
 
@@ -17,23 +18,27 @@
 
     font-size:15px;
     padding:5px;
-
+    border-radius: 20px;
     transition: ease-out 150ms;
 
 }
 
 .item:hover{
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.534);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.725);
     scale: +1.03;
+    
 }
 .item_price{
-    font-size:20px;
-    text-align: left;
-    color:rgb(55, 142, 192);
+    font-size:15px;
+    text-align: center;
+    color:rgba(55, 142, 192, 0.614);
+    margin-bottom:6px;
 }
 
 .item_title{
-    text-align: left;
+    color:rgb(0, 0, 0);
+    text-align: center;
+    margin-bottom:6px;
 }
 
 .item_list{
@@ -48,7 +53,7 @@
     height:300px;
     cursor: pointer;
     transition: ease 550ms;
-    border-radius: 5px;
+    border-radius: 20px;
 
     
 }
@@ -62,13 +67,13 @@
 .item_quick_add{
     width: 120px;
     height: 30px;
-    margin-top:5px;
-
-    color: #0095c2;
+    margin-bottom:5px;
+    background-color: transparent;
+    color: #5ba4ba;
     font-size: 15px;
     border:solid;
-    border-color: #008CBA;
-    border-radius: 2px;
+    border-color: rgba(0, 0, 0, 0.181);
+    border-radius: 20px;
     border-width: 2px;
     cursor: pointer;
     transition: ease 250ms;
@@ -78,8 +83,10 @@
 }
 .item_quick_add:hover{
     color:rgb(255, 255, 255);
-    background-color:#008CBA;
-    width:100%;
+    background-color:#8db4c1;
+    width:80%;
+    border-radius: 20px;
+    border-color: transparent;
 } 
 
 
