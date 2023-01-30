@@ -13,6 +13,7 @@
         //Data from: https://environment.data.gov.uk/water-quality
 
         getData();
+
         async function getData() {
             const response = await fetch('2023.csv');
             const data = await response.text();
