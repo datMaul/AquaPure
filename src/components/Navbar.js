@@ -1,7 +1,15 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import logo from "./aqlogo.png";
 import { useState, useEffect } from "react";
+
 export default function Navbar() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsSignedIn(true);
+    }
+  }, []);
+
   return (
     <div className="nav-container">
       <div className="navbar">
@@ -16,9 +24,9 @@ export default function Navbar() {
               <CustomLink to="/game">Game</CustomLink>
               <CustomLink to="/donations">Donations</CustomLink>
               <CustomLink to="/shop">Shop</CustomLink>
-              <CustomLink to="/accounts">Account</CustomLink>
+              {isSignedIn && <CustomLink to="/accounts" id="account-btn" className="account-btn">Account</CustomLink>}
             </ul>
-            <CustomLink to="/accounts/login" className="signin-btn button">Sign In</CustomLink>
+            {!isSignedIn && <CustomLink to="/accounts/login" id="signin-btn" className="signin-btn button">Sign In</CustomLink>}
           </div>
         </nav>
       </div>
