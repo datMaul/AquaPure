@@ -16,8 +16,20 @@
         async function getData() {
             const response = await fetch('2023.csv');
             const data = await response.text();
-            console.log(data);
-        }
+
+
+            const rows = data.split('⧵n').slice(1);
+            rows.forEach(elt => {
+                const row = elt.split(',');
+                const Name = row[0];
+                const URL = row[1];
+                const Label = row[4];
+                const Location = row[6];
+                const Parameter = row[7];
+                const Date = row[4];
+                console.log(Name, URL, Label, Locationm, Parameter, Date);
+            });
+        }    
     </script>
 </body>
 
