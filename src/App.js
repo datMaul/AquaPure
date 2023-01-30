@@ -22,9 +22,21 @@ import AdminPage from "./pages/admin/AdminPage";
 import TermsAndContitions from "./pages/accounts/signup/TextFiles/TermsAndConditions";
 import PrivacyPolicy from "./pages/accounts/signup/TextFiles/PrivacyPolicy";
 import TestkitEntry from "./pages/accounts/accountPageSections/TestkitEntry";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [scrollPos, setScrollPos] = useState(0);
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, scrollPos);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    setScrollPos(window.pageYOffset);
+  }, [location.pathname]);
+
   return (
     <>
       <Navbar />
