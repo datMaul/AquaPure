@@ -1,3 +1,4 @@
+
 import React from "react";
 class ActionProvider {
   constructor(createChatBotMessage, setStateFunc) {
@@ -42,7 +43,7 @@ class ActionProvider {
   //Shop Caller
   ShopInfo = () => {
     const message = this.createChatBotMessage(
-      "Want to support the good cause? YOU CAN! By purchasing merchandices from our Shop!",
+      "Want to support the good cause? YOU CAN! By purchasing merchandises from our Shop!",
       {
         widget: "ShopInfo",
       }
@@ -53,7 +54,7 @@ class ActionProvider {
   //Donations Caller
   Donations = () => {
     const message = this.createChatBotMessage(
-      "It is really nice thought to concider to Donate to improve the water quality.",
+      "It is really nice thought to consider to Donate to improve the water quality.",
       {
         widget: "Donations",
       }
@@ -62,9 +63,9 @@ class ActionProvider {
   };
   //About Us Caller
   AboutUs = () => {
-      const messages = [this.createChatBotMessage("You can find us at Wilfred Brown Building, WLFB 209, Brunel University, Kingston Lane, Uxbridge UB8 3PH"), this.createChatBotMessage(<img src="https://clubpenguinmemories.com/files/2012/03/pizza.gif" alt="Anime" style={{ width: '100%'}} />)];
-      messages.forEach(message => this.addMessageToState(message));
-    };
+    const messages = [this.createChatBotMessage("You can find us at Wilfred Brown Building, WLFB 209, Brunel University, Kingston Lane, Uxbridge UB8 3PH"), this.createChatBotMessage(<img src="https://clubpenguinmemories.com/files/2012/03/pizza.gif" alt="Anime" style={{ width: '100%' }} />)];
+    messages.forEach(message => this.addMessageToState(message));
+  };
   //Contact Admin Caller
   Admin_Contact = () => {
     const imageUrls = [
@@ -74,18 +75,18 @@ class ActionProvider {
     ];
     const randomIndex = Math.floor(Math.random() * imageUrls.length);
     const randomUrl = imageUrls[randomIndex];
-  
+
     const message = this.createChatBotMessage(
       <>
-      <div>
-      Connecting to the Admin Team!
-      </div>
-      <img src={randomUrl} alt="Anime" style={{ width: '100%'}} />
+        <div>
+          Connecting to the Admin Team!
+        </div>
+        <img src={randomUrl} alt="Anime" style={{ width: '100%' }} />
       </>
     );
     this.addMessageToState(message);
   }
-  
+
 
   addMessageToState = (message) => {
     this.setState((prevState) => ({

@@ -4,7 +4,8 @@ import SDGImage from "./home_page_images/SDG.png";
 import SDG6Image from "./home_page_images/SDG6.png";
 import SDG14Image from "./home_page_images/SDG14.png";
 import Chatbot from "../phasetest/Phasetest";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
+import Footer from "../../components/Footer";
 
 export default function Home() {
   const [isChatbotVisible, setIsChatbotVisible] = useState(false);
@@ -48,7 +49,6 @@ export default function Home() {
           <video className="Home_BG_Vid" src={Waves} autoPlay loop muted />
           <div className="Text-Overlay-Container">
             <div className="Text-Overlay">
-              {/* I don't know if this is aligned center or not */}
               <h3>Welcome to</h3>
               <h1>AquaPure</h1>
               <br />
@@ -106,7 +106,7 @@ export default function Home() {
               they understand and take action to clean their water in their
               local areas. For more information please continue to{" "}
               <a href="https://www.undp.org/sustainable-development-goals?utm_source=EN&utm_medium=GSR&utm_content=US_UNDP_PaidSearch_Brand_English&utm_campaign=CENTRAL&c_src=CENTRAL&c_src2=GSR&gclid=CjwKCAiA2rOeBhAsEiwA2Pl7Q2U3gztwB-keft7wLdh3EZ4aZ3PTcwV0dpD0-T3jFMYUW_r6mswekBoCqGYQAvD_BwE">
-                United Nations Development Program - Sustainability Goals - Page
+                United Nations Development Program - Sustainability Goals Page
               </a>
               .
             </p>
@@ -159,9 +159,18 @@ export default function Home() {
             </p>
           </div>
           <br />
+          <div ref={wrapperRef}>
+            {isChatbotVisible ? (
+              <Chatbot />
+            ) : showButton ? (
+              <button
+                className="AquaBot_button"
+                onClick={toggleAquabotVisibility}
+              />
+            ) : null}
+          </div>
         </div>
-      </div><div ref={wrapperRef}>
-        {isChatbotVisible ? <Chatbot /> : showButton ? <button className="AquaBot_button" onClick={toggleAquabotVisibility} /> : null}
+        <Footer />
       </div>
     </div>
   );

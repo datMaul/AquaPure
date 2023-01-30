@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./SignUp.css";
 
 export default function SignUp() {
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   const [User, setUser] = useState({
@@ -38,9 +39,23 @@ export default function SignUp() {
     setUser({ ...User, [e.target.name]: e.target.value });
   };
 
+  const loadUser = async () => {
+    const Users_Result = await axios.get("http://localhost:8080/Sign_Up_log");
+    const emailArr = Users_Result.data.map((User) => User.eMail);
+    console.log(emailArr);
+    setUsers(Users_Result.data);
+    console.log(Users_Result.data);
+  };
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    if (users.some((user) => user.eMail === eMail)) {
+      alert("Email already exists");
+    } else if (password !== confirmPassword) {
       alert("Passwords do not match");
     } else {
       await axios.post("http://localhost:8080/Sign_Up", User);
@@ -51,18 +66,19 @@ export default function SignUp() {
   return (
     <div className="SignUp">
       <div className="SignUp-Form-Content">
-        <Link to="/accounts/login">
+        {/* <Link to="/accounts/login">
           <button className="backButton" id="backButton">
             {" "}
             Back{" "}
           </button>
-        </Link>
+        </Link> */}
         <br /> <br />
         <div className="Container-SignUp-Form">
           <form onSubmit={(e) => onSubmit(e)}>
             <input
               type="text"
               id="firstNameInput"
+              className="input-text halfw"
               name="firstName"
               placeholder="First Name"
               required
@@ -72,6 +88,7 @@ export default function SignUp() {
             <input
               type="text"
               id="lastNameInput"
+              className="input-text halfw"
               name="lastName"
               placeholder="Last Name"
               required
@@ -82,6 +99,7 @@ export default function SignUp() {
             <input
               type="email"
               id="emailInput"
+              className="input-text fullw"
               name="eMail"
               placeholder="Email"
               required
@@ -92,6 +110,7 @@ export default function SignUp() {
             <input
               type="number"
               id="phoneNumberInput"
+              className="input-text halfw"
               name="phoneNumber"
               placeholder="Phone Number"
               required
@@ -101,6 +120,7 @@ export default function SignUp() {
             <input
               type="date"
               id="dateOfBirthInput"
+              className="input-text halfw"
               name="doB"
               placeholder="Date of Birth"
               required
@@ -111,6 +131,7 @@ export default function SignUp() {
             <input
               type="password"
               id="passwordInput"
+              className="input-text halfw"
               name="password"
               placeholder="Password"
               value={password}
@@ -119,6 +140,7 @@ export default function SignUp() {
             <input
               type="password"
               id="confirmPasswordInput"
+              className="input-text halfw"
               name="confirmPassword"
               placeholder="Confirm Password"
               required
@@ -129,6 +151,7 @@ export default function SignUp() {
             <input
               type="text"
               id="addressLine1Input"
+              className="input-text fullw"
               name="addressLine1"
               placeholder="Address Line 1"
               required
@@ -139,6 +162,7 @@ export default function SignUp() {
             <input
               type="text"
               id="addressLine2Input"
+              className="input-text fullw"
               name="addressLine2"
               placeholder="Address Line 2"
               required
@@ -149,6 +173,7 @@ export default function SignUp() {
             <input
               type="text"
               id="townOrCityInput"
+              className="input-text halfw"
               name="addressTC"
               placeholder="Town / City"
               required
@@ -158,6 +183,7 @@ export default function SignUp() {
             <input
               type="text"
               id="postcodeInput"
+              className="input-text halfw"
               name="addressPostcode"
               placeholder="Postcode"
               required
@@ -174,9 +200,7 @@ export default function SignUp() {
             <label for="termsAndConditions" id="termsAndConditionsLabel">
               {" "}
               I agree to all the{" "}
-              <Link to="/accounts/signup/termsandconditions">
-                Terms & Conditions
-              </Link>
+              <Link to="/termsAndConditions">Terms & Conditions</Link>
             </label>
             <br /> <br />
             <input
@@ -187,8 +211,7 @@ export default function SignUp() {
             />
             <label for="privacyPolicy" id="privacyPolicyLabel">
               {" "}
-              I agree to all the{" "}
-              <Link to="/accounts/signup/privacypolicy">Privacy Policy</Link>
+              I agree to all the <Link to="/privacyPolicy">Privacy Policy</Link>
             </label>
             <br /> <br />
             <button type="submit" id="submitButton">
@@ -201,7 +224,9 @@ export default function SignUp() {
 
       <div className="SignUp-Info">
         <div className="SignUp-Info-Content">
-          <h1>Welcome to AquaPure Family</h1>
+          <h2>Welcome</h2>
+          <h3>To</h3>
+          <h1>AquaPure Family</h1>
         </div>
       </div>
     </div>

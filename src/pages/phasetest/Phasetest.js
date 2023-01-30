@@ -10,13 +10,14 @@ import ActionProvider from "./ActionProvider";
 export default function Phasetest() {
   return (
     <div>
-    <div className="chatbot_div">
-      <Chatbot
-        config={Config}
-        messageParser={MessageParser}
-        actionProvider={ActionProvider}
-      />
+      <div className="chatbot_div">
+        <Chatbot
+          config={Config}
+          messageParser={MessageParser}
+          actionProvider={ActionProvider}
+        />
       </div>
     </div>
   );
 }
+

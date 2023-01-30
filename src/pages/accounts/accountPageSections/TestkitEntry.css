@@ -1,22 +1,27 @@
-.AdminContainer {
+.TestKitEntry {
     display: grid;
     grid-template-columns: 20% 80%;
 }
 
-.Sidebar {
+.Accounts-Navbar {
     background-color: #f5f5f5;
-    min-height: 100vh;
+    height: calc(100vh - 70px);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.ChildContainer {
+.TestKitEntry-Content {
     background-color: #fff;
+    margin: 0;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.Admin_Side_BTN {
+.AccountLinks {
     text-align: center;
     display: block;
     width: 100%;
@@ -25,13 +30,15 @@
     background-color: #f5f5f5;
     font-size: 20px;
     border: none;
+    text-decoration: none;
+    color: #000;
 }
 
-.Admin_Side_BTN:hover {
+.AccountLinks:hover {
     color: #5bced5;
 }
 
-.Admin_Side_BTN::before {
+.AccountLinks::before {
     content: '';
     position: absolute;
     left: 0;
@@ -43,11 +50,11 @@
     margin: -5px 0;
 }
 
-.Admin_Side_BTN:hover::before {
+.AccountLinks:hover::before {
     width: 100%;
 }
 
-.Admin_Side_BTN.active::before,
-.Admin_Side_BTN:hover::before {
+.AccountLinks.active::before,
+.AccountLinks:hover::before {
     width: 100%;
 }

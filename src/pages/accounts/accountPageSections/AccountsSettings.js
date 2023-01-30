@@ -39,11 +39,20 @@ export default function AccountsSettings() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(
-      `http://localhost:8080/User/${localStorage.getItem("user_ID")}`,
-      user
-    );
-    navigating("/accounts");
+
+    try {
+      const res = await axios.put(
+        `http://localhost:8080/User/${localStorage.getItem("user_ID")}`,
+        user
+      );
+      console.log(res.data);
+      alert("Your Changes Have Been Saved!");
+      navigating("/accounts");
+    } catch (err) {
+      console.log(err);
+      alert("Your Changes Have Not Been Saved!");
+      navigating("/accounts");
+    }
   };
 
   useEffect(() => {
@@ -81,33 +90,141 @@ export default function AccountsSettings() {
   return (
     <div className="AccountsSettings">
       <div className="Accounts-Navbar">
-        <li>
-          <Link to="/accounts" id="AccountSettings-Link">
-            Account Settings
-          </Link>
-        </li>
-        <li>
-          <Link to="/accounts/passwordSettings" id="PasswordSettings-Link">
-            Password Settings
-          </Link>
-        </li>
-        <li>
-          <Link to="/accounts/purchaseHistory" id="PurchaseHistory-Link">
-            Purchase History
-          </Link>
-        </li>
-        <li>
-          <Link to="/accounts/loyaltyPoints" id="LoyaltPoints-Link">
-            Loyalty Points
-          </Link>
-        </li>
-        <li>
-          <button onClick={handleLogout}> Logout </button>
-        </li>
+        <Link to="/accounts" className="AccountLinks" id="AccountSettings-Link">
+          Account Settings
+        </Link>
+        <Link
+          to="/accounts/passwordSettings"
+          className="AccountLinks"
+          id="PasswordSettings-Link"
+        >
+          Password Settings
+        </Link>
+        <Link
+          to="/accounts/testkitEntry"
+          className="AccountLinks"
+          id="TestKitEntry-Link"
+        >
+          Testkit Entry
+        </Link>
+        <Link
+          to="/accounts/purchaseHistory"
+          className="AccountLinks"
+          id="PurchaseHistory-Link"
+        >
+          Purchase History
+        </Link>
+        <Link
+          to="/accounts/loyaltyPoints"
+          className="AccountLinks"
+          id="LoyaltPoints-Link"
+        >
+          Loyalty Points
+        </Link>
+        <button onClick={handleLogout} className="AccountLinks">
+          {" "}
+          Logout{" "}
+        </button>
       </div>
 
       <div className="Accounts-Content">
-        <h2> Account Settings </h2>
+        <h2> Accounts Settings </h2>
+
+        {/* <div className="Accounts-Content-Labels">
+          <label htmlFor="Name"> First Name : </label>
+          <br />
+          <label htmlFor="Name"> Last Name : </label>
+          <br />
+          <label> Date of Birth : </label>
+          <br />
+          <label> Phone Number : </label>
+          <br />
+          <label> E-Mail : </label>
+          <br />
+          <label> Address Line 1 : </label>
+          <br />
+          <label> Address Line 2 : </label>
+          <br />
+          <label> Town/City : </label>
+          <br />
+          <label> Postcode : </label>
+        </div>
+        <div className="Accounts-Content-Inputs">
+          <form onSubmit={(e) => onSubmit(e)}>
+            <input
+              type={"text"}
+              placeholder="First Name of The User"
+              name="firstName"
+              value={firstName}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br />
+            <input
+              type={"text"}
+              placeholder="Last Name of The User"
+              name="lastName"
+              value={lastName}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br />
+            <input
+              type={"date"}
+              placeholder="Enter Date of Birth"
+              name="doB"
+              value={doB}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br />
+            <input
+              type={"number"}
+              placeholder="Enter Phone Number"
+              name="phoneNumber"
+              value={phoneNumber}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br />
+            <input
+              type={"text"}
+              placeholder="Enter EMail"
+              name="eMail"
+              value={eMail}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br />
+            <input
+              type={"text"}
+              placeholder="First Address Line of The User"
+              name="addressLine1"
+              value={addressLine1}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br />
+            <input
+              type={"text"}
+              placeholder="Last Address Line of The User"
+              name="addressLine2"
+              value={addressLine2}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br />
+            <input
+              type={"text"}
+              placeholder="Tow/City Of The User"
+              name="addressTC"
+              value={addressTC}
+              onChange={(e) => onInputChange(e)}
+            />
+            <br />
+            <input
+              type={"text"}
+              placeholder="Enter Post Code"
+              name="addressPostcode"
+              value={addressPostcode}
+              onChange={(e) => onInputChange(e)}
+            />
+          </form>
+        </div> */}
+
         <form onSubmit={(e) => onSubmit(e)}>
           <div>
             <label htmlFor="Name"> First Name : </label>
@@ -199,7 +316,9 @@ export default function AccountsSettings() {
               onChange={(e) => onInputChange(e)}
             />
           </div>
-          <button type="submit">Submit</button>
+          <button id="submitButton" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     </div>

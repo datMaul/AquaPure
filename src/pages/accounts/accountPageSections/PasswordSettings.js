@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./PasswordSettings.css";
 
 export default function PasswordSettings() {
-  let navigate = useNavigate();
+  let navigating = useNavigate();
 
   console.log("User ID.1: " + localStorage.getItem("user_ID"));
 
@@ -29,11 +29,20 @@ export default function PasswordSettings() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(
-      `http://localhost:8080/User/${localStorage.getItem("user_ID")}`,
-      user
-    );
-    navigate("/accounts");
+
+    try {
+      const res = await axios.put(
+        `http://localhost:8080/User/${localStorage.getItem("user_ID")}`,
+        user
+      );
+      console.log(res.data);
+      alert("Your Changes Have Been Saved!");
+      navigating("/accounts/passwordSettings");
+    } catch (err) {
+      console.log(err);
+      alert("Your Changes Have Not Been Saved!");
+      navigating("/accounts/passwordSettings");
+    }
   };
 
   useEffect(() => {
@@ -71,29 +80,41 @@ export default function PasswordSettings() {
   return (
     <div className="PasswordSettings">
       <div className="Accounts-Navbar">
-        <li>
-          <Link to="/accounts" id="AccountSettings-Link">
-            Account Settings
-          </Link>
-        </li>
-        <li>
-          <Link to="/accounts/passwordSettings" id="PasswordSettings-Link">
-            Password Settings
-          </Link>
-        </li>
-        <li>
-          <Link to="/accounts/purchaseHistory" id="PurchaseHistory-Link">
-            Purchase History
-          </Link>
-        </li>
-        <li>
-          <Link to="/accounts/loyaltyPoints" id="LoyaltPoints-Link">
-            Loyalty Points
-          </Link>
-        </li>
-        <li>
-          <button onClick={handleLogout}> Logout </button>
-        </li>
+        <Link to="/accounts" className="AccountLinks" id="AccountSettings-Link">
+          Account Settings
+        </Link>
+        <Link
+          to="/accounts/passwordSettings"
+          className="AccountLinks"
+          id="PasswordSettings-Link"
+        >
+          Password Settings
+        </Link>
+        <Link
+          to="/accounts/testkitEntry"
+          className="AccountLinks"
+          id="TestKitEntry-Link"
+        >
+          Testkit Entry
+        </Link>
+        <Link
+          to="/accounts/purchaseHistory"
+          className="AccountLinks"
+          id="PurchaseHistory-Link"
+        >
+          Purchase History
+        </Link>
+        <Link
+          to="/accounts/loyaltyPoints"
+          className="AccountLinks"
+          id="LoyaltPoints-Link"
+        >
+          Loyalty Points
+        </Link>
+        <button onClick={handleLogout} className="AccountLinks">
+          {" "}
+          Logout{" "}
+        </button>
       </div>
 
       <div className="PasswordSettings-Content">
@@ -109,7 +130,9 @@ export default function PasswordSettings() {
               onChange={(e) => onInputChange(e)}
             />
           </div>
-          <button type="submit">Submit</button>
+          <button id="submitButton" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     </div>

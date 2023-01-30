@@ -1,7 +1,7 @@
 .map-wrap {
     position: relative;
     width: 100%;
-    height: calc(100vh - 71px); /* calculate height of the screen minus the heading */
+    height: calc(100vh - 70px); /* calculate height of the screen minus the navbar */
 }
   
 .map {
@@ -17,25 +17,77 @@
 }
 
 #search_bar {
-    top: 81px;
-    left: 10px;
+    display: flex;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: center;
+}
+
+#search_bar>input {
+    width: 25vw;
+    height: 30px;
+    border-radius: 10px;
+    padding: 16px;
+    border: 1px solid #929292;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#search_bar>button {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    padding: 16px;
+    border: 1px solid #929292;
+    background-color: white;
+    color: black;
 }
 
 #water_body_filters {
-    top: 121px;
-    left: 10px;
+    top: 130px;
+    left: 15px;
     width: 25%;
 }
 
 #parameter_filters {
-    top: 281px;
-    left: 10px;
+    top: 280px;
+    left: 15px;
 }
 
+#filter {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #929292;
+    margin-bottom: 15px;
+}   
+
+.legend_list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.legend_list>li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.legend_list>li>div {
+    display: inline-block;
+    padding: 12px;
+    margin-right: 8px;
+}
 
 .white-box {
-    opacity: 0.8;
+    opacity: 0.85;
     border-radius: 10px;
-    padding: 10px;
+    padding: 15px;
     background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h3, h4 {
+    margin: 0 0 8px;
 }
