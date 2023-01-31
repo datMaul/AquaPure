@@ -83,7 +83,7 @@ export default function SignIn() {
           </div> */}
           <div className="Container-SignUp">
             <label for="SigningUp"> Don't have an account </label>
-            <Link to="/accounts/signup"> Sign-Up Here</Link>
+            <Link to="/accounts/signup"> Sign Up Here</Link>
           </div>
           <div className="Container-Admin">
             <Link to="/admin">
