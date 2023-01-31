@@ -3,13 +3,14 @@
 
 const fs = require("fs");
 
-const map_data = [];
+function readDataForYear(year) {
+    const map_data = [];
 
-async function readDataForYear(year) {
-    await fs.readFile(year + ".csv", "utf-8", (err, data) => {
+    fs.readFile(year + ".csv", "utf-8", (err, data) => {
         if (err) console.log(err);
 
         const rows = data.split("\n").slice(1);
+
         rows.forEach((line, index) => {
             const row = line.split(",");
 
@@ -33,16 +34,14 @@ async function readDataForYear(year) {
                 location_north,
             ]);
         });
+
+        console.log(map_data);
+        for (const data of map_data) {
+            console.log(data);
+        }
     });
 }
 
 (async function () {
-    const map_data = [];
-
     await readDataForYear("2023");
-    await readDataForYear("2022");
-    await readDataForYear("2021");
-    await readDataForYear("2020");
-
-    console.log(map_data.length);
 })();
