@@ -1,5 +1,39 @@
 import "./Testkit.css";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+
 export default function Testkit() {
+
+  const useTestKit = (id) => {
+    const [testKit, setTestKit] = useState({
+      test_Kit_Name: "",
+      test_Kit_Price: "",
+      test_Kit_Stock_Count: "",
+    });
+
+    useEffect(() => {
+      loadTestkit(id);
+    }, []);
+
+    const loadTestkit = async (id) => {
+      const result = await axios.get(
+        `http://localhost:8080/Test_Kit/${id}`
+      );
+      setTestKit(result.data);
+    };
+
+    return testKit;
+  }
+
+  const testKit1 = useTestKit(1);
+  const testKit2 = useTestKit(2);
+  const testKit3 = useTestKit(3);
+  const testKit4 = useTestKit(4);
+  const testKit5 = useTestKit(5);
+  const testKit6 = useTestKit(6);
+  const testKit7 = useTestKit(7);
+
+
   return (
     <div>
       <div className="Testing_banner"></div>
@@ -56,7 +90,7 @@ export default function Testkit() {
           <div className="Basic_Test_Kit">
             <div className="Basic_Img"></div>
             <div className="Basic_Details WTK">
-              <h5>Water Test Kit | Basic</h5>
+              <h5>Water Test Kit | {testKit1.test_Kit_Name}</h5>
               <h6>8 Contaminants Based Testing Kit</h6>
               <p>
                 Gives an overview of the state of the pipes in your homes.
@@ -65,7 +99,7 @@ export default function Testkit() {
                 state in their coffee machines.
               </p>
               <div className="Basic_price WTK_P">
-                <span>£69.00</span>
+                <span>£{testKit1.test_Kit_Price}.00</span>
                 <br />
                 <br />
                 <button id="WTK_P_CART">Add To Cart</button>
@@ -76,7 +110,7 @@ export default function Testkit() {
           <div className="Standard_Test_Kit">
             <div className="Standard_Img"></div>
             <div className="Standard_Details WTK">
-              <h5>Water Test Kit | Standard</h5>
+              <h5>Water Test Kit | {testKit2.test_Kit_Name}</h5>
               <h6>19 Contaminants Based Testing Kit</h6>
               <p>
                 Our most popular water test examines your drinking water for
@@ -85,7 +119,7 @@ export default function Testkit() {
                 individuals.
               </p>
               <div className="Standard_price WTK_P">
-                <span>£99.00</span>
+                <span>£{testKit2.test_Kit_Price}.00</span>
                 <br />
                 <br />
                 <button id="WTK_P_CART">Add To Cart</button>
@@ -96,7 +130,7 @@ export default function Testkit() {
           <div className="Plus_Test_Kit">
             <div className="Plus_Img"></div>
             <div className="Plus_Details WTK">
-              <h5>Water Test Kit | Plus</h5>
+              <h5>Water Test Kit | {testKit3.test_Kit_Name}</h5>
               <h6>32 Contaminants Based Testing Kit</h6>
               <p>
                 Testing for 32 possible pollutants, the PLUS is a far reaching
@@ -105,7 +139,7 @@ export default function Testkit() {
                 are chronically ill, but not limited to.
               </p>
               <div className="Plus_price WTK_P">
-                <span>£129.00</span>
+                <span>£{testKit3.test_Kit_Price}.00</span>
                 <br />
                 <br />
                 <button id="WTK_P_CART">Add To Cart</button>
@@ -116,7 +150,7 @@ export default function Testkit() {
           <div className="Premium_Test_Kit">
             <div className="Premium_Img"></div>
             <div className="Premium_Details WTK">
-              <h5>Water Test Kit | Premium</h5>
+              <h5>Water Test Kit | {testKit4.test_Kit_Name}</h5>
               <h6>50 Contaminants Based Testing Kit</h6>
               <p>
                 A comprehensive examination of the water's quality, including
@@ -126,7 +160,7 @@ export default function Testkit() {
                 water-supplying establishments.
               </p>
               <div className="Premium_price WTK_P">
-                <span>£249.00</span>
+                <span>£{testKit4.test_Kit_Price}.00</span>
                 <br />
                 <br />
                 <button id="WTK_P_CART">Add To Cart</button>
@@ -137,7 +171,7 @@ export default function Testkit() {
           <div className="Legionella_Test_Kit">
             <div className="Legionella_Img"></div>
             <div className="Legionella_Details WTK">
-              <h5>Water Test Kit | Legionella</h5>
+              <h5>Water Test Kit | {testKit5.test_Kit_Name}</h5>
               <h6>Legionella Based Testing Kit</h6>
               <p>
                 Since Legionella microscopic organisms is generally spread
@@ -147,7 +181,7 @@ export default function Testkit() {
                 outsiders.
               </p>
               <div className="Legionella_price WTK_P">
-                <span>£85.00</span>
+                <span>£{testKit5.test_Kit_Price}.00</span>
                 <br />
                 <br />
                 <button id="WTK_P_CART">Add To Cart</button>
@@ -158,7 +192,7 @@ export default function Testkit() {
           <div className="Bacteria_Test_Kit">
             <div className="Bacteria_Img"></div>
             <div className="Bacteria_Details WTK">
-              <h5>Water Test Kit | Bacteria</h5>
+              <h5>Water Test Kit | {testKit6.test_Kit_Name}</h5>
               <h6>2 Contaminants Based Testing Kit</h6>
               <p>
                 E. coli and coliform bacteria, two well-known pathogens that can
@@ -167,7 +201,7 @@ export default function Testkit() {
                 contain harmful bacteria.
               </p>
               <div className="Bacteria_price WTK_P">
-                <span>£85.00</span>
+                <span>£{testKit6.test_Kit_Price}.00</span>
                 <br />
                 <br />
                 <button id="WTK_P_CART">Add To Cart</button>
@@ -178,7 +212,7 @@ export default function Testkit() {
           <div className="Pool_Test_Kit">
             <div className="Pool_Img"></div>
             <div className="Pool_Details WTK">
-              <h5>Water Test Kit | Pool</h5>
+              <h5>Water Test Kit | {testKit7.test_Kit_Name}</h5>
               <h6>7 Contaminants Based Testing Kit</h6>
               <p>
                 The pool water test examines the pH level and water hardness of
@@ -186,7 +220,7 @@ export default function Testkit() {
                 pathogens or microbiological contamination.
               </p>
               <div className="Pool_price WTK_P">
-                <span>£129.00</span>
+                <span>£{testKit7.test_Kit_Price}.00</span>
                 <br />
                 <br />
                 <button id="WTK_P_CART">Add To Cart</button>
