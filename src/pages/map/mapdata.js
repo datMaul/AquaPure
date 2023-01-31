@@ -36,12 +36,13 @@ function readDataForYear(year) {
         });
 
         console.log(map_data);
-        for (const data of map_data) {
-            console.log(data);
-        }
+
     });
 }
 
 (async function () {
     await readDataForYear("2023");
+    await readDataForYear("2022");
+    await readDataForYear("2021");
+    await readDataForYear("2020");
 })();
