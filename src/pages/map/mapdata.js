@@ -41,8 +41,8 @@ function readDataForYear(year) {
 }
 
 (async function () {
-    await readDataForYear("2023");
-    await readDataForYear("2022");
-    await readDataForYear("2021");
-    await readDataForYear("2020");
+    readDataForYear("2023");
+    readDataForYear("2022");
+    readDataForYear("2021");
+    readDataForYear("2020");
 })();
