@@ -34,6 +34,25 @@ export default function Testkit() {
   const testKit7 = useTestKit(7);
 
 
+
+  const useTestKitCart = (testKit) => {
+    const [testKitCart, setTestKitCart] = useState([]);
+    const addTestKitToCart = (testKit) => {
+      setTestKitCart([...testKitCart, testKit]);
+    };
+    const removeTestKitFromCart = (testKit) => {
+      setTestKitCart(testKitCart.filter(t => t !== testKit));
+    };
+    return { testKitCart, addTestKitToCart, removeTestKitFromCart };
+  };
+
+
+
+  const { testKitCart, addTestKitToCart, removeTestKitFromCart } = useTestKitCart(
+    [testKit1, testKit2, testKit3, testKit4, testKit5, testKit6, testKit7]
+  );
+
+
   return (
     <div>
       <div className="Testing_banner"></div>
@@ -102,7 +121,7 @@ export default function Testkit() {
                 <span>£{testKit1.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART">Add To Cart</button>
+                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit1)}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -122,7 +141,7 @@ export default function Testkit() {
                 <span>£{testKit2.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART">Add To Cart</button>
+                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit2)}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -142,7 +161,7 @@ export default function Testkit() {
                 <span>£{testKit3.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART">Add To Cart</button>
+                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit3)}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -163,7 +182,7 @@ export default function Testkit() {
                 <span>£{testKit4.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART">Add To Cart</button>
+                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit4)}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -184,7 +203,7 @@ export default function Testkit() {
                 <span>£{testKit5.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART">Add To Cart</button>
+                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit5)}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -204,7 +223,7 @@ export default function Testkit() {
                 <span>£{testKit6.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART">Add To Cart</button>
+                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit6)}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -223,7 +242,7 @@ export default function Testkit() {
                 <span>£{testKit7.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART">Add To Cart</button>
+                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit7)}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -231,6 +250,21 @@ export default function Testkit() {
         {/* Test Kit Options End */} <br />
         <br />
         <br />
+        <center>
+          <h2>Test Kit Cart</h2>
+          <div>
+            {testKitCart.map((testKit, index) => (
+              <div key={index}>
+                {testKit.test_Kit_Name} - {testKit.test_Kit_Price} <br /><br />
+                <button id="WTK_P_CART" onClick={() => removeTestKitFromCart(testKit)}>
+                  Remove
+                </button>
+                <br />
+                <br />
+              </div>
+            ))}
+          </div>
+        </center>
       </div>
     </div>
   );

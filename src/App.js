@@ -24,6 +24,7 @@ import PrivacyPolicy from "./pages/accounts/signup/TextFiles/PrivacyPolicy";
 import TestkitEntry from "./pages/accounts/accountPageSections/TestkitEntry";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import TestKitCart from "./pages/testkit/TestkitCart";
 
 function App() {
   const [scrollPos, setScrollPos] = useState(0);
@@ -73,6 +74,7 @@ function App() {
             element={<Overwritetestkitlog />}
           />
           <Route path="/admin/signuplog" element={<Signupadminlog />} />
+          <Route path="/testkitcart" element={<TestKitCart />} />
           <Route
             path="admin/signuplog/overwrite/:user_ID"
             element={<Overwritesignupadminlog />}
