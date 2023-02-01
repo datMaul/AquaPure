@@ -74,28 +74,32 @@ function App() {
           <Route path="/accounts/loyaltyPoints" element={<LoyaltyPoints />} />
           <Route path="/phasetest" element={<Phasetest />} />
 
-          {accountType === "Admin" && (
+          {accountType === "Admin" ? (
             <Route path="/admin" element={<AdminPage />} />
-          )}
-          {accountType === "Admin" && (
+          ) : null}
+
+          {accountType === "Admin" ? (
             <Route path="/admin/signuplog" element={<Signupadminlog />} />
-          )}
-          {accountType === "Admin" && (
+          ) : null}
+
+          {accountType === "Admin" ? (
             <Route
               path="admin/signuplog/overwrite/:user_ID"
               element={<Overwritesignupadminlog />}
             />
-          )}
-          {accountType === "Admin" && (
+          ) : null}
+
+          {accountType === "Admin" ? (
             <Route path="/admin/testkitlog" element={<Testkitlog />} />
-          )}
-          {accountType === "Admin" && (
+          ) : null}
+
+          {accountType === "Admin" ? (
             <Route
               exact
               path="/admin/testkitlog/overwrite/:test_Kit_ID"
               element={<Overwritetestkitlog />}
             />
-          )}
+          ) : null}
 
           {/* <Route path="/accounts/password/reset" element={<ForgotPassword />} />
           <Route
