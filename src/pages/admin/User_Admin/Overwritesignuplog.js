@@ -32,6 +32,7 @@ export default function Overwritesignuplog() {
     addressTC,
     addressPostcode,
     doB,
+    accountType,
   } = user;
 
   const onInputChange = (e) => {
@@ -172,6 +173,17 @@ export default function Overwritesignuplog() {
                 placeholder="Enter EMail"
                 name="eMail"
                 value={eMail}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            <div>
+              <label className="OW_TK_Labes"> Account Type : </label>
+              <input
+                type={"text"}
+                className="from-control"
+                placeholder="Enter Account Type"
+                name="accountType"
+                value={accountType}
                 onChange={(e) => onInputChange(e)}
               />
             </div>

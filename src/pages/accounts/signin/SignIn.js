@@ -16,8 +16,16 @@ export default function SignIn() {
         //Sign In success
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user_ID", res.data.userId);
-        window.location = "/";
+        localStorage.setItem("accountType", res.data.accountType);
+
+        if (res.data.accountType === "Admin") {
+          window.location = "/admin";
+        } else if (res.data.accountType === "User") {
+          window.location = "/";
+        }
+
         console.log("User ID: " + localStorage.getItem("user_ID"));
+        console.log("Account Type: " + res.data.accountType);
         console.log(res.data);
         console.log(res.data.message);
         console.log("Ladies and Gentlemen, we got'em!");
@@ -84,11 +92,6 @@ export default function SignIn() {
           <div className="Container-SignUp">
             <label for="SigningUp"> Don't have an account </label>
             <Link to="/accounts/signup"> Sign Up Here</Link>
-          </div>
-          <div className="Container-Admin">
-            <Link to="/admin">
-              <button id="adminButton"> Admin </button>
-            </Link>
           </div>
         </form>
         <br />

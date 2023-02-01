@@ -58,6 +58,7 @@ export default function SignUp() {
     } else if (password !== confirmPassword) {
       alert("Passwords do not match");
     } else {
+      User.accountType = "User";
       await axios.post("http://localhost:8080/Sign_Up", User);
       navigate("/");
     }

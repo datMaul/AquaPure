@@ -34,7 +34,8 @@ export default function UsersLog() {
           <th scope="col">Date Of Birth</th>
           <th scope="col">Password</th>
           <th scope="col">Phone Number</th>
-          <th scope="col">E-mail</th>
+          <th scope="col">eMail</th>
+          <th scope="col">Account Type</th>
           <th scope="col">Action</th>
         </tr>
         {users.map((user, index) => (
@@ -52,6 +53,7 @@ export default function UsersLog() {
             <td>{user.password}</td>
             <td>{user.phoneNumber}</td>
             <td>{user.eMail}</td>
+            <td>{user.accountType}</td>
             <td>
               <Link
                 className="Edit_Kit_Price"
