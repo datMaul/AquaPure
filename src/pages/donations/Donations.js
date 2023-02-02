@@ -3,6 +3,8 @@ import React from 'react';
 
 export default function Donation() {
   return (
+    <><meta charSet='utf-8'/><link rel="stylesheet" href="style.css"/>
+    <body>
     <div class="centered">
       <div class="scrollable-table">
         <table border="1">
@@ -125,6 +127,9 @@ export default function Donation() {
           </tr>
         </table>
       </div>
-    </div>);
+    </div>
+    </body>
+    </>
+    );
 }
 
