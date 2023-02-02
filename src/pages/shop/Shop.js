@@ -7,6 +7,7 @@ export default function Shop() {
     <div>    
       <div className="page">
         <h1 className="shop_title">AquaPure Shop</h1>
+        {/**score points */}
         <nav>
           <ul className="item_list">
             {/**
