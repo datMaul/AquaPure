@@ -3,6 +3,10 @@ body {
   font-family: system-ui;
 }
 
+.p3 {
+  width: 700px;
+}
+
 .pageWidth {
   max-width: 940px;
 }
@@ -12,95 +16,35 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 110%;
 }
 
-.title {
-  background-color: black;
-  background-image: url(../donations/image/sustaniablewater1.jpg);
-  color: rgb(170, 41, 41);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
 
 
-  padding-top: 100px;
-  padding-bottom: 200px;
-}
 
-.link {
-  font-weight: bold;
-  color: white;
-}
 
-.description {
-  padding-left: 200px;
-  padding-right: 200px;
-  padding-top: 200px;
-  background-size: 300px 100px;
-}
-
-.image1 {
-  padding-top: 36px;
-  margin-left: 10px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  float: left;
-  margin-right: 10px;
-}
-
-.header {
-  text-align: left;
-  background: rgb(13, 95, 219);
-  color: white;
-  font-size: 50px;
-  background-size: 600px;
-  font-weight: bold;
-}
-
-h1 {
-  font-weight: bold;
-  font-size: 40px;
-  font-style: italic;
-}
-
-.button1 {
-  background-color: rgb(74, 124, 193);
-  color: white;
-  border: none;
-  height: 80 px;
-  width: 130px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 8px;
-  font-weight: bold;
-  font-size: 25px;
-  transition: opacity 0.5s;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
-  right: -650px;
-  top: -80px;
-  position: relative;
-  margin-right: 25px;
-}
-
-button:hover {
-  opacity: 0.7;
-}
-
-h2 {
-  font-size: 20px;
-}
-
-p {
-  width: 700px;
+h3 {
+  font-size: 30px;
+  padding-top: 10px;
+  padding-bottom: 0px;
 }
 
 .seconddescription {
   padding-right: 300px;
-  padding-left: 400px;
+  padding-left: 290px;
+}
+
+h2 {
+  font-size: 30px;
+  background-color: white;
+  padding-bottom: 10px;
+  font-weight: 900;
+  font-style: italic;
 }
 
 .charityimage1 {
-  padding-top: 36px;
+
+  margin-bottom: 50px;
   margin-left: 5px;
   width: 200px;
   height: 150px;
@@ -112,7 +56,28 @@ p {
 .table1 {
   display: flex;
   justify-content: center;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
+  overflow: scroll;
+}
+
+.table2 {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+  overflow: scroll;
+}
+
+.table3 {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+  overflow: scroll;
+}
+
+.table4 {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
   overflow: scroll;
 }
 
@@ -123,6 +88,17 @@ p {
 
 }
 
+p {
+  width: 850px;
+}
+
+.p1 {
+  font-size: 25px;
+
+  text-align: center;
+}
+
+
 table {
 
   overflow: scroll;
@@ -130,12 +106,13 @@ table {
   /* Make the table fill the width of the container */
   border-collapse: collapse;
   /* Remove the space between the cells */
+
 }
 
 th,
 td {
 
-
+  height: 250px;
   width: 100px;
   border-radius: 30px;
   box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, 0.15);
@@ -173,21 +150,32 @@ tr:hover {
 
 button {
   cursor: pointer;
-  font-weight: bold;
-  font-size: 10px;
+  font-size: 20px;
   transition: opacity 0.5s;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
   position: relative;
   height: 200 px;
   width: 100px;
   margin-top: 10px;
+  margin-bottom: 20px;
+  margin-right: 40px;
+  margin-left: 100px;
+  border-radius: 5px;
+  margin-bottom: 0px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
+}
 
+button:hover {
+  opacity: 0.7;
+  background-color: #666565;
 }
 
 
 
+
+
 .scrollable-table {
-  max-height: 400px;
+  max-height: 100%;
   overflow-y: scroll;
 }
 
