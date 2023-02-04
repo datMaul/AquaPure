@@ -1,24 +1,18 @@
 import "./Shop_Style.css";
 import water from "./shop_assets/water_bottle.PNG";
+import logo from "./shop_assets/aqlogo.png";
 import { Link } from "react-router-dom";
+//import axios from 'axios';
 
 
 
 
-
-export default function Shop() {
-  const api = fetch("https://localhost:8080/shop_product")
-  api.then((data) =>{
-    this.setState({product:data})
-    console.log(this.state.data)
-  })
-
-  
-  
+export default function Shop() {  
   return (
     <div>    
       <div className="page">
-        <h1 className="shop_title">AquaPure Shop</h1>
+        
+        <h1 className="shop_title"> <img className="logo" src={logo}></img>Shop</h1>
         {/**score points */}
         <nav>
           <ul className="item_list">
