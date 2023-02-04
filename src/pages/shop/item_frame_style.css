@@ -49,6 +49,7 @@
 }
 
 .add:hover{
+    color:white;
     box-shadow: inset 0 -3em 0 0 #7cdcf9;
 }
 
