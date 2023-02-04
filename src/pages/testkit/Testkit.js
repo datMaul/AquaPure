@@ -22,6 +22,7 @@ export default function Testkit() {
       setTestKit(result.data);
     };
 
+
     return testKit;
   }
 
@@ -52,6 +53,191 @@ export default function Testkit() {
     [testKit1, testKit2, testKit3, testKit4, testKit5, testKit6, testKit7]
   );
 
+  const [user, setUser] = useState({
+    eMail: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    password: "",
+    addressLine2: "",
+    addressLine1: "",
+    addressTC: "",
+    addressPostcode: "",
+    doB: "",
+    userId: ""
+  });
+
+  const {
+    eMail,
+    firstName,
+    lastName,
+    phoneNumber,
+    addressLine2,
+    addressLine1,
+    addressTC,
+    addressPostcode,
+    doB,
+    userId
+  } = user;
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  const loadUser = async () => {
+    const result = await axios.get(
+      `http://localhost:8080/User/${localStorage.getItem("user_ID")}`
+    );
+    setUser(result.data);
+  };
+
+  const signUp = {
+    "userId": user.userId,
+    "eMail": user.eMail,
+    "password": user.password,
+    "firstName": user.firstName,
+    "lastName": user.lastName,
+    "doB": user.doB,
+    "phoneNumber": user.phoneNumber,
+    "addressLine1": user.addressLine1,
+    "addressPostcode": user.addressPostcode,
+    "addressLine2": user.addressLine2,
+    "addressTC": user.addressTC
+  };
+
+  let BasicData = {
+    "testKit": {
+      "test_Kit_Stock_Count": 69,
+      "test_Kit_Name": "Basic",
+      "test_Kit_Price": 69,
+      "test_Kit_ID": 1
+    },
+    "signUp": signUp,
+    "quantity": 1
+  };
+  let StandardData = {
+    "testKit": {
+      "test_Kit_Stock_Count": 32,
+      "test_Kit_Name": "Standard",
+      "test_Kit_Price": 99,
+      "test_Kit_ID": 2
+    },
+    "signUp": signUp,
+    "quantity": 1
+  };
+  let PlusData = {
+    "testKit": {
+      "test_Kit_Stock_Count": 56,
+      "test_Kit_Name": "Plus",
+      "test_Kit_Price": 129,
+      "test_Kit_ID": 3
+    },
+    "signUp": signUp,
+    "quantity": 1
+  };
+  let PremiumData = {
+    "testKit": {
+      "test_Kit_Stock_Count": 38,
+      "test_Kit_Name": "Premium",
+      "test_Kit_Price": 249,
+      "test_Kit_ID": 4
+    },
+    "signUp": signUp,
+    "quantity": 1
+  };
+  let LegionellaData = {
+    "testKit": {
+      "test_Kit_Stock_Count": 49,
+      "test_Kit_Name": "Legionella",
+      "test_Kit_Price": 85,
+      "test_Kit_ID": 5
+    },
+    "signUp": signUp,
+    "quantity": 1
+  };
+  let BacteriaData = {
+    "testKit": {
+      "test_Kit_Stock_Count": 42,
+      "test_Kit_Name": "Bacteria Basic",
+      "test_Kit_Price": 85,
+      "test_Kit_ID": 6
+    },
+    "signUp": signUp,
+    "quantity": 1
+  };
+  let PoolData = {
+    "testKit": {
+      "test_Kit_Stock_Count": 56,
+      "test_Kit_Name": "Pool",
+      "test_Kit_Price": 129,
+      "test_Kit_ID": 7
+    },
+    "signUp": signUp,
+    "quantity": 1
+  };
+  const AddBasic = () => {
+    axios.post('http://localhost:8080/TestkitCartItem', BasicData)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+  const AddStandard = () => {
+    axios.post('http://localhost:8080/TestkitCartItem', StandardData)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+  const AddPlus = () => {
+    axios.post('http://localhost:8080/TestkitCartItem', PlusData)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+  const AddPremium = () => {
+    axios.post('http://localhost:8080/TestkitCartItem', PremiumData)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+  const AddLegionella = () => {
+    axios.post('http://localhost:8080/TestkitCartItem', LegionellaData)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+  const AddBacteria = () => {
+    axios.post('http://localhost:8080/TestkitCartItem', BacteriaData)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+  const AddPool = () => {
+    axios.post('http://localhost:8080/TestkitCartItem', PoolData)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
 
   return (
     <div>
@@ -121,7 +307,7 @@ export default function Testkit() {
                 <span>£{testKit1.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit1)}>Add To Cart</button>
+                <button id="WTK_P_CART" onClick={AddBasic}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -141,7 +327,7 @@ export default function Testkit() {
                 <span>£{testKit2.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit2)}>Add To Cart</button>
+                <button id="WTK_P_CART" onClick={AddStandard}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -161,7 +347,7 @@ export default function Testkit() {
                 <span>£{testKit3.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit3)}>Add To Cart</button>
+                <button id="WTK_P_CART" onClick={AddPlus}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -182,7 +368,7 @@ export default function Testkit() {
                 <span>£{testKit4.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit4)}>Add To Cart</button>
+                <button id="WTK_P_CART" onClick={AddPremium}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -203,7 +389,7 @@ export default function Testkit() {
                 <span>£{testKit5.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit5)}>Add To Cart</button>
+                <button id="WTK_P_CART" onClick={AddLegionella}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -223,7 +409,7 @@ export default function Testkit() {
                 <span>£{testKit6.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit6)}>Add To Cart</button>
+                <button id="WTK_P_CART" onClick={AddBacteria}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -242,7 +428,7 @@ export default function Testkit() {
                 <span>£{testKit7.test_Kit_Price}.00</span>
                 <br />
                 <br />
-                <button id="WTK_P_CART" onClick={() => addTestKitToCart(testKit7)}>Add To Cart</button>
+                <button id="WTK_P_CART" onClick={AddPool}>Add To Cart</button>
               </div>
             </div>
           </div>

@@ -79,6 +79,7 @@ export default function AccountsSettings() {
       .then((res) => {
         console.log(res.data);
         localStorage.removeItem("token");
+        localStorage.removeItem("user_ID");
         window.location = "/";
       })
       .catch((err) => {
