@@ -2,7 +2,19 @@ import "./Shop_Style.css";
 import water from "./shop_assets/water_bottle.PNG";
 import { Link } from "react-router-dom";
 
+
+
+
+
 export default function Shop() {
+  const api = fetch("https://localhost:8080/shop_product")
+  api.then((data) =>{
+    this.setState({product:data})
+    console.log(this.state.data)
+  })
+
+  
+  
   return (
     <div>    
       <div className="page">
@@ -33,101 +45,6 @@ export default function Shop() {
               <p className="item_price">£19.99</p>
               <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
             </li>
-
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              <p className="item_title">Sports Bottle</p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li> 
           </ul>
         </nav>
       </div>
