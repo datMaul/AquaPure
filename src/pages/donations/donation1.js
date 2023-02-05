@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 
-const WaterAid = () => (
+export default function donation1() {
     <div>
         <h1> Water Aid </h1>
         <img className="charityimage1" src="image//wateraids-new-logo.png" alt="Water Aid Logo" />
@@ -28,15 +28,13 @@ const WaterAid = () => (
             <button>Donate</button>
         </Link>
     </div>
-);
+}
 
-const App = () => (
+/*export default function don() => (
     <div>
         <Switch>
             <Route exact path="/" component={WaterAid} />
             <Route exact path="/donationForm" component={donationForm} />
         </Switch>
     </div>
-);
-
-export default App;
+);*/

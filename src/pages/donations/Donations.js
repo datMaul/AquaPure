@@ -1,15 +1,14 @@
 import React from "react";
+import "./style.css";
 import { Link, Route, Switch } from "react-router-dom";
 
-const AquaPure = () => {
+export default function Donations() {
     return (
         <div>
             <h3 className="seconddescription">Sustainable water is very esssential</h3>
             <div className="p3">
                 <p className="seconddescription pageWidth">
-                    Sustainable water management involves using water resources in a way
-                    that meets the needs of the present without compromising the ability of
-                    future generations to meet their own needs. This means using water
+                    Sustainable water management involves using water resources in a way that meets the needs of the present without compromising the ability of future generations to meet their own needs. This means using water
                     efficiently and effectively, protecting and preserving water quality,
                     and ensuring that water resources are managed in a way that is
                     environmentally, socially, and economically sustainable. There are
@@ -87,7 +86,7 @@ const AquaPure = () => {
                                 The current CEO of the Soil Association is Helen Browning, and Monty Don was the president from 2008 to 2016. The association also has several honorary vice-presidents including Jonathan Dimbleby, George McRobie, and Charlotte Mitchell. The Prince of Wales is a royal patron of the organization.
                                 <br/>
                                 The association's activities include campaigning against intensive farming, promoting local purchasing, and educating the public on nutrition. Lady Balfour believed that the future of mankind and human health was dependent on the treatment of soil, and she established the Soil Association to generate scientific data to support this belief.
-                                <br/>     
+                                <br/>
                                 In conclusion, the Soil Association is a crucial player in promoting and advocating for organic farming and certification of organic foods in the UK and around the world. Its efforts over the years have contributed to the growth of the organic food and farming movement and continue to promote sustainable agriculture for a better future.
                                 </p>
 
@@ -126,6 +125,6 @@ const AquaPure = () => {
             </div>
         </div>
     );
-}
+}  
 
 

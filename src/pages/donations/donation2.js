@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 
+export default function donation2() {
 const WWF = () => (
     <div>
         <h1> WWF </h1>
@@ -27,8 +28,9 @@ const WWF = () => (
         </Link>
     </div>
 );
+}
 
-const App = () => (
+/*const App = () => (
     <div>
         <Switch>
             <Route exact path="/" component={WWF} />
@@ -37,4 +39,4 @@ const App = () => (
     </div>
 );
 
-export default App;
+export default App;*/

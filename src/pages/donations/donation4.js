@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 
+export default function donation4() {
 const RSPD = () => (
     <div>
         <h1> RSPD </h1>
@@ -31,8 +32,9 @@ const RSPD = () => (
         </Link>
     </div>
 );
+}
 
-const App = () => (
+/*const App = () => (
     <div>
         <Switch>
             <Route exact path="/" component={RSPD} />
@@ -41,4 +43,4 @@ const App = () => (
     </div>
 );
 
-export default App;
+export default App;*/

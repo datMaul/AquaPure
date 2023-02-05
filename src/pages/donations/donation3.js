@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 
+export default function donation3() {
 const SoilAssociation = () => (
     <div>
         <h1> Soil Association </h1>
@@ -27,8 +28,9 @@ const SoilAssociation = () => (
         </Link>
     </div>
 );
+}
 
-const App = () => (
+/*const App = () => (
     <div>
         <Switch>
             <Route exact path="/" component={SoilAssociation} />
@@ -37,4 +39,4 @@ const App = () => (
     </div>
 );
 
-export default App;
+export default App;*/

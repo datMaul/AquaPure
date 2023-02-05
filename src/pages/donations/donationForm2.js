@@ -2,7 +2,7 @@ import './form.css';
 import React from 'react';
 
 
-function DonationForm() {
+export default function donationForm2() {
     return (
         <div className="Middle">
             <form id="form1" action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -22,5 +22,3 @@ function DonationForm() {
         </div>
     );
 }
-
-export default DonationForm;
