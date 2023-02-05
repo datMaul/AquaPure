@@ -1,24 +1,19 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 
-const WaterAid = () => {
-  return (
+const WaterAid = () => (
     <div>
         <h1> Water Aid </h1>
-        <img className="charityimage1" src="image//wateraids-new-logo.png" />
-        <p className="sides"> 
-            Link to offical website: <Link to="/wateraid-official">Water Aid offical</Link>
+        <img className="charityimage1" src="image//wateraids-new-logo.png" alt="Water Aid Logo" />
+        <p className="sides">
+            Link to official website:
+            <Link to="https://www.wateraid.org/uk/donate/donate-to-wateraid-today?id=RA/TPP/01A&utm_source=google&utm_medium=cpc&gclid=Cj0KCQiA2-2eBhClARIsAGLQ2RlwS0wT1goVk7KtXFaVy51dN83l8xcRATx0mEF5lAP1XGHqb98mi28aAttQEALw_wcB&gclsrc=aw.ds">
+                Water Aid official
+            </Link>
         </p>
         <p className="sides">
             Since: 21 July 1981
         </p>
-    </div>
-  );
-};
-
-const WaterAidDetails = () => {
-  return (
-    <div> 
         <p>
             WaterAid is an international non-profit organization focused on providing access to clean water, safe sanitation, and promoting good hygiene practices. It was established in 1981 as a response to the UN International Drinking Water decade. WaterAid is comprised of members in several countries, including the UK, USA, Australia, Japan, Sweden, Canada, and India, and operates in 34 countries worldwide through its regional offices and country programs. The organization partners with local organizations to help communities establish sustainable water supplies and toilets close to home and promote safe hygiene practices.
             <br />
@@ -26,27 +21,22 @@ const WaterAidDetails = () => {
             <br />
             In 2010, WaterAid became a federation, with members in several countries and regional offices and country programs in 27 countries in Latin America, Africa, and Asia. Over the years, WaterAid has grown significantly and its income has increased from £1 million per annum in 1987 to £113 million in 2018-19. The organization works in 34 countries in Africa, Asia, Central America, and the Pacific region.
         </p>
+        <Link to="/">
+            <button>Back</button>
+        </Link>
+        <Link to="/DonationForm">
+            <button>Donate</button>
+        </Link>
     </div>
-  );
-};
+);
 
-const WaterAidDonation = () => {
-  return (
+const App = () => (
     <div>
-        <button><Link to="/">Back</Link></button>
-        <button><Link to="/donate">Donate</Link></button>
+        <Switch>
+            <Route exact path="/" component={WaterAid} />
+            <Route exact path="/donationForm" component={donationForm} />
+        </Switch>
     </div>
-  );
-};
-
-const App = () => {
-  return (
-    <div>
-      <Route exact path="/" component={WaterAid} />
-      <Route path="/wateraid-official" component={WaterAidDetails} />
-      <Route path="/donate" component={WaterAidDonation} />
-    </div>
-  );
-};
+);
 
 export default App;

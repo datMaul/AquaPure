@@ -7,7 +7,7 @@ function DonationForm() {
         <div className="Middle">
             <form id="form1" action="https://www.paypal.com/cgi-bin/webscr" method="post">
                 <h3>Make a Donation</h3>
-                <h1>Water Aid</h1>
+                <h1>WWF</h1>
                 <p>Your support is greatly appreciated!</p>
                 <label htmlFor="amount">Enter Donation Amount:</label><br />
                 <input type="text" id="amount" name="amount" value="50.00" /><br />
@@ -23,4 +23,4 @@ function DonationForm() {
     );
 }
 
-export default DonationForm;
+export default DonationForm; 
