@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export default function donation1() {
     <div>
@@ -28,7 +28,7 @@ export default function donation1() {
             <button>Donate</button>
         </Link>
     </div>
-}
+};
 
 /*export default function don() => (
     <div>

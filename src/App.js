@@ -1,13 +1,5 @@
 import Navbar from "./components/Navbar";
 import Donations from "./pages/donations/Donations";
-import DonationForm from "./pages/donation/DonationForm"
-import donation1 from "./pages/donations/donation1";
-import donation2 from "./pages/donations/donation2";
-import donation3 from "./pages/donations/donation3";
-import donation4 from "./pages/donations/donation4";
-import donationForm1 from "./pages/donations/donationForm1";
-import donationForm2 from "./pages/donations/donationForm2";
-import donationForm3 from "./pages/donations/donationForm3";
 import Game from "./pages/game/Game";
 import Home from "./pages/home/Home";
 import Phasetest from "./pages/phasetest/Phasetest";
@@ -35,14 +27,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/donations" element={<Donations />} />
-          <Route path="/donations" element={<DonationForm />} />
-          <Route path="/donations" element={<donation1 />} />
-          <Route path="/donations" element={<donation2 />} />
-          <Route path="/donations" element={<donation3 />} />
-          <Route path="/donations" element={<donation4 />} />
-          <Route path="/donations" element={<donationForm1 />} />
-          <Route path="/donations" element={<donationForm2 />} />
-          <Route path="/donations" element={<donationForm3 />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/game" element={<Game />} />
           <Route path="/accounts/login" element={<SignIn />} />

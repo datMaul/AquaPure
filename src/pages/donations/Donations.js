@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { Link, Route, Switch } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export default function Donations() {
     return (
