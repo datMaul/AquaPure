@@ -81,13 +81,6 @@ export default function Donations() {
                                 <p>
                                 The Soil Association is a British charity founded in 1946 with the mission of promoting organic farming and certification of organic foods. The founders, Lady Eve Balfour, Friend Sykes, and George Scott Williamson, were inspired by the Haughley Experiment which compared organic and chemical-based farming methods and showed the benefits of organic farming. The association was also established due to concerns over the use of herbicides in intensive agriculture.
                                 <br/>
-                                The Soil Association was one of the five organizations that formed the International Federation of Organic Agriculture Movements in 1972 to advocate for organic farming on a global scale. The association has grown from a few hundred members in its early years to over 4,000 members today. The organization has shifted towards the left of the political spectrum after the death of British Union of Fascists member Jorian Jenks, who was one of its founders.
-                                <br/>
-                                The current CEO of the Soil Association is Helen Browning, and Monty Don was the president from 2008 to 2016. The association also has several honorary vice-presidents including Jonathan Dimbleby, George McRobie, and Charlotte Mitchell. The Prince of Wales is a royal patron of the organization.
-                                <br/>
-                                The association's activities include campaigning against intensive farming, promoting local purchasing, and educating the public on nutrition. Lady Balfour believed that the future of mankind and human health was dependent on the treatment of soil, and she established the Soil Association to generate scientific data to support this belief.
-                                <br/>
-                                In conclusion, the Soil Association is a crucial player in promoting and advocating for organic farming and certification of organic foods in the UK and around the world. Its efforts over the years have contributed to the growth of the organic food and farming movement and continue to promote sustainable agriculture for a better future.
                                 </p>
 
                                 <Link to="/donationForm2">
