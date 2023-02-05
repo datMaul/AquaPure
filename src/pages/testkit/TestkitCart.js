@@ -8,9 +8,11 @@ import WaterTestKit5 from './testkit_images_videos/Legionella.jpg';
 import WaterTestKit6 from './testkit_images_videos/Bacteria.jpg';
 import WaterTestKit7 from './testkit_images_videos/Pool.jpg';
 import "./TestkitCart.css";
+import { Button } from "react-bootstrap";
 
 export default function TestkitCart() {
   const [TestkitCartItems, setTestkitCartItems] = useState([]);
+  const [totalPrice, setTotal] = useState(0);
   useEffect(() => {
     loadTestkit();
   }, []);
@@ -20,6 +22,7 @@ export default function TestkitCart() {
       `http://localhost:8080/TestkitCartItem/user/${localStorage.getItem("user_ID")}`
     );
     setTestkitCartItems(Test_Kit_Log_Result.data);
+    setTotal(Test_Kit_Log_Result.data.reduce((acc, item) => acc + (item.quantity * item.testKit.test_Kit_Price), 0));
   };
 
   const deleteUser = async (id) => {
@@ -36,7 +39,8 @@ export default function TestkitCart() {
     'Bacteria Basic': WaterTestKit6,
     'Pool': WaterTestKit7,
   };
-
+  const Tax_Price = 20
+  const Shipping_Fees = 12
   return (
     <div>
       <center>
@@ -55,7 +59,7 @@ export default function TestkitCart() {
             <td style={{ display: 'flex', alignItems: 'center' }}><img style={{ width: '200px', height: '200px', marginRight: '10px' }} src={testKitImages[TestkitCartItems.testKit.test_Kit_Name]} alt={TestkitCartItems.testKit.test_Kit_Name} />
               Water Test Kit | {TestkitCartItems.testKit.test_Kit_Name}
             </td>
-            <td>{TestkitCartItems.quantity} <button>Edit</button></td>
+            <td className="Price_td">{TestkitCartItems.quantity} <button className="Edit_Cart_BTN">Edit</button></td>
             <td>£{(TestkitCartItems.quantity * TestkitCartItems.testKit.test_Kit_Price).toFixed(2)}</td>
             <td><button
               className="Delete_User"
@@ -66,6 +70,26 @@ export default function TestkitCart() {
           </tr>
         ))}
       </table>
+      <div className="Summary_Div">
+        <h2>Summary</h2>
+        Item(s) Total Price: £{TestkitCartItems.reduce((total, item) => total + (item.quantity * item.testKit.test_Kit_Price), 0).toFixed(2)}
+        <br />
+        <br />
+        Tax: £{Tax_Price.toFixed(2)}
+        <br />
+        Shipping Fees: £{Shipping_Fees.toFixed(2)}
+        <br />
+        <br />
+        Total: £{(TestkitCartItems.reduce((total, item) => total + (item.quantity * item.testKit.test_Kit_Price), 0) + Tax_Price + Shipping_Fees).toFixed(2)}
+        <br />
+        <br />
+        <center>
+          <button className="Checkout_Btn">Proceed To Checkout</button>
+          <br />
+          <br />
+          <button className="Cont_Btn">Continue Shopping</button>
+        </center>
+      </div>
     </div>
   );
 }

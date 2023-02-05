@@ -1,15 +1,38 @@
 import "./Testkit.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function Testkit() {
+  const [value1, setValue1] = useState(1);
+  const [value2, setValue2] = useState(1);
+  const [value3, setValue3] = useState(1);
+  const [value4, setValue4] = useState(1);
+  const [value5, setValue5] = useState(1);
+  const [value6, setValue6] = useState(1);
+  const [value7, setValue7] = useState(1);
+
+  const handleDecrement = (setValue) => {
+    setValue((value) => (value > 1 ? value - 1 : 1));
+  };
+
+  const handleIncrement = (setValue) => {
+    setValue((value) => (value < 7 ? value + 1 : 7));
+  };
+  const [userID, setUserID] = useState(null);
+
+  useEffect(() => {
+    const storedUserID = localStorage.getItem("user_ID");
+    if (storedUserID) {
+      setUserID(storedUserID);
+    }
+  }, []);
 
   const useTestKit = (id) => {
     const [testKit, setTestKit] = useState({
       test_Kit_Name: "",
       test_Kit_Price: "",
       test_Kit_Stock_Count: "",
+      test_Kit_ID: ""
     });
 
     useEffect(() => {
@@ -22,12 +45,11 @@ export default function Testkit() {
       );
       setTestKit(result.data);
     };
-
-
     return testKit;
   }
 
   const testKit1 = useTestKit(1);
+  console.log(testKit1)
   const testKit2 = useTestKit(2);
   const testKit3 = useTestKit(3);
   const testKit4 = useTestKit(4);
@@ -35,24 +57,6 @@ export default function Testkit() {
   const testKit6 = useTestKit(6);
   const testKit7 = useTestKit(7);
 
-
-
-  const useTestKitCart = (testKit) => {
-    const [testKitCart, setTestKitCart] = useState([]);
-    const addTestKitToCart = (testKit) => {
-      setTestKitCart([...testKitCart, testKit]);
-    };
-    const removeTestKitFromCart = (testKit) => {
-      setTestKitCart(testKitCart.filter(t => t !== testKit));
-    };
-    return { testKitCart, addTestKitToCart, removeTestKitFromCart };
-  };
-
-
-
-  const { testKitCart, addTestKitToCart, removeTestKitFromCart } = useTestKitCart(
-    [testKit1, testKit2, testKit3, testKit4, testKit5, testKit6, testKit7]
-  );
 
   const [user, setUser] = useState({
     eMail: "",
@@ -67,19 +71,6 @@ export default function Testkit() {
     doB: "",
     userId: ""
   });
-
-  const {
-    eMail,
-    firstName,
-    lastName,
-    phoneNumber,
-    addressLine2,
-    addressLine1,
-    addressTC,
-    addressPostcode,
-    doB,
-    userId
-  } = user;
 
   useEffect(() => {
     loadUser();
@@ -108,77 +99,81 @@ export default function Testkit() {
 
   let BasicData = {
     "testKit": {
-      "test_Kit_Stock_Count": 69,
-      "test_Kit_Name": "Basic",
-      "test_Kit_Price": 69,
-      "test_Kit_ID": 1
+      "test_Kit_Stock_Count": testKit1.test_Kit_Stock_Count,
+      "test_Kit_Name": testKit1.test_Kit_Name,
+      "test_Kit_Price": testKit1.test_Kit_Price,
+      "test_Kit_ID": testKit1.test_Kit_ID
     },
     "signUp": signUp,
-    "quantity": 1
+    "quantity": value1
   };
   let StandardData = {
     "testKit": {
-      "test_Kit_Stock_Count": 32,
-      "test_Kit_Name": "Standard",
-      "test_Kit_Price": 99,
-      "test_Kit_ID": 2
+      "test_Kit_Stock_Count": testKit2.test_Kit_Stock_Count,
+      "test_Kit_Name": testKit2.test_Kit_Name,
+      "test_Kit_Price": testKit2.test_Kit_Price,
+      "test_Kit_ID": testKit2.test_Kit_ID
     },
     "signUp": signUp,
-    "quantity": 1
+    "quantity": value2
   };
   let PlusData = {
     "testKit": {
-      "test_Kit_Stock_Count": 56,
-      "test_Kit_Name": "Plus",
-      "test_Kit_Price": 129,
-      "test_Kit_ID": 3
+      "test_Kit_Stock_Count": testKit3.test_Kit_Stock_Count,
+      "test_Kit_Name": testKit3.test_Kit_Name,
+      "test_Kit_Price": testKit3.test_Kit_Price,
+      "test_Kit_ID": testKit3.test_Kit_ID
     },
     "signUp": signUp,
-    "quantity": 1
+    "quantity": value3
   };
   let PremiumData = {
     "testKit": {
-      "test_Kit_Stock_Count": 38,
-      "test_Kit_Name": "Premium",
-      "test_Kit_Price": 249,
-      "test_Kit_ID": 4
+      "test_Kit_Stock_Count": testKit4.test_Kit_Stock_Count,
+      "test_Kit_Name": testKit4.test_Kit_Name,
+      "test_Kit_Price": testKit4.test_Kit_Price,
+      "test_Kit_ID": testKit4.test_Kit_ID
     },
     "signUp": signUp,
-    "quantity": 1
+    "quantity": value4
   };
   let LegionellaData = {
     "testKit": {
-      "test_Kit_Stock_Count": 49,
-      "test_Kit_Name": "Legionella",
-      "test_Kit_Price": 85,
-      "test_Kit_ID": 5
+      "test_Kit_Stock_Count": testKit5.test_Kit_Stock_Count,
+      "test_Kit_Name": testKit5.test_Kit_Name,
+      "test_Kit_Price": testKit5.test_Kit_Price,
+      "test_Kit_ID": testKit5.test_Kit_ID
     },
     "signUp": signUp,
-    "quantity": 1
+    "quantity": value5
   };
   let BacteriaData = {
     "testKit": {
-      "test_Kit_Stock_Count": 42,
-      "test_Kit_Name": "Bacteria Basic",
-      "test_Kit_Price": 85,
-      "test_Kit_ID": 6
+      "test_Kit_Stock_Count": testKit6.test_Kit_Stock_Count,
+      "test_Kit_Name": testKit6.test_Kit_Name,
+      "test_Kit_Price": testKit6.test_Kit_Price,
+      "test_Kit_ID": testKit6.test_Kit_ID
     },
     "signUp": signUp,
-    "quantity": 1
+    "quantity": value6
   };
   let PoolData = {
     "testKit": {
-      "test_Kit_Stock_Count": 56,
-      "test_Kit_Name": "Pool",
-      "test_Kit_Price": 129,
-      "test_Kit_ID": 7
+      "test_Kit_Stock_Count": testKit7.test_Kit_Stock_Count,
+      "test_Kit_Name": testKit7.test_Kit_Name,
+      "test_Kit_Price": testKit7.test_Kit_Price,
+      "test_Kit_ID": testKit7.test_Kit_ID
     },
     "signUp": signUp,
-    "quantity": 1
+    "quantity": value7
   };
   const AddBasic = () => {
+    if (!userID) {
+      return (window.location.href = "/accounts/login");
+    }
     axios.post('http://localhost:8080/TestkitCartItem', BasicData)
       .then(res => {
+        console.log("okay")
         console.log(res);
       })
       .catch(err => {
@@ -186,6 +181,9 @@ export default function Testkit() {
       });
   }
   const AddStandard = () => {
+    if (!userID) {
+      return (window.location.href = "/accounts/login");
+    }
     axios.post('http://localhost:8080/TestkitCartItem', StandardData)
       .then(res => {
         console.log(res);
@@ -195,6 +193,9 @@ export default function Testkit() {
       });
   }
   const AddPlus = () => {
+    if (!userID) {
+      return (window.location.href = "/accounts/login");
+    }
     axios.post('http://localhost:8080/TestkitCartItem', PlusData)
       .then(res => {
         console.log(res);
@@ -204,6 +205,9 @@ export default function Testkit() {
       });
   }
   const AddPremium = () => {
+    if (!userID) {
+      return (window.location.href = "/accounts/login");
+    }
     axios.post('http://localhost:8080/TestkitCartItem', PremiumData)
       .then(res => {
         console.log(res);
@@ -213,6 +217,9 @@ export default function Testkit() {
       });
   }
   const AddLegionella = () => {
+    if (!userID) {
+      return (window.location.href = "/accounts/login");
+    }
     axios.post('http://localhost:8080/TestkitCartItem', LegionellaData)
       .then(res => {
         console.log(res);
@@ -222,6 +229,9 @@ export default function Testkit() {
       });
   }
   const AddBacteria = () => {
+    if (!userID) {
+      return (window.location.href = "/accounts/login");
+    }
     axios.post('http://localhost:8080/TestkitCartItem', BacteriaData)
       .then(res => {
         console.log(res);
@@ -231,6 +241,9 @@ export default function Testkit() {
       });
   }
   const AddPool = () => {
+    if (!userID) {
+      return (window.location.href = "/accounts/login");
+    }
     axios.post('http://localhost:8080/TestkitCartItem', PoolData)
       .then(res => {
         console.log(res);
@@ -308,6 +321,12 @@ export default function Testkit() {
                 <span>£{testKit1.test_Kit_Price}.00</span>
                 <br />
                 <br />
+                <div>
+                  <button className="Quantity_Changer" onClick={() => handleDecrement(setValue1)}>-</button>
+                  <input className="Quantity_Input" value={value1} readOnly />
+                  <button className="Quantity_Changer" onClick={() => handleIncrement(setValue1)}>+</button>
+                </div>
+                <br />
                 <button id="WTK_P_CART" onClick={AddBasic}>Add To Cart</button>
               </div>
             </div>
@@ -328,6 +347,12 @@ export default function Testkit() {
                 <span>£{testKit2.test_Kit_Price}.00</span>
                 <br />
                 <br />
+                <div>
+                  <button className="Quantity_Changer" onClick={() => handleDecrement(setValue2)}>-</button>
+                  <input className="Quantity_Input" value={value2} readOnly />
+                  <button className="Quantity_Changer" onClick={() => handleIncrement(setValue2)}>+</button>
+                </div>
+                <br />
                 <button id="WTK_P_CART" onClick={AddStandard}>Add To Cart</button>
               </div>
             </div>
@@ -347,6 +372,12 @@ export default function Testkit() {
               <div className="Plus_price WTK_P">
                 <span>£{testKit3.test_Kit_Price}.00</span>
                 <br />
+                <br />
+                <div>
+                  <button className="Quantity_Changer" onClick={() => handleDecrement(setValue3)}>-</button>
+                  <input className="Quantity_Input" value={value3} readOnly />
+                  <button className="Quantity_Changer" onClick={() => handleIncrement(setValue3)}>+</button>
+                </div>
                 <br />
                 <button id="WTK_P_CART" onClick={AddPlus}>Add To Cart</button>
               </div>
@@ -369,6 +400,12 @@ export default function Testkit() {
                 <span>£{testKit4.test_Kit_Price}.00</span>
                 <br />
                 <br />
+                <div>
+                  <button className="Quantity_Changer" onClick={() => handleDecrement(setValue4)}>-</button>
+                  <input className="Quantity_Input" value={value4} readOnly />
+                  <button className="Quantity_Changer" onClick={() => handleIncrement(setValue4)}>+</button>
+                </div>
+                <br />
                 <button id="WTK_P_CART" onClick={AddPremium}>Add To Cart</button>
               </div>
             </div>
@@ -390,6 +427,12 @@ export default function Testkit() {
                 <span>£{testKit5.test_Kit_Price}.00</span>
                 <br />
                 <br />
+                <div>
+                  <button className="Quantity_Changer" onClick={() => handleDecrement(setValue5)}>-</button>
+                  <input className="Quantity_Input" value={value5} readOnly />
+                  <button className="Quantity_Changer" onClick={() => handleIncrement(setValue5)}>+</button>
+                </div>
+                <br />
                 <button id="WTK_P_CART" onClick={AddLegionella}>Add To Cart</button>
               </div>
             </div>
@@ -410,6 +453,12 @@ export default function Testkit() {
                 <span>£{testKit6.test_Kit_Price}.00</span>
                 <br />
                 <br />
+                <div>
+                  <button className="Quantity_Changer" onClick={() => handleDecrement(setValue6)}>-</button>
+                  <input className="Quantity_Input" value={value6} readOnly />
+                  <button className="Quantity_Changer" onClick={() => handleIncrement(setValue6)}>+</button>
+                </div>
+                <br />
                 <button id="WTK_P_CART" onClick={AddBacteria}>Add To Cart</button>
               </div>
             </div>
@@ -429,6 +478,12 @@ export default function Testkit() {
                 <span>£{testKit7.test_Kit_Price}.00</span>
                 <br />
                 <br />
+                <div>
+                  <button className="Quantity_Changer" onClick={() => handleDecrement(setValue7)}>-</button>
+                  <input className="Quantity_Input" value={value7} readOnly />
+                  <button className="Quantity_Changer" onClick={() => handleIncrement(setValue7)}>+</button>
+                </div>
+                <br />
                 <button id="WTK_P_CART" onClick={AddPool}>Add To Cart</button>
               </div>
             </div>
@@ -437,21 +492,6 @@ export default function Testkit() {
         {/* Test Kit Options End */} <br />
         <br />
         <br />
-        <center>
-          <h2>Test Kit Cart</h2>
-          <div>
-            {testKitCart.map((testKit, index) => (
-              <div key={index}>
-                {testKit.test_Kit_Name} - {testKit.test_Kit_Price} <br /><br />
-                <button id="WTK_P_CART" onClick={() => removeTestKitFromCart(testKit)}>
-                  Remove
-                </button>
-                <br />
-                <br />
-              </div>
-            ))}
-          </div>
-        </center>
       </div>
     </div>
   );
@@ -459,4 +499,3 @@ export default function Testkit() {
 
 //Test kit boxes
 // https://ivario-lab.co.uk/collections/water-test-kit#product-start
-// /accounts/login
