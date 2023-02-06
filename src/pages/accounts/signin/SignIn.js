@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./SignIn.css";
 
+
 export default function SignIn() {
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
@@ -18,10 +19,10 @@ export default function SignIn() {
         localStorage.setItem("user_ID", res.data.userId);
         localStorage.setItem("accountType", res.data.accountType);
 
-        if (res.data.accountType === "Admin") {
+        if (res.data.accountType == "Admin") {
           window.location = "/admin";
-        } else if (res.data.accountType === "User") {
-          window.location = "/";
+        } else if (res.data.accountType == "User") {
+          window.location = '/';
         }
 
         console.log("User ID: " + localStorage.getItem("user_ID"));
