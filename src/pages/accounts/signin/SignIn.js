@@ -19,9 +19,9 @@ export default function SignIn() {
         localStorage.setItem("user_ID", res.data.userId);
         localStorage.setItem("accountType", res.data.accountType);
 
-        if (res.data.accountType == "Admin") {
+        if (res.data.accountType === "Admin") {
           window.location = "/admin";
-        } else if (res.data.accountType == "User") {
+        } else if (res.data.accountType === "User") {
           window.location = '/';
         }
 

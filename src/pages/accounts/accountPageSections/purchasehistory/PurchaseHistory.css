@@ -1,0 +1,53 @@
+.HistoryContainer {
+    display: grid;
+    grid-template-columns: 18% 82%;
+}
+
+.HistorySidebar {
+    background-color: #008CBA;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.HistChildContainer {
+    margin: auto;
+    background-color: #fff;
+}
+
+.Hist_Side_BTN {
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: #008CBA;
+    font-size: 20px;
+    border: none;
+}
+
+.Hist_Side_BTN:hover {
+    color: #f5f5f5;
+}
+
+.Hist_Side_BTN::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 4px;
+    background-color: #f5f5f5;
+    transition: width 0.3s;
+    margin: -5px 0;
+}
+
+.Hist_Side_BTN:hover::before {
+    width: 100%;
+}
+
+.Hist_Side_BTN.active::before,
+.Hist_Side_BTN:hover::before {
+    width: 100%;
+}

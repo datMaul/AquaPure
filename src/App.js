@@ -10,7 +10,7 @@ import Testkit from "./pages/testkit/Testkit";
 import SignUp from "./pages/accounts/signup/SignUp";
 import AccountsSettings from "./pages/accounts/accountPageSections/AccountsSettings";
 import PasswordSettings from "./pages/accounts/accountPageSections/PasswordSettings";
-import PurchaseHistory from "./pages/accounts/accountPageSections/PurchaseHistory";
+import PurchaseHistory from "./pages/accounts/accountPageSections/purchasehistory/PurchaseHistory";
 import LoyaltyPoints from "./pages/accounts/accountPageSections/LoyaltyPoints";
 import Testkitlog from "./pages/admin/TestKit_Admin/Testkitlog";
 import Overwritetestkitlog from "./pages/admin/TestKit_Admin/Overwritetestkitlog";
@@ -22,10 +22,9 @@ import PrivacyPolicy from "./pages/accounts/signup/TextFiles/PrivacyPolicy";
 import TestkitEntry from "./pages/accounts/accountPageSections/TestkitEntry";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
-import TestKitCart from "./pages/accounts/cart/testkitcart/TestkitCart";
 import Cart from "./pages/accounts/cart/CartPage"
 import Account from "./pages/accounts/accountPageSections/Accounts"
-import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/PurchaseHistoryTestkit";
+import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitpurchasehistory/PurchaseHistoryTestkit";
 
 function App() {
 
@@ -75,7 +74,6 @@ function App() {
           <Route path="/thist" element={<PurchaseHistoryTestkit />} />
 
 
-          <Route path="/testkitcart" element={<TestKitCart />} />
           {accountType === "Admin" ? (<Route path="/admin" element={<AdminPage />} />) : null}
           {accountType === "Admin" ? (<Route path="admin/signuplog/overwrite/:user_ID" element={<Overwritesignupadminlog />} />) : null}
           {accountType === "Admin" ? (<Route path="/admin/signuplog" element={<Signupadminlog />} />) : null}

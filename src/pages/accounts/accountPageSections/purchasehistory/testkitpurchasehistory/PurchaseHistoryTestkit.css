@@ -4,6 +4,11 @@
     width: 100%;
 }
 
+.Testkit_hist {
+    margin: auto auto;
+    width: 95%;
+}
+
 .Test_Kit_Table td,
 .Test_Kit_Table th {
     border: none;
