@@ -24,45 +24,7 @@ export default function PurchaseHistory() {
       });
   };
   return (
-    <div className="PurchaseHistory">
-      <div className="Accounts-Navbar">
-        <Link to="/accounts" className="AccountLinks" id="AccountSettings-Link">
-          Account Settings
-        </Link>
-        <Link
-          to="/accounts/passwordSettings"
-          className="AccountLinks"
-          id="PasswordSettings-Link"
-        >
-          Password Settings
-        </Link>
-        <Link
-          to="/accounts/testkitEntry"
-          className="AccountLinks"
-          id="TestKitEntry-Link"
-        >
-          Testkit Entry
-        </Link>
-        <Link
-          to="/accounts/purchaseHistory"
-          className="AccountLinks"
-          id="PurchaseHistory-Link"
-        >
-          Purchase History
-        </Link>
-        <Link
-          to="/accounts/loyaltyPoints"
-          className="AccountLinks"
-          id="LoyaltPoints-Link"
-        >
-          Loyalty Points
-        </Link>
-        <button onClick={handleLogout} className="AccountLinks">
-          {" "}
-          Logout{" "}
-        </button>
-      </div>
-
+    <div className="Accounts-Content">
       <div className="PurchaseHistory-Content">
         <h2> Purchase History </h2>
 

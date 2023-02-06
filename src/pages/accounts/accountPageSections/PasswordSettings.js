@@ -78,63 +78,24 @@ export default function PasswordSettings() {
   };
 
   return (
-    <div className="PasswordSettings">
-      <div className="Accounts-Navbar">
-        <Link to="/accounts" className="AccountLinks" id="AccountSettings-Link">
-          Account Settings
-        </Link>
-        <Link
-          to="/accounts/passwordSettings"
-          className="AccountLinks"
-          id="PasswordSettings-Link"
-        >
-          Password Settings
-        </Link>
-        <Link
-          to="/accounts/testkitEntry"
-          className="AccountLinks"
-          id="TestKitEntry-Link"
-        >
-          Testkit Entry
-        </Link>
-        <Link
-          to="/accounts/purchaseHistory"
-          className="AccountLinks"
-          id="PurchaseHistory-Link"
-        >
-          Purchase History
-        </Link>
-        <Link
-          to="/accounts/loyaltyPoints"
-          className="AccountLinks"
-          id="LoyaltPoints-Link"
-        >
-          Loyalty Points
-        </Link>
-        <button onClick={handleLogout} className="AccountLinks">
-          {" "}
-          Logout{" "}
+    <div className="Accounts-Content">
+      <h2> Password Settings </h2>
+      <form onSubmit={(e) => onSubmit(e)}>
+        <div>
+          <label> Password : </label>
+          <input
+            type={"text"}
+            placeholder="Enter Overwrite Password"
+            name="password"
+            value={password}
+            onChange={(e) => onInputChange(e)}
+          />
+        </div>
+        <button id="submitButton" type="submit">
+          Submit
         </button>
-      </div>
-
-      <div className="PasswordSettings-Content">
-        <h2> Password Settings </h2>
-        <form onSubmit={(e) => onSubmit(e)}>
-          <div>
-            <label> Password : </label>
-            <input
-              type={"text"}
-              placeholder="Enter Overwrite Password"
-              name="password"
-              value={password}
-              onChange={(e) => onInputChange(e)}
-            />
-          </div>
-          <button id="submitButton" type="submit">
-            Submit
-          </button>
-        </form>
-      </div>
+      </form>
     </div>
+
   );
 }

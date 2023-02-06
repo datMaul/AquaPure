@@ -24,7 +24,10 @@ import PrivacyPolicy from "./pages/accounts/signup/TextFiles/PrivacyPolicy";
 import TestkitEntry from "./pages/accounts/accountPageSections/TestkitEntry";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
-import TestKitCart from "./pages/testkit/TestkitCart";
+import TestKitCart from "./pages/accounts/cart/testkitcart/TestkitCart";
+import Cart from "./pages/accounts/cart/CartPage"
+import Account from "./pages/accounts/accountPageSections/Accounts"
+import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/PurchaseHistoryTestkit";
 
 function App() {
   const [scrollPos, setScrollPos] = useState(0);
@@ -56,7 +59,7 @@ function App() {
             path="/accounts/password/reset/confirm"
             element={<ResetPassword />}
           /> */}
-          <Route path="/accounts" element={<AccountsSettings />} />
+          <Route path="/accounts" element={<Account />} />
           <Route
             path="/accounts/passwordSettings"
             element={<PasswordSettings />}
@@ -73,6 +76,7 @@ function App() {
             path="/admin/testkitlog/overwrite/:test_Kit_ID"
             element={<Overwritetestkitlog />}
           />
+          <Route path="/thist" element={<PurchaseHistoryTestkit />} />
           <Route path="/admin/signuplog" element={<Signupadminlog />} />
           <Route path="/testkitcart" element={<TestKitCart />} />
           <Route
@@ -80,6 +84,7 @@ function App() {
             element={<Overwritesignupadminlog />}
           />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/termsAndConditions" element={<TermsAndContitions />} />
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/accounts/testkitEntry" element={<TestkitEntry />} />

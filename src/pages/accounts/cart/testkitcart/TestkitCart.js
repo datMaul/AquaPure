@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import WaterTestKit1 from './testkit_images_videos/Basic.jpg';
+import WaterTestKit1 from "./testkit_images_videos/Basic.jpg";
 import WaterTestKit2 from './testkit_images_videos/Standard.jpg';
 import WaterTestKit3 from './testkit_images_videos/Plus.jpg';
 import WaterTestKit4 from './testkit_images_videos/Premium.jpg';
@@ -41,6 +41,20 @@ export default function TestkitCart() {
   };
   const Tax_Price = 20
   const Shipping_Fees = 12
+
+  const Checkout = async () => {
+    try {
+      const postResponse = await axios.post(`http://localhost:8080/testkit/purchase-history/${localStorage.getItem("user_ID")}`);
+      console.log(postResponse);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      const deleteResponse = await axios.delete(`http://localhost:8080/TestkitCartItem/user/${localStorage.getItem("user_ID")}`);
+      console.log(deleteResponse);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
   return (
     <div>
       <center>
@@ -84,7 +98,7 @@ export default function TestkitCart() {
         <br />
         <br />
         <center>
-          <button className="Checkout_Btn">Proceed To Checkout</button>
+          <button className="Checkout_Btn" onClick={Checkout}>Proceed To Checkout</button>
           <br />
           <br />
           <button className="Cont_Btn">Continue Shopping</button>
