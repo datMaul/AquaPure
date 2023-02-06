@@ -1,5 +1,5 @@
 import "./home.css";
-
+import Waves from "./home_images_videos/Beach_Waves.mp4";
 
 export default function Home() {
   return (
