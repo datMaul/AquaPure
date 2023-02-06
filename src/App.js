@@ -23,17 +23,15 @@ import TermsAndContitions from "./pages/accounts/signup/TextFiles/TermsAndCondit
 import PrivacyPolicy from "./pages/accounts/signup/TextFiles/PrivacyPolicy";
 import TestkitEntry from "./pages/accounts/accountPageSections/TestkitEntry";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import TestKitCart from "./pages/accounts/cart/testkitcart/TestkitCart";
+import Cart from "./pages/accounts/cart/CartPage"
+import Account from "./pages/accounts/accountPageSections/Accounts"
+import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/PurchaseHistoryTestkit";
 
 function App() {
   const [scrollPos, setScrollPos] = useState(0);
   const location = useLocation();
-
-  const [accountType, setAccountType] = useState(null);
-
-  useEffect(() => {
-    setAccountType(localStorage.getItem("accountType"));
-  }, []);
 
   useEffect(() => {
     window.scrollTo(0, scrollPos);
@@ -49,63 +47,47 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/termsAndConditions" element={<TermsAndContitions />} />
-          <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
-
           <Route path="/donations" element={<Donations />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/game" element={<Game />} />
+          <Route path="/accounts/login" element={<SignIn />} />
           <Route path="/map" element={<Map />} />
           <Route path="/testkit" element={<Testkit />} />
-
-          <Route path="/accounts/login" element={<SignIn />} />
           <Route path="/accounts/signup" element={<SignUp />} />
-
-          <Route path="/accounts" element={<AccountsSettings />} />
+          {/* <Route path="/accounts/password/reset" element={<ForgotPassword />} />
+          <Route
+            path="/accounts/password/reset/confirm"
+            element={<ResetPassword />}
+          /> */}
+          <Route path="/accounts" element={<Account />} />
           <Route
             path="/accounts/passwordSettings"
             element={<PasswordSettings />}
           />
-          <Route path="/accounts/testkitEntry" element={<TestkitEntry />} />
           <Route
             path="/accounts/purchaseHistory"
             element={<PurchaseHistory />}
           />
           <Route path="/accounts/loyaltyPoints" element={<LoyaltyPoints />} />
           <Route path="/phasetest" element={<Phasetest />} />
-
-          {accountType === "Admin" ? (
-            <Route path="/admin" element={<AdminPage />} />
-          ) : null}
-
-          {accountType === "Admin" ? (
-            <Route path="/admin/signuplog" element={<Signupadminlog />} />
-          ) : null}
-
-          {accountType === "Admin" ? (
-            <Route
-              path="admin/signuplog/overwrite/:user_ID"
-              element={<Overwritesignupadminlog />}
-            />
-          ) : null}
-
-          {accountType === "Admin" ? (
-            <Route path="/admin/testkitlog" element={<Testkitlog />} />
-          ) : null}
-
-          {accountType === "Admin" ? (
-            <Route
-              exact
-              path="/admin/testkitlog/overwrite/:test_Kit_ID"
-              element={<Overwritetestkitlog />}
-            />
-          ) : null}
-
-          {/* <Route path="/accounts/password/reset" element={<ForgotPassword />} />
+          <Route path="/admin/testkitlog" element={<Testkitlog />} />
           <Route
-            path="/accounts/password/reset/confirm"
-            element={<ResetPassword />}
-          /> */}
+            exact
+            path="/admin/testkitlog/overwrite/:test_Kit_ID"
+            element={<Overwritetestkitlog />}
+          />
+          <Route path="/thist" element={<PurchaseHistoryTestkit />} />
+          <Route path="/admin/signuplog" element={<Signupadminlog />} />
+          <Route path="/testkitcart" element={<TestKitCart />} />
+          <Route
+            path="admin/signuplog/overwrite/:user_ID"
+            element={<Overwritesignupadminlog />}
+          />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/termsAndConditions" element={<TermsAndContitions />} />
+          <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+          <Route path="/accounts/testkitEntry" element={<TestkitEntry />} />
         </Routes>
       </div>
     </>

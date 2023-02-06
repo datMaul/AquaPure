@@ -1,22 +1,17 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import logo from "./aqlogo.png";
 import { useState, useEffect } from "react";
+import { GiShoonerSailboat } from "react-icons/gi"
+
 
 export default function Navbar() {
   const [isSignedIn, setIsSignedIn] = useState(false);
-  const [isSignedInAdmin, setIsSignedInAdmin] = useState(false);
-
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      if (localStorage.getItem("accountType") === "Admin") {
-        setIsSignedInAdmin(true);
-        setIsSignedIn(true);
-      } else if (localStorage.getItem("accountType") === "User") {
-        setIsSignedIn(true);
-      }
+      setIsSignedIn(true);
     }
   }, []);
-
+  let iconStyles = { color: "white", fontSize: "1.3em" };
   return (
     <div className="nav-container">
       <div className="navbar">
@@ -31,34 +26,10 @@ export default function Navbar() {
               <CustomLink to="/game">Game</CustomLink>
               <CustomLink to="/donations">Donations</CustomLink>
               <CustomLink to="/shop">Shop</CustomLink>
-              {isSignedIn && (
-                <CustomLink
-                  to="/accounts"
-                  id="account-btn"
-                  className="account-btn"
-                >
-                  Account
-                </CustomLink>
-              )}
-              {isSignedInAdmin && (
-                <CustomLink
-                  to="/admin"
-                  id="account-btn"
-                  className="account-btn"
-                >
-                  Admin Interface
-                </CustomLink>
-              )}
+              {isSignedIn && <CustomLink to="/cart"><GiShoonerSailboat style={iconStyles} /></CustomLink>}
+              {isSignedIn && <CustomLink to="/accounts" id="account-btn" className="account-btn">Account</CustomLink>}
             </ul>
-            {!isSignedIn && (
-              <CustomLink
-                to="/accounts/login"
-                id="signin-btn"
-                className="signin-btn button"
-              >
-                Sign In
-              </CustomLink>
-            )}
+            {!isSignedIn && <CustomLink to="/accounts/login" id="signin-btn" className="signin-btn button">Sign In</CustomLink>}
           </div>
         </nav>
       </div>

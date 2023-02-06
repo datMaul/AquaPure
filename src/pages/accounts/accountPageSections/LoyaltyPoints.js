@@ -24,51 +24,12 @@ export default function LoyaltyPoints() {
       });
   };
   return (
-    <div className="LoyaltyPoints">
-      <div className="Accounts-Navbar">
-        <Link to="/accounts" className="AccountLinks" id="AccountSettings-Link">
-          Account Settings
-        </Link>
-        <Link
-          to="/accounts/passwordSettings"
-          className="AccountLinks"
-          id="PasswordSettings-Link"
-        >
-          Password Settings
-        </Link>
-        <Link
-          to="/accounts/testkitEntry"
-          className="AccountLinks"
-          id="TestKitEntry-Link"
-        >
-          Testkit Entry
-        </Link>
-        <Link
-          to="/accounts/purchaseHistory"
-          className="AccountLinks"
-          id="PurchaseHistory-Link"
-        >
-          Purchase History
-        </Link>
-        <Link
-          to="/accounts/loyaltyPoints"
-          className="AccountLinks"
-          id="LoyaltPoints-Link"
-        >
-          Loyalty Points
-        </Link>
-        <button onClick={handleLogout} className="AccountLinks">
-          {" "}
-          Logout{" "}
-        </button>
-      </div>
+    <div className="Accounts-Content">
+      <h2> Loyalty Points </h2>
 
-      <div className="LoyaltyPoints-Content">
-        <h2> Loyalty Points </h2>
-
-        <text>Loyalty Points: </text>
-        <p> Points </p>
-      </div>
+      <text>Loyalty Points: </text>
+      <p> Points </p>
     </div>
+
   );
 }
