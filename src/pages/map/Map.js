@@ -3,6 +3,12 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './map.css';
 import paramData from './parameter-data.json';
+import sample from './sample.json';
+import { toInteger } from 'lodash';
+import { OSGB36toWGS84, OSGB36toMapSquare } from './utils';
+//const { OSGB36toMapSquare } = require('./util');
+
+//var nullIsland = new maplibregl.MercatorCoordinate(0.5, 0.5, 0);
 
 
 export default function Map() {
@@ -11,7 +17,7 @@ export default function Map() {
   const [lng] = useState(-4);
   const [lat] = useState(54);
   const [zoom] = useState(5);
-  const [API_KEY] = useState('OXjioEfDUH0gP7RYRS4S');
+  const [API_KEY] = useState('OXjioEfDUH0gP7RYRS4S'); 
 
   useEffect(() => {
     if (map.current) return;
@@ -24,6 +30,54 @@ export default function Map() {
     map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
     map.current.addControl(new maplibregl.GeolocateControl(), 'bottom-right');
     populateParameterFilters();
+
+    var sampleData = sample['http://environment.data.gov.uk/water-quality/data/measurement/AN-1986280-3169'];
+
+    map.current.on('load', function () {
+      const sampleOSGB36 = [sample['http://environment.data.gov.uk/water-quality/data/measurement/AN-1986280-3169'].easting, sample['http://environment.data.gov.uk/water-quality/data/measurement/AN-1986280-3169'].northing]
+      const sqr = OSGB36toMapSquare(toInteger(sampleOSGB36[0]), toInteger(sampleOSGB36[1]))
+      console.log(sampleOSGB36[0], sampleOSGB36[1])
+      console.log(sqr)
+  
+      map.current.addSource('maine', {
+        'type': 'geojson',
+        'data': {
+          'type': 'Feature',
+          'geometry': {
+            'type': 'Polygon',
+            'coordinates': [sqr]
+          }
+        }
+      });
+  
+      map.current.addLayer({
+        'id': 'maine',
+        'type': 'fill',
+        'source': 'maine',
+        'layout': {},
+        'paint': {
+          'fill-color': '#088',
+          'fill-opacity': 0.8
+        }
+      });
+
+      map.current.on('click', 'maine', function (e) {
+        new maplibregl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(sampleData.parameter +": "+ sampleData.value +" "+ sampleData.unit)
+        .addTo(map.current);
+      });
+
+      map.current.on('mouseenter', 'maine', function () {
+        map.current.getCanvas().style.cursor = 'pointer';
+      });
+        
+      // Change it back to a pointer when it leaves.
+      map.current.on('mouseleave', 'maine', function () {
+        map.current.getCanvas().style.cursor = '';
+      });
+  
+    });
   });
 
   function populateParameterFilters() {
@@ -55,6 +109,7 @@ export default function Map() {
       legendText.innerHTML = `Legend (${unit})`;
     }
   };
+  
 
   return (
     <div>
