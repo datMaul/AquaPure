@@ -5,8 +5,10 @@
 
 .HistorySidebar {
     background-color: #008CBA;
-    min-height: 100vh;
+    top: 70px; /* Height of the navbar */
+    height: 100vh;
     display: flex;
+    position: sticky;
     justify-content: center;
     align-items: center;
     flex-direction: column;
