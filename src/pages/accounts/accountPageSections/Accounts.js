@@ -37,7 +37,7 @@ export default function ParentComponent() {
                 <button onClick={() => setDisplayChild("ChildComponent2")} className="Cart_Side_BTN">Password Settings</button>
                 <button onClick={() => setDisplayChild("ChildComponent3")} className="Cart_Side_BTN">Testkit Entry</button>
                 <button onClick={() => setDisplayChild("ChildComponent4")} className="Cart_Side_BTN">Purchase History</button>
-                <button onClick={() => setDisplayChild("ChildComponent5")} className="Cart_Side_BTN">Loyalt Points</button>
+                <button onClick={() => setDisplayChild("ChildComponent5")} className="Cart_Side_BTN">Loyalty Points</button>
                 <button onClick={handleLogout} className="Cart_Side_BTN">Logout</button>
             </div>
             <div className="ChildContainer">
