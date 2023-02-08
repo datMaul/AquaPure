@@ -34,6 +34,16 @@ export default function TestkitEntry() {
         // onSubmit={(e) => onSubmit(e)}
         >
           <div>
+            <label> Unique ID : </label>
+            <input
+              type={"text"}
+              placeholder="Unique ID"
+              name="uniqueID"
+              // value={}
+              // onChange={(e) => onInputChange(e)}
+            />
+          </div>
+          <div>
             <label> pH : </label>
             <input
               type={"number"}
