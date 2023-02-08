@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import ChildComponent1 from "./shopPurchaseHistory/PurchaseHistoryShop";
 import ChildComponent2 from "./testkitPurchaseHistory/PurchaseHistoryTestkit";
 import "./PurchaseHistory.css";
@@ -6,6 +7,9 @@ import "./PurchaseHistory.css";
 export default function ParentComponent() {
   const [displayChild, setDisplayChild] = useState(null);
 
+  if (!localStorage.getItem("token")) {
+    return <Link to="/" />;
+  }
   return (
     <div className="HistoryContainer">
       <div className="HistorySidebar">

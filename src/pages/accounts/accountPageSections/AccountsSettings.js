@@ -69,25 +69,6 @@ export default function AccountsSettings() {
   if (!localStorage.getItem("token")) {
     return <Link to="/" />;
   }
-  const handleLogout = () => {
-    axios
-      .post("http://localhost:8080/logout", null, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        localStorage.removeItem("token");
-        localStorage.removeItem("user_ID");
-        window.location = "/";
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("there was an error");
-      });
-  };
-
   return (
     <div className="Accounts-Content">
       <h2> Accounts Settings </h2>
