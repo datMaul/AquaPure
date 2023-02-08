@@ -11,16 +11,26 @@ import {React, useEffect, useState} from 'react';
 
  
 export default function Shop() {  
-  const [post, setPosts] = useState('');
-  const get_data = async () => {
+
+  // const product = {
+  //   product_name: '',
+  //   product_price: 0,
+  // }
+  const [productData, setData] = useState([]);
+
+  
+  const fetchData = async () => {
     await axios.get('http://localhost:8080/product')
-    .then(res =>{
-      console.log(res)
-      setPosts(res.data.content)
-    })
+    .then(res => setData(res.data))
 };
 
-  get_data();
+
+  // useEffect(() => {
+  //   fetchData()
+  // },[]);
+  fetchData();
+  
+
   return (
     <div>    
       <div className="page">
@@ -49,10 +59,10 @@ export default function Shop() {
                */}
             <li className="item">
               <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
+              {productData.map(product => {return <p className="item_title" key={product}>{product.product_name}</p>})}
+              {productData.map(product => {return <p className="item_price" key={product}>£{product.product_price}</p>})}
               
-              <p className="item_title"></p>
-              <p className="item_price">£19.99</p>
-              <button id="bottle" className="item_quick_add item_quick_add1" type="button">Quick Add</button>
+              <button className="item_quick_add item_quick_add1" type="button">Quick Add</button>
             </li>
           </ul>
         </nav>
