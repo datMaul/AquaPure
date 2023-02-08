@@ -27,20 +27,21 @@
 #search_bar>input {
     width: 25vw;
     height: 30px;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
     padding: 16px;
     border: 1px solid #929292;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #search_bar>button {
-    width: 30px;
+    width: 40px;
     height: 30px;
-    border-radius: 10px;
+    border-radius: 0 10px 10px 0;
     padding: 16px;
     border: 1px solid #929292;
     background-color: white;
     color: black;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #water_body_filters {
@@ -60,7 +61,10 @@
     border-radius: 5px;
     border: 2px solid #929292;
     margin-bottom: 15px;
-}   
+}
+
+#search_button {
+}
 
 .legend_list {
     list-style-type: none;
@@ -91,3 +95,4 @@
 h3, h4 {
     margin: 0 0 8px;
 }
+

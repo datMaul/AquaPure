@@ -110,6 +110,14 @@ export default function Map() {
     }
   };
   
+  function checkAllBodyFilters() {
+    const waterBodyCheckboxes = document.getElementsByClassName('body_filter');
+    const checkAllButton = document.getElementById('check_all_waterbody');
+    for (var i = 0; i < waterBodyCheckboxes.length; i++) {
+      (checkAllButton.innerHTML == "All") ? waterBodyCheckboxes[i].checked = true : waterBodyCheckboxes[i].checked = false;
+    }
+    (checkAllButton.innerHTML == "All") ? checkAllButton.innerHTML = "None" : checkAllButton.innerHTML = "All";
+  };
 
   return (
     <div>
@@ -120,28 +128,30 @@ export default function Map() {
 
       <div id="search_bar">
         <input type="text" placeholder="Search Location" />
-        <button type="submit"></button>
+        <button type="submit" id="search_button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </button>
       </div>
 
       <div className="data_filters_wrap">
 
         <div id="water_body_filters" className="water_body_filters white-box">
           <h3>Water Body Filter</h3>
-          <button type="button" className="btn btn-primary">All</button>
-          <input type="checkbox" id="river" name="river" value="river" />
-          <label for="river">River</label>
-          <input type="checkbox" id="sea_water" name="sea_water" value="sea_water" />
-          <label for="sea_water">Sea Water</label>
-          <input type="checkbox" id="ground_water" name="ground_water" value="ground_water" />
-          <label for="ground_water">Ground Water</label>
-          <input type="checkbox" id="pond_lake_reservoir_water" name="pond_lake_reservoir_water" value="pond_lake_reservoir_water" />
-          <label for="pond_lake_reservoir_water">Pond / Lake / Reservoir Water</label>
-          <input type="checkbox" id="final_sewage_effluent" name="final_sewage_effluent" value="final_sewage_effluent" />
-          <label for="final_sewage_effluent">Final Sewage Effluent</label>
-          <input type="checkbox" id="crude_sewage" name="crude_sewage" value="crude_sewage" />
-          <label for="crude_sewage">Crude Sewage</label>
-          <input type="checkbox" id="estuary_sediment" name="estuary_sediment" value="estuary_sediment" />
-          <label for="estuary_sediment">Estuary Sediment</label>
+          <button type="button" id="check_all_waterbody" onClick={checkAllBodyFilters}>All</button>
+          <div className="water_body_checkboxes">
+            <input type="checkbox" id="river" className="body_filter" name="river" value="river" />
+            <label for="river">River / Running Surface Water</label>
+            <input type="checkbox" id="pond_lake_reservoir_water" className="body_filter" name="pond_lake_reservoir_water" value="pond_lake_reservoir_water" />
+            <label for="pond_lake_reservoir_water">Pond / Lake / Reservoir Water</label>
+            <input type="checkbox" id="ground_water" className="body_filter" name="ground_water" value="ground_water" />
+            <label for="ground_water">Ground Water</label>
+            <input type="checkbox" id="sea_water" className="body_filter" name="sea_water" value="sea_water" />
+            <label for="sea_water">Sea Water</label>
+            <input type="checkbox" id="estuarine_water" className="body_filter" name="estuarine_water" value="estuarine_water" />
+            <label for="estuarine_water">Estuarine Water</label>
+          </div>
         </div>
 
         <div id="parameter_filters" className="parameter_filters white-box">
