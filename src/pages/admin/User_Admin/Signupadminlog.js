@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 
 export default function UsersLog() {
   const [users, setUsers] = useState([]);
-  const { id } = useParams();
 
   useEffect(() => {
     loadUser();
@@ -57,13 +56,13 @@ export default function UsersLog() {
             <td>
               <Link
                 className="Edit_Kit_Price"
-                to={`/admin/signuplog/overwrite/${user.user_ID}`}
+                to={`/admin/signuplog/overwrite/${user.userId}`}
               >
                 Overwrite
               </Link>{" "}
               <button
                 className="Delete_User"
-                onClick={() => deleteUser(user.user_ID)}
+                onClick={() => deleteUser(user.userId)}
               >
                 Delete User
               </button>
