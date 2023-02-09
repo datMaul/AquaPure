@@ -23,15 +23,9 @@ export default function Shop() {
     await axios.get('http://localhost:8080/product')
     .then(res => setData(res.data))
 };
-
-
-  // useEffect(() => {
-  //   fetchData()
-  // },[]);
   fetchData();
-  
-
   return (
+    
     <div>    
       <div className="page">
         
@@ -40,7 +34,35 @@ export default function Shop() {
         {/**score points */}
         <nav>
           <ul className="item_list">
-            {/**
+            
+            <li className="item">
+              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
+              {productData.map(product => {
+                if(product.productID === 1){
+                  return(
+                    <>
+                    <p className="item_title" key={product}>{product.product_name}</p>
+                    <p className="item_price" key={product}>£{product.product_price}</p>
+                    </>
+                    )
+                  }
+                  else{
+                    return(
+                      <>
+                      <p className="item_title" key={product}>{product.product_name}</p>
+                      <p className="item_price">out of stock</p>
+                      </>
+                    )
+                  }
+                  })}
+              {/* {productData.map(product => {return <p className="item_price" key={product}>£{product.product_price}</p>})} */}
+          
+              <button className="item_quick_add item_quick_add1" type="button">Quick Add</button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      {/**
                * -Eco Based 650 ml Sports Bottle
                * -Recycled Tote Bag
                * -Bamboo Note book
@@ -57,17 +79,9 @@ export default function Shop() {
                * -eco friendly phone case
                * -Backpack
                */}
-            <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              {productData.map(product => {return <p className="item_title" key={product}>{product.product_name}</p>})}
-              {productData.map(product => {return <p className="item_price" key={product}>£{product.product_price}</p>})}
-              
-              <button className="item_quick_add item_quick_add1" type="button">Quick Add</button>
-            </li>
-          </ul>
-        </nav>
-      </div>
     </div>
+
+    
   );
 }
 
