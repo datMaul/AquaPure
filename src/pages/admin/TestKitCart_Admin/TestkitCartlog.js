@@ -41,7 +41,8 @@ export default function TestkitLog() {
         <tr>
           <th scope="col">ID</th>
           <th scope="col">User ID</th>
-          <th scope="col">Testkit ID</th>
+          <th scope="col">Testkit Type</th>
+          <th scope="col">Unique Testkit ID</th>
           <th scope="col">Use Status</th>
           <th scope="col">Action</th>
         </tr>
@@ -50,22 +51,18 @@ export default function TestkitLog() {
             <th scope="row" key={index}>
               {index + 1}
             </th>
-            <td>{TestkitCartItems.user_id}</td>
-            <td
-              style={{ display: "flex", alignItems: "center" }}
-              className="Price_td"
-            >
+            <td>USER ID</td>
+            <td style={{ alignItems: "center" }}>
               <img
                 style={{
                   width: "200px",
                   height: "200px",
-                  marginRight: "10px",
                 }}
                 src={testKitImages[TestkitCartItems.testKit.test_Kit_Name]}
                 alt={TestkitCartItems.testKit.test_Kit_Name}
               />
-              {TestkitCartItems.id}
             </td>
+            <td className="Price_td">{TestkitCartItems.id}</td>
             <td>
               {TestkitCartItems.usestatus ? "Activated" : "Not Activated"}
             </td>
