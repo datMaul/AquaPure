@@ -55,7 +55,6 @@ export default function Shop() {
                     )
                   }
                   })}
-              {/* {productData.map(product => {return <p className="item_price" key={product}>£{product.product_price}</p>})} */}
           
               <button className="item_quick_add item_quick_add1" type="button">Quick Add</button>
             </li>
