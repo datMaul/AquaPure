@@ -1,5 +1,6 @@
 # AquaPure Backend File
 
+JAVA Version Should be JAVA 19!!
 The Backend File is located in this folder.
 
 ## To use AquaPure's Backend:
