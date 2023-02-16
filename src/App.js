@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar";
 import Donations from "./pages/donations/Donations";
 import Game from "./pages/game/Game";
-import Game1 from "./pages/shop/item_frame";
+import Item_page from "./pages/shop/item_frame";
 import Home from "./pages/home/Home";
 import Phasetest from "./pages/phasetest/Phasetest";
 import Map from "./pages/map/Map";
@@ -36,7 +36,7 @@ function App() {
           />
           <Route path="/accounts" element={<Accounts />} />
           <Route path="/phasetest" element={<Phasetest />} />
-          <Route path="/item" element={<Game1 />} />
+          <Route path="/item" element={<Item_page />} />
         </Routes>
       </div>
     </>

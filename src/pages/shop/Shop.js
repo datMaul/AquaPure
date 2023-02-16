@@ -4,12 +4,6 @@ import logo from "./shop_assets/aqlogo.png";
 import { Await, Link } from "react-router-dom";
 import axios from 'axios';
 import {React, useEffect, useState} from 'react';
-
-
-
-
-
- 
 export default function Shop() {  
 
   // const product = {
@@ -18,43 +12,48 @@ export default function Shop() {
   // }
   const [productData, setData] = useState([]);
 
-  
-  const fetchData = async () => {
-    await axios.get('http://localhost:8080/product')
-    .then(res => setData(res.data))
-};
+  var count=0;
+  const fetchData = () => {
+    axios.get('http://localhost:8080/product')
+    .then(res => {
+      // console.log(res.data)
+      // console.log(count)
+      setData(res.data)
+    })
+    
+  };
   fetchData();
+  
+
   return (
     
     <div>    
       <div className="page">
-        
-        
         <h1 className="shop_title"> <img className="logo" src={logo}></img>Shop</h1>
         {/**score points */}
         <nav>
           <ul className="item_list">
-            
             <li className="item">
               <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              {productData.map(product => {
+              {productData.length >= count ? (productData.map(product => {
                 if(product.productID === 1){
+                  
                   return(
                     <>
                     <p className="item_title" key={product}>{product.product_name}</p>
-                    <p className="item_price" key={product}>£{product.product_price}</p>
+                    <p className="item_price">£{product.product_price}</p>
                     </>
-                    )
-                  }
-                  else{
-                    return(
-                      <>
-                      <p className="item_title" key={product}>{product.product_name}</p>
-                      <p className="item_price">out of stock</p>
-                      </>
-                    )
-                  }
-                  })}
+                  )
+                }
+                else{
+                  return(
+                      ""
+                  )
+                }
+                }
+              )
+              ): ''
+              }
           
               <button className="item_quick_add item_quick_add1" type="button">Quick Add</button>
             </li>
