@@ -1,7 +1,7 @@
 import "./Shop_Style.css";
 import water from "./shop_assets/water_bottle.PNG";
 import logo from "./shop_assets/aqlogo.png";
-import { Await, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import {React, useEffect, useState} from 'react';
 export default function Shop() {  
@@ -11,22 +11,24 @@ export default function Shop() {
   //   product_price: 0,
   // }
   const [productData, setData] = useState([]);
-
-  var count=0;
-  const fetchData = () => {
-    axios.get('http://localhost:8080/product')
+ 
+  const base = 'http://localhost:8080/product'
+  
+  useEffect(() => {
+    axios.get(base)
     .then(res => {
-      // console.log(res.data)
-      // console.log(count)
+      console.log(res.data)
       setData(res.data)
     })
-    
-  };
-  fetchData();
-  
+  },[])
+
+  // const addCart(()=>{
+  //   axios.post('/item',{
+
+  //   })
+  // })
 
   return (
-    
     <div>    
       <div className="page">
         <h1 className="shop_title"> <img className="logo" src={logo}></img>Shop</h1>
@@ -34,28 +36,24 @@ export default function Shop() {
         <nav>
           <ul className="item_list">
             <li className="item">
-              <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-              {productData.length >= count ? (productData.map(product => {
+              {productData.map(product => {
                 if(product.productID === 1){
                   
                   return(
                     <>
-                    <p className="item_title" key={product}>{product.product_name}</p>
-                    <p className="item_price">£{product.product_price}</p>
+                    <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
+                    <p className="item_title" key={product.product_name}>{product.product_name}</p>
+                    <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                    <button className="item_quick_add item_quick_add1" type="button">Quick Add</button>
                     </>
                   )
                 }
                 else{
-                  return(
-                      ""
-                  )
+                  return("")
                 }
                 }
               )
-              ): ''
               }
-          
-              <button className="item_quick_add item_quick_add1" type="button">Quick Add</button>
             </li>
           </ul>
         </nav>

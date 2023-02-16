@@ -15,6 +15,7 @@ export default function Navbar() {
         <CustomLink to="/shop">Shop</CustomLink>
         <CustomLink to="/accounts">Account</CustomLink>
         <CustomLink to="/accounts/login">Sign In</CustomLink>
+        <Link to='/shop_cart'><h3>shop_cart</h3></Link>
       </ul>
     </nav>
   );

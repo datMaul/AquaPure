@@ -12,6 +12,7 @@ import SignUp from "./pages/accounts/signup/SignUp";
 import ForgotPassword from "./pages/accounts/forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/accounts/forgotpassword/ResetPassword";
 import Accounts from "./pages/accounts/Accounts";
+import Shop_cart from "./pages/shop/shop_cart"
 
 import { Route, Routes } from "react-router-dom";
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/accounts" element={<Accounts />} />
           <Route path="/phasetest" element={<Phasetest />} />
           <Route path="/item" element={<Item_page />} />
+          <Route path="/shop_cart" element={<Shop_cart/>}/>
         </Routes>
       </div>
     </>
