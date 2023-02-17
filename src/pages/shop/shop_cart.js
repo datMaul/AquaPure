@@ -27,7 +27,7 @@ export default function Shop_cart() {
             <h1>Your cart contains:</h1>
             {
                 cartItems.map(item => { 
-                   return(<><h2>{item.id}</h2></>)
+                   return(<><h2>{item.product_id}</h2></>)
                 })
             }
             

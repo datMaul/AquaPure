@@ -14,6 +14,7 @@ export default function Shop() {
  
   const base = 'http://localhost:8080/product'
   
+
   useEffect(() => {
     axios.get(base)
     .then(res => {
@@ -22,29 +23,37 @@ export default function Shop() {
     })
   },[])
 
-  // const addCart(()=>{
-  //   axios.post('/item',{
-
-  //   })
-  // })
-
   return (
     <div>    
       <div className="page">
         <h1 className="shop_title"> <img className="logo" src={logo}></img>Shop</h1>
-        {/**score points */}
+        
         <nav>
           <ul className="item_list">
             <li className="item">
               {productData.map(product => {
+
+                
+                
                 if(product.productID === 1){
+
+                  const handleAdd = () => {
+                    axios.post('http://localhost:8080/item',{
+                        "id":1,
+                        "user_id":1,
+                        "product_id":product.productID,
+                    }
+                    ).then(res => {
+                      console.log(res.data)
+                    })
+                  }
                   
                   return(
                     <>
                     <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
                     <p className="item_title" key={product.product_name}>{product.product_name}</p>
                     <p className="item_price" key={product.product_price}>£{product.product_price}</p>
-                    <button className="item_quick_add item_quick_add1" type="button">Quick Add</button>
+                    <button className="item_quick_add item_quick_add1" type="button" onClick={handleAdd}>Quick Add</button>
                     </>
                   )
                 }
