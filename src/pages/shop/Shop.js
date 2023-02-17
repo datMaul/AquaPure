@@ -23,36 +23,37 @@ export default function Shop() {
     })
   },[])
 
+  const handleAdd = (productid) => {
+                    
+    axios.post('http://localhost:8080/item',{
+      "id":123123,
+      "user_id":123123,
+      "product_id":productid,
+      "quantity":1,
+    }
+    ).then(res => {
+      console.log(res.data)
+    })
+
+    
+  }
+
   return (
     <div>    
       <div className="page">
-        <h1 className="shop_title"> <img className="logo" src={logo}></img>Shop</h1>
+        {/* <h1 className="shop_title"> <img className="logo" src={logo}></img>Shop</h1> */}
         
         <nav>
           <ul className="item_list">
             <li className="item">
               {productData.map(product => {
-
-                
-                
                 if(product.productID === 1){
-                  const quant=0;
-                  const handleAdd = () => {
-                    axios.post('http://localhost:8080/item',{
-                        "product_id":product.productID,
-                        "quantity":1,
-                    }
-                    ).then(res => {
-                      console.log(res.data)
-                    })
-                  }
-                  
                   return(
                     <>
                     <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
                     <p className="item_title" key={product.product_name}>{product.product_name}</p>
                     <p className="item_price" key={product.product_price}>£{product.product_price}</p>
-                    <button className="item_quick_add item_quick_add1" type="button" onClick={handleAdd}>Quick Add</button>
+                    <button className="item_quick_add item_quick_add1" key={product.productID} type="button" onClick={() => handleAdd(product.productID)}>Quick Add</button>
                     </>
                   )
                 }

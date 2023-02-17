@@ -7,7 +7,7 @@ export default function Shop_cart() {
     const [cartItems, setcartItems] = useState([]);
     const [productData, setData] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:8080/item')
+      axios.get('http://localhost:8080/item')
         .then(res => {
             setcartItems(res.data)
       })
@@ -24,35 +24,39 @@ export default function Shop_cart() {
     return(
       <div>
         <div>
-            <h1>Your cart contains:</h1>
+            <h1></h1>
             {
-              cartItems.map(item => { 
-                const deleteItem = (id) => {
-                  axios.delete('/item',{
-                    "id":item.id,
-                  }).then(console.log("deleted item"))
-
-                }
-
-
+              cartItems.map(item => {               
                 return(
                 <>
                   {
                     productData.map(product => {
-                      if(product.productID === item.product_id){
-                        return(
-                          <>
-                          <h2>{product.product_name} Quantity={item.quantity} <button onClick={deleteItem}>delete</button> </h2>
-                          </>
-                        )
+                      const deleteItem = (id) => {
+                        axios.delete(`http://localhost:8080/item/${id}`).then(console.log("deleted item"))
+                        return(<><h1>empty</h1></>)
                       }
-                      else{return("")}
+
+                      const loadItems = () => {
+                        return(<><h2>{product.product_name} Quantity={item.quantity} <button onClick={() => deleteItem(item.id)}>delete</button></h2></>)
+                      }
+                  
                       
+                      // if(product.productID === item.product_id){
+                      //   return(
+                      //     <><div>{loadItems()}</div></>
+                      //   )
+                      // }
+                      if (product.productID === item.product_id) {
+                        return(<><div>{loadItems()}</div></>)
+                      } 
+                                       
                     })
                   }
+                  
                 </>
                 )
               })
+              
             }
             
             
