@@ -26,10 +26,35 @@ export default function Shop_cart() {
         <div>
             <h1>Your cart contains:</h1>
             {
-                cartItems.map(item => { 
-                   return(<><h2>{item.product_id}</h2></>)
-                })
+              cartItems.map(item => { 
+                const deleteItem = (id) => {
+                  axios.delete('/item',{
+                    "id":item.id,
+                  }).then(console.log("deleted item"))
+
+                }
+
+
+                return(
+                <>
+                  {
+                    productData.map(product => {
+                      if(product.productID === item.product_id){
+                        return(
+                          <>
+                          <h2>{product.product_name} Quantity={item.quantity} <button onClick={deleteItem}>delete</button> </h2>
+                          </>
+                        )
+                      }
+                      else{return("")}
+                      
+                    })
+                  }
+                </>
+                )
+              })
             }
+            
             
         </div>
       </div>

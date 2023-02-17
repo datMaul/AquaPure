@@ -36,12 +36,11 @@ export default function Shop() {
                 
                 
                 if(product.productID === 1){
-
+                  const quant=0;
                   const handleAdd = () => {
                     axios.post('http://localhost:8080/item',{
-                        "id":1,
-                        "user_id":1,
                         "product_id":product.productID,
+                        "quantity":1,
                     }
                     ).then(res => {
                       console.log(res.data)
