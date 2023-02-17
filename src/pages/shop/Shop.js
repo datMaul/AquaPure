@@ -15,6 +15,7 @@ export default function Shop() {
   const base = 'http://localhost:8080/product'
   
 
+
   useEffect(() => {
     axios.get(base)
     .then(res => {
