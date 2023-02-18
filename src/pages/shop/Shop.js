@@ -65,6 +65,26 @@ export default function Shop() {
               )
               }
             </li>
+
+            <li className="item">
+              {productData.map(product => {
+                if(product.productID === 2){
+                  return(
+                    <>
+                    <Link to="/item"><h1 className="item_title">tote</h1></Link>
+                    <p className="item_title" key={product.product_name}>{product.product_name}</p>
+                    <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                    <button className="item_quick_add item_quick_add1" key={product.productID} type="button" onClick={() => handleAdd(product.productID)}>Quick Add</button>
+                    </>
+                  )
+                }
+                else{
+                  return("")
+                }
+                }
+              )
+              }
+            </li>
           </ul>
         </nav>
       </div>
