@@ -11,31 +11,48 @@ export default function Shop() {
   //   product_price: 0,
   // }
   const [productData, setData] = useState([]);
+  const [itemData,setitemData] = useState([]);
  
-  const base = 'http://localhost:8080/product'
+  const productURL = 'http://localhost:8080/product'
+  const itemURL = 'http://localhost:8080/item'
   
 
 
   useEffect(() => {
-    axios.get(base)
+    axios.get(productURL)
     .then(res => {
       console.log(res.data)
       setData(res.data)
     })
+    
   },[])
 
-  const handleAdd = (productid) => {
-                    
-    axios.post('http://localhost:8080/item',{
-      "id":123123,
-      "user_id":123123,
-      "product_id":productid,
-      "quantity":1,
-    }
-    ).then(res => {
-      console.log(res.data)
-    })
+ 
 
+  const handleAdd = (productid) => {
+    const temp = {
+      id:productid,
+      quant:0
+    }
+    axios.get(itemURL).then(res=>{
+      setitemData(res.data)
+    })
+    if(itemData==""){
+      console.log("empty")
+    }
+    else if(itemData!=""){
+      itemData.map(item=>{
+        console.log(item.quantity+"<- Item quant from db")
+        return(<>{axios.post('http://localhost:8080/item',{
+          "id":temp.id,
+          "user_id":123123,
+          "product_id":temp.id,
+          "quantity":item.quantity+1,
+          }).then(res => {console.log(res.data)})}</>)
+      })
+    }
+    
+    
     
   }
 
@@ -46,17 +63,19 @@ export default function Shop() {
         
         <nav>
           <ul className="item_list">
+            
             <li className="item">
               {productData.map(product => {
+                
                 if(product.productID === 1){
                   return(
-                    <>
-                    <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
-                    <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                    <p className="item_price" key={product.product_price}>£{product.product_price}</p>
-                    <button className="item_quick_add item_quick_add1" key={product.productID} type="button" onClick={() => handleAdd(product.productID)}>Quick Add</button>
-                    </>
-                  )
+                  <>
+                  <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
+                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
+                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button"  onClick={() => handleAdd(product.productID)}>Quick Add</button>
+                  </>
+                  ) 
                 }
                 else{
                   return("")
@@ -66,25 +85,7 @@ export default function Shop() {
               }
             </li>
 
-            <li className="item">
-              {productData.map(product => {
-                if(product.productID === 2){
-                  return(
-                    <>
-                    <Link to="/item"><h1 className="item_title">tote</h1></Link>
-                    <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                    <p className="item_price" key={product.product_price}>£{product.product_price}</p>
-                    <button className="item_quick_add item_quick_add1" key={product.productID} type="button" onClick={() => handleAdd(product.productID)}>Quick Add</button>
-                    </>
-                  )
-                }
-                else{
-                  return("")
-                }
-                }
-              )
-              }
-            </li>
+            
           </ul>
         </nav>
       </div>

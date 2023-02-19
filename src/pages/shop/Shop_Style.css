@@ -101,6 +101,10 @@
     scale:0.9;
 }
 
+.item_quick_add:focus:visited{
+    background-color: green;
+}
+
 
 
 

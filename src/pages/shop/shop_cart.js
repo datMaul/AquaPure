@@ -24,10 +24,10 @@ export default function Shop_cart() {
       })
       
     }
-    const deleteItem = async (id,empty) => {
+    const deleteItem = async (id,notEmpty) => {
       await axios.delete(`http://localhost:8080/item/${id}`).then(console.log("deleted item"))
-      empty=false;
-      console.log(empty)
+      notEmpty=false;
+      console.log(notEmpty)
       loadItems();
     }
     
@@ -38,14 +38,14 @@ export default function Shop_cart() {
             {
               
               cartItems.map(item => {  
-                const empty = true;             
+                const notEmpty = true;             
                 return(
                 <>
                   {
                     productData.map(product => {
                       
                       if (product.productID === item.product_id) {
-                        return(<>{empty ? <h2>{product.product_name} Quantity={item.quantity} <button onClick={() => deleteItem(item.id,empty)}>delete</button></h2> : ""}</>)
+                        return(<>{notEmpty ? <h2>{product.product_name} Quantity={item.quantity} <button onClick={() => deleteItem(item.id,notEmpty)}>delete</button></h2> : ""}</>)
                       } 
                                        
                     })
