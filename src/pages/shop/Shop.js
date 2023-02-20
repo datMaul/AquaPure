@@ -3,7 +3,10 @@ import water from "./shop_assets/water_bottle.PNG";
 import logo from "./shop_assets/aqlogo.png";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import {React, useEffect, useState} from 'react';
+import {React, useCallback, useEffect, useState,useReducer} from 'react';
+import { flushSync } from "react-dom";
+
+
 export default function Shop() {  
 
   // const product = {
@@ -12,49 +15,58 @@ export default function Shop() {
   // }
   const [productData, setData] = useState([]);
   const [itemData,setitemData] = useState([]);
+  
+  const [quant,Setquant] = useState(0)
+  const initial = {count:1};
+  const [additem,setadditem] = useReducer(reducer,initial)
+  
+  
  
   const productURL = 'http://localhost:8080/product'
   const itemURL = 'http://localhost:8080/item'
-  
-
-
+//load products from DB
   useEffect(() => {
     axios.get(productURL)
     .then(res => {
-      console.log(res.data)
+      console.log(res.data,"loaded products")
       setData(res.data)
     })
-    
   },[])
-
- 
-
-  const handleAdd = (productid) => {
-    const temp = {
-      id:productid,
-      quant:0
-    }
-    axios.get(itemURL).then(res=>{
-      setitemData(res.data)
+//load item quantity from
+  useEffect(()=>{
+    axios.get(itemURL).then(res=>{setitemData(res.data)})
+    itemData.map(item=>{
+      
+      
     })
-    if(itemData==""){
-      console.log("empty")
+  },[productData])
+  
+
+  function reducer(state, action) {
+    switch(action.type){
+      case "add":
+        console.log(state.count)
+        return{count: state.count+1}
+      default:
+        
+        return{count: state.count}
     }
-    else if(itemData!=""){
-      itemData.map(item=>{
-        console.log(item.quantity+"<- Item quant from db")
-        return(<>{axios.post('http://localhost:8080/item',{
-          "id":temp.id,
-          "user_id":123123,
-          "product_id":temp.id,
-          "quantity":item.quantity+1,
-          }).then(res => {console.log(res.data)})}</>)
-      })
-    }
-    
-    
     
   }
+
+  const handleAdd = (productid) => {
+    Setquant((value)=>value+1)
+    axios.post(itemURL,{
+      "id":productid,
+      "user_id":123123,
+      "product_id":productid,
+      "quantity":quant,
+      }).then(res => {console.log(res.data)})
+
+    
+  }
+
+  
 
   return (
     <div>    
@@ -73,7 +85,7 @@ export default function Shop() {
                   <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
-                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button"  onClick={() => handleAdd(product.productID)}>Quick Add</button>
+                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>setadditem({type:"add"})}>Quick Add</button>
                   </>
                   ) 
                 }
