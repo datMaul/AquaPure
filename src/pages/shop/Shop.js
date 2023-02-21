@@ -15,15 +15,20 @@ export default function Shop() {
   // }
   const [productData, setData] = useState([]);
   const [itemData,setitemData] = useState([]);
-  
-  const [quant,Setquant] = useState(0)
-  const initial = {count:1};
-  const [additem,setadditem] = useReducer(reducer,initial)
-  
-  
- 
   const productURL = 'http://localhost:8080/product'
   const itemURL = 'http://localhost:8080/item'
+
+  const [item1,addItem1] = useState(1);
+  const [item2,addItem2] = useState(0);
+  const [item3,addItem3] = useState(0);
+  const [item4,addItem4] = useState(0);
+  const [item5,addItem5] = useState(0);
+  const [item6,addItem6] = useState(0);
+  const [item7,addItem7] = useState(0);
+
+
+
+
 //load products from DB
   useEffect(() => {
     axios.get(productURL)
@@ -32,39 +37,33 @@ export default function Shop() {
       setData(res.data)
     })
   },[])
-//load item quantity from
+// load item quantity from
   useEffect(()=>{
     axios.get(itemURL).then(res=>{setitemData(res.data)})
-    itemData.map(item=>{
-      
-      
-    })
+    
   },[productData])
+
+
+
+  const addItem=(add)=>{
+    add((increment) => (increment+1));
+  }
   
 
-  function reducer(state, action) {
-    switch(action.type){
-      case "add":
-        console.log(state.count)
-        return{count: state.count+1}
-      default:
-        
-        return{count: state.count}
-    }
-    
-  }
 
-  const handleAdd = (productid) => {
-    Setquant((value)=>value+1)
+
+  const postAdd = (productid,quantity) => {
     axios.post(itemURL,{
       "id":productid,
       "user_id":123123,
       "product_id":productid,
-      "quantity":quant,
+      "quantity":quantity,
       }).then(res => {console.log(res.data)})
 
     
-  }
+    }
+
+  
 
   
 
@@ -85,7 +84,10 @@ export default function Shop() {
                   <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
-                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>setadditem({type:"add"})}>Quick Add</button>
+                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
+                    addItem(addItem1);
+                    postAdd(product.productID,item1);
+                    }}>Quick Add</button>
                   </>
                   ) 
                 }
