@@ -93,7 +93,7 @@ export default function Shop() {
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     addItem(setvalue1);
-                    
+                    postAdd(product.productID,item1)
                     }}>Quick Add</button>
                   </>
                   ) 
