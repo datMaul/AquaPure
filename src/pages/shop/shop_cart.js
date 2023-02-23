@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import {React, useState, useEffect} from 'react';
 import axios from 'axios';
+import "./cartStyle.css"
 
 export default function Shop_cart() {
 
@@ -33,8 +34,9 @@ export default function Shop_cart() {
     
     return(
       <div>
-        <div>
-            <h1>Cart</h1>
+        <div className="cart_page">
+            <h1 className="cart_title">YOUR CART</h1>
+            <ul className="cart_list">
             {
               
               cartItems.map(item => {  
@@ -45,7 +47,11 @@ export default function Shop_cart() {
                     productData.map(product => {
                       
                       if (product.productID === item.product_id) {
-                        return(<>{notEmpty ? <h2>{product.product_name} Quantity={item.quantity} <button onClick={() => deleteItem(item.id,notEmpty)}>delete</button></h2> : ""}</>)
+                        return(<>{notEmpty ? <li className="cart_item">
+                          <p>{product.product_name}</p>
+                          <text>Quantity={item.quantity}</text>
+                          <button onClick={() => deleteItem(item.id,notEmpty)}>delete</button>
+                          </li> : ""}</>)
                       } 
                                        
                     })
@@ -56,6 +62,7 @@ export default function Shop_cart() {
               })
               
             }
+            </ul>
             
             
         </div>

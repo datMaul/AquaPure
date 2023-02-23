@@ -1,0 +1,27 @@
+.cart_page{
+    margin:20px 0 20px 0;
+}
+.cart_title{
+    text-align: center;
+    background-color:rgb(215, 215, 215);
+    font-size:25px;
+    margin:0 720px auto;
+    color:grey;
+
+    
+}
+.cart_list{
+
+    float:left;
+}
+.cart_item{
+    margin:30px 10px auto;
+    font-size: 25px;
+    list-style-type: none;
+    transition:ease-out 0.5s;
+    cursor:default;
+    background-color: rgb(245, 245, 245);
+}
+.cart_item:hover{
+    background-color: rgb(225,225,225);
+}
