@@ -26,13 +26,16 @@
     font-size:15px;
     padding:5px;
     border-radius: 20px;
-    transition: ease-out 150ms;
+   
+    transition: ease 500ms;
+    
 
 }
 
 .item:hover{
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.725);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.725);
     scale: +1.03;
+    
     
 }
 .item_price{
@@ -58,14 +61,15 @@
 .item_img{
     width:300px;
     height:300px;
+
     cursor: pointer;
-    transition: ease 150ms;
+    transition: ease-in-out 350ms;
     border-radius: 20px;
 
     
 }
 .item_img:hover{
-    background-color:rgb(238, 238, 255);
+    background-color:rgb(245, 245, 245);
     
 }
 
