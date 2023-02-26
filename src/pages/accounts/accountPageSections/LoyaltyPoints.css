@@ -7,13 +7,53 @@
     flex-direction: column;
 }
 
-.LoyaltyPoints-Content {
+.Accounts-Content {
     background-color: #fff;
-    margin: 0;
-    flex-direction: column;
+    height: calc(100vh - 70px);
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.LoyaltyPoints-Content {
+    display: grid;
+    grid-template-rows: 15% 85%;
+}
+
+.LoyaltyPoints-Content .Row-1-Content {
+    grid-row: 1;
+}
+
+.LoyaltyPoints-Content .Row-2-Content {
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.LoyaltyPoints-Content .Labels-Content {
+    grid-column: 1;
+}
+
+.LoyaltyPoints-Content .Labels-Content label {
+    font-size: 20px;
+}
+
+.LoyaltyPoints-Content .Input-Content {
+    grid-column: 2;
+}
+
+.LoyaltyPoints-Content .Input-Content input {
+    width:400px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 15px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    cursor: default;
 }
 
 .AccountLinks {

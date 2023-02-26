@@ -37,11 +37,11 @@ export default function PasswordSettings() {
       );
       console.log(res.data);
       alert("Your Changes Have Been Saved!");
-      navigating("/accounts/passwordSettings");
+      navigating("/accounts");
     } catch (err) {
       console.log(err);
       alert("Your Changes Have Not Been Saved!");
-      navigating("/accounts/passwordSettings");
+      navigating("/accounts");
     }
   };
 
@@ -59,43 +59,35 @@ export default function PasswordSettings() {
   if (!localStorage.getItem("token")) {
     return <Link to="/" />;
   }
-  const handleLogout = () => {
-    axios
-      .post("http://localhost:8080/logout", null, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        localStorage.removeItem("token");
-        window.location = "/";
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("there was an error");
-      });
-  };
-
   return (
     <div className="Accounts-Content">
-      <h2> Password Settings </h2>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <div>
-          <label> Password : </label>
-          <input
-            type={"text"}
-            placeholder="Enter Overwrite Password"
-            name="password"
-            value={password}
-            onChange={(e) => onInputChange(e)}
-          />
+      <div className="PasswordSettings-Content">
+        <div className="Row-1-Content">
+          <h2> Password Settings </h2>
         </div>
-        <button id="submitButton" type="submit">
-          Submit
-        </button>
-      </form>
-    </div>
 
+        <div className="Row-2-Content">
+          <div className="Labels-Content">
+            <label> Password: </label>
+          </div>
+
+          <div className="Inputs-Content">
+            <form onSubmit={(e) => onSubmit(e)}>
+              <input
+                type={"text"}
+                placeholder="Enter Overwrite Password"
+                name="password"
+                value={password}
+                onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <button id="submitButton" type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

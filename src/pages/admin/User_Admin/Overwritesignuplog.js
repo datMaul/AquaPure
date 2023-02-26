@@ -19,7 +19,7 @@ export default function Overwritesignuplog() {
     addressTC: "",
     addressPostcode: "",
     doB: "",
-    accountType: ""
+    accountType: "",
   });
 
   const {

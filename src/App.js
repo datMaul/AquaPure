@@ -8,7 +8,6 @@ import Shop from "./pages/shop/Shop";
 import SignIn from "./pages/accounts/signin/SignIn";
 import Testkit from "./pages/testkit/Testkit";
 import SignUp from "./pages/accounts/signup/SignUp";
-import AccountsSettings from "./pages/accounts/accountPageSections/AccountsSettings";
 import PasswordSettings from "./pages/accounts/accountPageSections/PasswordSettings";
 import PurchaseHistory from "./pages/accounts/accountPageSections/purchasehistory/PurchaseHistory";
 import LoyaltyPoints from "./pages/accounts/accountPageSections/LoyaltyPoints";
@@ -21,13 +20,12 @@ import TermsAndContitions from "./pages/accounts/signup/TextFiles/TermsAndCondit
 import PrivacyPolicy from "./pages/accounts/signup/TextFiles/PrivacyPolicy";
 import TestkitEntry from "./pages/accounts/accountPageSections/TestkitEntry";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useEffect, useState } from 'react';
-import Cart from "./pages/accounts/cart/CartPage"
-import Account from "./pages/accounts/accountPageSections/Accounts"
-import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitpurchasehistory/PurchaseHistoryTestkit";
+import { useEffect, useState } from "react";
+import Cart from "./pages/accounts/cart/CartPage";
+import Account from "./pages/accounts/accountPageSections/Accounts";
+import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitPurchaseHistory/PurchaseHistoryTestkit";
 
 function App() {
-
   const [scrollPos, setScrollPos] = useState(0);
   const location = useLocation();
 
@@ -69,15 +67,30 @@ function App() {
           />
           <Route path="/accounts/loyaltyPoints" element={<LoyaltyPoints />} />
           <Route path="/phasetest" element={<Phasetest />} />
-          {accountType === "Admin" ? (<Route path="/admin/testkitlog" element={<Testkitlog />} />) : null}
-          {accountType === "Admin" ? (<Route exact path="/admin/testkitlog/overwrite/:test_Kit_ID" element={<Overwritetestkitlog />} />) : null}
+          {accountType === "Admin" ? (
+            <Route path="/admin/testkitlog" element={<Testkitlog />} />
+          ) : null}
+          {accountType === "Admin" ? (
+            <Route
+              exact
+              path="/admin/testkitlog/overwrite/:test_Kit_ID"
+              element={<Overwritetestkitlog />}
+            />
+          ) : null}
           <Route path="/thist" element={<PurchaseHistoryTestkit />} />
 
-
-          {accountType === "Admin" ? (<Route path="/admin" element={<AdminPage />} />) : null}
-          {accountType === "Admin" ? (<Route path="admin/signuplog/overwrite/:user_ID" element={<Overwritesignupadminlog />} />) : null}
-          {accountType === "Admin" ? (<Route path="/admin/signuplog" element={<Signupadminlog />} />) : null}
-
+          {accountType === "Admin" ? (
+            <Route path="/admin" element={<AdminPage />} />
+          ) : null}
+          {accountType === "Admin" ? (
+            <Route
+              path="admin/signuplog/overwrite/:user_ID"
+              element={<Overwritesignupadminlog />}
+            />
+          ) : null}
+          {accountType === "Admin" ? (
+            <Route path="/admin/signuplog" element={<Signupadminlog />} />
+          ) : null}
 
           <Route path="/cart" element={<Cart />} />
           <Route path="/termsAndConditions" element={<TermsAndContitions />} />
