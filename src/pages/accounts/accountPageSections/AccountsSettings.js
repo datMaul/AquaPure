@@ -71,102 +71,113 @@ export default function AccountsSettings() {
   }
   return (
     <div className="Accounts-Content">
-      <h2> Accounts Settings </h2>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <div>
-          <label htmlFor="Name"> First Name : </label>
-          <input
-            type={"text"}
-            placeholder="First Name of The User"
-            name="firstName"
-            value={firstName}
-            onChange={(e) => onInputChange(e)}
-          />
+      <div className="AccountsSettings-Content">
+        <div className="Row-1-Content">
+          <h2> Accounts Settings </h2>
         </div>
-        <div>
-          <label htmlFor="Name"> Last Name : </label>
-          <input
-            type={"text"}
-            placeholder="Last Name of The User"
-            name="lastName"
-            value={lastName}
-            onChange={(e) => onInputChange(e)}
-          />
+
+        <div className="Row-2-Content">
+          <div className="Labels-Content">
+            <label htmlFor="Name">First Name:</label>
+            <br /> <br />
+            <label htmlFor="Name">Last Name:</label>
+            <br /> <br />
+            <label>Date of Birth:</label>
+            <br /> <br />
+            <label>Phone Number:</label>
+            <br /> <br />
+            <label>Email Address:</label>
+            <br /> <br />
+            <label>Address Line 1:</label>
+            <br /> <br />
+            <label>Address Line 2:</label>
+            <br /> <br />
+            <label>Town/City:</label>
+            <br /> <br />
+            <label>Postcode:</label>
+          </div>
+
+          <div className="Input-Content">
+            <form onSubmit={(e) => onSubmit(e)}>
+              <input
+                type={"text"}
+                placeholder="First Name of The User"
+                name="firstName"
+                value={firstName}
+                onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"text"}
+                placeholder="Last Name of The User"
+                name="lastName"
+                value={lastName}
+                onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"date"}
+                placeholder="Enter Date of Birth"
+                name="doB"
+                value={doB}
+                onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"number"}
+                placeholder="Enter Phone Number"
+                name="phoneNumber"
+                value={phoneNumber}
+                onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"text"}
+                placeholder="Enter EMail"
+                name="eMail"
+                value={eMail}
+                onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"text"}
+                placeholder="First Address Line of The User"
+                name="addressLine1"
+                value={addressLine1}
+                onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"text"}
+                placeholder="Last Address Line of The User"
+                name="addressLine2"
+                value={addressLine2}
+                onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"text"}
+                placeholder="Tow/City Of The User"
+                name="addressTC"
+                value={addressTC}
+                onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"text"}
+                placeholder="Enter Post Code"
+                name="addressPostcode"
+                value={addressPostcode}
+                onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <button id="submitButton" type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
-        <div>
-          <label> Date of Birth : </label>
-          <input
-            type={"date"}
-            placeholder="Enter Date of Birth"
-            name="doB"
-            value={doB}
-            onChange={(e) => onInputChange(e)}
-          />
-        </div>
-        <div>
-          <label> Phone Number : </label>
-          <input
-            type={"number"}
-            placeholder="Enter Phone Number"
-            name="phoneNumber"
-            value={phoneNumber}
-            onChange={(e) => onInputChange(e)}
-          />
-        </div>
-        <div>
-          <label> E-Mail : </label>
-          <input
-            type={"text"}
-            placeholder="Enter EMail"
-            name="eMail"
-            value={eMail}
-            onChange={(e) => onInputChange(e)}
-          />
-        </div>
-        <div>
-          <label> Address Line 1 : </label>
-          <input
-            type={"text"}
-            placeholder="First Address Line of The User"
-            name="addressLine1"
-            value={addressLine1}
-            onChange={(e) => onInputChange(e)}
-          />
-        </div>
-        <div>
-          <label> Address Line 2 : </label>
-          <input
-            type={"text"}
-            placeholder="Last Address Line of The User"
-            name="addressLine2"
-            value={addressLine2}
-            onChange={(e) => onInputChange(e)}
-          />
-        </div>
-        <div>
-          <label> Town/City : </label>
-          <input
-            type={"text"}
-            placeholder="Tow/City Of The User"
-            name="addressTC"
-            value={addressTC}
-            onChange={(e) => onInputChange(e)}
-          />
-        </div>
-        <div>
-          <label> Postcode : </label>
-          <input
-            type={"text"}
-            placeholder="Enter Post Code"
-            name="addressPostcode"
-            value={addressPostcode}
-            onChange={(e) => onInputChange(e)}
-          />
-        </div>
-        <button id="submitButton" type="submit">
-          Submit
-        </button>
-      </form>
+      </div>
     </div>
   );
 }

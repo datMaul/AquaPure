@@ -8,7 +8,6 @@ import Shop from "./pages/shop/Shop";
 import SignIn from "./pages/accounts/signin/SignIn";
 import Testkit from "./pages/testkit/Testkit";
 import SignUp from "./pages/accounts/signup/SignUp";
-import AccountsSettings from "./pages/accounts/accountPageSections/AccountsSettings";
 import PasswordSettings from "./pages/accounts/accountPageSections/PasswordSettings";
 import PurchaseHistory from "./pages/accounts/accountPageSections/purchasehistory/PurchaseHistory";
 import LoyaltyPoints from "./pages/accounts/accountPageSections/LoyaltyPoints";

@@ -8,19 +8,42 @@
 
 .Accounts-Content {
     background-color: #fff;
-    margin: 0;
+    height: calc(100vh - 70px);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
-.Accounts-Content label {
+.AccountsSettings-Content {
+    display: grid;
+    grid-template-rows: 15% 85%;
+}
+
+.AccountsSettings-Content .Row-1-Content {
+    grid-row: 1;
+}
+
+.AccountsSettings-Content .Row-2-Content {
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.AccountsSettings-Content .Labels-Content {
+    grid-column: 1;
+}
+
+.AccountsSettings-Content .Labels-Content label {
     font-size: 20px;
 }
 
-.Accounts-Content input {
-    width: 400px;
+.AccountsSettings-Content .Input-Content {
+    grid-column: 2;
+}
+
+.AccountsSettings-Content .Input-Content input {
+    width:400px;
     height: 25px;
     line-height: 25px;
     font-size: 15px;
@@ -30,36 +53,6 @@
     padding: 0 10px;
     margin-bottom: 20px;
 }
-
-/* .Accounts-Content-Labels {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.Accounts-Content-Labels label {
-    font-size: 24px;
-}
-
-.Accounts-Content-Inputs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.Accounts-Content-Inputs input {
-    width:500px;
-    height: 20px;
-    line-height: 20px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 0 10px;
-    margin-bottom: 10px;
-    
-} */
 
 .Accounts-Content #submitButton {
     margin: 5px;

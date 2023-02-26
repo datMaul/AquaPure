@@ -61,22 +61,33 @@ export default function PasswordSettings() {
   }
   return (
     <div className="Accounts-Content">
-      <h2> Password Settings </h2>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <div>
-          <label> Password : </label>
-          <input
-            type={"text"}
-            placeholder="Enter Overwrite Password"
-            name="password"
-            value={password}
-            onChange={(e) => onInputChange(e)}
-          />
+      <div className="PasswordSettings-Content">
+        <div className="Row-1-Content">
+          <h2> Password Settings </h2>
         </div>
-        <button id="submitButton" type="submit">
-          Submit
-        </button>
-      </form>
+
+        <div className="Row-2-Content">
+          <div className="Labels-Content">
+            <label> Password: </label>
+          </div>
+
+          <div className="Inputs-Content">
+            <form onSubmit={(e) => onSubmit(e)}>
+              <input
+                type={"text"}
+                placeholder="Enter Overwrite Password"
+                name="password"
+                value={password}
+                onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <button id="submitButton" type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
