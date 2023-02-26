@@ -37,11 +37,11 @@ export default function PasswordSettings() {
       );
       console.log(res.data);
       alert("Your Changes Have Been Saved!");
-      navigating("/accounts/passwordSettings");
+      navigating("/accounts");
     } catch (err) {
       console.log(err);
       alert("Your Changes Have Not Been Saved!");
-      navigating("/accounts/passwordSettings");
+      navigating("/accounts");
     }
   };
 
