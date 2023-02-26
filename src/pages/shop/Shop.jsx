@@ -106,7 +106,7 @@ export default function Shop() {
       setvalue3((increment)=>(increment+1))
     }
     if(productid===4){
-      setvalue3((increment)=>(increment+1))
+      setvalue4((increment)=>(increment+1))
     }
     if(productid===5){
       setvalue5((increment)=>(increment+1))

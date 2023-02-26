@@ -8,22 +8,33 @@ export default function Shop_cart() {
 
     const [cartItems, setcartItems] = useState([]);
     const [productData, setData] = useState([]);
+    const [count, setcount] = useState(1);
     useEffect(() => {
       loadItems();
       loadProducts();
+      
     },[]);
+    useEffect(()=>{
+      cartItems.map(item=>{
+        setcount(item.quantity)
+        console.log(count,"counter set as item quantity")
+        
+      })
+    },[cartItems])
     
     const loadProducts = () => {
       axios.get('http://localhost:8080/product')
       .then(res => {
         setData(res.data)
       })
+     
     }
     const loadItems = () => {
       axios.get('http://localhost:8080/item')
       .then(res => {
         setcartItems(res.data)
       })
+      
       
     }
     const deleteItem = async (id,notEmpty) => {
@@ -32,15 +43,37 @@ export default function Shop_cart() {
       console.log(notEmpty)
       loadItems();
     }
-    
+
+    const increment = (productid) => {
+      if(productid===1){
+        setcount((increment)=>(increment+1))
+        console.log(count,"count")
+        axios.post('http://localhost:8080/item',{
+          "id":productid,
+          "user_id":123123,
+          "product_id":productid,
+          "quantity":count+1,
+          }).then(res => {console.log(res.data)})
+      }
+    }
+
+    const decrease = (productid) => {
+      if(productid===1){
+        setcount((decrease)=>(decrease-1))
+        console.log(count,"count")
+        axios.post('http://localhost:8080/item',{
+          "id":productid,
+          "user_id":123123,
+          "product_id":productid,
+          "quantity":count-1,
+        }).then(res=>{console.log(res.data)})
+      }
+    }
     return(
       <div>
         <div className="cart_page">
             <h1 className="cart_title">YOUR CART</h1>
-            
-            
             <table className="cart_items">
-              
             <tr>
               <th className="item_image_header">PRODUCT</th>
               <th></th>
@@ -51,25 +84,22 @@ export default function Shop_cart() {
             {
               
               cartItems.map(item => {
-                 
-                var notEmpty = true;
-                
-                
-                console.log(item,"cart items loaded")        
+                var notEmpty = true;  
                 return(
                 <>
                 
                   {
                     productData.map(product => {
                       
+                      
                       if (product.productID === item.product_id) {
                         return(<>{notEmpty ? <>
                         
                           <tr>
                             <img className="item_image" src={water} alt="water"></img>
-                            <td className="product_header" key={product}>{product.product_name}</td>
-                            <td key={product}>£{product.product_price}</td>
-                            <td className="quant_price_header" key={item}>{item.quantity}</td>
+                            <td className="product_header" key={product.product_name}>{product.product_name}</td>
+                            <td key={product.product_price}>£{product.product_price}</td>
+                            <td className="quant_price_header" key={item.quantity}><button onClick={() => increment(item.product_id)}>+</button>{count}<button onClick={()=>decrease(item.product_id)}>-</button></td>
                             <td><button className="delete_button" onClick={() => deleteItem(item.id,notEmpty)}>X</button></td>
                           </tr>
                           {/* <img className="item_image" src={water} alt="water"></img> */}
@@ -92,6 +122,9 @@ export default function Shop_cart() {
             
             
             </table>
+            <div className="containerSum">
+              <h1>Order Summery</h1>
+            </div>
         </div>
       </div>
     );

@@ -20,9 +20,7 @@ th{
     margin-bottom:50px;  
 }
 .cart_items{
-    width:70%;
-    border-radius: 6px;
-    font-size: 15px;
+    
     
 }
 
@@ -32,6 +30,7 @@ th{
 td{
     text-align: center;
     font-size:20px;
+    
 }
 .quant_price_header{
     
@@ -63,6 +62,12 @@ td{
 }
 .delete_button:active{
     scale:0.90;
+}
+
+.containerSum{
+    float:right;
+    height:50%;
+    
 }
 
 
