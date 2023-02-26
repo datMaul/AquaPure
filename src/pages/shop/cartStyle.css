@@ -1,42 +1,72 @@
-th{
-    border-bottom-style: solid;
-    border-color:rgba(0, 0, 0, 0.132);
-}
-td,th{
-    padding:20px;
-    text-align:center;
+ul{
+    list-style-type: none;
 }
 table{
+    width:100%;
     
+}
+th{
     font-size:20px;
-    background-color: rgb(240, 240, 240);
-    width:90%;
-    float:left;
-    
-    
-}
+    border-bottom-style: solid;
+    border-color:rgba(0, 0, 0, 0.233);
 
-.item_image{
-    width: 5%;
-    height:5%;
-    float:left;
-    
 }
-
 .cart_page{
     margin: 20px 20px auto;
 }
 .cart_title{
+    text-align: center;
+    font-size:40px;
+    margin-bottom:50px;  
+}
+.cart_items{
+    width:70%;
+    border-radius: 6px;
+    font-size: 15px;
+    
+}
+
+.product_header{
     text-align: left;
-    font-size:45px;    
+}
+td{
+    text-align: center;
+    font-size:20px;
+}
+.quant_price_header{
+    
+}
+.item_image{
+    width:100%;
+    margin-left:-25px;
+}
+
+.item_image_header{
+    text-align: left;
+    width:15%;
+    
+}
+
+.delete_button{
+    font-size:20px;
+    border:transparent;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding:10px;
+    border-radius:50%;
+    cursor: pointer;
+    background-color: rgb(229, 229, 229);
+    text-align: center;
+    transition: ease 150ms;
+}
+.delete_button:hover{
+    background-color: rgb(126, 150, 197);
+}
+.delete_button:active{
+    scale:0.90;
 }
 
 
 
-.item_n{
-    text-align: left;
-}
- 
 
 
 

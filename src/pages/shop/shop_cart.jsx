@@ -39,17 +39,23 @@ export default function Shop_cart() {
             <h1 className="cart_title">YOUR CART</h1>
             
             
+            <table className="cart_items">
               
-            
-            <table>
-                <th className="item_n">PRODUCT</th>
-                <th className="item_n"></th>
-                <th>QUANTITY</th>
-                <th>PRICE</th>
+            <tr>
+              <th className="item_image_header">PRODUCT</th>
+              <th></th>
+              <th className="quant_price_header">PRICE</th>
+              <th className="quant_price_header">QUANTITY</th>
+              <th></th>
+            </tr>
             {
               
-              cartItems.map(item => {  
-                const notEmpty = true;             
+              cartItems.map(item => {
+                 
+                var notEmpty = true;
+                
+                
+                console.log(item,"cart items loaded")        
                 return(
                 <>
                 
@@ -59,21 +65,19 @@ export default function Shop_cart() {
                       if (product.productID === item.product_id) {
                         return(<>{notEmpty ? <>
                         
-                        <tr>
-                          <td><img className="item_image" src={water} alt="water"></img></td>
-                          <td className="item_n">{product.product_name}</td>
-                          <td>{item.quantity}</td>
-                          <td>£{product.product_price}</td>
-                    
-
-                        </tr>
-                        {/* <button onClick={() => deleteItem(item.id,notEmpty)}>REMOVE</button> */}
-
-                         
-                        
-                        </>
-                           : ""}</>)
+                          <tr>
+                            <img className="item_image" src={water} alt="water"></img>
+                            <td className="product_header" key={product}>{product.product_name}</td>
+                            <td key={product}>£{product.product_price}</td>
+                            <td className="quant_price_header" key={item}>{item.quantity}</td>
+                            <td><button className="delete_button" onClick={() => deleteItem(item.id,notEmpty)}>X</button></td>
+                          </tr>
+                          {/* <img className="item_image" src={water} alt="water"></img> */}
+                          </>
+                           : ""}
+                           </>)
                       }
+                      
                     })
                   }
                   
@@ -82,9 +86,12 @@ export default function Shop_cart() {
               })
               
             }
+            {
+
+            }
+            
+            
             </table>
-            
-            
         </div>
       </div>
     );
