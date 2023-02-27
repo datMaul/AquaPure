@@ -20,6 +20,7 @@ export default function TestkitLog() {
     const Test_Kit_History = await axios.get(
       `http://localhost:8080/testkit/purchase-history`
     );
+    console.log(Test_Kit_History.data)
     setTestkitHistory(Test_Kit_History.data);
   };
 
@@ -49,7 +50,7 @@ export default function TestkitLog() {
             <th scope="row" key={index}>
               {index + 1}
             </th>
-            <td>USER ID</td>
+            <td>{TestkitCartItems.signUp.userId}</td>
             <td style={{ alignItems: "center" }}>
               <img
                 style={{
