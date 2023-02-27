@@ -61,7 +61,6 @@ export default function Shop() {
 
 
   const updateStates = ()=>{
-    console.log("updateStates")
     itemData.map(item=>{
       const increment = item.quantity+1
       if(item.id===1){

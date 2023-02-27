@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Await, Link } from "react-router-dom";
 import {React, useState, useEffect} from 'react';
 import axios from 'axios';
 import "./cartStyle.css"
@@ -8,9 +8,7 @@ export default function Shop_cart() {
 
     const [cartItems, setcartItems] = useState([]);
     const [productData, setData] = useState([]);
-
-    const [count, setcount] = useState(1);
-
+    const [count, setcount] = useState(0);
     const [subtotal, setsubtotal] = useState(0);
 
     
@@ -20,11 +18,12 @@ export default function Shop_cart() {
     useEffect(() => {
       loadItems();
       loadProducts();
-      total();
+      
     },[]);
 
     useEffect(()=>{
       total();
+      
     },[cartItems])
     
     const loadProducts = () => {
@@ -38,17 +37,20 @@ export default function Shop_cart() {
       axios.get('http://localhost:8080/item')
       .then(res => {
         setcartItems(res.data)
+        console.log("load cart")
       })
     }
 
+    
+
     const total = () => {
-      var quant = 0;
+      
       var total_price = 0;
       cartItems.map(item => {
-        quant += item.quantity
         productData.map(product => {
           if(item.product_id === product.productID){
             total_price += product.product_price*item.quantity
+            console.log("calc total")
           }
         })
       })
@@ -61,59 +63,25 @@ export default function Shop_cart() {
       loadItems();
       
     }
-
-    const increment = (productid) => {
+    const increment = async (productid) => {
       
       cartItems.map(item => {
-        console.log(item.quantity,"get item quantity")
+        
         if(productid === item.product_id){
-          
-          setcount((increment)=>(increment+1))
-          
-          // axios.post('http://localhost:8080/item',{
-          //   "id":productid,
-          //   "user_id":123123,
-          //   "product_id":productid,
-          //   "quantity":count+1,
-          //   }).then(res => {console.log(res.data)})
-          console.log(count,"count value")
-          
+          console.log(item.quantity,item.product_id)
+          let add = item.quantity+1
+          console.log(add+1,"incremneted the quantity")
+          axios.post('http://localhost:8080/item',{
+            'id':productid,
+            'user_id':123123,
+            'product_id':productid,
+            'quantity':add
+          })
+          loadItems()
         }
       })
-        
-          
-      
-          
-        
-      
-      
-    }
+      loadItems()
 
-    const decrease = (productid) => {
-      if(productid===1){
-        if(count===0){
-          deleteItem(productid)
-          axios.post('http://localhost:8080/item',{
-          "id":productid,
-          "user_id":123123,
-          "product_id":productid,
-          "quantity":count,
-        }).then(res=>{console.log(res.data)})
-        }
-        else if(count>0){
-          setcount((decrease)=>(decrease-1))
-          axios.post('http://localhost:8080/item',{
-          "id":productid,
-          "user_id":123123,
-          "product_id":productid,
-          "quantity":count-1,
-        }).then(res=>{console.log(res.data)})
-        }
-        else{
-          console.log("count ERR")
-        }
-            
-      }
     }
     
 
@@ -138,16 +106,13 @@ export default function Shop_cart() {
                 <>
                   {
                     productData.map(product => {
-                      
                       if (product.productID === item.product_id) {
-                        
                         return(<>{notEmpty ? <>
-                          
                           <tr>
                             <img className="item_image" src={water} alt="water"></img>
                             <td className="product_header" key={product.product_name}>{product.product_name}</td>
                             <td key={product.product_price}>£{product.product_price}</td>
-                            <td className="quant_price_header" key={item.quantity}><button onClick={()=>increment(item.product_id)}>+</button>{count}<button>-</button></td>
+                            <td className="quant_price_header" key={item.quantity}><button onClick={()=>{increment(item.product_id);}}>+</button>{item.quantity}<button>-</button></td>
                             <td><button className="delete_button" onClick={() => deleteItem(item.id)}>X</button></td>
                           </tr>
                           
