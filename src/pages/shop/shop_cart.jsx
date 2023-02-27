@@ -8,23 +8,23 @@ export default function Shop_cart() {
 
     const [cartItems, setcartItems] = useState([]);
     const [productData, setData] = useState([]);
+
     const [count, setcount] = useState(1);
-    const [count2, setcount2] = useState(1);
-    const [subtotal, setsubtotal] = useState(0)
+
+    const [subtotal, setsubtotal] = useState(0);
+
+    
+
+    
     
     useEffect(() => {
       loadItems();
       loadProducts();
-      
-      
+      total();
     },[]);
+
     useEffect(()=>{
-      cartItems.map(item=>{
-        setcount(item.quantity)
-        console.log(count,"counter set as item quantity")
-      })
-      update_subtotal();
-      
+      total();
     },[cartItems])
     
     const loadProducts = () => {
@@ -39,8 +39,20 @@ export default function Shop_cart() {
       .then(res => {
         setcartItems(res.data)
       })
-      
-      
+    }
+
+    const total = () => {
+      var quant = 0;
+      var total_price = 0;
+      cartItems.map(item => {
+        quant += item.quantity
+        productData.map(product => {
+          if(item.product_id === product.productID){
+            total_price += product.product_price*item.quantity
+          }
+        })
+      })
+      setsubtotal(total_price)
     }
     const deleteItem = async (id) => {
       await axios.delete(`http://localhost:8080/item/${id}`).then(console.log("deleted item"))
@@ -51,46 +63,30 @@ export default function Shop_cart() {
     }
 
     const increment = (productid) => {
-      if(productid===1){
-        setcount((increment)=>(increment+1))
-        if(count>=99){
-          setcount(99)
-          axios.post('http://localhost:8080/item',{
-          "id":productid,
-          "user_id":123123,
-          "product_id":productid,
-          "quantity":count,
-          }).then(res => {console.log(res.data)})
+      
+      cartItems.map(item => {
+        console.log(item.quantity,"get item quantity")
+        if(productid === item.product_id){
+          
+          setcount((increment)=>(increment+1))
+          
+          // axios.post('http://localhost:8080/item',{
+          //   "id":productid,
+          //   "user_id":123123,
+          //   "product_id":productid,
+          //   "quantity":count+1,
+          //   }).then(res => {console.log(res.data)})
+          console.log(count,"count value")
+          
         }
-        else{
-          axios.post('http://localhost:8080/item',{
-          "id":productid,
-          "user_id":123123,
-          "product_id":productid,
-          "quantity":count+1,
-          }).then(res => {console.log(res.data)})
-        }
-      }
-      if(productid===2){
-        setcount2((increment)=>(increment+1))
-        if(count2>=99){
-          setcount(99)
-          axios.post('http://localhost:8080/item',{
-          "id":productid,
-          "user_id":123123,
-          "product_id":productid,
-          "quantity":count2,
-          }).then(res => {console.log(res.data)})
-        }
-        else{
-          axios.post('http://localhost:8080/item',{
-          "id":productid,
-          "user_id":123123,
-          "product_id":productid,
-          "quantity":count2+1,
-          }).then(res => {console.log(res.data)})
-        }
-      }
+      })
+        
+          
+      
+          
+        
+      
+      
     }
 
     const decrease = (productid) => {
@@ -119,17 +115,7 @@ export default function Shop_cart() {
             
       }
     }
-    const update_subtotal = () => {
-      cartItems.map(item => {
-        productData.map(product => {
-          if(item.product_id === product.productID){
-            console.log(item.quantity*product.product_price)
-            setsubtotal(item.quantity*product.product_price)
-            return(subtotal)
-          }
-        })
-      })
-    }
+    
 
     return(
       <div>
@@ -146,47 +132,41 @@ export default function Shop_cart() {
             {
               
               cartItems.map(item => {
-                var notEmpty = true;  
+                var notEmpty = true; 
+                
                 return(
                 <>
-                
                   {
                     productData.map(product => {
                       
-                      
                       if (product.productID === item.product_id) {
-                        return(<>{notEmpty ? <>
                         
+                        return(<>{notEmpty ? <>
+                          
                           <tr>
                             <img className="item_image" src={water} alt="water"></img>
                             <td className="product_header" key={product.product_name}>{product.product_name}</td>
                             <td key={product.product_price}>£{product.product_price}</td>
-                            <td className="quant_price_header" key={item.quantity}><button>+</button>{item.quantity}<button>-</button></td>
-                            <td><button className="delete_button" onClick={() => deleteItem(item.id).then(update_subtotal())}>X</button></td>
+                            <td className="quant_price_header" key={item.quantity}><button onClick={()=>increment(item.product_id)}>+</button>{count}<button>-</button></td>
+                            <td><button className="delete_button" onClick={() => deleteItem(item.id)}>X</button></td>
                           </tr>
+                          
                           
                           {/* <img className="item_image" src={water} alt="water"></img> */}
                           </>
                            : ""}
                            </>)
                       }
-                      
                     })
                   }
-                  
                 </>
                 )
               })
-              
             }
-            {
-
-            }
-            
-            
             </table>
+
             <div className="containerSum">
-              <h1></h1>
+              <h1>{subtotal}</h1>
             </div>
         </div>
       </div>
