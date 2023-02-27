@@ -5,8 +5,7 @@ import './map.css';
 import paramData from './parameter-data.json';
 import sample from './sample.json';
 import { toInteger } from 'lodash';
-import { OSGB36toWGS84, OSGB36toMapSquare } from './utils';
-//const { OSGB36toMapSquare } = require('./util');
+import { OSGB36toWGS84, OSGB36toMapSquare, mapTileCoords } from './utils';
 
 //var nullIsland = new maplibregl.MercatorCoordinate(0.5, 0.5, 0);
 
@@ -34,10 +33,109 @@ export default function Map() {
     var sampleData = sample['http://environment.data.gov.uk/water-quality/data/measurement/AN-1986280-3169'];
 
     map.current.on('load', function () {
+      // test adding some layers
+      for (var i = 20; i < 75; i += latDiff) {
+
+        var pixSize = 3;
+
+        // Get the lat diff taking the Mercator projection scale factor into account
+        var latDiff = (pixSize/(1/Math.cos(i*(Math.PI/180))));
+
+        map.current.addSource('maine'+i, {
+          'type': 'geojson',
+          'data': {
+            'type': 'Feature',
+            'geometry': {
+              'type': 'Polygon',
+              'coordinates': [
+                [
+                  [-0.2, i],
+                  [-0.2, i+latDiff],
+                  [-0.2+pixSize, i+latDiff],
+                  [-0.2+pixSize, i],
+                  [-0.2, i]
+                ]
+              ]
+            }
+          }
+        });
+        map.current.addLayer({
+          'id': 'maine'+i,
+          'type': 'fill',
+          'source': 'maine'+i,
+          'layout': {},
+          'paint': {
+            'fill-color': '#ff00ff',
+            'fill-opacity': 0.5
+          }
+        });
+
+        // map.current.addSource('mainer'+i, {
+        //   'type': 'geojson',
+        //   'data': {
+        //     'type': 'Feature',
+        //     'geometry': {
+        //       'type': 'Polygon',
+        //       'coordinates': [
+        //         [
+        //           [i, 0],
+        //           [i, 0+1],
+        //           [i+1, 0+1],
+        //           [i+1, 0],
+        //           [i, 0]
+        //         ]
+        //       ]
+        //     }
+        //   }
+        // });
+        // map.current.addLayer({
+        //   'id': 'mainer'+i,
+        //   'type': 'fill',
+        //   'source': 'mainer'+i,
+        //   'layout': {},
+        //   'paint': {
+        //     'fill-color': '#dfhgsf',
+        //     'fill-opacity': 0.5
+        //   }
+        // });
+
+        // map.current.addSource('mainerr'+i, {
+        //   'type': 'geojson',
+        //   'data': {
+        //     'type': 'Feature',
+        //     'geometry': {
+        //       'type': 'Polygon',
+        //       'coordinates': [
+        //         [
+        //           [i, 0+1],
+        //           [i, 0+2],
+        //           [i+1, 0+2],
+        //           [i+1, 0+1],
+        //           [i, 0+1]
+        //         ]
+        //       ]
+        //     }
+        //   }
+        // });
+        // map.current.addLayer({
+        //   'id': 'mainerr'+i,
+        //   'type': 'fill',
+        //   'source': 'mainerr'+i,
+        //   'layout': {},
+        //   'paint': {
+        //     'fill-color': '#dfhgsf',
+        //     'fill-opacity': 0.5
+        //   }
+        // });
+
+      }
+
+
       const sampleOSGB36 = [sample['http://environment.data.gov.uk/water-quality/data/measurement/AN-1986280-3169'].easting, sample['http://environment.data.gov.uk/water-quality/data/measurement/AN-1986280-3169'].northing]
-      const sqr = OSGB36toMapSquare(toInteger(sampleOSGB36[0]), toInteger(sampleOSGB36[1]))
-      console.log(sampleOSGB36[0], sampleOSGB36[1])
-      console.log(sqr)
+      const sqr = mapTileCoords(OSGB36toWGS84(toInteger(sampleOSGB36[0]), toInteger(sampleOSGB36[1])))
+      console.log("Sample OSGB36: ", sampleOSGB36[0], sampleOSGB36[1])
+      console.log("Sample WGS84: ", OSGB36toWGS84(toInteger(sampleOSGB36[0]), toInteger(sampleOSGB36[1])))
+      console.log("Returned sqr: ", sqr)
   
       map.current.addSource('maine', {
         'type': 'geojson',
@@ -114,9 +212,9 @@ export default function Map() {
     const waterBodyCheckboxes = document.getElementsByClassName('body_filter');
     const checkAllButton = document.getElementById('check_all_waterbody');
     for (var i = 0; i < waterBodyCheckboxes.length; i++) {
-      (checkAllButton.innerHTML == "All") ? waterBodyCheckboxes[i].checked = true : waterBodyCheckboxes[i].checked = false;
+      (checkAllButton.innerHTML === "All") ? waterBodyCheckboxes[i].checked = true : waterBodyCheckboxes[i].checked = false;
     }
-    (checkAllButton.innerHTML == "All") ? checkAllButton.innerHTML = "None" : checkAllButton.innerHTML = "All";
+    (checkAllButton.innerHTML === "All") ? checkAllButton.innerHTML = "None" : checkAllButton.innerHTML = "All";
   };
 
   return (

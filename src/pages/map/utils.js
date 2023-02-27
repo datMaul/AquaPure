@@ -112,7 +112,7 @@ function OSGB36toMapSquare(E, N, sqr_scale = 0.005) {
     //const c1 = OSGB36toWGS84(E, N);
 
     //round to nearest square
-    const c1 = OSGB36toWGS84(Math.round(E / sqr_scale) * sqr_scale, Math.round(N / sqr_scale) * sqr_scale);
+    const c1 = OSGB36toWGS84(E - (E % sqr_scale), N - (N % sqr_scale));
 
     //const c2 = OSGB36toWGS84(E+50000, N);
     //const c3 = OSGB36toWGS84(E+50000, N+50000);
@@ -125,9 +125,28 @@ function OSGB36toMapSquare(E, N, sqr_scale = 0.005) {
     return [c1, c2, c3, c4, c1];
 }
 
+function mapTileCoords([lng, lat], tile_size = 0.5) {
+    console.log("input: ", lat, lng);
+
+    // Get the lat diff taking the Mercator projection scale factor into account
+    var latDiff = (tile_size / (1 / Math.cos(lat * (Math.PI / 180))));
+
+    var c1 = [lng,              lat];
+    var c2 = [lng,              lat + latDiff];
+    var c3 = [lng + tile_size,  lat + latDiff];
+    var c4 = [lng + tile_size,  lat];
+
+    return [c1, c2, c3, c4, c1];
+}
+
+// Fetches the records from the database for the given water body and parameter filters
+function fetchMapRecords(waterBodyFilters, paramFilters) {
+    return;
+}
 
 
 module.exports = {
     OSGB36toWGS84,
-    OSGB36toMapSquare
+    OSGB36toMapSquare,
+    mapTileCoords
 }
