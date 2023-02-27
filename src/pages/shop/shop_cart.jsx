@@ -9,17 +9,21 @@ export default function Shop_cart() {
     const [cartItems, setcartItems] = useState([]);
     const [productData, setData] = useState([]);
     const [count, setcount] = useState(1);
+    const [subtotal, setsubtotal] = useState(0)
+    
     useEffect(() => {
       loadItems();
       loadProducts();
+      
       
     },[]);
     useEffect(()=>{
       cartItems.map(item=>{
         setcount(item.quantity)
         console.log(count,"counter set as item quantity")
-        
       })
+      update_subtotal();
+      
     },[cartItems])
     
     const loadProducts = () => {
@@ -37,38 +41,83 @@ export default function Shop_cart() {
       
       
     }
-    const deleteItem = async (id,notEmpty) => {
+    const deleteItem = async (id) => {
       await axios.delete(`http://localhost:8080/item/${id}`).then(console.log("deleted item"))
-      notEmpty=false;
-      console.log(notEmpty)
+      // notEmpty=false;
+      // console.log(notEmpty)
       loadItems();
+      
     }
 
     const increment = (productid) => {
       if(productid===1){
         setcount((increment)=>(increment+1))
-        console.log(count,"count")
-        axios.post('http://localhost:8080/item',{
+        
+        if(count>=99){
+          setcount(99)
+          axios.post('http://localhost:8080/item',{
+          "id":productid,
+          "user_id":123123,
+          "product_id":productid,
+          "quantity":count,
+          }).then(res => {console.log(res.data)})
+          
+        }
+        else{
+          axios.post('http://localhost:8080/item',{
           "id":productid,
           "user_id":123123,
           "product_id":productid,
           "quantity":count+1,
           }).then(res => {console.log(res.data)})
+          
+        }
+        
       }
     }
 
     const decrease = (productid) => {
       if(productid===1){
-        setcount((decrease)=>(decrease-1))
-        console.log(count,"count")
-        axios.post('http://localhost:8080/item',{
+        setcount((decrease)=>(decrease-1)) 
+        if(count==0){
+          
+          setcount(0)
+          axios.post('http://localhost:8080/item',{
+          "id":productid,
+          "user_id":123123,
+          "product_id":productid,
+          "quantity":count,
+        }).then(res=>{console.log(res.data)})
+        deleteItem(productid)
+        
+        }
+        else if(count>0){
+          axios.post('http://localhost:8080/item',{
           "id":productid,
           "user_id":123123,
           "product_id":productid,
           "quantity":count-1,
         }).then(res=>{console.log(res.data)})
+        
+        }
+        else{
+          console.log("count ERR")
+        }       
+        
       }
     }
+    const update_subtotal = () => {
+      cartItems.map(item => {
+        productData.map(product => {
+          if(item.product_id === product.productID){
+            console.log(item.quantity*product.product_price)
+            setsubtotal(item.quantity*product.product_price)
+            
+          }
+        })
+      })
+    }
+
     return(
       <div>
         <div className="cart_page">
@@ -100,8 +149,9 @@ export default function Shop_cart() {
                             <td className="product_header" key={product.product_name}>{product.product_name}</td>
                             <td key={product.product_price}>£{product.product_price}</td>
                             <td className="quant_price_header" key={item.quantity}><button onClick={() => increment(item.product_id)}>+</button>{count}<button onClick={()=>decrease(item.product_id)}>-</button></td>
-                            <td><button className="delete_button" onClick={() => deleteItem(item.id,notEmpty)}>X</button></td>
+                            <td><button className="delete_button" onClick={() => deleteItem(item.id).then(update_subtotal())}>X</button></td>
                           </tr>
+                          <h2>{}</h2>
                           {/* <img className="item_image" src={water} alt="water"></img> */}
                           </>
                            : ""}
