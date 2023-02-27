@@ -13,7 +13,7 @@ import com.stripe.param.checkout.SessionCreateParams;
 public class Server {
 
   public static void main(String[] args) {
-    port(3000);
+    port(4242);
 
     // This is your test secret API key.
     Stripe.apiKey = "sk_test_51Me03tJ13Ib3RTrQytERKe7RT5uERh4kYQXpd0v2LdC8UfoVJDntbVJUx34TVKrTsPHHKpgts78ebUXCA1lsLmD500Z7pnUH1x";
@@ -22,7 +22,7 @@ public class Server {
         Paths.get("public").toAbsolutePath().toString());
 
     post("/create-checkout-session", (request, response) -> {
-        String YOUR_DOMAIN = "http://localhost:3000";
+        String YOUR_DOMAIN = "http://localhost:4242";
         SessionCreateParams params =
           SessionCreateParams.builder()
             .setMode(SessionCreateParams.Mode.PAYMENT)
@@ -32,7 +32,7 @@ public class Server {
               SessionCreateParams.LineItem.builder()
                 .setQuantity(1L)
                 // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                .setPrice("{{PRICE_ID}}")
+                .setPrice("price_1Me1N5J13Ib3RTrQZ49eCORs")
                 .build())
             .build();
       Session session = Session.create(params);
