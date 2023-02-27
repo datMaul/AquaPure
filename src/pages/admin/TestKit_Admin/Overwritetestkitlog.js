@@ -45,8 +45,7 @@ export default function Overwritetestkitlog() {
           <form onSubmit={(e) => onSubmit(e)}>
             <div>
               <label htmlFor="Name" className="OW_TK_Labes">
-                {" "}
-                Test Kit Name:
+                Test Kit Name:{" "}
               </label>
               <input
                 type={"text"}
@@ -59,7 +58,7 @@ export default function Overwritetestkitlog() {
               />
             </div>
             <div>
-              <label className="OW_TK_Labes"> Test Kit Price</label>
+              <label className="OW_TK_Labes">Test Kit Price: </label>
               <input
                 type={"number"}
                 className="from-control"
@@ -70,7 +69,7 @@ export default function Overwritetestkitlog() {
               />
             </div>
             <div>
-              <label className="OW_TK_Labes"> Test Kit Stock Count</label>
+              <label className="OW_TK_Labes">Test Kit Stock Count: </label>
               <input
                 type={"number"}
                 className="from-control"

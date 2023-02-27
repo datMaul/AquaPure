@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./TestkitCartlog.css";
+import "./TestkitHistorylog.css";
 import WaterTestKit1 from "../../testkit/testkit_images_videos/Basic.jpg";
 import WaterTestKit2 from "../../testkit/testkit_images_videos/Standard.jpg";
 import WaterTestKit3 from "../../testkit/testkit_images_videos/Plus.jpg";
@@ -20,7 +20,7 @@ export default function TestkitLog() {
     const Test_Kit_History = await axios.get(
       `http://localhost:8080/testkit/purchase-history`
     );
-    console.log(Test_Kit_History.data)
+    console.log(Test_Kit_History.data);
     setTestkitHistory(Test_Kit_History.data);
   };
 
@@ -43,7 +43,7 @@ export default function TestkitLog() {
           <th scope="col">Testkit Type</th>
           <th scope="col">Unique Testkit ID</th>
           <th scope="col">Use Status</th>
-          <th scope="col">Action</th>
+          {/* <th scope="col">Action</th> */}
         </tr>
         {TestkitHistory.map((TestkitCartItems, index) => (
           <tr>
@@ -65,14 +65,14 @@ export default function TestkitLog() {
             <td>
               {TestkitCartItems.usestatus ? "Activated" : "Not Activated"}
             </td>
-            <td>
+            {/* <td>
               <Link
                 className="Edit_Kit_Price"
-                to={`/admin/testkitCartlog/overwrite/${TestkitHistory.test_Kit_ID}`}
+                to={`/admin/testkithistorylog/overwrite/${TestkitHistory.test_Kit_ID}`}
               >
                 Overwrite
               </Link>
-            </td>
+            </td> */}
           </tr>
         ))}
       </table>

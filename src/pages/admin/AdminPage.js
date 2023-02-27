@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ChildComponent1 from "./User_Admin/Signupadminlog";
 import ChildComponent2 from "./TestKit_Admin/Testkitlog";
-import ChildComponent3 from "./TestKitCart_Admin/TestkitCartlog";
+import ChildComponent3 from "./TestKitHistory_Admin/TestkitHistorylog";
 import "./AdminPage.css";
 
 export default function ParentComponent() {
@@ -25,7 +25,7 @@ export default function ParentComponent() {
           onClick={() => setDisplayChild("ChildComponent3")}
           className="Admin_Side_BTN"
         >
-          Testkit Cart Log
+          Testkit History Log
         </button>
       </div>
       <div className="ChildContainer">
