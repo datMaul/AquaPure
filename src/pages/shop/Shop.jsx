@@ -4,7 +4,7 @@ import logo from "./shop_assets/aqlogo.png";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import {React, useCallback, useEffect, useState,useReducer} from 'react';
-
+import placeholder from './shop_assets/placeholder.jpg';
 
 
 export default function Shop() {  
@@ -27,7 +27,7 @@ export default function Shop() {
   const [item6,setvalue6] = useState(1);
   const [item7,setvalue7] = useState(1);
   const [item8,setvalue8] = useState(1);
-
+  const [check, setcheck] = useState("Add to cart");
 
 
 
@@ -128,6 +128,10 @@ export default function Shop() {
       "quantity":quantity,
       }).then(res => {console.log(res.data)})
     }
+
+    const addOnClick = () => {
+      setcheck("OK")
+    }
   return (
     <div>    
       
@@ -142,10 +146,10 @@ export default function Shop() {
                 if(product.productID === 1){ 
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
-                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{postAdd(product.productID,item1);}}>Quick Add</button>
+                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{postAdd(product.productID,item1);addOnClick()}}>Quick Add</button>
                   </>
                   ) 
                 }
@@ -162,7 +166,7 @@ export default function Shop() {
                 if(product.productID === 2){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -184,7 +188,7 @@ export default function Shop() {
                 if(product.productID === 3){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -206,7 +210,7 @@ export default function Shop() {
                 if(product.productID === 4){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -228,7 +232,7 @@ export default function Shop() {
                 if(product.productID === 5){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -249,7 +253,7 @@ export default function Shop() {
                 if(product.productID === 6){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -271,7 +275,7 @@ export default function Shop() {
                 if(product.productID === 7){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -293,7 +297,7 @@ export default function Shop() {
                 if(product.productID === 8){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={water}/></Link>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{

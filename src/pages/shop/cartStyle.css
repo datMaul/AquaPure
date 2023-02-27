@@ -51,14 +51,13 @@ td{
     border:transparent;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding:10px;
-    border-radius:50%;
     cursor: pointer;
     background-color: rgb(229, 229, 229);
     text-align: center;
     transition: ease 150ms;
 }
 .delete_button:hover{
-    background-color: rgb(126, 150, 197);
+    background-color: rgb(197, 126, 126);
 }
 .delete_button:active{
     scale:0.90;
