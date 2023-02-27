@@ -18,9 +18,7 @@ export default function TestkitLog() {
 
   const loadTestkitHistory = async () => {
     const Test_Kit_History = await axios.get(
-      `http://localhost:8080/testkit/purchase-history/${localStorage.getItem(
-        "user_ID"
-      )}`
+      `http://localhost:8080/testkit/purchase-history`
     );
     setTestkitHistory(Test_Kit_History.data);
   };
