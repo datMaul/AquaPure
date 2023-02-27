@@ -13,7 +13,7 @@ import com.stripe.param.checkout.SessionCreateParams;
 public class Server {
 
   public static void main(String[] args) {
-    port(300);
+    port(3000);
 
     // This is your test secret API key.
     Stripe.apiKey = "sk_test_51Me03tJ13Ib3RTrQytERKe7RT5uERh4kYQXpd0v2LdC8UfoVJDntbVJUx34TVKrTsPHHKpgts78ebUXCA1lsLmD500Z7pnUH1x";
