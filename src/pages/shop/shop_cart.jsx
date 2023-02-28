@@ -10,6 +10,7 @@ export default function Shop_cart() {
     const [productData, setData] = useState([]);
     const [count, setcount] = useState(0);
     const [subtotal, setsubtotal] = useState(0);
+    
 
     
 
@@ -41,10 +42,7 @@ export default function Shop_cart() {
       })
     }
 
-    
-
     const total = () => {
-      
       var total_price = 0;
       cartItems.map(item => {
         productData.map(product => {
@@ -56,34 +54,48 @@ export default function Shop_cart() {
       })
       setsubtotal(total_price)
     }
+
+    const apply_points = (points) => {
+      if(!IsCheck){
+        if(points>=100){
+          console.log("discounted")
+          let discount = points/1000;
+          let newtotal = subtotal-discount
+          setsubtotal(newtotal);
+          console.log(newtotal,"new total")
+        }
+      }
+      else if(IsCheck){
+        console.log("discounted revoked")
+        let discount = points/1000;
+        let newtotal = subtotal+discount
+        setsubtotal(newtotal);
+        console.log(newtotal,"new total")
+      }
+    }
+
     const deleteItem = async (id) => {
       await axios.delete(`http://localhost:8080/item/${id}`).then(console.log("deleted item"))
       // notEmpty=false;
       // console.log(notEmpty)
       loadItems();
-      
     }
-    const increment = async (productid) => {
+
+    const increment = (productid) => {
       cartItems.map(item => {
         if(productid === item.product_id){
-          if(item.quantity<10){
             let add = item.quantity+1
             axios.post('http://localhost:8080/item',{
               'id':productid,
               'user_id':123123,
               'product_id':productid,
               'quantity':add
-            }).then(res => {console.log(res.data);loadItems();})
-            
-          }
-          else{
-            loadItems()
-          }
+            }).then(res => {loadItems();console.log(res.data);})
         }
       })
-      loadItems()
     }
-    const decrease = async (productid) => {
+
+    const decrease = (productid) => {
       cartItems.map(item => {
         if(productid === item.product_id){
           if(item.quantity<=1){
@@ -96,32 +108,42 @@ export default function Shop_cart() {
               'user_id':123123,
               'product_id':productid,
               'quantity':add
-            }).then(res => {console.log(res.data);loadItems();})
-            
+            }).then(res => {loadItems();console.log(res.data);})
           }
-          
         }
       })
-      loadItems()
     }
-
+    const [IsCheck,setcheck] = useState(false);
+    const checkhandler = () => {
+      setcheck(!IsCheck);
+      apply_points(100);
+    }
     return(
       <div>
         <div className="cart_page">
             <h1 className="cart_title">YOUR CART</h1>
             <span className="containerSum">
               <h3>subtotal</h3>
+              <div className="discount">
+                <label htmlFor="checkbox">Apply Points Discount</label>
+                <input type="checkbox" checked={IsCheck} onChange={() => checkhandler()}></input>
+              </div>
               <h2>£{subtotal}</h2>
+              
+              
               <button className="checkout">CHECKOUT</button>
             </span>
             <table className="cart_items">
-            <tr>
-              <th className="item_image_header">PRODUCT</th>
-              <th></th>
-              <th className="quant_price_header">QUANTITY</th>
-              <th className="quant_price_header">PRICE</th>
-              <th></th>
-            </tr>
+              <thead>
+                <tr key={"headers"}>
+                  <th className="item_image_header">PRODUCT</th>
+                  <th></th>
+                  <th className="quant_price_header" id="quantity">QUANTITY</th>
+                  <th className="quant_price_header" id="price">PRICE</th>
+                  <th></th>
+                </tr>
+              </thead>
+            
             {
               
               cartItems.map(item => {
@@ -132,15 +154,15 @@ export default function Shop_cart() {
                   {
                     productData.map(product => {
                       if (product.productID === item.product_id) {
-                        return(<>{notEmpty ? <>
-                          <tr>
-                            <img className="item_image" src={water} alt="water"></img>
+                        return(<>{notEmpty ? <tbody>
+                          <tr key={"cart"}>
+                            <td><img className="item_image" src={water} alt="water"></img></td>
                             <td className="product_header" key={product.product_name}>{product.product_name}</td>
-                            <td className="quant_price_header" key={item.quantity}><button className="quant_button" onClick={()=>{increment(item.product_id);}}>+</button><text className="quant">{item.quantity}</text><button className="quant_button" onClick={()=>decrease(item.product_id)}>-</button></td>
+                            <td className="quant_price_header" key={count}><button className="quant_button" onClick={()=>{increment(item.product_id);}}>+</button><p className="quant">{item.quantity}</p><button className="quant_button" onClick={()=>decrease(item.product_id)}>-</button></td>
                             <td key={product.product_price}>£{product.product_price}</td>
                             <td><button className="delete_button" onClick={() => deleteItem(item.id)}>X</button></td>
                           </tr>
-                          </>
+                          </tbody>
                            : ""}
                            </>)
                       }

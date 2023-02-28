@@ -89,8 +89,13 @@ td{
 
     
 }
+.discount{
+    width:70%;
+    height:100%;
+    float:right;
+    text-align: left;
+}
 .checkout{
-    
     border:none;
     font-size:20px;
     padding:10px;
