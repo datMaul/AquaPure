@@ -64,37 +64,62 @@ export default function Shop_cart() {
       
     }
     const increment = async (productid) => {
-      
       cartItems.map(item => {
-        
         if(productid === item.product_id){
-          console.log(item.quantity,item.product_id)
-          let add = item.quantity+1
-          console.log(add+1,"incremneted the quantity")
-          axios.post('http://localhost:8080/item',{
-            'id':productid,
-            'user_id':123123,
-            'product_id':productid,
-            'quantity':add
-          })
-          loadItems()
+          if(item.quantity<10){
+            let add = item.quantity+1
+            axios.post('http://localhost:8080/item',{
+              'id':productid,
+              'user_id':123123,
+              'product_id':productid,
+              'quantity':add
+            }).then(res => {console.log(res.data);loadItems();})
+            
+          }
+          else{
+            loadItems()
+          }
         }
       })
       loadItems()
-
     }
-    
+    const decrease = async (productid) => {
+      cartItems.map(item => {
+        if(productid === item.product_id){
+          if(item.quantity<=1){
+            deleteItem(productid)
+          }
+          else{
+            let add = item.quantity-1
+            axios.post('http://localhost:8080/item',{
+              'id':productid,
+              'user_id':123123,
+              'product_id':productid,
+              'quantity':add
+            }).then(res => {console.log(res.data);loadItems();})
+            
+          }
+          
+        }
+      })
+      loadItems()
+    }
 
     return(
       <div>
         <div className="cart_page">
             <h1 className="cart_title">YOUR CART</h1>
+            <span className="containerSum">
+              <h3>subtotal</h3>
+              <h2>£{subtotal}</h2>
+              <button className="checkout">CHECKOUT</button>
+            </span>
             <table className="cart_items">
             <tr>
               <th className="item_image_header">PRODUCT</th>
               <th></th>
-              <th className="quant_price_header">PRICE</th>
               <th className="quant_price_header">QUANTITY</th>
+              <th className="quant_price_header">PRICE</th>
               <th></th>
             </tr>
             {
@@ -111,13 +136,10 @@ export default function Shop_cart() {
                           <tr>
                             <img className="item_image" src={water} alt="water"></img>
                             <td className="product_header" key={product.product_name}>{product.product_name}</td>
+                            <td className="quant_price_header" key={item.quantity}><button className="quant_button" onClick={()=>{increment(item.product_id);}}>+</button><text className="quant">{item.quantity}</text><button className="quant_button" onClick={()=>decrease(item.product_id)}>-</button></td>
                             <td key={product.product_price}>£{product.product_price}</td>
-                            <td className="quant_price_header" key={item.quantity}><button onClick={()=>{increment(item.product_id);}}>+</button>{item.quantity}<button>-</button></td>
                             <td><button className="delete_button" onClick={() => deleteItem(item.id)}>X</button></td>
                           </tr>
-                          
-                          
-                          {/* <img className="item_image" src={water} alt="water"></img> */}
                           </>
                            : ""}
                            </>)
@@ -130,9 +152,7 @@ export default function Shop_cart() {
             }
             </table>
 
-            <div className="containerSum">
-              <h1>{subtotal}</h1>
-            </div>
+            
         </div>
       </div>
     );
