@@ -132,7 +132,7 @@ export default function Shop_cart() {
             <h2>£{subtotal}</h2>
               
               
-              <button className="checkout">CHECKOUT</button>
+            <Link to="/checkout"><button className="checkout">CHECKOUT</button></Link>
             </span>
             <table className="cart_items">
               <thead>

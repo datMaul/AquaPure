@@ -1,0 +1,32 @@
+.check_page{
+    background-color: grey;
+    margin:30px 300px auto;
+}
+.check_title{
+
+}
+.check_subtitle{
+
+}
+.check_details{
+    background-color: rgb(72, 72, 72);
+    float:left;
+    width:50%;
+    height:100%;
+    padding-bottom: 50%;
+}
+.check_cart{
+    background-color: rgb(158, 158, 158);
+    float:right;
+    width:50%;
+    padding-bottom:50%;
+}
+.customer_details{
+    margin-top:50px;
+}
+.shop_email{
+    float:inline-start;
+}
+.shop_number{
+    float:inline-start;
+}
