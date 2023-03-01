@@ -12,7 +12,7 @@ public class SignUp {
     private String FirstName;
     private String LastName;
     private String eMail;
-    private Integer PhoneNumber;
+    private String PhoneNumber;
     private String DoB;
     private String Password;
     private String AddressLine1;
@@ -21,7 +21,6 @@ public class SignUp {
     private String AddressPostcode;
     private String AccountType;
 
-
     public Long getUserId() {
         return userId;
     }
@@ -29,6 +28,7 @@ public class SignUp {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
     public String getFirstName() {
         return FirstName;
     }
@@ -36,7 +36,6 @@ public class SignUp {
     public void setFirstName(String firstName) {
         FirstName = firstName;
     }
-
 
     public String getLastName() {
         return LastName;
@@ -46,7 +45,6 @@ public class SignUp {
         LastName = lastName;
     }
 
-
     public String geteMail() {
         return eMail;
     }
@@ -55,15 +53,13 @@ public class SignUp {
         this.eMail = eMail;
     }
 
-
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return PhoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         PhoneNumber = phoneNumber;
     }
-
 
     public String getDoB() {
         return DoB;
@@ -73,7 +69,6 @@ public class SignUp {
         DoB = doB;
     }
 
-
     public String getPassword() {
         return Password;
     }
@@ -81,7 +76,6 @@ public class SignUp {
     public void setPassword(String password) {
         Password = password;
     }
-
 
     public String getAddressLine1() {
         return AddressLine1;
@@ -91,7 +85,6 @@ public class SignUp {
         AddressLine1 = addressLine1;
     }
 
-
     public String getAddressLine2() {
         return AddressLine2;
     }
@@ -99,7 +92,6 @@ public class SignUp {
     public void setAddressLine2(String addressLine2) {
         AddressLine2 = addressLine2;
     }
-
 
     public String getAddressTC() {
         return AddressTC;
@@ -109,7 +101,6 @@ public class SignUp {
         AddressTC = addressTC;
     }
 
-
     public String getAddressPostcode() {
         return AddressPostcode;
     }
@@ -117,6 +108,7 @@ public class SignUp {
     public void setAddressPostcode(String addressPostcode) {
         AddressPostcode = addressPostcode;
     }
+
     public String getAccountType() {
         return AccountType;
     }
