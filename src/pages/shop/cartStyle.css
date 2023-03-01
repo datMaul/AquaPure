@@ -23,6 +23,10 @@ th{
     
     
 }
+.th_product_header{
+    text-align: center;
+    width:50%;
+}
 
 .product_header{
     text-align: left;
@@ -32,8 +36,12 @@ td{
     font-size:20px;
     
 }
-.quant_price_header{
+.quant_header{
     
+   
+}
+.price_header{
+
 }
 .item_image{
     width:100%;
@@ -43,7 +51,10 @@ td{
 .item_image_header{
     text-align: left;
     width:10%;
-    
+}
+
+.price_td{
+
 }
 
 .delete_button{
@@ -62,32 +73,34 @@ td{
 .delete_button:active{
     scale:0.90;
 }
+.quant_td{
+    margin-left:50px;
+}
 .quant{
-    padding:5px;
+    padding:3px;
+    width:30px;
+    
     background-color: rgb(205, 205, 205);
 }
 .quant_button{
     width: 15%;
-    margin:10px;
+    text-align: center;
+    margin:2px;
     border:none;
     font-size: 23px;
     border-radius: 50%;
 }
 .quant_button:hover{
     cursor: pointer;
-    
     background-color: rgb(168, 255, 226);
 }
 
 .containerSum{
-    
     float:right;
     text-align: left;
     height:50%;
     width:20%;
     background-color: rgb(236, 236, 236);
-
-    
 }
 .discount{
     width:70%;

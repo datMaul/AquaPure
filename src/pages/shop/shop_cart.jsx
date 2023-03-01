@@ -10,6 +10,7 @@ export default function Shop_cart() {
     const [productData, setData] = useState([]);
     const [count, setcount] = useState(0);
     const [subtotal, setsubtotal] = useState(0);
+    const [points, setpoints] = useState(2500);
     
 
     
@@ -116,19 +117,19 @@ export default function Shop_cart() {
     const [IsCheck,setcheck] = useState(false);
     const checkhandler = () => {
       setcheck(!IsCheck);
-      apply_points(100);
+      apply_points(points);
     }
     return(
       <div>
         <div className="cart_page">
-            <h1 className="cart_title">YOUR CART</h1>
-            <span className="containerSum">
-              <h3>subtotal</h3>
-              <div className="discount">
-                <label htmlFor="checkbox">Apply Points Discount</label>
-                <input type="checkbox" checked={IsCheck} onChange={() => checkhandler()}></input>
-              </div>
-              <h2>£{subtotal}</h2>
+          <h1 className="cart_title">YOUR CART</h1>
+          <span className="containerSum">
+            <h3>subtotal</h3>
+            <div className="discount">
+              <label htmlFor="checkbox">Apply Points Discount</label>
+              <input type="checkbox" checked={IsCheck} onChange={() => checkhandler()}></input>
+            </div>
+            <h2>£{subtotal}</h2>
               
               
               <button className="checkout">CHECKOUT</button>
@@ -137,9 +138,9 @@ export default function Shop_cart() {
               <thead>
                 <tr key={"headers"}>
                   <th className="item_image_header">PRODUCT</th>
-                  <th></th>
-                  <th className="quant_price_header" id="quantity">QUANTITY</th>
-                  <th className="quant_price_header" id="price">PRICE</th>
+                  <th className="th_product_header"></th>
+                  <th className="quant_header" id="quantity">QUANTITY</th>
+                  <th className="price_header" id="price">PRICE</th>
                   <th></th>
                 </tr>
               </thead>
@@ -158,8 +159,8 @@ export default function Shop_cart() {
                           <tr key={"cart"}>
                             <td><img className="item_image" src={water} alt="water"></img></td>
                             <td className="product_header" key={product.product_name}>{product.product_name}</td>
-                            <td className="quant_price_header" key={count}><button className="quant_button" onClick={()=>{increment(item.product_id);}}>+</button><p className="quant">{item.quantity}</p><button className="quant_button" onClick={()=>decrease(item.product_id)}>-</button></td>
-                            <td key={product.product_price}>£{product.product_price}</td>
+                            <td className="quant_td" key={count}><button className="quant_button" onClick={()=>{decrease(item.product_id);}}>-</button><p className="quant">{item.quantity}</p><button className="quant_button" onClick={()=>increment(item.product_id)}>+</button></td>
+                            <td className="price_td" key={product.product_price}>£{product.product_price}</td>
                             <td><button className="delete_button" onClick={() => deleteItem(item.id)}>X</button></td>
                           </tr>
                           </tbody>
