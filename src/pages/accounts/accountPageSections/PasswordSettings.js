@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./PasswordSettings.css";
+import "./AccountPageSections.css";
 
 export default function PasswordSettings() {
   let navigating = useNavigate();
@@ -61,9 +61,11 @@ export default function PasswordSettings() {
   }
   return (
     <div className="Accounts-Content">
-      <div className="PasswordSettings-Content">
+      <div className="AccountPageSection-Content">
         <div className="Row-1-Content">
           <h2> Password Settings </h2>
+          <br /> <br /> <br /> <br /> <br />
+          <br /> <br /> <br /> <br /> <br />
         </div>
 
         <div className="Row-2-Content">
@@ -75,7 +77,7 @@ export default function PasswordSettings() {
             <form onSubmit={(e) => onSubmit(e)}>
               <input
                 type={"text"}
-                placeholder="Enter Overwrite Password"
+                placeholder="Password of The User"
                 name="password"
                 value={password}
                 onChange={(e) => onInputChange(e)}

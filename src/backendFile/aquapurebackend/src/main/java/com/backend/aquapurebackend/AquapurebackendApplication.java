@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.backend.aquapurebackend.util.JwtUtil;
 import org.springframework.context.annotation.Bean;
 
-
 @SpringBootApplication
 public class AquapurebackendApplication {
 	@Bean

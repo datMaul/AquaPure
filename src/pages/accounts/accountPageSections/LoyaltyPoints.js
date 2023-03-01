@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./LoyaltyPoints.css";
+import "./AccountPageSections.css";
 
 export default function LoyaltyPoints() {
   if (!localStorage.getItem("token")) {
@@ -7,9 +7,11 @@ export default function LoyaltyPoints() {
   }
   return (
     <div className="Accounts-Content">
-      <div className="LoyaltyPoints-Content">
+      <div className="AccountPageSection-Content">
         <div className="Row-1-Content">
           <h2> Loyalty Points </h2>
+          <br /> <br /> <br /> <br /> <br /> <br />
+          <br /> <br /> <br /> <br /> <br /> <br />
         </div>
 
         <div className="Row-2-Content">
@@ -17,17 +19,14 @@ export default function LoyaltyPoints() {
             <label>Loyalty Points:</label>
           </div>
 
-          <div className="Input-Content">
-            <form
-            // onSubmit={(e) => onSubmit(e)}
-            >
+          <div className="Inputs-Content">
+            <form>
               <input
                 type={"text"}
-                placeholder="Loyalty Points"
+                placeholder="Loyalty Points of The User"
                 name="loyaltyPoints"
                 readOnly={true}
                 // value={}
-                // onChange={(e) => onInputChange(e)}
               />
             </form>
           </div>

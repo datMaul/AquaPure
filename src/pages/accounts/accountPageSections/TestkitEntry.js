@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./TestkitEntry.css";
+import "./AccountPageSections.css";
 
 export default function TestkitEntry() {
   if (!localStorage.getItem("token")) {
@@ -7,7 +7,7 @@ export default function TestkitEntry() {
   }
   return (
     <div className="Accounts-Content">
-      <div className="TestKitEntry-Content">
+      <div className="AccountPageSection-Content">
         <div className="Row-1-Content">
           <h2> Testkit Entry </h2>
         </div>
@@ -15,31 +15,31 @@ export default function TestkitEntry() {
         <div className="Row-2-Content">
           <div className="Labels-Content">
             <label>Unique ID:</label>
-            <br /> <br />
+            <br />
             <label>pH:</label>
-            <br /> <br />
+            <br />
             <label>Total Alkalinity:</label>
-            <br /> <br />
+            <br />
             <label>Total Hardness:</label>
-            <br /> <br />
+            <br />
             <label>Nitrate:</label>
-            <br /> <br />
+            <br />
             <label>Nitrite:</label>
-            <br /> <br />
+            <br />
             <label>Lead:</label>
-            <br /> <br />
+            <br />
             <label>Manganese:</label>
-            <br /> <br />
+            <br />
             <label>Coliform Bacteria:</label>
           </div>
 
-          <div className="Input-Content">
+          <div className="Inputs-Content">
             <form
             // onSubmit={(e) => onSubmit(e)}
             >
               <input
                 type={"text"}
-                placeholder="Unique ID"
+                placeholder="Enter Unique ID"
                 name="uniqueID"
                 // value={}
                 // onChange={(e) => onInputChange(e)}
@@ -47,7 +47,7 @@ export default function TestkitEntry() {
               <br />
               <input
                 type={"number"}
-                placeholder="pH"
+                placeholder="Enter pH"
                 name="pH"
                 // value={}
                 // onChange={(e) => onInputChange(e)}
@@ -55,7 +55,7 @@ export default function TestkitEntry() {
               <br />
               <input
                 type={"number"}
-                placeholder="Total Alkalinity"
+                placeholder="Enter Total Alkalinity"
                 name="totalAlkalinity"
                 // value={}
                 // onChange={(e) => onInputChange(e)}
@@ -63,7 +63,7 @@ export default function TestkitEntry() {
               <br />
               <input
                 type={"number"}
-                placeholder="Total Hardness"
+                placeholder="Enter Total Hardness"
                 name="totalHardness"
                 // value={}
                 // onChange={(e) => onInputChange(e)}
@@ -71,7 +71,7 @@ export default function TestkitEntry() {
               <br />
               <input
                 type={"number"}
-                placeholder="Nitrite"
+                placeholder="Enter Nitrite"
                 name="nitrite"
                 // value={}
                 // onChange={(e) => onInputChange(e)}
@@ -79,7 +79,7 @@ export default function TestkitEntry() {
               <br />
               <input
                 type={"number"}
-                placeholder="Nitrate"
+                placeholder="Enter Nitrate"
                 name="nitrate"
                 // value={}
                 // onChange={(e) => onInputChange(e)}
@@ -87,7 +87,7 @@ export default function TestkitEntry() {
               <br />
               <input
                 type={"number"}
-                placeholder="Lead"
+                placeholder="Enter Lead"
                 name="lead"
                 // value={}
                 // onChange={(e) => onInputChange(e)}
@@ -95,7 +95,7 @@ export default function TestkitEntry() {
               <br />
               <input
                 type={"number"}
-                placeholder="Manganese"
+                placeholder="Enter Manganese"
                 name="manganese"
                 // value={}
                 // onChange={(e) => onInputChange(e)}
@@ -103,7 +103,7 @@ export default function TestkitEntry() {
               <br />
               <input
                 type={"number"}
-                placeholder="Coliform Bacteria"
+                placeholder="Enter Coliform Bacteria"
                 name="coliformBacteria"
                 // value={}
                 // onChange={(e) => onInputChange(e)}

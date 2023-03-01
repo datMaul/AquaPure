@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./AccountsSettings.css";
+import "./AccountPageSections.css";
 
 export default function AccountsSettings() {
   let navigating = useNavigate();
@@ -71,7 +71,7 @@ export default function AccountsSettings() {
   }
   return (
     <div className="Accounts-Content">
-      <div className="AccountsSettings-Content">
+      <div className="AccountPageSection-Content">
         <div className="Row-1-Content">
           <h2> Accounts Settings </h2>
         </div>
@@ -79,25 +79,25 @@ export default function AccountsSettings() {
         <div className="Row-2-Content">
           <div className="Labels-Content">
             <label htmlFor="Name">First Name:</label>
-            <br /> <br />
+            <br />
             <label htmlFor="Name">Last Name:</label>
-            <br /> <br />
+            <br />
             <label>Date of Birth:</label>
-            <br /> <br />
+            <br />
             <label>Phone Number:</label>
-            <br /> <br />
+            <br />
             <label>Email Address:</label>
-            <br /> <br />
+            <br />
             <label>Address Line 1:</label>
-            <br /> <br />
+            <br />
             <label>Address Line 2:</label>
-            <br /> <br />
+            <br />
             <label>Town/City:</label>
-            <br /> <br />
+            <br />
             <label>Postcode:</label>
           </div>
 
-          <div className="Input-Content">
+          <div className="Inputs-Content">
             <form onSubmit={(e) => onSubmit(e)}>
               <input
                 type={"text"}
@@ -117,7 +117,7 @@ export default function AccountsSettings() {
               <br />
               <input
                 type={"date"}
-                placeholder="Enter Date of Birth"
+                placeholder="Date of Birth of The User"
                 name="doB"
                 value={doB}
                 onChange={(e) => onInputChange(e)}
@@ -125,7 +125,7 @@ export default function AccountsSettings() {
               <br />
               <input
                 type={"number"}
-                placeholder="Enter Phone Number"
+                placeholder="Phone Number of The User"
                 name="phoneNumber"
                 value={phoneNumber}
                 onChange={(e) => onInputChange(e)}
@@ -133,7 +133,7 @@ export default function AccountsSettings() {
               <br />
               <input
                 type={"text"}
-                placeholder="Enter EMail"
+                placeholder="EMail of The User"
                 name="eMail"
                 value={eMail}
                 onChange={(e) => onInputChange(e)}
@@ -149,7 +149,7 @@ export default function AccountsSettings() {
               <br />
               <input
                 type={"text"}
-                placeholder="Last Address Line of The User"
+                placeholder="Second Address Line of The User"
                 name="addressLine2"
                 value={addressLine2}
                 onChange={(e) => onInputChange(e)}
@@ -157,7 +157,7 @@ export default function AccountsSettings() {
               <br />
               <input
                 type={"text"}
-                placeholder="Tow/City Of The User"
+                placeholder="Tow/City of The User"
                 name="addressTC"
                 value={addressTC}
                 onChange={(e) => onInputChange(e)}
@@ -165,7 +165,7 @@ export default function AccountsSettings() {
               <br />
               <input
                 type={"text"}
-                placeholder="Enter Post Code"
+                placeholder="Post Code of The User"
                 name="addressPostcode"
                 value={addressPostcode}
                 onChange={(e) => onInputChange(e)}
