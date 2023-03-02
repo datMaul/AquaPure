@@ -5,7 +5,7 @@ import ChildComponent2 from "./PasswordSettings";
 import ChildComponent3 from "./TestkitEntry";
 import ChildComponent4 from "./purchasehistory/PurchaseHistory";
 import ChildComponent5 from "./LoyaltyPoints";
-import "../cart/CartPage.css";
+import "../cart/MainCArtPage.css";
 import axios from "axios";
 
 export default function ParentComponent() {

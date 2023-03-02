@@ -1,16 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import WaterTestKit1 from "../../testkit/testkit_images_videos/Basic.jpg";
-import WaterTestKit2 from '../../testkit/testkit_images_videos/Standard.jpg';
-import WaterTestKit3 from '../../testkit/testkit_images_videos/Plus.jpg';
-import WaterTestKit4 from '../../testkit/testkit_images_videos/Premium.jpg';
-import WaterTestKit5 from '../../testkit/testkit_images_videos/Legionella.jpg';
-import WaterTestKit6 from '../../testkit/testkit_images_videos/Bacteria.jpg';
-import WaterTestKit7 from '../../testkit/testkit_images_videos/Pool.jpg';
+import { Link } from "react-router-dom";
+import WaterTestKit1 from "../../../testkit/testkit_images_videos/Basic.jpg";
+import WaterTestKit2 from '../../../testkit/testkit_images_videos/Standard.jpg';
+import WaterTestKit3 from '../../../testkit/testkit_images_videos/Plus.jpg';
+import WaterTestKit4 from '../../../testkit/testkit_images_videos/Premium.jpg';
+import WaterTestKit5 from '../../../testkit/testkit_images_videos/Legionella.jpg';
+import WaterTestKit6 from '../../../testkit/testkit_images_videos/Bacteria.jpg';
+import WaterTestKit7 from '../../../testkit/testkit_images_videos/Pool.jpg';
+import Poppup from "../../../../components/Popup";
+import shark from "../cart_images_videos/Shark.png"
 import "./CartPage.css";
 
 export default function TestkitCart() {
   const [TestkitCartItems, setTestkitCartItems] = useState([]);
+  const [buttonPopup, setButtonPopup] = useState(false)
   const [totalPrice, setTotal] = useState(0);
   useEffect(() => {
     loadTestkit();
@@ -23,6 +27,24 @@ export default function TestkitCart() {
     setTestkitCartItems(Test_Kit_Log_Result.data);
     setTotal(Test_Kit_Log_Result.data.reduce((acc, item) => acc + (item.quantity * item.testKit.test_Kit_Price), 0));
   };
+  axios.get(`http://localhost:8080/TestkitCartItem/user/${localStorage.getItem("user_ID")}`)
+    .then(response => {
+      if (response.data.length === 0) {
+        // Cart is empty, hide components
+        document.querySelector('.Test_Kit_Table').style.display = 'none';
+        document.querySelector('.Summary_Div').style.visibility = 'hidden';
+        document.querySelector('.Empty_Div').style.visibility = 'visible';
+      } else {
+        document.querySelector('.Test_Kit_Table').style.visibility = 'visible';
+        document.querySelector('.Summary_Div').style.visibility = 'visible';
+        document.querySelector('.Empty_Div').style.visibility = 'hidden';
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      // Handle error
+    });
+
 
   const deleteUser = async (id) => {
     await axios.delete(`http://localhost:8080/Cart/${id}`);
@@ -48,6 +70,7 @@ export default function TestkitCart() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       const deleteResponse = await axios.delete(`http://localhost:8080/TestkitCartItem/user/${localStorage.getItem("user_ID")}`);
       console.log(deleteResponse);
+      setButtonPopup(true)
     } catch (error) {
       console.error(error);
     }
@@ -55,7 +78,7 @@ export default function TestkitCart() {
 
 
   return (
-    <div>
+    <div className="Testkitcart_Container">
       <center>
         <h1>Your Water Test Kit Cart</h1>
       </center>
@@ -73,7 +96,7 @@ export default function TestkitCart() {
               <td style={{ display: 'flex', alignItems: 'center' }}><img style={{ width: '200px', height: '200px', marginRight: '10px' }} src={testKitImages[TestkitCartItems.testKit.test_Kit_Name]} alt={TestkitCartItems.testKit.test_Kit_Name} />
                 Water Test Kit | {TestkitCartItems.testKit.test_Kit_Name}
               </td>
-              <td className="Price_td">{TestkitCartItems.quantity} <button className="Edit_Cart_BTN">Edit</button></td>
+              <td className="Price_td">{TestkitCartItems.quantity}</td>
               <td>£{(TestkitCartItems.quantity * TestkitCartItems.testKit.test_Kit_Price).toFixed(2)}</td>
               <td><button
                 className="Delete_User"
@@ -99,13 +122,36 @@ export default function TestkitCart() {
           <br />
           <center>
             <button className="Checkout_Btn" onClick={Checkout}>Proceed To Checkout</button>
-            <br />
-            <br />
-            <button className="Cont_Btn">Continue Shopping</button>
+            <Link className="Cont_Btn" to="/testkit">Continue Shopping</Link>
           </center>
         </div>
+          <div className="Empty_Div">
+            <div className="Empty_Context">
+              <h2>Hmmm... It seems your cart is empty.</h2>  
+                Lets try to change that, click on the Test Kit link on the navbar or just simply click the button!
+                <br />
+                <br />
+                <center>
+                <Link className="Go_Kit_Btn" to="/testkit">Go to Test Kit Page</Link>
+                </center>
+            </div>
+            <div className="Shark_div">
+              <img alt="Shark Head" src={shark}/>
+            </div>
+          </div>
       </div>
+      <Poppup trigger={buttonPopup} setTrigger={setButtonPopup}>
+        <center>
+          <h3>Your Order Is Now Complete!</h3>
+          <br />
+          <h4> You'll get a confirmation in your Account Tabs, under Purchase History.</h4>
+          <br />
+          <button className="Checkout_Btn" onClick={() => {
+            setButtonPopup(false);
+            window.location.reload();
+          }}>Close</button>
+        </center>
+      </Poppup>
     </div>
   );
 }
-//   /testkitcart

@@ -1,3 +1,7 @@
+.Testkitcart_Container{
+    width: 100%;
+}
+
 .Test_Kit_Table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -77,13 +81,56 @@
     float: right;
     background-color: #ffffff;
     width: 300px;
-    height: 320px;
+    height: 420px;
     right: 25px;
     margin: 50px;
     border-radius: 5%;
     padding: 10px;
     border: 2px solid #008CBA;
 }
+
+/* .Empty_Div {
+    margin: auto; 
+    background-color: #ffffff;
+    border-radius: 25px; 
+    border: 2px solid #008CBA;
+}
+
+.Empty_Context{
+    float: left;
+    background-color: #e12929;
+    width: 70%;
+}
+.Shark_div{
+    float: right;
+    background-color: #5bced5;
+    width: 30%;
+} */
+ 
+.Empty_Div {
+    margin: 0 120;
+    background-color: #ffffff;
+    border-radius: 25px;
+    border: 2px solid #008CBA;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end; 
+    padding: 10px 10px;
+    }
+    
+    .Empty_Context {
+    width: 70%;
+    margin-bottom: 10px; 
+    }
+    
+    .Shark_div {
+    width: 30%;
+    margin-bottom: 10px; 
+    }
+    .Shark_div img{
+        height: 200px;
+        width: 200px;
+    }
 
 .Checkout_Btn {
     padding: 5px;
@@ -94,6 +141,7 @@
     border: 2px solid #008CBA;
     display: inline-block;
     text-align: center;
+    margin: 10px;
     text-decoration: none;
     cursor: pointer;
     transition: ease-out 350ms;
@@ -108,12 +156,37 @@
     box-shadow: inset 150px 0 0 0 #ffffff;
 }
 
+.Go_Kit_Btn {
+    padding: 5px;
+    background-color: #ffffff;
+    color: #008CBA;
+    font-size: 15px;
+    border-radius: 10px;
+    margin: 10px;
+    border: 2px solid #008CBA;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: ease-out 350ms;
+    box-shadow: inset 0 0 0 0 #ffffff;
+    width: 170px;
+}
+
+.Go_Kit_Btn:hover {
+    background-color: #008CBA;
+    color: #ffffff;
+    border: 2px solid #008CBA;
+    box-shadow: inset 150px 0 0 0 #008CBA;
+}
+
 .Cont_Btn {
     padding: 5px;
     background-color: #ffffff;
     color: #5ab491;
     font-size: 15px;
     border-radius: 10px;
+    margin: 10px;
     border: 2px solid #5ab491;
     display: inline-block;
     text-align: center;
@@ -138,7 +211,8 @@
 
 .CartSidebar {
     background-color: #f5f5f5;
-    top: 70px; /* Height of the navbar */
+    top: 70px;
+    /* Height of the navbar */
     height: calc(100vh - 70px);
     position: sticky;
     display: flex;
