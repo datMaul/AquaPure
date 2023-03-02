@@ -137,11 +137,11 @@ export default function Shop_cart() {
             <table className="cart_items">
               <thead>
                 <tr key={"headers"}>
-                  <th className="item_image_header">PRODUCT</th>
-                  <th className="th_product_header"></th>
-                  <th className="quant_header" id="quantity">QUANTITY</th>
-                  <th className="price_header" id="price">PRICE</th>
-                  <th></th>
+                  <th className="item_image_header table_h">PRODUCT</th>
+                  <th className="th_product_header table_h"></th>
+                  <th className="quant_header table_h" id="quantity">QUANTITY</th>
+                  <th className="price_header table_h" id="price">PRICE</th>
+                  <th className="table_h"></th>
                 </tr>
               </thead>
             

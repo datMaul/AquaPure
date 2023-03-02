@@ -5,7 +5,7 @@ table{
     width:80%;
     float:left;
 }
-th{
+.table_h{
     font-size:20px;
     border-bottom-style: solid;
     border-color:rgba(0, 0, 0, 0.233);

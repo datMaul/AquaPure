@@ -9,17 +9,17 @@
 
 }
 .check_details{
-    background-color: rgb(72, 72, 72);
     float:left;
     width:50%;
     height:100%;
     padding-bottom: 50%;
 }
 .check_cart{
-    background-color: rgb(158, 158, 158);
+    padding-top:50px;
     float:right;
     width:50%;
-    padding-bottom:50%;
+    
+    
 }
 .customer_details{
     margin-top:50px;
@@ -30,3 +30,47 @@
 .shop_number{
     float:inline-start;
 }
+input[type=number]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+.checkout_table{
+    width:100%;
+    border-bottom-style:solid;
+    border-bottom-width: 2px;
+    border-bottom-color:rgb(199, 199, 199);
+
+}
+.checkout_name{
+    text-align: left;
+    float:left;
+    
+    
+}
+.checkout_product_img{
+    width:70%;
+    border:solid rgb(185, 185, 185);
+    border-width: 1px;
+    
+}
+.checkout-image-header{
+    width:20%;
+}
+
+.checkout-price-header{
+    width: 20%;
+    text-align: right;
+    
+}
+.subtotal{
+    padding-top:100px;
+}
+
+.purchase{
+    background-color: aliceblue;
+    display: block;
+    position:fixed;
+    text-align: center;
+    color:green;
+    
+}
+
