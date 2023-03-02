@@ -23,7 +23,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cart from "./pages/accounts/cart/MainCartPage";
 import Account from "./pages/accounts/accountPageSections/Accounts";
-import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitpurchasehistory/PurchaseHistoryTestkit";
+import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitPurchaseHistory/PurchaseHistoryTestkit";
 
 function App() {
   const [scrollPos, setScrollPos] = useState(0);
