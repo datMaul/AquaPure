@@ -1,8 +1,45 @@
 import "./Testkit.css";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import Chatbot from "../phasetest/Phasetest";
+import Footer from "../../components/Footer";
 
 export default function Testkit() {
+  const [isChatbotVisible, setIsChatbotVisible] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+  const wrapperRef = useRef(null);
+
+  function toggleAquabotVisibility() {
+    setIsChatbotVisible(!isChatbotVisible);
+  }
+
+  function handleClickOutside(event) {
+    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+      setIsChatbotVisible(false);
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (window.scrollY > 80) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    }
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const [value1, setValue1] = useState(1);
   const [value2, setValue2] = useState(1);
   const [value3, setValue3] = useState(1);
@@ -493,6 +530,17 @@ export default function Testkit() {
         <br />
         <br />
       </div>
+      <div ref={wrapperRef}>
+        {isChatbotVisible ? (
+          <Chatbot />
+        ) : showButton ? (
+          <button
+            className="AquaBot_button"
+            onClick={toggleAquabotVisibility}
+          />
+        ) : null}
+      </div>
+      <Footer />
     </div>
   );
 }
