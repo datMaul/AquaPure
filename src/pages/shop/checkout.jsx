@@ -46,8 +46,9 @@ export default function Checkout() {
         })
         setsubtotal(total_price)
     }
-
-
+    const popup_remove = () => {
+        
+    }
     return (
         <div>
             {/* {show && (
@@ -75,7 +76,6 @@ export default function Checkout() {
                     <Link to='/shop_cart'><button>BACK TO CART</button></Link>
                 </div>
                 <div className="check_cart">
-                    
                     <table className="checkout_table">
                         <tr>
                             <th className="checkout-image-header">{/*image*/}</th>
@@ -99,7 +99,6 @@ export default function Checkout() {
                                                     </>
                                                 )
                                             }
-                                            
                                         })
                                     }
                                 </>
@@ -111,14 +110,15 @@ export default function Checkout() {
                         <h3 className="total">Total</h3>
                         <h2 className="subtotal_num">{subtotal}</h2>
                     </div>
+                    {/* Requires npm react-popup installed */}
                     <Popup trigger={<button>PURCHASE</button>}>
-                        <div className="purchase">Purchase Sucessfull</div>
+                        <div className="purchase">
+                            <h1>Thank you for your purchase!</h1>
+                            
+                        </div>
                     </Popup>
-
                 </div>
-
             </div>
-
         </div>
     )
 }
