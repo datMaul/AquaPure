@@ -1,5 +1,5 @@
 import "./Shop_Style.css";
-import water from "./shop_assets/water_bottle.PNG";
+import water from "./item_pages/shop_assets/water_bottle.PNG";
 import logo from "./shop_assets/aqlogo.png";
 import { Link } from "react-router-dom";
 import axios from 'axios';
@@ -131,6 +131,8 @@ export default function Shop() {
     const addOnClick = () => {
       setcheck("OK")
     }
+
+    
   return (
     <div>    
       
@@ -145,7 +147,7 @@ export default function Shop() {
                 if(product.productID === 1){ 
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/water_bottle"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{postAdd(product.productID,item1);addOnClick()}}>Quick Add</button>
@@ -165,7 +167,7 @@ export default function Shop() {
                 if(product.productID === 2){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/tote_bag"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -187,7 +189,7 @@ export default function Shop() {
                 if(product.productID === 3){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/bamboo"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -209,7 +211,7 @@ export default function Shop() {
                 if(product.productID === 4){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/sticker"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -231,7 +233,7 @@ export default function Shop() {
                 if(product.productID === 5){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/travel_cup"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{

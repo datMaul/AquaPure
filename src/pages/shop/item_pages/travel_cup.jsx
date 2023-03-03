@@ -31,7 +31,7 @@ export default function Item_page() {
           
           <div>
           {productData.map(product => {
-                if(product.productID === 1){
+                if(product.productID === 5){
                   return(
                     <>
                       <h1 className="title item_page_text" key={product}>{product.product_name}</h1>

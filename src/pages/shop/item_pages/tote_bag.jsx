@@ -3,10 +3,13 @@ import water from "./shop_assets/water_bottle.PNG";
 import { Link } from "react-router-dom";
 import {React, useEffect, useState} from 'react';
 import axios from 'axios';
-export default function Item_page() {
+
+export default function Tote_bag() {
 
   const [productData, setData] = useState([]);
 
+  
+  
   useEffect(()=>{
     axios.get('http://localhost:8080/product')
     .then(res => {
@@ -31,7 +34,7 @@ export default function Item_page() {
           
           <div>
           {productData.map(product => {
-                if(product.productID === 1){
+                if(product.productID === 2){
                   return(
                     <>
                       <h1 className="title item_page_text" key={product}>{product.product_name}</h1>

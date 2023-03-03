@@ -2,7 +2,7 @@ import "./checkout.css";
 import { Link, useSubmit } from "react-router-dom";
 import { React, useEffect, useState } from 'react';
 import axios from 'axios';
-import water from './shop_assets/water_bottle.PNG'
+import water from './item_pages/shop_assets/water_bottle.PNG'
 import Popup from "reactjs-popup";
 
 export default function Checkout() {
@@ -46,9 +46,7 @@ export default function Checkout() {
         })
         setsubtotal(total_price)
     }
-    const popup_remove = () => {
-        
-    }
+    
     return (
         <div>
             {/* {show && (
@@ -114,7 +112,6 @@ export default function Checkout() {
                     <Popup trigger={<button>PURCHASE</button>}>
                         <div className="purchase">
                             <h1>Thank you for your purchase!</h1>
-                            
                         </div>
                     </Popup>
                 </div>

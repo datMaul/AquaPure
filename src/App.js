@@ -14,6 +14,11 @@ import Item_page from "./pages/shop/item_pages/item_frame";
 import Shop from "./pages/shop/Shop";
 import Shop_cart from "./pages/shop/shop_cart"
 import CheckOut from "./pages/shop/checkout"
+import Water_Bottle_page from "./pages/shop/item_pages/water_bottle"
+import Tote_bag_page from "./pages/shop/item_pages/tote_bag"
+import Bamboo_notebook from "./pages/shop/item_pages/Bamboo_notebook"
+import Sticker from "./pages/shop/item_pages/sticker"
+import Travel_cup from "./pages/shop/item_pages/travel_cup"
 
 
 import { Route, Routes } from "react-router-dom";
@@ -42,6 +47,11 @@ function App() {
           <Route path="/item" element={<Item_page />} />
           <Route path="/shop_cart" element={<Shop_cart/>}/>
           <Route path="/checkout" element={<CheckOut/>}/>
+          <Route path="/water_bottle" element={<Water_Bottle_page/>}/>
+          <Route path="/tote_bag" element={<Tote_bag_page/>}/>
+          <Route path="/bamboo" element={<Bamboo_notebook/>}/>
+          <Route path="/sticker" element={<Sticker/>}/>
+          <Route path="/travel_cup" element={<Travel_cup/>}/>
         </Routes>
       </div>
     </>

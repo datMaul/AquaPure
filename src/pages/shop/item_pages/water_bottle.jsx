@@ -1,10 +1,10 @@
 import "./item_frame_style.css";
-import water from "./water_bottle.PNG";
+import water from "./shop_assets/water_bottle.PNG";
 import { Link } from "react-router-dom";
 import {React, useEffect, useState} from 'react';
 import axios from 'axios';
 
-export default function Item_page() {
+export default function Water_bottle() {
 
   const [productData, setData] = useState([]);
 
@@ -34,7 +34,7 @@ export default function Item_page() {
           
           <div>
           {productData.map(product => {
-                if(product.productID === 2){
+                if(product.productID === 1){
                   return(
                     <>
                       <h1 className="title item_page_text" key={product}>{product.product_name}</h1>

@@ -2,7 +2,7 @@ import { Await, Link } from "react-router-dom";
 import {React, useState, useEffect} from 'react';
 import axios from 'axios';
 import "./cartStyle.css"
-import water from "./shop_assets/water_bottle.PNG"
+import water from "./item_pages/shop_assets/water_bottle.PNG"
 
 export default function Shop_cart() {
 
@@ -57,7 +57,7 @@ export default function Shop_cart() {
     }
 
     const apply_points = (points) => {
-      if(!IsCheck){
+      if(!IsCheck && subtotal!=0){
         if(points>=100){
           console.log("discounted")
           let discount = points/1000;
@@ -66,12 +66,15 @@ export default function Shop_cart() {
           console.log(newtotal,"new total")
         }
       }
-      else if(IsCheck){
+      else if(IsCheck && subtotal!=0){
         console.log("discounted revoked")
         let discount = points/1000;
         let newtotal = subtotal+discount
         setsubtotal(newtotal);
         console.log(newtotal,"new total")
+      }
+      else{
+        setsubtotal(subtotal)
       }
     }
 
@@ -119,6 +122,7 @@ export default function Shop_cart() {
       setcheck(!IsCheck);
       apply_points(points);
     }
+    var notEmpty = true;
     return(
       <div>
         <div className="cart_page">
@@ -131,7 +135,7 @@ export default function Shop_cart() {
             </div>
             <h2>£{subtotal}</h2>
               
-              
+            
             <Link to="/checkout"><button className="checkout">CHECKOUT</button></Link>
             </span>
             <table className="cart_items">
@@ -144,17 +148,16 @@ export default function Shop_cart() {
                   <th className="table_h"></th>
                 </tr>
               </thead>
-            
             {
-              
+              notEmpty ? console.log("no") : console.log("yes")
+            }
+            {
               cartItems.map(item => {
-                var notEmpty = true; 
-                
                 return(
                 <>
                   {
                     productData.map(product => {
-                      if (product.productID === item.product_id) {
+                      if (product.productID === item.product_id && notEmpty) {
                         return(<>{notEmpty ? <tbody>
                           <tr key={"cart"}>
                             <td><img className="item_image" src={water} alt="water"></img></td>
@@ -174,8 +177,6 @@ export default function Shop_cart() {
               })
             }
             </table>
-
-            
         </div>
       </div>
     );
