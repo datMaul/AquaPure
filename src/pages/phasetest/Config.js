@@ -49,6 +49,12 @@ const config = {
               "Each Test Kit has different application procedures, and their direction of use can be found on the box and in the included instruction manual",
             id: 2,
           },
+          {
+            question: "Is it necessary to send back the result of the test to the AquaPure?",
+            answer:
+            "Well... it is not necessary to send the result back. However, it would be appreciated for your contribution towards updating the map.",
+            id:3,
+          }
         ],
       },
     },

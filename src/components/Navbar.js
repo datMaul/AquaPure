@@ -156,7 +156,7 @@ export default function Navbar() {
                   id="account-btn"
                   className="account-btn"
                 >
-                  Admin Interface
+                  Admin Panel
                 </CustomLink>
               )}
             </ul>
