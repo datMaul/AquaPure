@@ -1,10 +1,10 @@
 import "./Shop_Style.css";
 import water from "./item_pages/shop_assets/water_bottle.PNG";
-import logo from "./shop_assets/aqlogo.png";
+
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import {React, useCallback, useEffect, useState,useReducer} from 'react';
-import placeholder from './shop_assets/placeholder.jpg';
+import placeholder from './item_pages/shop_assets/placeholder.jpg';
 
 
 export default function Shop() {  

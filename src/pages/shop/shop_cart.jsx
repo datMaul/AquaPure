@@ -10,7 +10,7 @@ export default function Shop_cart() {
     const [productData, setData] = useState([]);
     const [count, setcount] = useState(0);
     const [subtotal, setsubtotal] = useState(0);
-    const [points, setpoints] = useState(2500);
+    const [Userpoints, setUserpoints] = useState([]);
     
 
     
@@ -20,6 +20,7 @@ export default function Shop_cart() {
     useEffect(() => {
       loadItems();
       loadProducts();
+      loadUserPoints();
       
     },[]);
 
@@ -27,6 +28,11 @@ export default function Shop_cart() {
       total();
       
     },[cartItems])
+
+    const loadUserPoints = () => {
+      axios.get("http://localhost:8080/points")
+      .then(res=>{setUserpoints(res.data);console.log(res.data,"user points loaded")})
+    }
     
     const loadProducts = () => {
       axios.get('http://localhost:8080/product')
@@ -56,26 +62,37 @@ export default function Shop_cart() {
       setsubtotal(total_price)
     }
 
-    const apply_points = (points) => {
-      if(!IsCheck && subtotal!=0){
-        if(points>=100){
-          console.log("discounted")
-          let discount = points/1000;
-          let newtotal = subtotal-discount
-          setsubtotal(newtotal);
-          console.log(newtotal,"new total")
-        }
-      }
-      else if(IsCheck && subtotal!=0){
-        console.log("discounted revoked")
-        let discount = points/1000;
-        let newtotal = subtotal+discount
-        setsubtotal(newtotal);
-        console.log(newtotal,"new total")
-      }
-      else{
-        setsubtotal(subtotal)
-      }
+    const apply_points = (userid) => {
+      Userpoints.map(score => {
+        if(score.user_ID === userid){
+          var points = score.score
+          // var points = 2500
+          if(points >= 100){
+            if(!IsCheck && subtotal!=0){
+            
+              console.log("discounted")
+              let discount = points/1000;
+              let newtotal = subtotal-discount
+              setsubtotal(newtotal);
+              console.log(newtotal,"new total")
+              
+            }
+            else if(IsCheck && subtotal!==0){
+              console.log("discounted revoked")
+              let discount = points/1000;
+              let newtotal = subtotal+discount
+              setsubtotal(newtotal);
+              console.log(newtotal,"new total")
+            }
+  
+          }
+          else{
+            setsubtotal(subtotal)
+          }
+  
+        }       
+      })
+      
     }
 
     const deleteItem = async (id) => {
@@ -120,7 +137,7 @@ export default function Shop_cart() {
     const [IsCheck,setcheck] = useState(false);
     const checkhandler = () => {
       setcheck(!IsCheck);
-      apply_points(points);
+      apply_points(0);
     }
     var notEmpty = true;
     return(
@@ -129,13 +146,20 @@ export default function Shop_cart() {
           <h1 className="cart_title">YOUR CART</h1>
           <span className="containerSum">
             <h3>subtotal</h3>
+            {
+              Userpoints.map(score => {
+                // only used to test functionality supposed to be the id of the user that's logged in
+                var testid = 0
+                if(score.user_ID === testid){
+                  return(<><h3>You have {score.score} points to your account</h3></>)
+                }
+              })
+            }
             <div className="discount">
               <label htmlFor="checkbox">Apply Points Discount</label>
               <input type="checkbox" checked={IsCheck} onChange={() => checkhandler()}></input>
             </div>
             <h2>£{subtotal}</h2>
-              
-            
             <Link to="/checkout"><button className="checkout">CHECKOUT</button></Link>
             </span>
             <table className="cart_items">
@@ -148,9 +172,6 @@ export default function Shop_cart() {
                   <th className="table_h"></th>
                 </tr>
               </thead>
-            {
-              notEmpty ? console.log("no") : console.log("yes")
-            }
             {
               cartItems.map(item => {
                 return(
