@@ -7,53 +7,70 @@ import axios from 'axios';
 export default function Tote_bag() {
 
   const [productData, setData] = useState([]);
+  const [cartItems,setcartItems] = useState([]);
 
-  
-  
   useEffect(()=>{
+    loadProducts();
+    loadItems();
+  },[])
+
+  const loadProducts = () => {
     axios.get('http://localhost:8080/product')
     .then(res => {
       console.log(res.data)
       setData(res.data)
     })
-  },[])
+  }
+  const loadItems = () => {
+    axios.get('http://localhost:8080/item').then(res=>{setcartItems(res.data);console.log(res.data,"loaded cart items")})
+  }
+
+          // axios.post('http://localhost:8080/item',{
+          //   'id':productid,
+          //   'user_id':123123,
+          //   'product_id':productid,
+          //   'quantity':add
+          // }).then(res => {console.log(res.data);loadItems();})
+     
+  
   
 
     return(
       <div>
         <div className="page_item">
 
-          
           <div className="back">
             <Link to="/shop"className="back_button">{"<"}</Link>
           </div>
+
           <center>
-            
             <img alt="water" className="item_page_img" src={water}/>
           </center>
           
-          <div>
+          <div className="item_page_text">
           {productData.map(product => {
-                if(product.productID === 2){
-                  return(
-                    <>
-                      <h1 className="title item_page_text" key={product}>{product.product_name}</h1>
-                    </>
-                  )
-                }
-                else{
-                  return("")
-                }
-                })}
+            if(product.productID === 2){
+              return(
+                <>
+                  <h1 className="title" key={product}>{product.product_name}</h1>
+                  <h1 className="price">£{product.product_price}</h1>
+                  <button className="add" type="button">Add to Cart</button>
+                  <h3 className="desc">{product.product_desc}</h3>
+                </>
+              )
+            }
+            else{
+              return("")
+            }
+            })}
             
 
-            {/* <h2 className="price item_page_text">£19.99</h2>
-            <h3 className="desc item_page_text">COLOUR:</h3> */}
-            <button className="add item_page_text" type="button">Add to Cart</button>
+            
           </div>
 
         </div>
       </div>
     );
   }
+
   

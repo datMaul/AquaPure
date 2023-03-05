@@ -56,19 +56,13 @@ export default function Shop() {
     updateStates(setvalue8)
   },[productData])
 
-  
-
-
-
   const updateStates = ()=>{
     itemData.map(item=>{
       const increment = item.quantity+1
       if(item.id===1){
-        console.log(item.quantity ,"product 1")
         setvalue1(increment)
       }
       if(item.id===2){
-        console.log(item.quantity,"product 2")
         setvalue2(increment)
       }
       if(item.id===3){
