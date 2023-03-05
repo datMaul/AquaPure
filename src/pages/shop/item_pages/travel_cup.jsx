@@ -6,8 +6,11 @@ import axios from 'axios';
 
 export default function Travel_cup() {
 
+
   const [productData, setData] = useState([]);
   const [cartItems,setcartItems] = useState([]);
+  const [item,setvalue] = useState(1);
+
 
   useEffect(()=>{
     loadProducts();
@@ -21,27 +24,38 @@ export default function Travel_cup() {
       setData(res.data)
     })
   }
-
   const loadItems = () => {
     axios.get('http://localhost:8080/item').then(res=>{setcartItems(res.data);console.log(res.data,"loaded cart items")})
   }
+  
 
 
+  
+  useEffect(()=>{
+    updateStates(setvalue)
+  },[productData])
 
-  const add = (productid) => {
-    cartItems.map(item => {
-      if(productid === item.product_id){
-          let add = item.quantity+1
-          axios.post('http://localhost:8080/item',{
-            'id':productid,
-            'user_id':123123,
-            'product_id':productid,
-            'quantity':add
-          }).then(res => {console.log(res.data);loadItems();})
+  const updateStates = ()=>{
+    cartItems.map(item=>{
+      if(item.id === 5){
+        const increment = item.quantity+1
+        setvalue(increment)  
       }
     })
   }
+
   
+
+  const postAdd = (productid,quantity) => {
+    setvalue((increment)=>(increment+1))
+    console.log(productid,"post add product id")
+    axios.post('http://localhost:8080/item',{
+      "id":productid,
+      "user_id":123123,
+      "product_id":productid,
+      "quantity":quantity,
+      }).then(res => {console.log(res.data)})
+    }
 
     return(
       <div>
@@ -62,7 +76,7 @@ export default function Travel_cup() {
                 <>
                   <h1 className="title" key={product}>{product.product_name}</h1>
                   <h1 className="price">£{product.product_price}</h1>
-                  <button className="add" type="button" onClick={()=>add(product.productID)}>Add to Cart</button>
+                  <button className="add" type="button" onClick={()=>postAdd(product.productID,item)}>Add to Cart</button>
                   <h3 className="desc">{product.product_desc}</h3>
                 </>
               )
@@ -71,11 +85,7 @@ export default function Travel_cup() {
               return("")
             }
             })}
-            
-
-            
           </div>
-
         </div>
       </div>
     );

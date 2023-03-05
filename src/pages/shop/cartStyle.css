@@ -74,27 +74,46 @@ td{
     scale:0.90;
 }
 .quant_td{
-    margin-left:50px;
+    width:10%;
+    cursor:default;
+    
 }
 .quant{
-    padding:3px;
-    width:30px;
-    
-    background-color: rgb(205, 205, 205);
+
+    display:inline;
+    padding:2px;
+
 }
-.quant_button{
-    width: 15%;
+.quant_button_minus{
+    cursor:pointer;
+    margin-left:15%;
+    width: 20%; 
     text-align: center;
-    margin:2px;
     border:none;
     font-size: 23px;
-    border-radius: 50%;
+    transition:350ms;
+    
+    float:left;
 }
-.quant_button:hover{
-    cursor: pointer;
-    background-color: rgb(168, 255, 226);
-}
+.quant_button_plus{
+    cursor:pointer;
+    margin-right: 15%;
+    width: 20%;
+    text-align: center;
+    border:none;
+    font-size: 23px;
+    transition:350ms;
 
+    float:right;
+}
+.quant_button_minus:hover{
+    cursor: pointer;
+    background-color: rgb(0, 174, 255);
+}
+.quant_button_plus:hover{
+    cursor: pointer;
+    background-color: rgb(0, 174, 255);
+}
 .containerSum{
     float:right;
     text-align: left;
