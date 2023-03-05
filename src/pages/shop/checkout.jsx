@@ -46,20 +46,11 @@ export default function Checkout() {
         })
         setsubtotal(total_price)
     }
+
+   
     
     return (
         <div>
-            {/* {show && (
-                <div className="purchase">
-                    <div>
-                        PopUp
-                    </div>
-                    <div>
-                        <button onClick={()=>setshow(false)}>X</button>
-                    </div>
-                    
-                </div>
-            )} */}
             <div className="check_page">
                 <div className="check_details">
                     <h1 className="check_title">AquaPure</h1>
