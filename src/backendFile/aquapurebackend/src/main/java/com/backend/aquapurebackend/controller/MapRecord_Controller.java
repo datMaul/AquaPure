@@ -7,10 +7,16 @@ import com.backend.aquapurebackend.repository.MapRecordRepository;
 import com.backend.aquapurebackend.repository.OpenWIMSRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.util.Collections;
+import java.util.Arrays;
+import java.util.List;
+import org.springframework.data.repository.query.Param;
+
+
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.http.HttpStatus;
 
-import java.util.List;
+
 @RestController
 @CrossOrigin("http://localhost:3000")
 public class MapRecord_Controller {
@@ -33,13 +39,20 @@ public class MapRecord_Controller {
                 .orElseThrow(() -> new MapRecordNotFoundException(id));
     }
 
-    /*
-    // Get map records by parameters
-    @GetMapping("/maprecords/{sources}/{waterbodytypes}/{parameter}")
-    public List<MapRecord> getMapRecordsByParams(@PathVariable String[] sources, @PathVariable String[] waterbodytypes, @PathVariable String parameter) {
-        return mapRecordRepository.findBySelectedParams(sources, waterbodytypes, parameter);
+    @GetMapping("/maprecordsbyparams")
+    public List<MapRecord> getMapRecordsByParams(@Param(value = "sourceTypes") String sourceTypes,
+                                                 @Param(value = "waterBodyTypes") String waterBodyTypes,
+                                                 @Param(value = "parameterName") String parameterName) {
+        
+        List<String> sourceTypesList = sourceTypes.isEmpty() ? Collections.emptyList() : Arrays.asList(sourceTypes.split(","));
+        List<String> waterBodyTypesList = waterBodyTypes.isEmpty() ? Collections.emptyList() : Arrays.asList(waterBodyTypes.split(","));
+
+        if (sourceTypesList.isEmpty() && waterBodyTypesList.isEmpty()) {
+            return Collections.emptyList();
+        }
+        
+        return mapRecordRepository.findBySelectedParams(sourceTypesList, waterBodyTypesList, parameterName);
     }
-    */
 
     // Create a new map record
     @PostMapping("/maprecords")

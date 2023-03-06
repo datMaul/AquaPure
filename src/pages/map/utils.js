@@ -108,29 +108,18 @@ function OSGB36toWGS84 (E, N) {
     // Algorithm Source: https://www.npmjs.com/package/bngconvert
 }
 
-function OSGB36toMapSquare(E, N, sqr_scale = 0.005) {
-    //const c1 = OSGB36toWGS84(E, N);
-
-    //round to nearest square
-    const c1 = OSGB36toWGS84(E - (E % sqr_scale), N - (N % sqr_scale));
-
-    //const c2 = OSGB36toWGS84(E+50000, N);
-    //const c3 = OSGB36toWGS84(E+50000, N+50000);
-    //const c4 = OSGB36toWGS84(E, N+50000);
-    const c2 = [c1[0] + sqr_scale, c1[1]];
-    const c3 = [c1[0] + sqr_scale, c1[1] + (sqr_scale/1.6)];
-    const c4 = [c1[0], c1[1] + (sqr_scale/1.6)];
-
-    console.log(c1, c2, c3, c4);
-    return [c1, c2, c3, c4, c1];
-}
-
 function mapTileCoords([lng, lat], tile_size = 0.5) {
-    console.log("input: ", lat, lng);
+    console.log("Input coordinates: ", lat, lng);
 
+    // Round the lat and lng to the nearest tile size
+    lng = lng - (lng % tile_size);
+    lat = lat - (lat % (tile_size / 1.6)); // TO DO: Fix this to be more accurate
+    
     // Get the lat diff taking the Mercator projection scale factor into account
     var latDiff = (tile_size / (1 / Math.cos(lat * (Math.PI / 180))));
+    console.log(`latDiff at lat ${lat} is ${latDiff}`)
 
+    // Get the coordinates of the corners of the tile
     var c1 = [lng,              lat];
     var c2 = [lng,              lat + latDiff];
     var c3 = [lng + tile_size,  lat + latDiff];
@@ -139,14 +128,14 @@ function mapTileCoords([lng, lat], tile_size = 0.5) {
     return [c1, c2, c3, c4, c1];
 }
 
-// Fetches the records from the database for the given water body and parameter filters
-function fetchMapRecords(waterBodyFilters, paramFilters) {
-    return;
+// TO DO: Move the fetchMapRecords function from map.js to here
+// Fetches the records from the database for the given filters
+function fetchMapRecords(sourceTypes, waterBodyTypes, parameterName) {
 }
 
 
 module.exports = {
     OSGB36toWGS84,
-    OSGB36toMapSquare,
-    mapTileCoords
+    mapTileCoords,
+    fetchMapRecords
 }

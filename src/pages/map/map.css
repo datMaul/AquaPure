@@ -11,14 +11,47 @@
     z-index: 0;
 }
 
-#search_bar, #water_body_filters, #parameter_filters{
+#search_bar, #water_body_filters, #parameter_filters, #source_filters{
     position: absolute;
+    z-index: 1;
+}
+
+/* #search_bar_container {
+    display: grid;
+    grid-template-columns: 25vw 45px;
+    position: absolute;
+    top: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #eeeeee;
+    height: 40px;
+    z-index: 1;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: center;
+} */
+
+#test_button {
+    position: absolute;
+    top: 85px;
+    left: 34%;
+    padding: 10px;
+    transform: translateX(-66%);
+    z-index: 1;
+}
+
+#remove_tiles_button {
+    position: absolute;
+    top: 85px;
+    left: 29%;
+    padding: 10px;
+    transform: translateX(-71%);
     z-index: 1;
 }
 
 #search_bar {
     display: flex;
-    top: 80px;
+    top: 85px;
     left: 50%;
     transform: translateX(-50%);
     justify-content: center;
@@ -26,44 +59,101 @@
 
 #search_bar>input {
     width: 25vw;
-    height: 30px;
+    height: 40px;
     border-radius: 10px 0 0 10px;
     padding: 16px;
     border: 1px solid #929292;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+}
+
+#search_bar>input:focus {
+    outline: none;
+    border: 2px solid #5bced5;
 }
 
 #search_bar>button {
-    width: 40px;
-    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 40px;
     border-radius: 0 10px 10px 0;
     padding: 16px;
     border: 1px solid #929292;
     background-color: white;
-    color: black;
     box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
 }
 
-#water_body_filters {
+#search_bar>button:hover {
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+
+#search_results {
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 135px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(25vw + 45px);
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+#search_results>li>a {
+    display: block;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+#search_results>li:hover {
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+
+#source_filters {
     top: 130px;
     left: 15px;
-    width: 25%;
+    width: 300px;
+}
+
+#source_filters>div>label {
+    margin-right: 10px;
+}
+
+#water_body_filters {
+    top: 230px;
+    left: 15px;
+    width: 300px;
+}
+
+#water_body_filters>#check_all_waterbody {
+}
+
+#water_body_filters>.water_body_checkboxes {
+    display: grid;
+    grid-template-columns: auto auto;
+
 }
 
 #parameter_filters {
-    top: 280px;
+    top: 440px;
     left: 15px;
 }
 
-#filter {
+#param_filter {
     width: 100%;
     padding: 5px;
     border-radius: 5px;
     border: 2px solid #929292;
     margin-bottom: 15px;
-}
-
-#search_button {
 }
 
 .legend_list {
@@ -75,12 +165,12 @@
 .legend_list>li {
     display: flex;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .legend_list>li>div {
     display: inline-block;
-    padding: 12px;
+    padding: 10px 15px;
     margin-right: 8px;
 }
 
