@@ -58,6 +58,8 @@ export default function Checkout() {
                 "user_id":123123,
                 "product_id":item.product_id
             }).then(res=>{console.log(res.data,"items post to data base")})
+            axios.delete(`http://localhost:8080/item/${item.product_id}`).then(res => {console.log(res.data,"delete from cart");loadItems();})
+            
         })
     }
 
