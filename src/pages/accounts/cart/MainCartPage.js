@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ChildComponent2 from "./shopcart/ShopCartPage";
 import ChildComponent1 from "./testkitcart/TestkitCartPage";
-import "./MainCArtPage.css";
+import "./MainCartPage.css";
 
 export default function ParentComponent() {
   const [displayChild, setDisplayChild] = useState(null);
@@ -13,13 +13,13 @@ export default function ParentComponent() {
           onClick={() => setDisplayChild("ChildComponent1")}
           className="Cart_Side_BTN"
         >
-          Testkit
+          Testkit Cart
         </button>
         <button
           onClick={() => setDisplayChild("ChildComponent2")}
           className="Cart_Side_BTN"
         >
-          Shop Item
+          Shop Cart
         </button>
       </div>
       <div className="CartChildContainer">

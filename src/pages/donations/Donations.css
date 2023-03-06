@@ -40,7 +40,6 @@ body {
 
 .WaterAid-Container {
     width: 70%;
-    /* border: 2px solid rgba(0, 0, 0, 0.19); */
     margin: auto auto;
 }
 
@@ -53,11 +52,11 @@ body {
 .WaterAid-Container img {
     max-width: 300px;
     height: auto;
+    border: black 2px solid;
 }
 
 .WWF-Container {
     width: 70%;
-    /* border: 2px solid rgba(0, 0, 0, 0.19); */
     margin: auto auto;
 }
 
@@ -70,11 +69,11 @@ body {
 .WWF-Container img {
     max-width: 300px;
     height: auto;
+    border: black 2px solid;
 }
 
 .SoilAssociation-Container {
     width: 70%;
-    /* border: 2px solid rgba(0, 0, 0, 0.19); */
     margin: auto auto;
 }
 
@@ -87,11 +86,11 @@ body {
 .SoilAssociation-Container img {
     max-width: 300px;
     height: auto;
+    border: black 2px solid;
 }
 
 .RSPD-Container {
     width: 70%;
-    /* border: 2px solid rgba(0, 0, 0, 0.19); */
     margin: auto auto;
 }
 
@@ -104,7 +103,78 @@ body {
 .RSPD-Container img {
     max-width: 300px;
     height: auto;
+    border: black 2px solid;
 }
+
+/* 
+.Charity_Water-Container {
+    width: 70%;
+    margin: auto auto;
+}
+
+.Charity_Water-Info {
+    grid-template-columns: 20% 80%;
+    display: flex;
+    align-items: center;
+}
+
+.Charity_Water-Container img {
+    max-width: 300px;
+    height: auto;
+    border: black 2px solid;
+}
+
+.Water_org-Container {
+    width: 70%;
+    margin: auto auto;
+}
+
+.Water_org-Info {
+    grid-template-columns: 20% 80%;
+    display: flex;
+    align-items: center;
+}
+
+.Water_org-Container img {
+    max-width: 300px;
+    height: auto;
+    border: black 2px solid;
+}
+
+.TheWaterProject-Container {
+    width: 70%;
+    margin: auto auto;
+}
+
+.TheWaterProject-Info {
+    grid-template-columns: 20% 80%;
+    display: flex;
+    align-items: center;
+}
+
+.TheWaterProject-Container img {
+    max-width: 300px;
+    height: auto;
+    border: black 2px solid;
+}
+
+.TheGlobalWaterChallenge-Container {
+    width: 70%;
+    margin: auto auto;
+}
+
+.TheGlobalWaterChallenge-Info {
+    grid-template-columns: 20% 80%;
+    display: flex;
+    align-items: center;
+}
+
+.TheGlobalWaterChallenge-Container img {
+    max-width: 300px;
+    height: auto;
+    border: black 2px solid;
+} 
+*/
 
 #Donate-Button {
     margin-left: 2.5%;
