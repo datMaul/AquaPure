@@ -2,7 +2,18 @@ import React from "react";
 import "./DonationForm.css";
 import { Link } from "react-router-dom";
 
+
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+    // handle form submission here
+}
+
 export default function DonationForm() {
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
