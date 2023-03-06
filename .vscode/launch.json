@@ -5,6 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "ShopHistory",
+            "request": "launch",
+            "mainClass": "com.AquaPure.Shop.ShopHistory",
+            "projectName": "Shop"
+        },
+        {
+            "type": "java",
+            "name": "ShopApplication",
+            "request": "launch",
+            "mainClass": "com.AquaPure.Shop.ShopApplication",
+            "projectName": "Shop"
+        },
+        {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",

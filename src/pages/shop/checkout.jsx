@@ -20,6 +20,8 @@ export default function Checkout() {
         total();
     },[cartItems])
 
+    
+
     const loadItems = () => {
         axios.get("http://localhost:8080/item")
             .then(res => {
@@ -45,6 +47,18 @@ export default function Checkout() {
             })
         })
         setsubtotal(total_price)
+    }
+
+    const purchase = () => {
+        cartItems.map(item => {
+            let id = Math.floor(Math.random()*111)
+            console.log(id)
+            axios.post('http://localhost:8080/history',{
+                "purchase_id": id,
+                "user_id":123123,
+                "product_id":item.product_id
+            }).then(res=>{console.log(res.data,"items post to data base")})
+        })
     }
 
    
@@ -100,11 +114,12 @@ export default function Checkout() {
                         <h2 className="subtotal_num">{subtotal}</h2>
                     </div>
                     {/* Requires npm react-popup installed */}
-                    <Popup trigger={<button>PURCHASE</button>}>
+                    {/* <Popup trigger={<button>PURCHASE</button>}>
                         <div className="purchase">
                             <h1>Thank you for your purchase!</h1>
                         </div>
-                    </Popup>
+                    </Popup> */}
+                    <button onClick={()=>purchase()}>PURCHASE</button>
                 </div>
             </div>
         </div>
