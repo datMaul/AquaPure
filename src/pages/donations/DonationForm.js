@@ -1,7 +1,7 @@
 import React from 'react';
 import './form.css';
 
-function DonationPage() {
+export default function DonationPage() {
   return (
     <div>
       <form>
