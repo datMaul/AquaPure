@@ -1,8 +1,12 @@
+// export default function DonationForm() {
+//     return <h1>Shop</h1>;
+// }
+
 import React from 'react';
 import './form.css';
 import { Link } from "react-router-dom";
 
-export default function DonationPage() {
+export default function DonationForm() {
     return (
         <div>
             <form>
