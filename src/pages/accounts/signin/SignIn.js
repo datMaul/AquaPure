@@ -1,82 +1,102 @@
-import { Link } from 'react-router-dom';
-import './SignIn.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "./SignIn.css";
+
 
 export default function SignIn() {
-  return (
-    <><meta charSet="utf-8" /><link rel="stylesheet" href="SignIn.css" />
-    <body className='body1'>
-      <div className="center">
-      <h1>Login</h1>
-      <form method="post">
-        <div className="txt_field">
-          <input type="text" required="" />
-          <span />
-          <label>Email</label>
-        </div>
-        <div className="txt_field">
-          <input type="password" required="" />
-          <span />
-          <label>Password</label>
-        </div>
-        <div className="pass">Forgot Password?</div>
-        <input type="submit" defaultValue="SignIn" />
-        <div className="SignIn">
-          Not a member? <Link to="/accounts/signup">Signup</Link>
-        </div>
-      </form>
-    </div>
-    </body>
-    </>
-  );
-}
+  const [user, setUser] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [errMsg, setErrMsg] = useState("");
 
-class Login {
-  constructor(form, fields) {
-    this.form = form;
-    this.fields = fields;
-    this.validationSubmit();
-  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    axios
+      .post("http://localhost:8080/login", { email: user, password: pwd })
+      .then((res) => {
+        //Sign In success
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user_ID", res.data.userId);
+        localStorage.setItem("accountType", res.data.accountType);
 
-  validationSubmit() {
-    let self = this;
-
-    this.form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      var error = 0;
-      self.fields.forEach((field) => {
-        const input = document.querySelector(`#${field}`);
-        if (self.validateFields(input) == false) {
-          error++;
+        if (res.data.accountType === "Admin") {
+          window.location = "/admin";
+        } else if (res.data.accountType === "User") {
+          window.location = '/';
         }
+
+        console.log("User ID: " + localStorage.getItem("user_ID"));
+        console.log("Account Type: " + res.data.accountType);
+        console.log(res.data);
+        console.log(res.data.message);
+        console.log("Ladies and Gentlemen, we got'em!");
+        console.log(res.data.token);
+      })
+      .catch((err) => {
+        //Sign In error
+        //setErrMsg(err.response.data.message);
+        alert("Please check your email and password and try again!");
+        console.log("Error Chief!!!");
       });
-      if (error == 0) {
-        localStorage.setItem("auth", 1);
-
-        this.form.submit();
-      }
-    })
-  }
-}
-
-class Authenticate {
-  constructor(){
-    document.querySelector("body").style.display = "none";
-    const auth = localStorage.getItem("auth");
-    this.validateAuth(auth);
-
   }
 
-  validateAuth(auth) {
-    if (auth != 1) {
-      window.location.replace("/");
-    }else {
-      document.querySelector("body").style.display = "block";
-    }
-  }
-
-  logOut() {
-    localStorage.removeItem("auth");
-    window.location.replace("/");
-
-  }
+  return (
+    <div className="SignIn">
+      <div className="SignIn-Form-Content">
+        <h1> Sign In </h1>
+        <br /> <br />
+        <form onSubmit={handleSubmit}>
+          <div className="Container-SignIn-Form">
+            <p
+              className={errMsg ? "errmsg" : "offscreen"}
+              aria-live="assertive"
+            >
+              {errMsg}
+            </p>
+            <input
+              type="email"
+              className="input-text"
+              id="emailInput"
+              name="eMail"
+              placeholder="Email"
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
+              required
+            />
+            <br /> <br />
+            <input
+              type="password"
+              id="passwordInput"
+              className="input-text"
+              name="password"
+              placeholder="Password"
+              onChange={(e) => setPwd(e.target.value)}
+              value={pwd}
+              required
+            />
+            <br /> <br />
+            {/* <div className="Container-RememberUser">
+              <input type="checkbox" id="rememberMe" name="rememberMe" />
+              <label htmlFor="rememberMe"> Remember Me </label>
+              <br /> <br />
+            </div> */}
+            <button type="submit" id="submitButton">
+              Log In
+            </button>
+          </div>
+          <br /> <br />
+          {/* <div className="Container-ForgotPassword">
+            <label for="ForgotPassword"> Forgot Password? </label>
+            <Link to="/accounts/password/reset"> Click Here to Reset </Link>
+            <br />
+          </div> */}
+          <div className="Container-SignUp">
+            <label for="SigningUp"> Don't have an account </label>
+            <Link to="/accounts/signup"> Sign Up Here</Link>
+          </div>
+        </form>
+        <br />
+      </div>
+    </div>
+  );
 }

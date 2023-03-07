@@ -106,11 +106,11 @@ h1 {
 }
 
 .Test_Result_Map {
-    padding: 0px 400px;
+    padding: 0px 110px;
 }
 
 .Test_Result_Map p {
-    text-align: justify;
+    text-align: center;
 }
 
 .Test_Kit_Info {
@@ -119,6 +119,35 @@ h1 {
 
 .Test_Kit_Info p {
     text-align: justify;
+}
+
+.Quantity_Input {
+    width: 95px;
+    border-radius: 25px;
+    border: 2px solid #008CBA;
+    text-align: center;
+    justify-content: space-between;
+    margin: 0 2px;
+}
+
+.Quantity_Changer {
+    background-color: #008CBA;
+    border-radius: 50%;
+    color: #ffffff;
+    border: 2px solid #008CBA;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: ease-out 350ms;
+    box-shadow: inset 0 0 0 0 #ffffff;
+}
+
+.Quantity_Changer:hover {
+    background-color: #ffffff;
+    color: #008CBA;
+    border: 2px solid #008CBA;
+    box-shadow: inset 150px 0 0 0 #ffffff;
 }
 
 #WTK_P_CART {

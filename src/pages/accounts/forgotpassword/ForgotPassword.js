@@ -6,7 +6,9 @@ export default function ForgotPassword() {
     <div className='ForgotPassword'>
       <div className='ForgotPassword-Content'>
         
-        <Link to = "/accounts/login"> Back</Link>
+        <Link to = "/accounts/login">
+          <button className = "backButton"> Back </button>
+        </Link>
 
         <h1> Forgot Password </h1>
         <br/> <br/>

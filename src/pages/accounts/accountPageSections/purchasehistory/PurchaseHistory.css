@@ -1,0 +1,58 @@
+.HistoryContainer {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.HistorySidebar {
+    background-color: #ebebeb22;
+    top: 70px; /* Height of the navbar */
+    height: calc(100vh - 70px);
+    display: flex;
+    position: sticky;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.HistChildContainer {
+    margin: auto;
+    background-color: #fff;
+}
+
+.Hist_Side_BTN {
+    text-align: center;
+    display: block;
+    width: 100%;
+    position: relative;
+    margin-bottom: 15px;
+    background-color: #ebebeb22;
+    font-size: 20px;
+    border: none;
+    text-decoration: none;
+    color: #000;
+}
+
+.Hist_Side_BTN:hover {
+    color: #5bced5;
+}
+
+.Hist_Side_BTN::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 4px;
+    background-color: #5bced5;
+    transition: width 0.3s;
+    margin: -5px 0;
+}
+
+.Hist_Side_BTN:hover::before {
+    width: 100%;
+}
+
+.Hist_Side_BTN.active::before,
+.Hist_Side_BTN:hover::before {
+    width: 100%;
+}

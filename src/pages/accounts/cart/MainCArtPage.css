@@ -1,0 +1,55 @@
+.CartContainer {
+    display: grid;
+    grid-template-columns: 18% 82%;
+}
+
+.CartSidebar {
+    background-color: #f5f5f5;
+    top: 70px; /* Height of the navbar */
+    height: calc(100vh - 70px);
+    display: flex;
+    position: sticky;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.CartChildContainer {
+    margin: auto;
+    background-color: #fff;
+}
+
+.Cart_Side_BTN {
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: #f5f5f5;
+    font-size: 20px;
+    border: none;
+}
+
+.Cart_Side_BTN:hover {
+    color: #008CBA;
+}
+
+.Cart_Side_BTN::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 4px;
+    background-color: #008CBA;
+    transition: width 0.3s;
+    margin: -5px 0;
+}
+
+.Cart_Side_BTN:hover::before {
+    width: 100%;
+}
+
+.Cart_Side_BTN.active::before,
+.Cart_Side_BTN:hover::before {
+    width: 100%;
+}
