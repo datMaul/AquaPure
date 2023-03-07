@@ -18,12 +18,24 @@ export default function Purchase_history() {
     return(
       <div>
         <div>
-            {history.map(purchase => {
-                return(
-                <>
-                <p>{purchase.purchase_id} {purchase.product_id}</p>
-                </>)
-            })}
+          <h1>Your purchase History</h1>
+          <table>
+            <tr>
+              <th></th>
+              <th>ID</th>
+              <th>Product ID</th>
+            </tr>
+            {
+              history.map(purchase => {
+                return(<tr>
+                  <td></td>
+                  <td>{purchase.purchase_id}</td>
+                  <td>{purchase.product_id}</td>
+                </tr>)
+              })
+            }
+          </table>
+            
         </div>
       </div>
     );
