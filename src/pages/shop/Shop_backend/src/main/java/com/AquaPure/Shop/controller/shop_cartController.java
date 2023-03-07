@@ -8,9 +8,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.AquaPure.Shop.dto.shop_cartPostDTO;
-import com.AquaPure.Shop.dto.shop_productPostDTO;
 import com.AquaPure.Shop.model.shop_cart;
-import com.AquaPure.Shop.model.shop_product;
 import com.AquaPure.Shop.service.shop_cartService;
 
 @CrossOrigin
