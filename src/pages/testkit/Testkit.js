@@ -3,8 +3,11 @@ import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
 import Chatbot from "../phasetest/Phasetest";
 import Footer from "../../components/Footer";
+import Poppup from "../../components/Popup";
+import { Link } from "react-router-dom";
 
 export default function Testkit() {
+  const [buttonPopup, setButtonPopup] = useState(false)
   const [isChatbotVisible, setIsChatbotVisible] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const wrapperRef = useRef(null);
@@ -212,6 +215,7 @@ export default function Testkit() {
       .then(res => {
         console.log("okay")
         console.log(res);
+        setButtonPopup(true)
       })
       .catch(err => {
         console.error(err);
@@ -224,6 +228,7 @@ export default function Testkit() {
     axios.post('http://localhost:8080/TestkitCartItem', StandardData)
       .then(res => {
         console.log(res);
+        setButtonPopup(true)
       })
       .catch(err => {
         console.error(err);
@@ -236,6 +241,7 @@ export default function Testkit() {
     axios.post('http://localhost:8080/TestkitCartItem', PlusData)
       .then(res => {
         console.log(res);
+        setButtonPopup(true)
       })
       .catch(err => {
         console.error(err);
@@ -248,6 +254,7 @@ export default function Testkit() {
     axios.post('http://localhost:8080/TestkitCartItem', PremiumData)
       .then(res => {
         console.log(res);
+        setButtonPopup(true)
       })
       .catch(err => {
         console.error(err);
@@ -260,6 +267,7 @@ export default function Testkit() {
     axios.post('http://localhost:8080/TestkitCartItem', LegionellaData)
       .then(res => {
         console.log(res);
+        setButtonPopup(true)
       })
       .catch(err => {
         console.error(err);
@@ -272,6 +280,7 @@ export default function Testkit() {
     axios.post('http://localhost:8080/TestkitCartItem', BacteriaData)
       .then(res => {
         console.log(res);
+        setButtonPopup(true)
       })
       .catch(err => {
         console.error(err);
@@ -284,6 +293,7 @@ export default function Testkit() {
     axios.post('http://localhost:8080/TestkitCartItem', PoolData)
       .then(res => {
         console.log(res);
+        setButtonPopup(true)
       })
       .catch(err => {
         console.error(err);
@@ -530,6 +540,12 @@ export default function Testkit() {
         <br />
         <br />
       </div>
+      <Poppup trigger={buttonPopup} setTrigger={setButtonPopup}>
+        <center><h3>The Test Kit Was Successfully Added To The Cart!</h3>
+          <br />
+          <button className="Cont_Btn" onClick={() => { setButtonPopup(false) }}>Continue Browsing</button>
+          <Link className="Checkout_Btn" to="/cart">View Cart</Link></center>
+      </Poppup>
       <div ref={wrapperRef}>
         {isChatbotVisible ? (
           <Chatbot />
