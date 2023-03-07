@@ -19,6 +19,7 @@ import Tote_bag_page from "./pages/shop/item_pages/tote_bag"
 import Bamboo_notebook from "./pages/shop/item_pages/Bamboo_notebook"
 import Sticker from "./pages/shop/item_pages/sticker"
 import Travel_cup from "./pages/shop/item_pages/travel_cup"
+import Shop_purchase from "./pages/shop/purchase_history"
 
 
 import { Route, Routes } from "react-router-dom";
@@ -52,6 +53,7 @@ function App() {
           <Route path="/bamboo" element={<Bamboo_notebook/>}/>
           <Route path="/sticker" element={<Sticker/>}/>
           <Route path="/travel_cup" element={<Travel_cup/>}/>
+          <Route path="/shop_purchase" element={<Shop_purchase/>}/>
         </Routes>
       </div>
     </>
