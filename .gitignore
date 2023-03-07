@@ -26,3 +26,4 @@ yarn-error.log*
 *.vpp.bak_*
 /.vscode
 *.DS_Store
+src/backendFile/aquapurebackend/src/bin

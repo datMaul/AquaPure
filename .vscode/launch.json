@@ -9,6 +9,13 @@
             "name": "AquapurebackendApplication",
             "request": "launch",
             "mainClass": "com.backend.aquapurebackend.AquapurebackendApplication",
+            "projectName": "src"
+        },
+        {
+            "type": "java",
+            "name": "AquapurebackendApplication",
+            "request": "launch",
+            "mainClass": "com.backend.aquapurebackend.AquapurebackendApplication",
             "projectName": "aquapurebackend"
         },
         {
