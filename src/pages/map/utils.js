@@ -109,15 +109,26 @@ function OSGB36toWGS84 (E, N) {
 }
 
 function mapTileCoords([lng, lat], tile_size = 0.5) {
-    console.log("Input coordinates: ", lat, lng);
+    //console.log("Input coordinates: ", lat, lng);
+    // for tile size of 0.25:
+    // latDiff at lat 51.71875 is 0.154880545286577
+    // latDiff at lat 54.6875 is 0.14450891605782581
+    // Projection scale factor at lat 51.71875 is 1.6141472096280476
+    // Projection scale factor at lat 54.6875 is 1.729997060527127
 
-    // Round the lat and lng to the nearest tile size
-    lng = lng - (lng % tile_size);
-    lat = lat - (lat % (tile_size / 1.6)); // TO DO: Fix this to be more accurate
+    console.log(`Projection scale factor at lat ${lat} is ${1 / Math.cos(lat * (Math.PI / 180))}`);
+    var latDiff = (tile_size / (1 / Math.cos(lat * (Math.PI / 180))));
+
+    // Round the lat and lng to the nearest tile boundary
+    lng = Math.floor(lng / tile_size) * tile_size;
+    lat = Math.floor((lat) / tile_size) * tile_size;
+
+    //lat = lat - (lat % (tile_size / (1.6))); // TO DO: Fix this to be more accurate
+    // NOTE: divide by higher value the higher the latitude
     
     // Get the lat diff taking the Mercator projection scale factor into account
-    var latDiff = (tile_size / (1 / Math.cos(lat * (Math.PI / 180))));
-    console.log(`latDiff at lat ${lat} is ${latDiff}`)
+    //var latDiff = (tile_size / (1 / Math.cos(lat * (Math.PI / 180))));
+    //console.log(`latDiff at lat ${lat} is ${latDiff}`)
 
     // Get the coordinates of the corners of the tile
     var c1 = [lng,              lat];
