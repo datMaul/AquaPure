@@ -22,35 +22,65 @@ const POINTS = 100
 
 var questions = [
   {
-      question: 'what is a',
+      question: 'What is the primary cause of water pollution?',
       choices:[
-      'aa',
-      'b',
-      'c',
-      'd',
+      'Natural causes such as earthquakes and volcanic eruptions',
+      'Industrial and agricultural activities',
+      'Overuse of pesticides and fertilizers',
+      'Climate change',
       ],
+      answer: 1,
+  },
+  {
+      question: 'What is the primary method for protecting biodiversity?',
+      choices:[
+          'Building more highways',
+          'Increasing the use of pesticides and fertilizers',
+          'Logging for paper and timber production',
+          'Establishing protected areas and conservation programs',
+          ],
+      answer: 3,
+  },
+  {
+      question: 'What is the primary method for reducing water scarcity?',
+      choices:[
+          'Efficient use of water and rainwater harvesting',
+          'Desalination',
+          'Building more dams',
+          'Diverting water from other sources',
+          ],
       answer: 0,
   },
   {
-      question: 'what is b',
+      question: 'What is the primary method for reducing ocean acidification?',
       choices:[
-          'a',
-          'bb',
-          'c',
-          'd',
+          'Increasing the use of fertilizers and pesticides',
+          'Reducing carbon emissions',
+          'Building more offshore oil rigs',
+          'Exploiting ocean resources',
           ],
       answer: 1,
   },
   {
-      question: 'what is c',
+      question: 'What is the primary source of plastic pollution in the ocean?',
       choices:[
-          'a',
-          'b',
-          'cc',
-          'd',
+          'Shipwrecks',
+          'Improper disposal of plastic waste by individuals and industries',
+          'Underwater volcanic eruptions',
+          'Tsunamis',
+          ],
+      answer: 1,
+  },
+  {
+      question: 'What is the primary method for conserving water?',
+      choices:[
+          'Desalination',
+          'Building dams',
+          'Rainwater harvesting and efficient use',
+          'Diverting water from other sources',
           ],
       answer: 2,
-  }
+  },
 ]
 
 function newGame(){
