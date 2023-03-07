@@ -28,8 +28,11 @@ export default function Shop() {
   const [item7,setvalue7] = useState(1);
   const [item8,setvalue8] = useState(1);
   const [check, setcheck] = useState("Add to cart");
+  const [userid, setuserid] = useState(null);
 
+  useEffect(()=>{
 
+  },[])
 
 //load products from DB
   useEffect(() => {

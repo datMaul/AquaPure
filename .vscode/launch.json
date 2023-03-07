@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "AquapurebackendApplication",
+            "request": "launch",
+            "mainClass": "com.backend.aquapurebackend.AquapurebackendApplication",
+            "projectName": "aquapurebackend"
+        },
+        {
+            "type": "java",
             "name": "ShopHistory",
             "request": "launch",
             "mainClass": "com.AquaPure.Shop.ShopHistory",

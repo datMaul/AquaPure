@@ -22,7 +22,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cart from "./pages/accounts/cart/MainCartPage";
 import Account from "./pages/accounts/accountPageSections/Accounts";
-import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitPurchaseHistory/PurchaseHistoryTestkit";
+import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitpurchasehistory/PurchaseHistoryTestkit";
 import Item_page from "./pages/shop/item_pages/item_frame";
 import Shop from "./pages/shop/Shop";
 import Shop_cart from "./pages/shop/shop_cart"
