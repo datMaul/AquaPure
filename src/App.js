@@ -21,8 +21,7 @@ import TestkitEntry from "./pages/accounts/accountPageSections/TestkitEntry";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cart from "./pages/accounts/cart/MainCartPage";
-import Account from "./pages/accounts/accountPageSections/Accounts";
-import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitpurchasehistory/PurchaseHistoryTestkit";
+import Account from "./pages/accounts/accountPageSections/Accounts"
 import Item_page from "./pages/shop/item_pages/item_frame";
 import Shop from "./pages/shop/Shop";
 import CheckOut from "./pages/shop/checkout"
@@ -32,6 +31,7 @@ import Bamboo_notebook from "./pages/shop/item_pages/Bamboo_notebook"
 import Sticker from "./pages/shop/item_pages/sticker"
 import Travel_cup from "./pages/shop/item_pages/travel_cup"
 import Shop_purchase from "./pages/shop/purchase_history"
+import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitPurchaseHistory/PurchaseHistoryTestkit";
 
 
 // import { Route, Routes } from "react-router-dom";
@@ -108,13 +108,13 @@ function App() {
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/accounts/testkitEntry" element={<TestkitEntry />} />
           <Route path="/item" element={<Item_page />} />
-          <Route path="/checkout" element={<CheckOut/>}/>
-          <Route path="/water_bottle" element={<Water_Bottle_page/>}/>
-          <Route path="/tote_bag" element={<Tote_bag_page/>}/>
-          <Route path="/bamboo" element={<Bamboo_notebook/>}/>
-          <Route path="/sticker" element={<Sticker/>}/>
-          <Route path="/travel_cup" element={<Travel_cup/>}/>
-          <Route path="/shop_purchase" element={<Shop_purchase/>}/>
+          <Route path="/checkout" element={<CheckOut />} />
+          <Route path="/water_bottle" element={<Water_Bottle_page />} />
+          <Route path="/tote_bag" element={<Tote_bag_page />} />
+          <Route path="/bamboo" element={<Bamboo_notebook />} />
+          <Route path="/sticker" element={<Sticker />} />
+          <Route path="/travel_cup" element={<Travel_cup />} />
+          <Route path="/shop_purchase" element={<Shop_purchase />} />
         </Routes>
       </div>
     </>
