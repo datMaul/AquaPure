@@ -49,7 +49,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/donations" element={<Donations />} />
+          {/* <Route path="/donations" element={<Donations />} /> */}
           <Route path="/shop" element={<Shop />} />
           <Route path="/game" element={<Game />} />
           <Route path="/accounts/login" element={<SignIn />} />
