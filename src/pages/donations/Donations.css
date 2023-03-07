@@ -55,58 +55,6 @@ body {
     border: black 2px solid;
 }
 
-.WWF-Container {
-    width: 70%;
-    margin: auto auto;
-}
-
-.WWF-Info {
-    grid-template-columns: 20% 80%;
-    display: flex;
-    align-items: center;
-}
-
-.WWF-Container img {
-    max-width: 300px;
-    height: auto;
-    border: black 2px solid;
-}
-
-.SoilAssociation-Container {
-    width: 70%;
-    margin: auto auto;
-}
-
-.SoilAssociation-Info {
-    grid-template-columns: 20% 80%;
-    display: flex;
-    align-items: center;
-}
-
-.SoilAssociation-Container img {
-    max-width: 300px;
-    height: auto;
-    border: black 2px solid;
-}
-
-.RSPD-Container {
-    width: 70%;
-    margin: auto auto;
-}
-
-.RSPD-Info {
-    grid-template-columns: 20% 80%;
-    display: flex;
-    align-items: center;
-}
-
-.RSPD-Container img {
-    max-width: 300px;
-    height: auto;
-    border: black 2px solid;
-}
-
-/* 
 .Charity_Water-Container {
     width: 70%;
     margin: auto auto;
@@ -173,8 +121,7 @@ body {
     max-width: 300px;
     height: auto;
     border: black 2px solid;
-} 
-*/
+}
 
 #Donate-Button {
     margin-left: 2.5%;
