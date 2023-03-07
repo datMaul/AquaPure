@@ -74,7 +74,7 @@ class ActionProvider {
   }
  
   Teamembers = () => {
-    const message = this.createChatBotMessage("The developers of the AquaPaure are the members of Group 16.")
+    const message = this.createChatBotMessage("The developers of the AquaPure are the members of Group 16.")
     this.addMessageToState(message);
   }
 

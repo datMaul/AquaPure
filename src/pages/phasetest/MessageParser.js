@@ -21,7 +21,7 @@ class MessageParser {
       this.actionProvider.Omega()
     } else if (lowercase.includes("admin") || lowercase.includes("contact admin") || lowercase.includes("admin help")) {
       this.actionProvider.Admin_Contact();
-    }else if (lowercase.includes("who created Aquapure")||lowercase.includes("who are the developers of aquapure")||lowercase.includes("who are responsible for the creation of aquapure")||lowercase.includes("which group created aquaPure")){
+    }else if (lowercase.includes("who created aquapure")||lowercase.includes("who are the developers of aquapure")||lowercase.includes("who are responsible for the creation of aquapure")||lowercase.includes("which group created aquaPure")){
       this.actionProvider.Teamembers();
     }else if (lowercase.includes("are the shop item and test kit item same")||lowercase.includes("are the test kit items and the shop items same")){
       this.actionProvider.ShopKit();

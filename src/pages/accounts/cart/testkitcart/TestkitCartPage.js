@@ -11,6 +11,7 @@ import WaterTestKit7 from "../../../testkit/testkit_images_videos/Pool.jpg";
 import Poppup from "../../../../components/Popup";
 import shark from "../cart_images_videos/Shark.png";
 import "./TestkitCartPage.css";
+import { async } from "q";
 
 export default function TestkitCart() {
   const [TestkitCartItems, setTestkitCartItems] = useState([]);
@@ -19,7 +20,7 @@ export default function TestkitCart() {
   useEffect(() => {
     loadTestkit();
   }, []);
-
+  const [buttonPopsup, setButtonPopsup] = useState(false);
   const loadTestkit = async () => {
     const Test_Kit_Log_Result = await axios.get(
       `http://localhost:8080/TestkitCartItem/user/${localStorage.getItem(
@@ -61,7 +62,7 @@ export default function TestkitCart() {
     await axios.delete(`http://localhost:8080/Cart/${id}`);
     loadTestkit();
   };
-
+  const [Kitrl, setKitrl] = useState([]);
   const testKitImages = {
     Basic: WaterTestKit1,
     Standard: WaterTestKit2,
@@ -94,6 +95,18 @@ export default function TestkitCart() {
       console.error(error);
     }
   };
+
+  const testkitreturn = async () => {
+    try {
+      const kitrls = await axios.get(`http://localhost:8080/testkitrepository`);
+      setKitrl(kitrls.data);
+      console.log(kitrls.data);
+      setButtonPopsup(true);
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
 
   return (
     <div className="Testkitcart_Container">
@@ -191,7 +204,7 @@ export default function TestkitCart() {
             </center>
           </div>
           <div className="Shark_div">
-            <img alt="Shark Head" src={shark} />
+            <button className="Shark_Btn" onClick={testkitreturn}><img alt="Shark Head" src={shark} /></button>
           </div>
         </div>
       </div>
@@ -210,6 +223,31 @@ export default function TestkitCart() {
             onClick={() => {
               setButtonPopup(false);
               window.location.reload();
+            }}
+          >
+            Close
+          </button>
+        </center>
+      </Poppup>
+      <Poppup trigger={buttonPopsup} setTrigger={setButtonPopsup}>
+        <center>
+          <h3>Hmmm... That Was Not Expected</h3>
+          <br />
+          <h4>
+            {" "}
+            You'll get a confirmation in your Account Tabs, under Purchase
+            History.
+          </h4>
+          <div style={{ height: "500px", overflow: "scroll" }}>
+            {Kitrl.map(urlData => (
+              <img key={urlData.id} src={urlData.url} alt="Image" style={{ width: "260px", height: "200px", objectFit: "contain", margin: "10px" }} />
+            ))}
+          </div>
+          <br />
+          <button
+            className="Checkout_Btn"
+            onClick={() => {
+              setButtonPopsup(false);
             }}
           >
             Close
