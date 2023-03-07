@@ -25,7 +25,6 @@ import Account from "./pages/accounts/accountPageSections/Accounts";
 import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitpurchasehistory/PurchaseHistoryTestkit";
 import Item_page from "./pages/shop/item_pages/item_frame";
 import Shop from "./pages/shop/Shop";
-import Shop_cart from "./pages/shop/shop_cart"
 import CheckOut from "./pages/shop/checkout"
 import Water_Bottle_page from "./pages/shop/item_pages/water_bottle"
 import Tote_bag_page from "./pages/shop/item_pages/tote_bag"
@@ -109,7 +108,6 @@ function App() {
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/accounts/testkitEntry" element={<TestkitEntry />} />
           <Route path="/item" element={<Item_page />} />
-          <Route path="/shop_cart" element={<Shop_cart/>}/>
           <Route path="/checkout" element={<CheckOut/>}/>
           <Route path="/water_bottle" element={<Water_Bottle_page/>}/>
           <Route path="/tote_bag" element={<Tote_bag_page/>}/>

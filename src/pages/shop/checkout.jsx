@@ -78,7 +78,7 @@ export default function Checkout() {
                             <input className="shop_number" type={"number"} name="number" placeholder="Phone Number" />
                         </lable>
                     </form>
-                    <Link to='/shop_cart'><button>BACK TO CART</button></Link>
+                    <Link to='/cart'></Link>
                 </div>
                 <div className="check_cart">
                     <table className="checkout_table">
@@ -121,7 +121,7 @@ export default function Checkout() {
                             <h1>Thank you for your purchase!</h1>
                         </div>
                     </Popup> */}
-                    <button onClick={()=>purchase()}>PURCHASE</button>
+                    <Link to='/cart'><button onClick={()=>purchase()}>PURCHASE</button></Link>
                 </div>
             </div>
         </div>
