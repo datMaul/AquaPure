@@ -133,7 +133,14 @@ export default function Navbar() {
             <ul>
               <CustomLink to="/map">Map</CustomLink>
               <CustomLink to="/testkit">Test Kit</CustomLink>
-              <CustomLink to="/game">Game</CustomLink>
+              {/* <CustomLink to="/game">Game</CustomLink> */}
+              {isSignedIn && (
+                <CustomLink
+                  to="/game"
+                >
+                  Game
+                </CustomLink>
+              )}
               <CustomLink to="/donations">Donations</CustomLink>
               <CustomLink to="/shop">Shop</CustomLink>
               {isSignedIn && (
@@ -150,6 +157,7 @@ export default function Navbar() {
                   Account
                 </CustomLink>
               )}
+              
               {isSignedInAdmin && (
                 <CustomLink
                   to="/admin"
