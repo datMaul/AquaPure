@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import "./AccountPageSections.css";
 
 export default function TestkitEntry() {
-  if (!localStorage.getItem("token")) {
-    return <Link to="/" />;
-  }
+  // if (!localStorage.getItem("token")) {
+  //   return <Link to="/" />;
+  // }
 
   function handleSubmit(e) {
     e.preventDefault();
