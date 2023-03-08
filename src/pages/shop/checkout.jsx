@@ -3,7 +3,6 @@ import { Link, useSubmit } from "react-router-dom";
 import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 import water from './item_pages/shop_assets/water_bottle.PNG'
-import Popup from "reactjs-popup";
 
 export default function Checkout() {
     const [cartItems, setcartItems] = useState([]);
