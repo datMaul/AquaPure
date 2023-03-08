@@ -40,7 +40,6 @@ export default function ShopCartPage() {
     axios.get('http://localhost:8080/item')
     .then(res => {
       setcartItems(res.data)
-      console.log("load cart")
     })
   }
 
@@ -50,7 +49,6 @@ export default function ShopCartPage() {
       productData.map(product => {
         if(item.product_id === product.productID){
           total_price += product.product_price*item.quantity
-          console.log("calc total")
         }
       })
     })
@@ -69,7 +67,6 @@ export default function ShopCartPage() {
             let discount = points/1000;
             let newtotal = subtotal-discount
             setsubtotal(newtotal);
-            console.log(newtotal,"new total")
             
           }
           else if(IsCheck && subtotal!==0){
@@ -77,7 +74,6 @@ export default function ShopCartPage() {
             let discount = points/1000;
             let newtotal = subtotal+discount
             setsubtotal(newtotal);
-            console.log(newtotal,"new total")
           }
 
         }
