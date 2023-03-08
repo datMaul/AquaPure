@@ -140,7 +140,7 @@ export default function ShopCartPage() {
   return(
     <div>
       <div className="cart_page">
-        <h1 className="cart_title">YOUR CART</h1>
+        <h1 className="cart_title">SHOP CART</h1>
         <span className="containerSum">
           <h3>subtotal</h3>
           {

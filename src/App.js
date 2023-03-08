@@ -31,7 +31,7 @@ import Bamboo_notebook from "./pages/shop/item_pages/Bamboo_notebook"
 import Sticker from "./pages/shop/item_pages/sticker"
 import Travel_cup from "./pages/shop/item_pages/travel_cup"
 import Shop_purchase from "./pages/shop/purchase_history"
-import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitPurchaseHistory/PurchaseHistoryTestkit";
+import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitpurchasehistory/PurchaseHistoryTestkit";
 
 
 // import { Route, Routes } from "react-router-dom";

@@ -74,12 +74,11 @@ td{
     scale:0.90;
 }
 .quant_td{
-    width:10%;
+    width:20%;
     cursor:default;
     
 }
 .quant{
-
     display:inline;
     padding:2px;
 
@@ -92,6 +91,7 @@ td{
     border:none;
     font-size: 23px;
     transition:350ms;
+    border-radius:50%;
     
     float:left;
 }
@@ -103,6 +103,7 @@ td{
     border:none;
     font-size: 23px;
     transition:350ms;
+    border-radius:50%;
 
     float:right;
 }

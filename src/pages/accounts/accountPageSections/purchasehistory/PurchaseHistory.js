@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ChildComponent1 from "./shopPurchaseHistory/PurchaseHistoryShop";
-import ChildComponent2 from "./testkitPurchaseHistory/PurchaseHistoryTestkit";
+import ChildComponent2 from "./testkitpurchasehistory/PurchaseHistoryTestkit";
 import "./PurchaseHistory.css";
 
 export default function ParentComponent() {
