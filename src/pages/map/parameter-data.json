@@ -1,0 +1,269 @@
+{
+    "Drinking Quality": {
+        "unit": "Score",
+        "values": {
+            "10": "#00ff00",
+            "9": "#80ff00",
+            "8": "#bfff00",
+            "7": "#ffff00",
+            "6": "#ffbf00",
+            "5": "#ff9900",
+            "4": "#ff7300",
+            "3": "#ff4c00",
+            "2": "#ff2600",
+            "1": "#ff0000"  
+        }
+    },
+
+    "pH": {
+        "unit": "pH",
+        "values": {
+            "6.0": "#ff0000",
+            "6.4": "#ff5e00",
+            "6.8": "#ffbb00",
+            "7.2": "#aaff00",
+            "7.6": "#00ff00",
+            "8.2": "#00ffaa",
+            "9.0": "#0000ff"
+        },
+        "ideal_range": {
+            "min": 6.4,
+            "max": 8.2
+        }
+    },
+
+    "Total Alkalinity": {
+        "unit": "ppm",
+        "values": {
+            "0": "#ffff80",
+            "40": "#ebff9a",
+            "80": "#d5ffb3",
+            "120": "#baffcb",
+            "180": "#98ffe3",
+            "240": "#66fffa"
+        }
+    },
+
+    "Total Hardness": {
+        "unit": "ppm",
+        "values": {
+            "0": "#e0f3ff",
+            "25": "#b3d9ff",
+            "50": "#80c1ff",
+            "120": "#4da6ff",
+            "250": "#0088ff",
+            "425": "#0056b3",
+            "600": "#002480"
+            },
+        "ideal_range": {
+        }
+    },
+
+    "Free Chlorine": {
+        "unit": "ppm",
+        "values": {
+            "0": "#ffe5ff",
+            "0.5": "#f1c0f1",
+            "1.0": "#e29ce2",
+            "3.0": "#d376d2",
+            "5.0": "#c34cc2",
+            "10.0": "#b200b2"
+        },
+        "ideal_range": {
+            "min": 0,
+            "max": 1
+        }
+    },
+
+    "Total Chlorine": {
+        "unit": "ppm",
+        "values": {
+            "0": "#ffe5f6",
+            "0.5": "#f1c0de",
+            "1.0": "#e29ac6",
+            "3.0": "#d373ac",
+            "5.0": "#c34992",
+            "10.0": "#b20077"
+        },
+        "ideal_range": {
+            "min": 0,
+            "max": 1
+        }
+    },
+
+    "Iron": {
+        "unit": "ppm",
+        "values": {
+            "0": "#ffedda",
+            "5": "#f9d7b7",
+            "10": "#f2c196",
+            "25": "#ecab76",
+            "50": "#e59358",
+            "100": "#dd7b3c",
+            "250": "#d56121",
+            "500": "#cd4400"
+        },
+        "ideal_range": {
+            "min": 0,
+            "max": 0
+        }
+    },
+
+    "Copper": {
+        "unit": "ppm",
+        "values": {
+            "0": "#ffedda",
+            "0.5": "#fed5b8",
+            "1.0": "#ffbb9c",
+            "3.0": "#ff9e89",
+            "10.0": "#ff7f7f"
+        },
+        "ideal_range": {
+            "min": 0,
+            "max": 0.5
+        }
+    },
+
+    "Lead": {
+        "unit": "ppm",
+        "values": {
+            "0": "#ffe565",
+            "20": "#f9b44f",
+            "50": "#e98448",
+            "100": "#cf5748",
+            "200": "#ab2d49",
+            "500": "#800048"
+        },
+        "ideal_range": {
+            "min": 0,
+            "max": 0
+        }
+    },
+
+    "Nitrate": {
+        "unit": "ppm",
+        "values": {
+            "0": "#ffd9f2",
+            "10": "#ffc1e9",
+            "25": "#ffa8df",
+            "50": "#ff8ed3",
+            "100": "#ff71c7",
+            "250": "#ff4db9",
+            "500": "#ff00aa"
+        },
+        "ideal_range": {
+            "min": 0,
+            "max": 10
+        }
+    },
+
+    "Nitrite": {
+        "unit": "ppm",
+        "values": {
+            "0": "#ffd9f2",
+            "1": "#f7bee2",
+            "5": "#f0a2d1",
+            "10": "#e885c0",
+            "20": "#e067ae",
+            "40": "#d7449b",
+            "80": "#cd0087"
+        },
+        "ideal_range": {
+            "min": 0,
+            "max": 1
+        }
+    },
+
+    "MPS": {
+        "unit": "ppm",
+        "values": {
+            "0": "#ffe6ed",
+            "1": "#ffd2df",
+            "2": "#ffbfd1",
+            "6": "#ffabc3",
+            "10": "#ff96b4",
+            "20": "#ff80a5"
+        },
+        "ideal_range": {
+            "min": 0,
+            "max": 2
+        }
+    },
+
+    "Fluoride": {
+        "unit": "ppm",
+        "values": {
+            "0": "#e6004d",
+            "10": "#f01c41",
+            "25": "#f73033",
+            "50": "#fc4321",
+            "100": "#ff5500"
+        },
+        "ideal_range": {
+            "min": 0,
+            "max": 0
+        }
+    },
+
+    "Cyanuric Acid": {
+        "unit": "ppm",
+        "values": {
+            "0": "#ffbf80",
+            "10": "#ffaa84",
+            "50": "#ff9696",
+            "100": "#ff85b2",
+            "250": "#ff7fd4"
+        },
+        "ideal_range": {
+            "min": 0,
+            "max": 50
+        }
+    },
+
+    "Ammonia Chloride": {
+        "unit": "ppm",
+        "values": {
+            "0": "#ff6a4d",
+            "100": "#ff9050",
+            "150": "#ffb25f",
+            "250": "#ffd178",
+            "500": "#ffee99"
+        },
+        "ideal_range": {
+            "min": 0,
+            "max": 0
+        }
+    },
+
+    "Bromine": {
+        "unit": "ppm",
+        "values": {
+            "0": "#ffffb3",
+            "1": "#e8f4a0",
+            "2": "#cfea8f",
+            "6": "#b4df80",
+            "10": "#97d573",
+            "20": "#76cb68"
+        },
+        "ideal_range": {
+            "min": 0,
+            "max": 0
+        }
+    },
+
+    "Carbonate": {
+        "unit": "ppm",
+        "values": {
+            "0": "#fff480",
+            "40": "#bbdf7e",
+            "80": "#80c682",
+            "120": "#4daa85",
+            "180": "#238c81",
+            "240": "#0f6e74"
+        },
+        "ideal_range": {
+            "min": 120,
+            "max": 180
+        }
+    }
+}

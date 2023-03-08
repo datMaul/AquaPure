@@ -28,19 +28,24 @@ export default function Shop() {
   const [item7,setvalue7] = useState(1);
   const [item8,setvalue8] = useState(1);
   const [check, setcheck] = useState("Add to cart");
+  const [user, setuser] = useState(null);
+  const storeuserid = localStorage.getItem("user_ID");
 
-
-
+  useEffect(()=>{
+    loadUser();
+    setuser(storeuserid);
+  },[])
+  const loadUser = () => {
+    axios.get(`http://localhost:8080/User/${localStorage.getItem("user_ID")}`).then(res=>{setuser(res.data);})
+  }
 //load products from DB
   useEffect(() => {
     axios.get(itemURL).then(res=>{
       setitemData(res.data);
-      console.log(res.data,"loaded quantity");
       
     }) 
     axios.get(productURL)
     .then(res => {
-      console.log(res.data,"loaded products")
       setData(res.data)
     })
   },[])
@@ -116,7 +121,7 @@ export default function Shop() {
     console.log(productid,"post add product id")
     axios.post(itemURL,{
       "id":productid,
-      "user_id":123123,
+      "user_id":storeuserid,
       "product_id":productid,
       "quantity":quantity,
       }).then(res => {console.log(res.data)})

@@ -24,5 +24,6 @@ yarn-error.log*
 
 # custom files
 *.vpp.bak_*
-package-lock.json
-package.json
+/.vscode
+*.DS_Store
+src/backendFile/aquapurebackend/src/bin

@@ -1,0 +1,32 @@
+/* .PrivacyPolicy-Page #backButton {
+    margin: 5px;
+    height: 30px;
+    width: 60px;
+    background-color: #008CBA;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 25px;
+    border: 2px solid #008CBA;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: ease-out 350ms;
+    box-shadow: inset 0 0 0 0 #ffffff;
+}
+  
+.PrivacyPolicy-Page #backButton:hover {
+    background-color: #ffffff;
+    color: #008CBA;
+    border: 2px solid #008CBA;
+    box-shadow: inset 150px 0 0 0 #ffffff;
+} */
+
+.PrivacyPolicy-Page h1{
+    text-align: center;
+}
+
+.PrivacyPolicy-Page p{
+    text-align: justify;
+    padding: 0 2.5%;
+}
