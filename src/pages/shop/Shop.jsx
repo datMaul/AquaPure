@@ -33,9 +33,7 @@ export default function Shop() {
 
   useEffect(()=>{
     loadUser();
-    console.log(storeuserid,"stored id")
     setuser(storeuserid);
-    console.log(user)
   },[])
   const loadUser = () => {
     axios.get(`http://localhost:8080/User/${localStorage.getItem("user_ID")}`).then(res=>{setuser(res.data);})
@@ -44,12 +42,10 @@ export default function Shop() {
   useEffect(() => {
     axios.get(itemURL).then(res=>{
       setitemData(res.data);
-      console.log(res.data,"loaded quantity");
       
     }) 
     axios.get(productURL)
     .then(res => {
-      console.log(res.data,"loaded products")
       setData(res.data)
     })
   },[])
