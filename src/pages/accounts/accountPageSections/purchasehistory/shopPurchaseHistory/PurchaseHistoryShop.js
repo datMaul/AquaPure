@@ -1,31 +1,43 @@
-import "./PurchaseHistoryShop.css";
+import { Link } from "react-router-dom";
 import {React, useEffect, useState} from 'react';
 import axios from 'axios';
-
-
-
 export default function PurchaseHistoryShop() {
 
-  const [productData, setData] = useState([]);
-  const [history, sethistory] = useState([]);
+    const [productData, setData] = useState([]);
+    const [history, sethistory] = useState([]);
 
-  const loadHistory = () => {
-      axios.get('http://localhost:8080/history').then(res=>{sethistory(res.data);console.log("histroy loaded")})
-  }
-  useEffect(()=>{
-      loadHistory();
-  },[])
+    const loadHistory = () => {
+        axios.get('http://localhost:8080/history').then(res=>{sethistory(res.data);console.log("histroy loaded")})
+    }
+    const loadProducts = () => {
+      axios.get('http://localhost:8080/product').then(res=>{setData(res.data);console.log("loaded Data")})
+    }
+    useEffect(()=>{
+        loadHistory();
+    },[])
 
-  return (
-    <div>
+    return(
+      <div>
         <div>
-            {history.map(purchase => {
-                return(
-                <>
-                <p>{purchase.purchase_id} {purchase.product_id}</p>
-                </>)
-            })}
+          <h1>Shop Purchase History</h1>
+          <table>
+            <tr>
+              <th></th>
+              <th>ID</th>
+              <th>Product ID</th>
+            </tr>
+            {
+              history.map(purchase => {
+                return(<tr>
+                  <td></td>
+                  <td>{purchase.purchase_id}</td>
+                  <td>{purchase.product_id}</td>
+                </tr>)
+              })
+            }
+          </table>
         </div>
       </div>
-  );
-}
+    );
+  }
+  

@@ -94,6 +94,7 @@ export default function Shop() {
   
 
   const postAdd = (productid,quantity) => {
+    let id = Math.floor(Math.random(9)*100);
     if(productid===1){
       setvalue1((increment)=>(increment+1))
     }

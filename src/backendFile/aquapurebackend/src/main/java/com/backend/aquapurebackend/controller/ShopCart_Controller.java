@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,7 @@ import com.backend.aquapurebackend.service.ShopCartService;
 public class ShopCart_Controller {
     @Autowired
 	ShopCartService cartService;
+	@Autowired
     ShopCartRepository cartRep;
 	
 	@GetMapping("/item")
@@ -58,6 +60,14 @@ public class ShopCart_Controller {
     public String deleteItem(@PathVariable(value = "id") int Id) {
 		cartService.deleteItem(Id);
 		return "item removed from cart";
+	}
+
+	@PutMapping("/item/{id}")
+	public Optional<ShopCart> updateCartItems(@RequestBody ShopCart newItem, @PathVariable int id){
+		return cartService.findByID(id).map(cartitem -> {
+			cartitem.setquantity(newItem.getquantity());
+			return cartRep.save(cartitem);
+		});
 	}
 
 }
