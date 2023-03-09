@@ -30,7 +30,7 @@ import Tote_bag_page from "./pages/shop/item_pages/tote_bag"
 import Bamboo_notebook from "./pages/shop/item_pages/Bamboo_notebook"
 import Sticker from "./pages/shop/item_pages/sticker"
 import Travel_cup from "./pages/shop/item_pages/travel_cup"
-import Shop_purchase from "./pages/shop/purchase_history"
+import Shop_purchase from "./pages/accounts/accountPageSections/purchasehistory/shopPurchaseHistory/PurchaseHistoryShop"
 import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitpurchasehistory/PurchaseHistoryTestkit";
 
 

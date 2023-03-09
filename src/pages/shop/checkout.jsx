@@ -9,6 +9,8 @@ export default function Checkout() {
     const [productData, setproductData] = useState([]);
     const [subtotal, setsubtotal] = useState(0);
     const [show, setshow] = useState(false);
+    const [user, setuser] = useState(null);
+    const storeuserid = localStorage.getItem("user_ID")
 
     useEffect(() => {
         loadItems();
@@ -22,7 +24,7 @@ export default function Checkout() {
     
 
     const loadItems = () => {
-        axios.get("http://localhost:8080/item")
+        axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`)
             .then(res => {
                 setcartItems(res.data)
                 console.log(res.data, "Cart Items Loaded")
@@ -54,7 +56,7 @@ export default function Checkout() {
             console.log(id)
             axios.post('http://localhost:8080/history',{
                 "purchase_id": id,
-                "user_id":123123,
+                "userid":storeuserid,
                 "product_id":item.product_id
             }).then(res=>{console.log(res.data,"items post to data base")})
             axios.delete(`http://localhost:8080/item/${item.product_id}`).then(res => {console.log(res.data,"delete from cart");loadItems();})

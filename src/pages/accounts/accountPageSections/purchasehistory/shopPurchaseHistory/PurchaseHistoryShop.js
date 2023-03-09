@@ -7,7 +7,7 @@ export default function PurchaseHistoryShop() {
     const [history, sethistory] = useState([]);
 
     const loadHistory = () => {
-        axios.get('http://localhost:8080/history').then(res=>{sethistory(res.data);console.log("histroy loaded")})
+        axios.get(`http://localhost:8080/history/user/${localStorage.getItem("user_ID")}`).then(res=>{sethistory(res.data);console.log("histroy loaded")})
     }
     const loadProducts = () => {
       axios.get('http://localhost:8080/product').then(res=>{setData(res.data);console.log("loaded Data")})
@@ -22,17 +22,20 @@ export default function PurchaseHistoryShop() {
           <h1>Shop Purchase History</h1>
           <table>
             <tr>
-              <th></th>
-              <th>ID</th>
-              <th>Product ID</th>
+              <th>image</th>
+              <th>Product</th>
             </tr>
             {
               history.map(purchase => {
-                return(<tr>
-                  <td></td>
-                  <td>{purchase.purchase_id}</td>
-                  <td>{purchase.product_id}</td>
-                </tr>)
+                productData.map(product => {
+                  if(product.productID === purchase.product_id){
+                    return(
+                    <tr>
+                      <td>image</td>
+                      <td>{product.product_name}</td>
+                    </tr>
+                  )}
+                })
               })
             }
           </table>

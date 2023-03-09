@@ -43,6 +43,9 @@ public class ShopPurchaseService {
         return purchaseRep.findById((long) id);        
         
     }
+    public List<ShopPurchase> findByUserID(int user_id){
+		return purchaseRep.findByUserid(user_id);
+	}
     public void deletePurchase(int id){
         purchaseRep.deleteById((long) id);
     }

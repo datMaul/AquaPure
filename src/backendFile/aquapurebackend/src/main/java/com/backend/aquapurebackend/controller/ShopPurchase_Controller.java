@@ -36,6 +36,10 @@ public class ShopPurchase_Controller {
     public Optional<ShopPurchase> getPurchaseByID(@PathVariable(value = "id") int Id) {
     	return purchaseService.findByID(Id);
     }
+    @GetMapping("/history/user/{userid}")
+    public List<ShopPurchase> getUserByID(@PathVariable(value = "userid")int userID){
+        return purchaseService.findByUserID(userID);
+    }
 
     @PostMapping("/history")
     public ResponseEntity<Optional<ShopPurchase>> addPurchase(@RequestBody ShopPurchasePostDTO newPurchaseDTO){

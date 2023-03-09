@@ -160,7 +160,6 @@ export default function ShopCartPage() {
           </div>
           <h2>£{subtotal}</h2>
           <Link to="/checkout"><button className="checkout">CHECKOUT</button></Link>
-          <Link to="/shop_purchase">history</Link>
           </span>
           <table className="cart_items">
             <thead>
