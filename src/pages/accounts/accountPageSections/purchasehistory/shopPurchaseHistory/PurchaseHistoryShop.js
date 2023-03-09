@@ -14,31 +14,32 @@ export default function PurchaseHistoryShop() {
     }
     useEffect(()=>{
         loadHistory();
+        loadProducts();
     },[])
 
     return(
       <div>
         <div>
           <h1>Shop Purchase History</h1>
-          <table>
-            <tr>
-              <th>image</th>
+            <table>
+              <th></th>
               <th>Product</th>
-            </tr>
             {
               history.map(purchase => {
-                productData.map(product => {
-                  if(product.productID === purchase.product_id){
-                    return(
-                    <tr>
-                      <td>image</td>
-                      <td>{product.product_name}</td>
-                    </tr>
-                  )}
-                })
+                return(
+                  productData.map(product=>{
+                    if(product.productID === purchase.product_id){
+                      return(<tr>
+                        <td></td>
+                        <td>{product.product_name}</td>
+                        <td>£{product.product_price}</td>
+                      </tr>)
+                    }
+                  })
+                )
               })
             }
-          </table>
+            </table>
         </div>
       </div>
     );

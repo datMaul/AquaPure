@@ -11,6 +11,7 @@ export default function Checkout() {
     const [show, setshow] = useState(false);
     const [user, setuser] = useState(null);
     const storeuserid = localStorage.getItem("user_ID")
+    const [date, setdate] = useState();
 
     useEffect(() => {
         loadItems();
@@ -51,6 +52,10 @@ export default function Checkout() {
     }
 
     const purchase = () => {
+        var DOP = new Date()
+        
+        var date = DOP.getUTCFullYear() + '-' + (DOP.getMonth()+1) + "-" + DOP.getDate() + ' ' + DOP.getHours() +':'+ DOP.getMinutes();
+        console.log(date)
         cartItems.map(item => {
             let id = Math.floor(Math.random()*111)
             console.log(id)
