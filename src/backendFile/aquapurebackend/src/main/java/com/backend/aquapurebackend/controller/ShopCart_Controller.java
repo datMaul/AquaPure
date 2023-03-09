@@ -49,6 +49,10 @@ public class ShopCart_Controller {
     public Optional<ShopCart> getItemById(@PathVariable(value = "id") int Id) {
     	return cartService.findByID(Id);
     }
+	@GetMapping("/item/user/{userId}")
+	public List<ShopCart> getUserById(@PathVariable(value = "userId")int userID){
+		return cartService.findByUserID(userID);
+	}
 	
 	@DeleteMapping("/item/{id}")
     public String deleteItem(@PathVariable(value = "id") int Id) {

@@ -41,11 +41,12 @@ public class ShopCartService {
 	public void addItems(ShopCart newItem) {
 		cartRepository.save(newItem);
 	}
-	
 	public Optional<ShopCart> findByID(int id){
 		return cartRepository.findById((long) id);
 	}
-	
+	public List<ShopCart> findByUserID(int user_id){
+		return cartRepository.findByUserid(user_id);
+	}
 	public void deleteItem(int id) {
 		cartRepository.deleteById((long) id);
 		

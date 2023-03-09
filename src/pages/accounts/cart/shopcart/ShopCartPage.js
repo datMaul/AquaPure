@@ -17,6 +17,8 @@ export default function ShopCartPage() {
     loadProducts();
     loadUserPoints();
     
+
+    
   },[]);
 
   useEffect(()=>{
@@ -37,13 +39,15 @@ export default function ShopCartPage() {
    
   }
   const loadItems = () => {
-    axios.get('http://localhost:8080/item')
+    axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`)
     .then(res => {
       setcartItems(res.data)
     })
+    
   }
 
   const total = () => {
+    
     var total_price = 0;
     cartItems.map(item => {
       productData.map(product => {
@@ -103,7 +107,7 @@ export default function ShopCartPage() {
           let add = item.quantity+1
           axios.post('http://localhost:8080/item',{
             'id':productid,
-            'user_id':123123,
+            'user_id':123,
             'product_id':productid,
             'quantity':add
           }).then(res => {loadItems();console.log(res.data);})
@@ -123,7 +127,7 @@ export default function ShopCartPage() {
           let add = item.quantity-1
           axios.post('http://localhost:8080/item',{
             'id':productid,
-            'user_id':123123,
+            'user_id':123,
             'product_id':productid,
             'quantity':add
           }).then(res => {loadItems();console.log(res.data);})
@@ -139,6 +143,9 @@ export default function ShopCartPage() {
   var notEmpty = true;
   return(
     <div>
+      {
+        
+      }
       <div className="cart_page">
         <h1 className="cart_title">SHOP CART</h1>
         <span className="containerSum">
@@ -176,6 +183,7 @@ export default function ShopCartPage() {
               <>
                 {
                   productData.map(product => {
+                    
                     if (product.productID === item.product_id && notEmpty) {
                       return(<>{notEmpty ? <tbody>
                         <tr key={"cart"}>

@@ -15,7 +15,7 @@ public class AquapurebackendApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(primarySource:AquapurebackendApplication.class, args);
+		SpringApplication.run(AquapurebackendApplication.class, args);
 	}
 
 }
