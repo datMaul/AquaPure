@@ -133,7 +133,7 @@ export default function ShopCartPage() {
   const [IsCheck,setcheck] = useState(false);
   const checkhandler = () => {
     setcheck(!IsCheck);
-    apply_points(0);
+    apply_points(storeuserid);
   }
   var notEmpty = true;
   return(

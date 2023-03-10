@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {React, useEffect, useState} from 'react';
 import axios from 'axios';
 
-export default function Bamboo() {
+export default function Beverage_mug() {
 
 
   const [productData, setData] = useState([]);
@@ -12,6 +12,7 @@ export default function Bamboo() {
   const [item,setvalue] = useState(1);
   const [user, setuser] = useState(null);
   const storeuserid = localStorage.getItem("user_ID")
+  const itempageid = 6;
 
 
   useEffect(()=>{
@@ -40,7 +41,7 @@ export default function Bamboo() {
 
   const updateStates = ()=>{
     cartItems.map(item=>{
-      if(item.id === 3){
+      if(item.id === itempageid){
         const increment = item.quantity+1
         setvalue(increment)  
       }
@@ -77,7 +78,7 @@ export default function Bamboo() {
           
           <div className="item_page_text">
           {productData.map(product => {
-            if(product.productID === 3){
+            if(product.productID === itempageid){
               return(
                 <>
                   <h1 className="title" key={product}>{product.product_name}</h1>

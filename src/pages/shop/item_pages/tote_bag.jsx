@@ -10,6 +10,8 @@ export default function Tote_bag() {
   const [productData, setData] = useState([]);
   const [cartItems,setcartItems] = useState([]);
   const [item,setvalue] = useState(1);
+  const [user, setuser] = useState(null);
+  const storeuserid = localStorage.getItem("user_ID")
 
 
   useEffect(()=>{
@@ -26,6 +28,7 @@ export default function Tote_bag() {
   }
   const loadItems = () => {
     axios.get('http://localhost:8080/item').then(res=>{setcartItems(res.data);console.log(res.data,"loaded cart items")})
+    setuser(storeuserid)
   }
   
 
@@ -39,7 +42,7 @@ export default function Tote_bag() {
     cartItems.map(item=>{
       if(item.id === 2){
         const increment = item.quantity+1
-        setvalue(increment)
+        setvalue(increment)  
       }
     })
   }
@@ -47,11 +50,14 @@ export default function Tote_bag() {
   
 
   const postAdd = (productid,quantity) => {
+    if(!user){
+      return(window.location.href = "/accounts/login")
+    }
     setvalue((increment)=>(increment+1))
     console.log(productid,"post add product id")
     axios.post('http://localhost:8080/item',{
       "id":productid,
-      "user_id":123123,
+      "user_id":storeuserid,
       "product_id":productid,
       "quantity":quantity,
       }).then(res => {console.log(res.data)})

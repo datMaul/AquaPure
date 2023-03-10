@@ -1,21 +1,20 @@
 .shop_title{
-    background-color: rgb(0, 150, 133);
     margin-top:-50px;
     padding-top:20px;
-    padding-left:25%;
+    background-image:url("./item_pages/shop_assets/shop_background.jpg");
+    text-align: center;
     /* padding-bottom:10%; */
-    color:white;
+    
+    color:rgb(45, 216, 238)
 }
-.logo{
-    box-shadow: 0px 0px 5px #33333346
-}
+
 .page{  
     overflow-y:scroll ;
     width: 100%;
-    height: 100%;
     margin-top:50px;
     background-color: none;
     display:table;
+    align-items: center;
 }
 
 .item{
@@ -57,6 +56,7 @@
     text-align: center;
     list-style-type: none;
     margin-top:50px;
+    align-items: center;
    
 }
 

@@ -1,11 +1,12 @@
 import "./Shop_Style.css";
 import water from "./item_pages/shop_assets/water_bottle.PNG";
-
+import logo from "../../components/aqlogo.png"
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import {React, useCallback, useEffect, useState,useReducer} from 'react';
 import placeholder from './item_pages/shop_assets/placeholder.jpg';
 import ShopNotification from "./ShopNotification";
+import wall from "./item_pages/shop_assets/shop_background.jpg"
 
 
 export default function Shop() {  
@@ -105,25 +106,25 @@ export default function Shop() {
         setvalue8(increment)
       }
       if(item.id===9){
-        setvalue8(increment)
+        setvalue9(increment)
       }
       if(item.id===10){
-        setvalue8(increment)
+        setvalue10(increment)
       }
       if(item.id===11){
-        setvalue8(increment)
+        setvalue11(increment)
       }
       if(item.id===12){
-        setvalue8(increment)
+        setvalue12(increment)
       }
       if(item.id===13){
-        setvalue8(increment)
+        setvalue13(increment)
       }
       if(item.id===14){
-        setvalue8(increment)
+        setvalue14(increment)
       }
       if(item.id===15){
-        setvalue8(increment)
+        setvalue15(increment)
       }
     })
   }
@@ -159,25 +160,25 @@ export default function Shop() {
       setvalue8((increment)=>(increment+1))
     }
     if(productid===9){
-      setvalue8((increment)=>(increment+1))
+      setvalue9((increment)=>(increment+1))
     }
     if(productid===10){
-      setvalue8((increment)=>(increment+1))
+      setvalue10((increment)=>(increment+1))
     }
     if(productid===11){
-      setvalue8((increment)=>(increment+1))
+      setvalue11((increment)=>(increment+1))
     }
     if(productid===12){
-      setvalue8((increment)=>(increment+1))
+      setvalue12((increment)=>(increment+1))
     }
     if(productid===13){
-      setvalue8((increment)=>(increment+1))
+      setvalue13((increment)=>(increment+1))
     }
     if(productid===14){
-      setvalue8((increment)=>(increment+1))
+      setvalue14((increment)=>(increment+1))
     }
     if(productid===15){
-      setvalue8((increment)=>(increment+1))
+      setvalue15((increment)=>(increment+1))
     }
     console.log(productid,"post add product id")
     axios.post(itemURL,{
@@ -194,11 +195,11 @@ export default function Shop() {
 
     
   return (
-    <div>    
+    <div className="wall">    
       
       <div className="page">
-    
-        {/* <h1 className="shop_title"> <img className="logo" src={logo}></img>Shop</h1> */}
+      
+        <h1 className="shop_title">Shop</h1>
         
         <nav>
           <ul className="item_list">
@@ -314,7 +315,7 @@ export default function Shop() {
                 if(product.productID === 6){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/beverage_mug"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -336,7 +337,7 @@ export default function Shop() {
                 if(product.productID === 7){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/water_filter"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -358,7 +359,7 @@ export default function Shop() {
                 if(product.productID === 8){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/hoodie"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -380,7 +381,7 @@ export default function Shop() {
                 if(product.productID === 9){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/T-shirt"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -402,7 +403,7 @@ export default function Shop() {
                 if(product.productID === 10){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/mask"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -424,7 +425,7 @@ export default function Shop() {
                 if(product.productID === 11){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/cap"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -446,7 +447,7 @@ export default function Shop() {
                 if(product.productID === 12){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/flask"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={""}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -468,7 +469,7 @@ export default function Shop() {
                 if(product.productID === 13){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/pouch"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -490,7 +491,7 @@ export default function Shop() {
                 if(product.productID === 14){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/phone_case"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
@@ -512,7 +513,7 @@ export default function Shop() {
                 if(product.productID === 15){
                   return(
                   <>
-                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <Link to="/backpack"><img alt="water" className="item_img" src={placeholder}/></Link>
                   <p className="item_title" key={product.product_name}>{product.product_name}</p>
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{

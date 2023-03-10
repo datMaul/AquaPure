@@ -52,12 +52,12 @@ export default function Checkout() {
     }
 
     const purchase = () => {
-        var DOP = new Date()
+        // var DOP = new Date()
         
-        var date = DOP.getUTCFullYear() + '-' + (DOP.getMonth()+1) + "-" + DOP.getDate() + ' ' + DOP.getHours() +':'+ DOP.getMinutes();
-        console.log(date)
+        // var date = DOP.getUTCFullYear() + '-' + (DOP.getMonth()+1) + "-" + DOP.getDate() + ' ' + DOP.getHours() +':'+ DOP.getMinutes();
+        // console.log(date)
         cartItems.map(item => {
-            let id = Math.floor(Math.random()*111)
+            let id = Math.floor(Math.random(10)*111)
             console.log(id)
             axios.post('http://localhost:8080/history',{
                 "purchase_id": id,

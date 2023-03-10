@@ -12,6 +12,7 @@ export default function Water_bottle() {
   const [item,setvalue] = useState(1);
   const [user, setuser] = useState(null);
   const storeuserid = localStorage.getItem("user_ID")
+  const itempageid = 1;
 
 
   useEffect(()=>{
@@ -40,7 +41,7 @@ export default function Water_bottle() {
 
   const updateStates = ()=>{
     cartItems.map(item=>{
-      if(item.id === 1){
+      if(item.id === itempageid){
         const increment = item.quantity+1
         setvalue(increment)  
       }
@@ -77,7 +78,7 @@ export default function Water_bottle() {
           
           <div className="item_page_text">
           {productData.map(product => {
-            if(product.productID === 1){
+            if(product.productID === itempageid){
               return(
                 <>
                   <h1 className="title" key={product}>{product.product_name}</h1>
