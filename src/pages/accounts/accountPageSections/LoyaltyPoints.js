@@ -1,7 +1,27 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./AccountPageSections.css";
 
 export default function LoyaltyPoints() {
+  const [loyaltyPoints, setLoyaltyPoints] = useState("");
+
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+
+    async function fetchLoyaltyPoints() {
+      fetch("http://localhost:8080/scores/getAll")
+        .then((response) => response.json())
+        .then((points) => {
+          const scores = points.find((scores) => scores.email === email);
+          if (scores) {
+            setLoyaltyPoints(scores.score);
+          }
+        });
+    }
+
+    fetchLoyaltyPoints();
+  }, []);
+
   if (!localStorage.getItem("token")) {
     return <Link to="/" />;
   }
@@ -23,10 +43,9 @@ export default function LoyaltyPoints() {
             <form>
               <input
                 type={"text"}
-                placeholder="Loyalty Points of The User"
+                placeholder={loyaltyPoints}
                 name="loyaltyPoints"
                 readOnly={true}
-                // value={}
               />
             </form>
           </div>
