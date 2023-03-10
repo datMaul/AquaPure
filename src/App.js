@@ -4,7 +4,6 @@ import Game from "./pages/game/Game";
 import Home from "./pages/home/Home";
 import Phasetest from "./pages/phasetest/Phasetest";
 import Map from "./pages/map/Map";
-import Shop from "./pages/shop/Shop";
 import SignIn from "./pages/accounts/signin/SignIn";
 import Testkit from "./pages/testkit/Testkit";
 import SignUp from "./pages/accounts/signup/SignUp";
@@ -22,8 +21,20 @@ import TestkitEntry from "./pages/accounts/accountPageSections/TestkitEntry";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cart from "./pages/accounts/cart/MainCartPage";
-import Account from "./pages/accounts/accountPageSections/Accounts";
-import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitPurchaseHistory/PurchaseHistoryTestkit";
+import Account from "./pages/accounts/accountPageSections/Accounts"
+import Item_page from "./pages/shop/item_pages/item_frame";
+import Shop from "./pages/shop/Shop";
+import CheckOut from "./pages/shop/checkout"
+import Water_Bottle_page from "./pages/shop/item_pages/water_bottle"
+import Tote_bag_page from "./pages/shop/item_pages/tote_bag"
+import Bamboo_notebook from "./pages/shop/item_pages/Bamboo_notebook"
+import Sticker from "./pages/shop/item_pages/sticker"
+import Travel_cup from "./pages/shop/item_pages/travel_cup"
+import Shop_purchase from "./pages/shop/purchase_history"
+import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitpurchasehistory/PurchaseHistoryTestkit";
+
+
+// import { Route, Routes } from "react-router-dom";
 
 function App() {
   const [scrollPos, setScrollPos] = useState(0);
@@ -96,6 +107,14 @@ function App() {
           <Route path="/termsAndConditions" element={<TermsAndContitions />} />
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/accounts/testkitEntry" element={<TestkitEntry />} />
+          <Route path="/item" element={<Item_page />} />
+          <Route path="/checkout" element={<CheckOut />} />
+          <Route path="/water_bottle" element={<Water_Bottle_page />} />
+          <Route path="/tote_bag" element={<Tote_bag_page />} />
+          <Route path="/bamboo" element={<Bamboo_notebook />} />
+          <Route path="/sticker" element={<Sticker />} />
+          <Route path="/travel_cup" element={<Travel_cup />} />
+          <Route path="/shop_purchase" element={<Shop_purchase />} />
         </Routes>
       </div>
     </>
