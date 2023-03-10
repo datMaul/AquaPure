@@ -82,7 +82,12 @@ export default function DonationForm() {
                     </div>
                     <div  class="btn">
                         <input type="submit" value="Submit" />
-                    </div>              
+                    </div> 
+                    <div class="login-register">
+                        <p>Dont have an account? <a
+                        href="#"
+                        class="register-link">Register </a></p>
+                    </div>             
                 </form>
             </div>
 
@@ -162,7 +167,12 @@ export default function DonationForm() {
                     </div>
                     <div  class="btn">
                         <input type="submit" value="Submit" />
-                    </div>              
+                    </div>     
+                    <div class="login-register">
+                        <p>Dont have an account? <a
+                        href="#"
+                        class="login-link">login </a></p>
+                    </div>          
                 </form>
             </div>     
         </div>
