@@ -43,7 +43,7 @@ public class ShopPurchase_Controller {
 
     @PostMapping("/history")
     public ResponseEntity<Optional<ShopPurchase>> addPurchase(@RequestBody ShopPurchasePostDTO newPurchaseDTO){
-        ShopPurchase purchase = new ShopPurchase(newPurchaseDTO.getPurchase_id(),newPurchaseDTO.getUser_id(),newPurchaseDTO.getProduct_id());
+        ShopPurchase purchase = new ShopPurchase(newPurchaseDTO.getPurchase_id(),newPurchaseDTO.getUser_id(),newPurchaseDTO.getProduct_id(), newPurchaseDTO.getQuantity());
         purchaseService.add_Purchase(purchase);
         return new ResponseEntity<>(Optional.ofNullable(purchase),HttpStatus.CREATED);
     }

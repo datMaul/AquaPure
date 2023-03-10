@@ -1,5 +1,6 @@
 package com.backend.aquapurebackend.model;
 import java.io.Serializable;
+import java.util.Date;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -19,15 +20,23 @@ public class ShopPurchase implements Serializable{
     @Column
     int userid;
     int product_id;
+    int quantity;
 
     public ShopPurchase(){
         super();
     }
-    public ShopPurchase(int purchase_id,int userid, int product_id){
+    public ShopPurchase(int purchase_id,int userid, int product_id, int quantity){
         super();
         this.purchase_id = purchase_id;
         this.userid = userid;
         this.product_id = product_id;
+        this.quantity = quantity;
+    }
+    public int getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
     public int getPurchase_id() {
         return purchase_id;

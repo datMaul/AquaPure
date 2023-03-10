@@ -24,6 +24,8 @@ export default function PurchaseHistoryShop() {
             <table>
               <th></th>
               <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
             {
               history.map(purchase => {
                 return(
@@ -33,6 +35,7 @@ export default function PurchaseHistoryShop() {
                         <td></td>
                         <td>{product.product_name}</td>
                         <td>£{product.product_price}</td>
+                        <td>{purchase.quantity}</td>
                       </tr>)
                     }
                   })

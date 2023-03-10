@@ -62,7 +62,8 @@ export default function Checkout() {
             axios.post('http://localhost:8080/history',{
                 "purchase_id": id,
                 "userid":storeuserid,
-                "product_id":item.product_id
+                "product_id":item.product_id,
+                "quantity":item.quantity
             }).then(res=>{console.log(res.data,"items post to data base")})
             axios.delete(`http://localhost:8080/item/${item.product_id}`).then(res => {console.log(res.data,"delete from cart");loadItems();})
             
@@ -106,6 +107,7 @@ export default function Checkout() {
                                                         <td><img className="checkout_product_img" src={water} alt="water"></img></td>
                                                         <td><b className="checkout_name">{product.product_name}</b></td>
                                                         <td><p>£{product.product_price}</p></td>
+                                                        <td>{item.quantity}</td>
                                                     </tr>
                                                     </>
                                                 )
