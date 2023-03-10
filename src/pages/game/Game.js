@@ -8,6 +8,7 @@ const [background, setBackground] = useState('body');
 const [cardVisibility, setCardVisibility] = useState('card');
 const [endscreenVisibility, setEndscreenVisibility] = useState('invisible');
 const [acceptingAnswer, setAcceptingAnswer] = useState(true);
+const [disabled, setDisabled] = useState(false);
 
 var classOfButton = [
   "answer-button",
@@ -80,7 +81,7 @@ var questions = [
           'Diverting water from other sources',
           ],
       answer: 2,
-  },
+  }
 ]
 
 function newGame(){
@@ -148,6 +149,7 @@ else{
 
 
 async function saveScore() {
+  setDisabled(true);
   const email = localStorage.getItem("email");
   const response = await fetch("http://localhost:8080/scores/addScore", {
     method: "POST",
@@ -181,7 +183,7 @@ async function saveScore() {
     <div className={endscreenVisibility}>
       <h1>Score = {score}</h1>
       <button className="restart-button" onClick={newGame}>Play Again</button>
-      <button className="save-button" onClick={saveScore}>Save Score</button>
+      <button disabled={disabled} className="restart-button" onClick={saveScore}>Save Score</button>
     </div>
   </div>
   );
