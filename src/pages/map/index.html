@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" contect="ie=edge" />
+    <title>CSV reader</title>
+</head>
+
+<body>
+    <script>
+        //Data from: https://environment.data.gov.uk/water-quality
+
+        getData();
+
+        async function getData() {
+            const response = await fetch('2023.csv');
+            const data = await response.text();
+
+
+            const rows = data.split('⧵n').slice(1);
+            rows.forEach(elt => {
+                const row = elt.split(',');
+                const Name = row[0];
+                const URL = row[1];
+                const Label = row[4];
+                const Location = row[6];
+                const Parameter = row[7];
+                const Date = row[4];
+                console.log(Name, URL, Label, Locationm, Parameter, Date);
+            });
+        }    
+    </script>
+</body>
+
+</html>
