@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import {React, useCallback, useEffect, useState,useReducer} from 'react';
 import placeholder from './item_pages/shop_assets/placeholder.jpg';
+import ShopNotification from "./ShopNotification";
 
 
 export default function Shop() {  
@@ -17,6 +18,7 @@ export default function Shop() {
   const [itemData,setitemData] = useState([]);
   const productURL = 'http://localhost:8080/product'
   const itemURL = 'http://localhost:8080/item'
+  const [showpopup, setshowpopup] = useState(false)
 
   
   const [item1,setvalue1] = useState(1);
@@ -27,6 +29,13 @@ export default function Shop() {
   const [item6,setvalue6] = useState(1);
   const [item7,setvalue7] = useState(1);
   const [item8,setvalue8] = useState(1);
+  const [item9,setvalue9] = useState(1);
+  const [item10,setvalue10] = useState(1);
+  const [item11,setvalue11] = useState(1);
+  const [item12,setvalue12] = useState(1);
+  const [item13,setvalue13] = useState(1);
+  const [item14,setvalue14] = useState(1);
+  const [item15,setvalue15] = useState(1);
   const [check, setcheck] = useState("Add to cart");
   const [user, setuser] = useState(null);
   const storeuserid = localStorage.getItem("user_ID");
@@ -59,6 +68,13 @@ export default function Shop() {
     updateStates(setvalue6)
     updateStates(setvalue7)
     updateStates(setvalue8)
+    updateStates(setvalue9)
+    updateStates(setvalue10)
+    updateStates(setvalue11)
+    updateStates(setvalue12)
+    updateStates(setvalue13)
+    updateStates(setvalue14)
+    updateStates(setvalue15)
   },[productData])
 
   const updateStates = ()=>{
@@ -86,6 +102,27 @@ export default function Shop() {
         setvalue7(increment)
       }
       if(item.id===8){
+        setvalue8(increment)
+      }
+      if(item.id===9){
+        setvalue8(increment)
+      }
+      if(item.id===10){
+        setvalue8(increment)
+      }
+      if(item.id===11){
+        setvalue8(increment)
+      }
+      if(item.id===12){
+        setvalue8(increment)
+      }
+      if(item.id===13){
+        setvalue8(increment)
+      }
+      if(item.id===14){
+        setvalue8(increment)
+      }
+      if(item.id===15){
         setvalue8(increment)
       }
     })
@@ -121,13 +158,34 @@ export default function Shop() {
     if(productid===8){
       setvalue8((increment)=>(increment+1))
     }
+    if(productid===9){
+      setvalue8((increment)=>(increment+1))
+    }
+    if(productid===10){
+      setvalue8((increment)=>(increment+1))
+    }
+    if(productid===11){
+      setvalue8((increment)=>(increment+1))
+    }
+    if(productid===12){
+      setvalue8((increment)=>(increment+1))
+    }
+    if(productid===13){
+      setvalue8((increment)=>(increment+1))
+    }
+    if(productid===14){
+      setvalue8((increment)=>(increment+1))
+    }
+    if(productid===15){
+      setvalue8((increment)=>(increment+1))
+    }
     console.log(productid,"post add product id")
     axios.post(itemURL,{
       "id":productid,
       "user_id":storeuserid,
       "product_id":productid,
       "quantity":quantity,
-      }).then(res => {console.log(res.data)})
+      }).then(res => {console.log(res.data);setshowpopup(true);})
     }
 
     const addOnClick = () => {
@@ -150,8 +208,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/water_bottle"><img alt="water" className="item_img" src={placeholder}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"watername"}>{product.product_name}</p>
+                  <p className="item_price" key={"waterprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{postAdd(product.productID,item1);addOnClick()}}>Quick Add</button>
                   </>
                   ) 
@@ -170,8 +228,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/tote_bag"><img alt="water" className="item_img" src={placeholder}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"bagname"}>{product.product_name}</p>
+                  <p className="item_price" key={"bagprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item2);
                     }}>Quick Add</button>
@@ -192,8 +250,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/bamboo"><img alt="water" className="item_img" src={placeholder}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"bambooname"}>{product.product_name}</p>
+                  <p className="item_price" key={"bambooprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item3);
                     }}>Quick Add</button>
@@ -214,8 +272,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/sticker"><img alt="water" className="item_img" src={placeholder}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"apstickername"}>{product.product_name}</p>
+                  <p className="item_price" key={"apprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item4);
                     }}>Quick Add</button>
@@ -236,8 +294,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/travel_cup"><img alt="water" className="item_img" src={placeholder}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"travelcupname"}>{product.product_name}</p>
+                  <p className="item_price" key={"travelcupprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item5);
                     }}>Quick Add</button>
@@ -316,8 +374,175 @@ export default function Shop() {
               )
               }
             </li>
+
+            <li className="item">
+              {productData.map(product => {
+                if(product.productID === 9){
+                  return(
+                  <>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
+                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
+                    postAdd(product.productID,item9);
+                    }}>Quick Add</button>
+                  </>
+                  ) 
+                }
+                else{
+                  return("")
+                }
+                }
+              )
+              }
+            </li>
+
+            <li className="item">
+              {productData.map(product => {
+                if(product.productID === 10){
+                  return(
+                  <>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
+                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
+                    postAdd(product.productID,item10);
+                    }}>Quick Add</button>
+                  </>
+                  ) 
+                }
+                else{
+                  return("")
+                }
+                }
+              )
+              }
+            </li>
+
+            <li className="item">
+              {productData.map(product => {
+                if(product.productID === 11){
+                  return(
+                  <>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
+                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
+                    postAdd(product.productID,item11);
+                    }}>Quick Add</button>
+                  </>
+                  ) 
+                }
+                else{
+                  return("")
+                }
+                }
+              )
+              }
+            </li>
+
+            <li className="item">
+              {productData.map(product => {
+                if(product.productID === 12){
+                  return(
+                  <>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
+                  <p className="item_price" key={""}>£{product.product_price}</p>
+                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
+                    postAdd(product.productID,item12);
+                    }}>Quick Add</button>
+                  </>
+                  ) 
+                }
+                else{
+                  return("")
+                }
+                }
+              )
+              }
+            </li>
+
+            <li className="item">
+              {productData.map(product => {
+                if(product.productID === 13){
+                  return(
+                  <>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
+                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
+                    postAdd(product.productID,item13);
+                    }}>Quick Add</button>
+                  </>
+                  ) 
+                }
+                else{
+                  return("")
+                }
+                }
+              )
+              }
+            </li>
+
+            <li className="item">
+              {productData.map(product => {
+                if(product.productID === 14){
+                  return(
+                  <>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
+                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
+                    postAdd(product.productID,item14);
+                    }}>Quick Add</button>
+                  </>
+                  ) 
+                }
+                else{
+                  return("")
+                }
+                }
+              )
+              }
+            </li>
+
+            <li className="item">
+              {productData.map(product => {
+                if(product.productID === 15){
+                  return(
+                  <>
+                  <Link to="/item"><img alt="water" className="item_img" src={placeholder}/></Link>
+                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
+                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
+                    postAdd(product.productID,item15);
+                    }}>Quick Add</button>
+                  </>
+                  ) 
+                }
+                else{
+                  return("")
+                }
+                }
+              )
+              }
+            </li>
+            
+
+
           </ul>
         </nav>
+        
+        <ShopNotification trigger={showpopup} setTrigger={setshowpopup}>
+                <center className="popupShop">
+                  <h3>Item added to shopping cart!</h3>
+                  <button onClick={()=>{setshowpopup(false)}}>CLOSE</button>
+                </center>
+        </ShopNotification>
+        
+        
+        
       </div>
       {/**
                * -Eco Based 650 ml Sports Bottle
