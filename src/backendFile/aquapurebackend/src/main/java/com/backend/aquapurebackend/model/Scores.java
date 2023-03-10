@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 public class Scores {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private int userId;
     private int Score;
     private String email;
