@@ -1,70 +1,120 @@
-import axios from "axios";
 import { Link } from "react-router-dom";
-import "./TestkitEntry.css";
+import "./AccountPageSections.css";
 
 export default function TestkitEntry() {
   if (!localStorage.getItem("token")) {
     return <Link to="/" />;
   }
-  const handleLogout = () => {
-    axios
-      .post("http://localhost:8080/logout", null, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        localStorage.removeItem("token");
-        window.location = "/";
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("there was an error");
-      });
-  };
   return (
-    <div className="TestKitEntry">
-      <div className="Accounts-Navbar">
-        <Link to="/accounts" className="AccountLinks" id="AccountSettings-Link">
-          Account Settings
-        </Link>
-        <Link
-          to="/accounts/passwordSettings"
-          className="AccountLinks"
-          id="PasswordSettings-Link"
-        >
-          Password Settings
-        </Link>
-        <Link
-          to="/accounts/testkitEntry"
-          className="AccountLinks"
-          id="TestKitEntry-Link"
-        >
-          Testkit Entry
-        </Link>
-        <Link
-          to="/accounts/purchaseHistory"
-          className="AccountLinks"
-          id="PurchaseHistory-Link"
-        >
-          Purchase History
-        </Link>
-        <Link
-          to="/accounts/loyaltyPoints"
-          className="AccountLinks"
-          id="LoyaltPoints-Link"
-        >
-          Loyalty Points
-        </Link>
-        <button onClick={handleLogout} className="AccountLinks">
-          {" "}
-          Logout{" "}
-        </button>
-      </div>
+    <div className="Accounts-Content">
+      <div className="AccountPageSection-Content">
+        <div className="Row-1-Content">
+          <h2> Testkit Entry </h2>
+        </div>
 
-      <div className="TestKitEntry-Content">
-        <h2> Testkit Entry </h2>
+        <div className="Row-2-Content">
+          <div className="Labels-Content">
+            <label>Unique ID:</label>
+            <br />
+            <label>pH:</label>
+            <br />
+            <label>Total Alkalinity:</label>
+            <br />
+            <label>Total Hardness:</label>
+            <br />
+            <label>Nitrate:</label>
+            <br />
+            <label>Nitrite:</label>
+            <br />
+            <label>Lead:</label>
+            <br />
+            <label>Manganese:</label>
+            <br />
+            <label>Coliform Bacteria:</label>
+          </div>
+
+          <div className="Inputs-Content">
+            <form
+            // onSubmit={(e) => onSubmit(e)}
+            >
+              <input
+                type={"text"}
+                placeholder="Enter Unique ID"
+                name="uniqueID"
+                // value={}
+                // onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"number"}
+                placeholder="Enter pH"
+                name="pH"
+                // value={}
+                // onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"number"}
+                placeholder="Enter Total Alkalinity"
+                name="totalAlkalinity"
+                // value={}
+                // onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"number"}
+                placeholder="Enter Total Hardness"
+                name="totalHardness"
+                // value={}
+                // onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"number"}
+                placeholder="Enter Nitrite"
+                name="nitrite"
+                // value={}
+                // onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"number"}
+                placeholder="Enter Nitrate"
+                name="nitrate"
+                // value={}
+                // onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"number"}
+                placeholder="Enter Lead"
+                name="lead"
+                // value={}
+                // onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"number"}
+                placeholder="Enter Manganese"
+                name="manganese"
+                // value={}
+                // onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <input
+                type={"number"}
+                placeholder="Enter Coliform Bacteria"
+                name="coliformBacteria"
+                // value={}
+                // onChange={(e) => onInputChange(e)}
+              />
+              <br />
+              <button id="submitButton" type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   );

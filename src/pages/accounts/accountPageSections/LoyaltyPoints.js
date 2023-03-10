@@ -1,73 +1,36 @@
-import axios from "axios";
 import { Link } from "react-router-dom";
-import "./LoyaltyPoints.css";
+import "./AccountPageSections.css";
 
 export default function LoyaltyPoints() {
   if (!localStorage.getItem("token")) {
     return <Link to="/" />;
   }
-  const handleLogout = () => {
-    axios
-      .post("http://localhost:8080/logout", null, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        localStorage.removeItem("token");
-        window.location = "/";
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("there was an error");
-      });
-  };
   return (
-    <div className="LoyaltyPoints">
-      <div className="Accounts-Navbar">
-        <Link to="/accounts" className="AccountLinks" id="AccountSettings-Link">
-          Account Settings
-        </Link>
-        <Link
-          to="/accounts/passwordSettings"
-          className="AccountLinks"
-          id="PasswordSettings-Link"
-        >
-          Password Settings
-        </Link>
-        <Link
-          to="/accounts/testkitEntry"
-          className="AccountLinks"
-          id="TestKitEntry-Link"
-        >
-          Testkit Entry
-        </Link>
-        <Link
-          to="/accounts/purchaseHistory"
-          className="AccountLinks"
-          id="PurchaseHistory-Link"
-        >
-          Purchase History
-        </Link>
-        <Link
-          to="/accounts/loyaltyPoints"
-          className="AccountLinks"
-          id="LoyaltPoints-Link"
-        >
-          Loyalty Points
-        </Link>
-        <button onClick={handleLogout} className="AccountLinks">
-          {" "}
-          Logout{" "}
-        </button>
-      </div>
+    <div className="Accounts-Content">
+      <div className="AccountPageSection-Content">
+        <div className="Row-1-Content">
+          <h2> Loyalty Points </h2>
+          <br /> <br /> <br /> <br /> <br /> <br />
+          <br /> <br /> <br /> <br /> <br /> <br />
+        </div>
 
-      <div className="LoyaltyPoints-Content">
-        <h2> Loyalty Points </h2>
+        <div className="Row-2-Content">
+          <div className="Labels-Content">
+            <label>Loyalty Points:</label>
+          </div>
 
-        <text>Loyalty Points: </text>
-        <p> Points </p>
+          <div className="Inputs-Content">
+            <form>
+              <input
+                type={"text"}
+                placeholder="Loyalty Points of The User"
+                name="loyaltyPoints"
+                readOnly={true}
+                // value={}
+              />
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   );

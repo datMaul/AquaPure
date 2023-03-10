@@ -19,6 +19,7 @@ export default function Overwritesignuplog() {
     addressTC: "",
     addressPostcode: "",
     doB: "",
+    accountType: "",
   });
 
   const {
@@ -32,6 +33,7 @@ export default function Overwritesignuplog() {
     addressTC,
     addressPostcode,
     doB,
+    accountType,
   } = user;
 
   const onInputChange = (e) => {
@@ -61,8 +63,7 @@ export default function Overwritesignuplog() {
           <form onSubmit={(e) => onSubmit(e)}>
             <div>
               <label htmlFor="Name" className="OW_TK_Labes">
-                {" "}
-                User First Name :{" "}
+                User First Name:{" "}
               </label>
               <input
                 type={"text"}
@@ -75,8 +76,7 @@ export default function Overwritesignuplog() {
             </div>
             <div>
               <label htmlFor="Name" className="OW_TK_Labes">
-                {" "}
-                User Last Name :{" "}
+                User Last Name:{" "}
               </label>
               <input
                 type={"text"}
@@ -88,7 +88,7 @@ export default function Overwritesignuplog() {
               />
             </div>
             <div>
-              <label className="OW_TK_Labes"> Address Line 1 : </label>
+              <label className="OW_TK_Labes"> Address Line 1: </label>
               <input
                 type={"text"}
                 className="from-control"
@@ -99,7 +99,7 @@ export default function Overwritesignuplog() {
               />
             </div>
             <div>
-              <label className="OW_TK_Labes"> Address Line 2 : </label>
+              <label className="OW_TK_Labes">Address Line 2: </label>
               <input
                 type={"text"}
                 className="from-control"
@@ -110,7 +110,7 @@ export default function Overwritesignuplog() {
               />
             </div>
             <div>
-              <label className="OW_TK_Labes"> Town/City : </label>
+              <label className="OW_TK_Labes">Town/City: </label>
               <input
                 type={"text"}
                 className="from-control"
@@ -121,7 +121,7 @@ export default function Overwritesignuplog() {
               />
             </div>
             <div>
-              <label className="OW_TK_Labes"> Postcode : </label>
+              <label className="OW_TK_Labes">Postcode: </label>
               <input
                 type={"text"}
                 className="from-control"
@@ -132,7 +132,7 @@ export default function Overwritesignuplog() {
               />
             </div>
             <div>
-              <label className="OW_TK_Labes"> Date of Birth : </label>
+              <label className="OW_TK_Labes">Date of Birth: </label>
               <input
                 type={"date"}
                 className="from-control"
@@ -143,7 +143,7 @@ export default function Overwritesignuplog() {
               />
             </div>
             <div>
-              <label className="OW_TK_Labes"> Password : </label>
+              <label className="OW_TK_Labes">Password: </label>
               <input
                 type={"text"}
                 className="from-control"
@@ -154,7 +154,7 @@ export default function Overwritesignuplog() {
               />
             </div>
             <div>
-              <label className="OW_TK_Labes"> Phone Number : </label>
+              <label className="OW_TK_Labes">Phone Number: </label>
               <input
                 type={"number"}
                 className="from-control"
@@ -165,13 +165,24 @@ export default function Overwritesignuplog() {
               />
             </div>
             <div>
-              <label className="OW_TK_Labes"> E-Mail : </label>
+              <label className="OW_TK_Labes">E-Mail: </label>
               <input
                 type={"text"}
                 className="from-control"
                 placeholder="Enter EMail"
                 name="eMail"
                 value={eMail}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            <div>
+              <label className="OW_TK_Labes">Account Type: </label>
+              <input
+                type={"text"}
+                className="from-control"
+                placeholder="Enter Account Type"
+                name="accountType"
+                value={accountType}
                 onChange={(e) => onInputChange(e)}
               />
             </div>

@@ -68,17 +68,3 @@
     margin: 0;
     padding: 0;
 }
-
-.Container-Admin {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-#adminButton {
-    background: #ffffff00;
-    padding: 20px;
-    border: 0;
-    color: #ffffff00;
-    cursor: pointer;
-}
