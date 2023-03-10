@@ -9,13 +9,17 @@ export default function Checkout() {
     const [productData, setproductData] = useState([]);
     const [subtotal, setsubtotal] = useState(0);
     const [show, setshow] = useState(false);
-    const [user, setuser] = useState(null);
+    const [user, setuser] = useState([]);
     const storeuserid = localStorage.getItem("user_ID")
     const [date, setdate] = useState();
+    const [Userpoints, setUserpoints] = useState([]);
+
 
     useEffect(() => {
         loadItems();
         loadProducts();
+        loadUser();
+        loadUserPoints();
     }, [])
 
     useEffect(()=>{
@@ -23,6 +27,15 @@ export default function Checkout() {
     },[cartItems])
 
     
+    const loadUser = () => {
+        axios.get("http://localhost:8080/Sign_Up_log").then(res=>{setuser(res.data)})
+        console.log(user,"<-user");
+    }
+
+    const loadUserPoints = () => {
+        axios.get("http://localhost:8080/points")
+        .then(res=>{setUserpoints(res.data);console.log(res.data,"user points loaded");loadUser();})
+    }
 
     const loadItems = () => {
         axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`)
@@ -51,6 +64,43 @@ export default function Checkout() {
         setsubtotal(total_price)
     }
 
+    const apply_points = (userid) => {
+        user.map(user => {
+          Userpoints.map(score => {
+            if(user.eMail === score.email){
+              if(user.userId.toString() === userid){
+                var points = score.score
+                // var points = 2500
+                if(points >= 100){
+                  if(!IsCheck && subtotal!=0){
+                  
+                    console.log("discounted")
+                    let discount = points/1000;
+                    let newtotal = subtotal-discount
+                    setsubtotal(newtotal);
+                    
+                  }
+                  else if(IsCheck && subtotal!==0){
+                    console.log("discounted revoked")
+                    let discount = points/1000;
+                    let newtotal = subtotal+discount
+                    setsubtotal(newtotal);
+                  }
+        
+              }
+            }
+            else{
+              setsubtotal(subtotal)
+            }
+          }})
+      })
+      }
+    const [IsCheck,setcheck] = useState(false);
+    const checkhandler = () => {
+        setcheck(!IsCheck);
+        apply_points(storeuserid);
+        }
+
     const purchase = () => {
         // var DOP = new Date()
         
@@ -65,6 +115,7 @@ export default function Checkout() {
                 "product_id":item.product_id,
                 "quantity":item.quantity
             }).then(res=>{console.log(res.data,"items post to data base")})
+            
             axios.delete(`http://localhost:8080/item/${item.product_id}`).then(res => {console.log(res.data,"delete from cart");loadItems();})
             
         })
@@ -119,6 +170,23 @@ export default function Checkout() {
                         })
                     }
                     </table>
+                    {
+                        user.map(user => {
+                        if(user.userId.toString() === storeuserid){
+                            return(
+                            Userpoints.map(score=>{
+                            if(user.eMail === score.email){
+                                return(<><h3>You have {score.score} points to your account</h3></>)
+                            }
+                            }))
+                        }
+                        })
+                    }
+                    <div className="discount">
+                        <label htmlFor="checkbox">Apply Points Discount</label>
+                        <input type="checkbox" checked={IsCheck} onChange={() => checkhandler()}></input>
+                    </div>
+
                     <div className="subtotal">
                         <h3 className="total">Total</h3>
                         <h2 className="subtotal_num">{subtotal}</h2>

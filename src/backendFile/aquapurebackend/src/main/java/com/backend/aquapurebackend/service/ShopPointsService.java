@@ -38,5 +38,7 @@ public class ShopPointsService {
 	public Optional<ShopPoints> findByID(int id){
 		return pointsRep.findById((long) id);
 	}
-
+	public Optional<ShopPoints> findByEmail(String email){
+		return pointsRep.findByemail(email);
+	}
 }

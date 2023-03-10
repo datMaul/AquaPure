@@ -65,37 +65,6 @@ export default function ShopCartPage() {
     
   }
 
-  const apply_points = (userid) => {
-    user.map(user => {
-      Userpoints.map(score => {
-        if(user.eMail === score.email){
-          if(user.userId.toString() === userid){
-            var points = score.score
-            // var points = 2500
-            if(points >= 100){
-              if(!IsCheck && subtotal!=0){
-              
-                console.log("discounted")
-                let discount = points/1000;
-                let newtotal = subtotal-discount
-                setsubtotal(newtotal);
-                
-              }
-              else if(IsCheck && subtotal!==0){
-                console.log("discounted revoked")
-                let discount = points/1000;
-                let newtotal = subtotal+discount
-                setsubtotal(newtotal);
-              }
-    
-          }
-        }
-        else{
-          setsubtotal(subtotal)
-        }
-      }})
-  })
-  }
 
   const deleteItem = async (id) => {
     await axios.delete(`http://localhost:8080/item/${id}`).then(console.log("deleted item"))
@@ -136,40 +105,17 @@ export default function ShopCartPage() {
       }
     })
   }
-  const [IsCheck,setcheck] = useState(false);
-  const checkhandler = () => {
-    setcheck(!IsCheck);
-    apply_points(storeuserid);
-  }
+  
   var notEmpty = true;
   return(
+    
     <div>
-      {
-        
-      }
       <div className="cart_page">
         <h1 className="cart_title">SHOP CART</h1>
         <span className="containerSum">
-          <h3>subtotal</h3>
-          {
-            user.map(user => {
-              if(user.userId.toString() === storeuserid){
-                return(
-                Userpoints.map(score=>{
-                  if(user.eMail === score.email){
-                      return(<><h3>You have {score.score} points to your account</h3></>)
-                  }
-                }))
-              }
-            })
-          }
-          <div className="discount">
-            <label htmlFor="checkbox">Apply Points Discount</label>
-            <input type="checkbox" checked={IsCheck} onChange={() => checkhandler()}></input>
-          </div>
           <h2>£{subtotal}</h2>
           <Link to="/checkout"><button className="checkout">CHECKOUT</button></Link>
-          </span>
+        </span>
           <table className="cart_items">
             <thead>
               <tr key={"headers"}>

@@ -1,5 +1,5 @@
 import "./item_frame_style.css";
-import water from "./shop_assets/water_bottle.PNG";
+import backpack from "./shop_assets/APBackpack.png";
 import { Link } from "react-router-dom";
 import {React, useEffect, useState} from 'react';
 import axios from 'axios';
@@ -73,7 +73,7 @@ export default function Backpack() {
           </div>
 
           <center>
-            <img alt="water" className="item_page_img" src={water}/>
+            <img alt="water" className="item_page_img" src={backpack}/>
           </center>
           
           <div className="item_page_text">
