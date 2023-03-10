@@ -43,6 +43,6 @@ function readDataForYear(year) {
 (async function () {
     readDataForYear("2023");
 
-    readDataForYear("2021");
+
     readDataForYear("2020");
 })();
