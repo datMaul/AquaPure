@@ -4,16 +4,16 @@ import './donationFormLink.js';
 import { Link } from "react-router-dom";
 
 const data = {
-    charity: 'name',
-    phone_no: 'something',
-    first_name: 'something',
-    last_name: 'yeat',
-    email: 'address',
-    postcode: 'yea',
-    address_user: 'skrr'
+    charity: '',
+    phone_no: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    postcode: '',
+    address_user: ''
 };
 
-fetch('/api/donationData', {
+fetch('/donations/aquaDonation', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
