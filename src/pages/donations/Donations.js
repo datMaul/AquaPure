@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import WaterAidImage from "./image/WaterAid.png";
 import WWFImage from "./image/WWF.jpg";
 import SoilAssociationImage from "./image/SoilAssociation.jpg";
@@ -6,7 +7,39 @@ import RSPDImage from "./image/RSPD.jpg";
 import "./Donations.css";
 import { Link } from "react-router-dom";
 
+const data = {
+  charity: 'John',
+  phone_no: 'something',
+  first_name: 'something',
+  last_name: 'yeat',
+  email: 'address',
+  postcode: 'yea',
+  address_user: 'skrr'
+};
+
 export default function Donations() {
+  const [name, setName] = useState("");
+const [donationId, setdonationId] = useState("");
+
+const handleClick = () => {
+  // Generate random ID
+  const randomId = Math.floor(Math.random() * 1000);
+
+  // Send POST request to backend with custom name and ID
+  axios
+    .post("http://localhost:3000/aquaDonation", {
+      charity: name,
+      donationId: randomId
+    })
+    .then(response => {
+      console.log(response);
+      setdonationId(response.data.donationId);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
   return (
     <div className="Donations">
       <div className="Donations-Container">
@@ -55,7 +88,9 @@ export default function Donations() {
             <div className="WaterAid-Buttons">
               <center>
                 <Link to="/donations/DonationForm">
-                  <button id="Donate-Button">Donate</button>
+                <input type="text" value={name} onChange={event => setName(event.target.value)}/> 
+                  <button id="Donate-Button" onClick={handleClick}>Donate</button> 
+                  {donationId && <p>Your ID is: {donationId}</p>}
                 </Link>
                 <a href="https://www.wateraid.org/uk/donate/donate-to-wateraid-today?id=RA/TPP/01A&utm_source=google&utm_medium=cpc&gclid=Cj0KCQiA54KfBhCKARIsAJzSrdrGIsqHhGw5M2WuWn3x92zIJm2Of15CXN5kQD78GgrzpZ6w2pN2MN4aAvciEALw_wcB&gclsrc=aw.ds">
                   <button id="MoreInfo-Button">More Info</button>

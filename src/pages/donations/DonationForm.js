@@ -1,11 +1,25 @@
-// export default function DonationForm() {
-//     return <h1>Shop</h1>;
-// }
-
 import React from 'react';
 import './form.css';
 import './donationFormLink.js';
 import { Link } from "react-router-dom";
+
+fetch('/api/donationData', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+})
+.then(response => response.text())
+.then(data => console.log(data))
+.catch(error => console.error(error));
+
+fetch('/api/data?id=#&name=John')
+.then(response => response.text())
+.then(data => console.log(data))
+.catch(error => console.error(error));
+
+
 
 export default function DonationForm() {
     return (
