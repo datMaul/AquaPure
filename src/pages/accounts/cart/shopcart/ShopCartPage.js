@@ -4,14 +4,15 @@ import axios from 'axios';
 import "./cartStyle.css"
 import water from "./shop_assets/water_bottle.PNG"
 
+
 export default function ShopCartPage() {
   
   const [cartItems, setcartItems] = useState([]);
   const [productData, setData] = useState([]);
-  const [count, setcount] = useState(0);
   const [subtotal, setsubtotal] = useState(0);
   const [Userpoints, setUserpoints] = useState([]);
   const storeuserid = localStorage.getItem("user_ID");
+  const [user, setuser] = useState([]);
   
   useEffect(() => {
     loadItems();
@@ -19,30 +20,33 @@ export default function ShopCartPage() {
     loadUserPoints();
     
 
-    
   },[]);
 
   useEffect(()=>{
     total();
-    
-  },[cartItems])
+    loadUser();
+  },[cartItems,productData])
 
+  const loadUser = () => {
+    axios.get("http://localhost:8080/Sign_Up_log").then(res=>{setuser(res.data)})
+    console.log(user,"<-user");
+  }
   const loadUserPoints = () => {
     axios.get("http://localhost:8080/points")
-    .then(res=>{setUserpoints(res.data);console.log(res.data,"user points loaded")})
+    .then(res=>{setUserpoints(res.data);console.log(res.data,"user points loaded");loadUser();})
   }
   
   const loadProducts = () => {
     axios.get('http://localhost:8080/product')
     .then(res => {
-      setData(res.data)
+      setData(res.data);
     })
    
   }
   const loadItems = () => {
     axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`)
     .then(res => {
-      setcartItems(res.data)
+      setcartItems(res.data);
     })
     
   }
@@ -58,37 +62,39 @@ export default function ShopCartPage() {
       })
     })
     setsubtotal(total_price)
+    
   }
 
   const apply_points = (userid) => {
-    Userpoints.map(score => {
-      if(score.user_ID === userid){
-        var points = score.score
-        // var points = 2500
-        if(points >= 100){
-          if(!IsCheck && subtotal!=0){
-          
-            console.log("discounted")
-            let discount = points/1000;
-            let newtotal = subtotal-discount
-            setsubtotal(newtotal);
-            
+    user.map(user => {
+      Userpoints.map(score => {
+        if(user.eMail === score.email){
+          if(user.userId.toString() === userid){
+            var points = score.score
+            // var points = 2500
+            if(points >= 100){
+              if(!IsCheck && subtotal!=0){
+              
+                console.log("discounted")
+                let discount = points/1000;
+                let newtotal = subtotal-discount
+                setsubtotal(newtotal);
+                
+              }
+              else if(IsCheck && subtotal!==0){
+                console.log("discounted revoked")
+                let discount = points/1000;
+                let newtotal = subtotal+discount
+                setsubtotal(newtotal);
+              }
+    
           }
-          else if(IsCheck && subtotal!==0){
-            console.log("discounted revoked")
-            let discount = points/1000;
-            let newtotal = subtotal+discount
-            setsubtotal(newtotal);
-          }
-
         }
         else{
           setsubtotal(subtotal)
         }
-
-      }       
-    })
-    
+      }})
+  })
   }
 
   const deleteItem = async (id) => {
@@ -146,11 +152,14 @@ export default function ShopCartPage() {
         <span className="containerSum">
           <h3>subtotal</h3>
           {
-            Userpoints.map(score => {
-              // only used to test functionality supposed to be the id of the user that's logged in
-              var testid = 0
-              if(score.user_ID === testid){
-                return(<><h3>You have {score.score} points to your account</h3></>)
+            user.map(user => {
+              if(user.userId.toString() === storeuserid){
+                return(
+                Userpoints.map(score=>{
+                  if(user.eMail === score.email){
+                      return(<><h3>You have {score.score} points to your account</h3></>)
+                  }
+                }))
               }
             })
           }
@@ -183,7 +192,7 @@ export default function ShopCartPage() {
                         <tr key={"cart"}>
                           <td><img className="item_image" src={water} alt="water"></img></td>
                           <td className="product_header" key={product.product_name}>{product.product_name}</td>
-                          <td className="quant_td" key={count}><button className="quant_button_minus" onClick={()=>{decrease(item.product_id,item.id);}}>-</button><p className="quant">{item.quantity}</p><button className="quant_button_plus" onClick={()=>increment(item.product_id,item.id)}>+</button></td>
+                          <td className="quant_td" key={"count"}><button className="quant_button_minus" onClick={()=>{decrease(item.product_id,item.id);}}>-</button><p className="quant">{item.quantity}</p><button className="quant_button_plus" onClick={()=>{increment(item.product_id,item.id);}}>+</button></td>
                           <td className="price_td" key={product.product_price}>£{product.product_price}</td>
                           <td><button className="delete_button" onClick={() => deleteItem(item.id)}>X</button></td>
                         </tr>

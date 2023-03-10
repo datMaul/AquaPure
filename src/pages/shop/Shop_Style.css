@@ -1,11 +1,15 @@
 .shop_title{
     margin-top:-50px;
+    top:0;
     padding-top:20px;
+    padding-bottom:75px;
+    /* <a href="https://www.123freevectors.com/">Free Vector</a> */
     background-image:url("./item_pages/shop_assets/shop_background.jpg");
     text-align: center;
     /* padding-bottom:10%; */
+    font-size: 100px;
     
-    color:rgb(45, 216, 238)
+    color:rgb(111, 238, 255)
 }
 
 .page{  

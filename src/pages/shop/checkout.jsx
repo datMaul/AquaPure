@@ -129,7 +129,7 @@ export default function Checkout() {
                             <h1>Thank you for your purchase!</h1>
                         </div>
                     </Popup> */}
-                    <Link to='/cart'><button onClick={()=>purchase()}>PURCHASE</button></Link>
+                    <Link to='/accounts'><button onClick={()=>purchase()}>PURCHASE</button></Link>
                 </div>
             </div>
         </div>
