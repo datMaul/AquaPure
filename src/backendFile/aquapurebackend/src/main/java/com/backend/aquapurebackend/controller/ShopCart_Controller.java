@@ -17,41 +17,42 @@ import org.springframework.web.bind.annotation.RestController;
 import com.backend.aquapurebackend.dto.ShopCartPostDTO;
 import com.backend.aquapurebackend.model.ShopCart;
 import com.backend.aquapurebackend.repository.ShopCartRepository;
-import com.backend.aquapurebackend.service.ShopCartService;
+import com.backend.aquapurebackend.Service.ShopCartService;
 
 @CrossOrigin
-@RestController 
+@RestController
 public class ShopCart_Controller {
-    @Autowired
+	@Autowired
 	ShopCartService cartService;
-    ShopCartRepository cartRep;
-	
+	ShopCartRepository cartRep;
+
 	@GetMapping("/item")
-	public List<ShopCart> get_item()
-	{
+	public List<ShopCart> get_item() {
 		return cartService.getItems();
-		
+
 	}
-	
+
 	@PostMapping("/item")
 	public ResponseEntity<Optional<ShopCart>> additem(@RequestBody ShopCartPostDTO newItemDTO) {
-    	
-//    	if (newItemDTO.getId()==null) {
-//            return new ResponseEntity<>(Optional.ofNullable(null), HttpStatus.BAD_REQUEST);
-//        }
-        ShopCart cart = new ShopCart(newItemDTO.getId(),newItemDTO.getUser_id(),newItemDTO.getProduct_id(),newItemDTO.getquantity());
-    	cartService.addItems(cart);
-    	return new ResponseEntity<>(Optional.ofNullable(cart),HttpStatus.CREATED);
+
+		// if (newItemDTO.getId()==null) {
+		// return new ResponseEntity<>(Optional.ofNullable(null),
+		// HttpStatus.BAD_REQUEST);
+		// }
+		ShopCart cart = new ShopCart(newItemDTO.getId(), newItemDTO.getUser_id(), newItemDTO.getProduct_id(),
+				newItemDTO.getquantity());
+		cartService.addItems(cart);
+		return new ResponseEntity<>(Optional.ofNullable(cart), HttpStatus.CREATED);
 	}
-	
-	//get by id
+
+	// get by id
 	@GetMapping("/item/{id}")
-    public Optional<ShopCart> getItemById(@PathVariable(value = "id") int Id) {
-    	return cartService.findByID(Id);
-    }
-	
+	public Optional<ShopCart> getItemById(@PathVariable(value = "id") int Id) {
+		return cartService.findByID(Id);
+	}
+
 	@DeleteMapping("/item/{id}")
-    public String deleteItem(@PathVariable(value = "id") int Id) {
+	public String deleteItem(@PathVariable(value = "id") int Id) {
 		cartService.deleteItem(Id);
 		return "item removed from cart";
 	}

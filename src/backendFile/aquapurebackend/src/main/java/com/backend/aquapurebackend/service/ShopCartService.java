@@ -1,4 +1,4 @@
-package com.backend.aquapurebackend.service;
+package com.backend.aquapurebackend.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,20 +11,20 @@ import com.backend.aquapurebackend.repository.ShopCartRepository;
 
 @Service
 public class ShopCartService {
-    @Autowired
+	@Autowired
 	ShopCartRepository cartRepository;
-	
-	static List <ShopCart> itemList;
+
+	static List<ShopCart> itemList;
 	int currentID;
-	
+
 	public ShopCartService() {
 		super();
 	}
-	
-	public List<ShopCart> getItems(){
-		return(List<ShopCart>) cartRepository.findAll();
+
+	public List<ShopCart> getItems() {
+		return (List<ShopCart>) cartRepository.findAll();
 	}
-	
+
 	public int getCurrentID() {
 		return currentID;
 	}
@@ -32,25 +32,23 @@ public class ShopCartService {
 	public void setCurrentID(int currentID) {
 		this.currentID = currentID;
 	}
-	
+
 	public int incCurrentID() {
 		currentID += 1;
 		return currentID;
 	}
-	
+
 	public void addItems(ShopCart newItem) {
 		cartRepository.save(newItem);
 	}
-	
-	public Optional<ShopCart> findByID(int id){
+
+	public Optional<ShopCart> findByID(int id) {
 		return cartRepository.findById((long) id);
 	}
-	
+
 	public void deleteItem(int id) {
 		cartRepository.deleteById((long) id);
-		
+
 	}
-	
-	
 
 }

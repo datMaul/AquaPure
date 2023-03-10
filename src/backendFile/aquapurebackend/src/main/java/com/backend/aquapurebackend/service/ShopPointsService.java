@@ -1,4 +1,5 @@
-package com.backend.aquapurebackend.service;
+package com.backend.aquapurebackend.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -10,19 +11,20 @@ import com.backend.aquapurebackend.repository.ShopPointsRepository;
 
 @Service
 public class ShopPointsService {
-    @Autowired
+	@Autowired
 	ShopPointsRepository pointsRep;
-	
-	static List <ShopPoints> pointList;
+
+	static List<ShopPoints> pointList;
 	int currentID;
-	
+
 	public ShopPointsService() {
 		super();
 	}
-	public List<ShopPoints> getPoints(){
-		return(List <ShopPoints>) pointsRep.findAll();
+
+	public List<ShopPoints> getPoints() {
+		return (List<ShopPoints>) pointsRep.findAll();
 	}
-	
+
 	public int getCurrentID() {
 		return currentID;
 	}
@@ -30,12 +32,13 @@ public class ShopPointsService {
 	public void setCurrentID(int currentID) {
 		this.currentID = currentID;
 	}
-	
+
 	public int incCurrentID() {
 		currentID += 1;
 		return currentID;
 	}
-	public Optional<ShopPoints> findByID(int id){
+
+	public Optional<ShopPoints> findByID(int id) {
 		return pointsRep.findById((long) id);
 	}
 
