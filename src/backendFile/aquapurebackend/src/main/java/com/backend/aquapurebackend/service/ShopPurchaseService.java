@@ -29,8 +29,7 @@ public class ShopPurchaseService {
     public int getCurrentID() {
         return currentID;
     }
-
-    public void setCurrentID() {
+    public void setCurrentID(int currentID){
         this.currentID = currentID;
     }
 
@@ -47,8 +46,10 @@ public class ShopPurchaseService {
         return purchaseRep.findById((long) id);
 
     }
-
-    public void deletePurchase(int id) {
+    public List<ShopPurchase> findByUserID(int user_id){
+		return purchaseRep.findByUserid(user_id);
+	}
+    public void deletePurchase(int id){
         purchaseRep.deleteById((long) id);
     }
 

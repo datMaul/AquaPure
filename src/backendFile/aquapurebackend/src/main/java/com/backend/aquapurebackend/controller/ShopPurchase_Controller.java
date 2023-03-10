@@ -36,11 +36,14 @@ public class ShopPurchase_Controller {
     public Optional<ShopPurchase> getPurchaseByID(@PathVariable(value = "id") int Id) {
         return purchaseService.findByID(Id);
     }
+    @GetMapping("/history/user/{userid}")
+    public List<ShopPurchase> getUserByID(@PathVariable(value = "userid")int userID){
+        return purchaseService.findByUserID(userID);
+    }
 
     @PostMapping("/history")
-    public ResponseEntity<Optional<ShopPurchase>> addPurchase(@RequestBody ShopPurchasePostDTO newPurchaseDTO) {
-        ShopPurchase purchase = new ShopPurchase(newPurchaseDTO.getPurchase_id(), newPurchaseDTO.getUser_id(),
-                newPurchaseDTO.getProduct_id());
+    public ResponseEntity<Optional<ShopPurchase>> addPurchase(@RequestBody ShopPurchasePostDTO newPurchaseDTO){
+        ShopPurchase purchase = new ShopPurchase(newPurchaseDTO.getPurchase_id(),newPurchaseDTO.getUser_id(),newPurchaseDTO.getProduct_id(), newPurchaseDTO.getQuantity());
         purchaseService.add_Purchase(purchase);
         return new ResponseEntity<>(Optional.ofNullable(purchase), HttpStatus.CREATED);
     }
