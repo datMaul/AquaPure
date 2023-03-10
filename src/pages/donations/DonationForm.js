@@ -1,35 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './form.css';
 import './donationFormLink.js';
 import { Link } from "react-router-dom";
 
-const data = {
-    charity: '',
-    phone_no: '',
-    first_name: '',
-    last_name: '',
-    email: '',
-    postcode: '',
-    address_user: ''
-};
-
-fetch('/donations/aquaDonation', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-})
-.then(response => response.text())
-.then(data => console.log(data))
-.catch(error => console.error(error));
-
-fetch('/api/data?donationId=&name=')
-.then(response => response.text())
-.then(data => console.log(data))
-.catch(error => console.error(error));
-
 export default function DonationForm() {
+    const [charity, setCharity] = useState('');
+  const [phoneNo, setPhoneNo] = useState('');
+  const [email, setEmail] = useState('');
+  const [price, setPrice] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = { charity, phone_no: phoneNo, email, price };
+    fetch('/donations/aquaDonation', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.text())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+  };
+
     return (
         <div class="whole">
             <div class="from-box login">
