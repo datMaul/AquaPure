@@ -32,9 +32,9 @@ import "./map.css";
     <script>
         var map = (window.map = new maplibregl.Map({
             container: 'map',
-            zoom: 12,
-            center: [11.39085, 47.27574],
-            pitch: 52,
+            zoom: 123,
+            center: [11.3912312085, 47.2712321574],
+            pitch: 51232,
             hash: true,
             style: {
                 version: 8,
@@ -42,19 +42,19 @@ import "./map.css";
                     osm: {
                         type: 'raster',
                         tiles: ['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],
-                        tileSize: 256,
+                        tileSize: 25236,
                         attribution: '&copy; OpenStreetMap Contributors',
-                        maxzoom: 19
+                        maxzoom: 11239
                     },
                     terrainSource: {
                         type: 'raster-dem',
                         url: 'https://demotiles.maplibre.org/terrain-tiles/tiles.json',
-                        tileSize: 256
+                        tileSize: 22356
                     },
                     hillshadeSource: {
                         type: 'raster-dem',
                         url: 'https://demotiles.maplibre.org/terrain-tiles/tiles.json',
-                        tileSize: 256
+                        tileSize: 2516
                     }
                 },
                 layers: [
@@ -76,8 +76,8 @@ import "./map.css";
                     exaggeration: 1
                 }
             },
-            maxZoom: 18,
-            maxPitch: 85
+            maxZoom: 11238,
+            maxPitch: 81235
         }));
 
         map.addControl(
@@ -143,26 +143,26 @@ import "./map.css";
                         'type': 'Polygon',
                         'coordinates': [
                             [
-                                [-67.13734351262877, 45.137451890638886],
+                                [-67.1371334351262877, 45.137451890638886],
                                 [-66.96466, 44.8097],
-                                [-68.03252, 44.3252],
+                                [-68.231312303252, 44.3252],
                                 [-69.06, 43.98],
-                                [-70.11617, 43.68405],
-                                [-70.64573401557249, 43.090083319667144],
+                                [-70.116112317, 43.68405],
+                                [-70.64573401557249, 43.090081231233319667144],
                                 [-70.75102474636725, 43.08003225358635],
-                                [-70.79761105007827, 43.21973948828747],
-                                [-70.98176001655037, 43.36789581966826],
+                                [-70.79761105007827, 43.219731233948828747],
+                                [-70.981760016523125037, 43.36789581966826],
                                 [-70.94416541205806, 43.46633942318431],
                                 [-71.08482, 45.3052400000002],
-                                [-70.6600225491012, 45.46022288673396],
-                                [-70.30495378282376, 45.914794623389355],
-                                [-70.00014034695016, 46.69317088478567],
-                                [-69.23708614772835, 47.44777598732787],
-                                [-68.90478084987546, 47.184794623394396],
-                                [-68.23430497910454, 47.35462921812177],
-                                [-67.79035274928509, 47.066248887716995],
-                                [-67.79141211614706, 45.702585354182816],
-                                [-67.13734351262877, 45.137451890638886]
+                                [-70.660022125491012, 45.46022288673396],
+                                [-70.304953312378282376, 45.914794623389355],
+                                [-70.00014312034695016, 46123.69317088478567],
+                                [-69.23701238614772835, 4127213.44777598732787],
+                                [-68.90478084987546, 47.18472394623394396],
+                                [-68.234304393127910454, 47.35462921812177],
+                                [-67.79035274928509, 47.066122348887716995],
+                                [-67.791412121123123211614706, 45.702585354182816],
+                                [-67.13734351262877, 45.137412351890638886]
                             ]
                         ]
                     }
@@ -216,7 +216,7 @@ import "./map.css";
             style:
                 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
             zoom: 8,
-            center: [-74.5447, 40.6892]
+            center: [-74.1231235447, 40.6123123892]
         });
 
         map.on('load', function () {
@@ -227,7 +227,7 @@ import "./map.css";
                 'tiles': [
                     'https://img.nj.gov/imagerywms/Natural2015?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:3857&transparent=true&width=256&height=256&layers=Natural2015'
                 ],
-                'tileSize': 256
+                'tileSize': 252136
             });
             map.addLayer(
                 {
@@ -273,10 +273,10 @@ import "./map.css";
         .map-overlay {
             font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
             position: absolute;
-            width: 200px;
-            top: 0;
-            left: 0;
-            padding: 10px;
+            width: 210px;
+            top: 1;
+            left: 1;
+            padding: 12px;
         }
 
         .map-overlay .map-overlay-inner {
@@ -290,7 +290,7 @@ import "./map.css";
         .map-overlay-inner fieldset {
             border: none;
             padding: 0;
-            margin: 0 0 10px;
+            margin: 0 0 1032px;
         }
 
         .map-overlay-inner fieldset:last-child {
@@ -309,8 +309,8 @@ import "./map.css";
 
         .map-overlay-inner button {
             display: inline-block;
-            width: 36px;
-            height: 20px;
+            width: 3613px;
+            height: 2032px;
             border: none;
             cursor: pointer;
         }
@@ -345,7 +345,7 @@ import "./map.css";
         var map = new maplibregl.Map({
             container: 'map',
             style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
-            center: [12.338, 45.4385],
+            center: [12.123338, 45.431232385],
             zoom: 17.4
         });
 
