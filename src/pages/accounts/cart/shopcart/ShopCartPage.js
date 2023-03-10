@@ -3,6 +3,7 @@ import {React, useState, useEffect} from 'react';
 import axios from 'axios';
 import "./cartStyle.css"
 import water from "./shop_assets/water_bottle.PNG"
+import PopupShop from "../../../shop/EmptyCart"
 
 
 export default function ShopCartPage() {
@@ -13,11 +14,13 @@ export default function ShopCartPage() {
   const [Userpoints, setUserpoints] = useState([]);
   const storeuserid = localStorage.getItem("user_ID");
   const [user, setuser] = useState([]);
+  const [empty, setempty] = useState(false)
   
   useEffect(() => {
     loadItems();
     loadProducts();
     loadUserPoints();
+    
     
 
   },[]);
@@ -25,15 +28,20 @@ export default function ShopCartPage() {
   useEffect(()=>{
     total();
     loadUser();
+    if(cartItems.length===0){
+      setempty(true);
+    }
+    else if(cartItems.length>0){
+      setempty(false)
+    }
   },[cartItems,productData])
 
   const loadUser = () => {
     axios.get("http://localhost:8080/Sign_Up_log").then(res=>{setuser(res.data)})
-    console.log(user,"<-user");
   }
   const loadUserPoints = () => {
     axios.get("http://localhost:8080/points")
-    .then(res=>{setUserpoints(res.data);console.log(res.data,"user points loaded");loadUser();})
+    .then(res=>{setUserpoints(res.data);loadUser();})
   }
   
   const loadProducts = () => {
@@ -47,8 +55,8 @@ export default function ShopCartPage() {
     axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`)
     .then(res => {
       setcartItems(res.data);
+      console.log(res.data);
     })
-    
   }
 
   const total = () => {
@@ -106,17 +114,24 @@ export default function ShopCartPage() {
     })
   }
   
+
   var notEmpty = true;
   return(
-    
     <div>
       <div className="cart_page">
         <h1 className="cart_title">SHOP CART</h1>
         <span className="containerSum">
-          <h2>£{subtotal}</h2>
+          <h2>Total: £{subtotal}</h2>
           <Link to="/checkout"><button className="checkout">CHECKOUT</button></Link>
         </span>
+        <PopupShop trigger={empty} setTrigger={setempty}>
+          <div>
+            EMPTY
+            <Link to="/shop"><br></br><button className="empty_btn">BACK TO SHOP</button></Link>
+          </div>
+        </PopupShop>
           <table className="cart_items">
+           
             <thead>
               <tr key={"headers"}>
                 <th className="item_image_header table_h">PRODUCT</th>
@@ -128,6 +143,7 @@ export default function ShopCartPage() {
             </thead>
           {
             cartItems.map(item => {
+              
               return(
               <>
                 {
@@ -143,7 +159,7 @@ export default function ShopCartPage() {
                           <td><button className="delete_button" onClick={() => deleteItem(item.id)}>X</button></td>
                         </tr>
                         </tbody>
-                         : ""}
+                         : "empty"}
                          </>)
                     }
                   })

@@ -3,6 +3,7 @@ import { Link, useSubmit } from "react-router-dom";
 import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 import water from './item_pages/shop_assets/water_bottle.PNG'
+import Poppup from "./confirmation";
 
 export default function Checkout() {
     const [cartItems, setcartItems] = useState([]);
@@ -102,6 +103,7 @@ export default function Checkout() {
         }
 
     const purchase = () => {
+        setconfirm(true);
         // var DOP = new Date()
         
         // var date = DOP.getUTCFullYear() + '-' + (DOP.getMonth()+1) + "-" + DOP.getDate() + ' ' + DOP.getHours() +':'+ DOP.getMinutes();
@@ -122,6 +124,7 @@ export default function Checkout() {
     }
 
    
+    const [confirm, setconfirm] = useState(false)
     
     return (
         <div>
@@ -129,6 +132,12 @@ export default function Checkout() {
                 <div className="check_details">
                     <h1 className="check_title">AquaPure</h1>
                     <h2 className="check_subtitle">SHOP</h2>
+                    <Poppup trigger={confirm} setTrigger={setconfirm}>
+                        <div>
+                            THANKS
+                            <Link to="/accounts"><button>Check order</button></Link>
+                        </div>
+                    </Poppup>
                     <form className="customer_details">
                         <p>CONTACT INFORMATION</p>
                         <lable className="details_submit">
@@ -142,8 +151,9 @@ export default function Checkout() {
                     <table className="checkout_table">
                         <tr>
                             <th className="checkout-image-header">{/*image*/}</th>
-                            <th>{/*Product Name*/}</th>
-                            <th className="checkout-price-header">{/*Price*/}</th>
+                            <th>Product Name</th>
+                            <th className="checkout-price-header">Price</th>
+                            <th>Quantity</th>
                         </tr>
                     {
                         cartItems.map(item => {
@@ -189,7 +199,7 @@ export default function Checkout() {
 
                     <div className="subtotal">
                         <h3 className="total">Total</h3>
-                        <h2 className="subtotal_num">{subtotal}</h2>
+                        <h2 className="subtotal_num">£{subtotal}</h2>
                     </div>
                     {/* Requires npm react-popup installed */}
                     {/* <Popup trigger={<button>PURCHASE</button>}>
@@ -197,7 +207,7 @@ export default function Checkout() {
                             <h1>Thank you for your purchase!</h1>
                         </div>
                     </Popup> */}
-                    <Link to='/accounts'><button onClick={()=>purchase()}>PURCHASE</button></Link>
+                    <button onClick={()=>purchase()}>PURCHASE</button>
                 </div>
             </div>
         </div>

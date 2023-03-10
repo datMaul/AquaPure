@@ -6,7 +6,7 @@ table{
     float:left;
 }
 .table_h{
-    font-size:20px;
+    font-size:15px;
     border-bottom-style: solid;
     border-color:rgba(0, 0, 0, 0.233);
 
@@ -17,6 +17,16 @@ table{
     text-align: center;
     font-size:40px;
     margin-bottom:50px;  
+}
+.empty_btn{
+    cursor: pointer;
+    padding:5px;
+    background-color: rgb(186, 255, 234);
+    border-color:rgb(98, 213, 255);
+    border-width:2px;
+    border-radius: 5px;
+    color:rgb(21, 113, 83);
+    font-size:20px;
 }
 .cart_items{
     
