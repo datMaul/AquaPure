@@ -44,12 +44,8 @@ public class MapRecord_Controller {
                                                  @Param(value = "waterBodyTypes") String waterBodyTypes,
                                                  @Param(value = "parameterName") String parameterName) {
         
-        List<String> sourceTypesList = sourceTypes.isEmpty() ? Collections.emptyList() : Arrays.asList(sourceTypes.split(","));
-        List<String> waterBodyTypesList = waterBodyTypes.isEmpty() ? Collections.emptyList() : Arrays.asList(waterBodyTypes.split(","));
-
-        if (sourceTypesList.isEmpty() && waterBodyTypesList.isEmpty()) {
-            return Collections.emptyList();
-        }
+        List<String> sourceTypesList = Arrays.asList(sourceTypes.split(","));
+        List<String> waterBodyTypesList =  Arrays.asList(waterBodyTypes.split(","));
         
         return mapRecordRepository.findBySelectedParams(sourceTypesList, waterBodyTypesList, parameterName);
     }
@@ -112,6 +108,7 @@ public class MapRecord_Controller {
         return openWIMSRecordRepository.save(openWIMSRecord);
     }
 
+    // Update an openWIMS record with a manually assigned ID
     @PutMapping("/openwimsrecords/{id}")
     public OpenWIMSRecord updateOpenWIMSRecord(@RequestBody OpenWIMSRecord newOpenWIMSRecord, @PathVariable String id) {
         return openWIMSRecordRepository.findById(id)
@@ -130,26 +127,11 @@ public class MapRecord_Controller {
                 });
     }
 
-    /* 
-    // Update an openWIMS record with a manually assigned ID
-    @PutMapping("/openwimsrecords/{id}")
-    public OpenWIMSRecord updateOpenWIMSRecord(@RequestBody OpenWIMSRecord newOpenWIMSRecord, @PathVariable String id) {
-        return openWIMSRecordRepository.findById(id)
-                .map(openWIMSRecord -> {
-                    openWIMSRecord.setOpenWIMSRecord_ID(id);
-                    openWIMSRecord.setSamplingPoint(newOpenWIMSRecord.getSamplingPoint());
-                    openWIMSRecord.setSamplingPointNotation(newOpenWIMSRecord.getSamplingPointNotation());
-                    openWIMSRecord.setSamplingPointLabel(newOpenWIMSRecord.getSamplingPointLabel());
-                    openWIMSRecord.setSamplingPurposeLabel(newOpenWIMSRecord.getSamplingPurposeLabel());
-                    openWIMSRecord.setIsComplianceSample(newOpenWIMSRecord.getIsComplianceSample());
-                    openWIMSRecord.setMapRecord(newOpenWIMSRecord.getMapRecord());
-                    return openWIMSRecordRepository.save(openWIMSRecord);
-                })
-                .orElseGet(() -> {
-                    newOpenWIMSRecord.setOpenWIMSRecord_ID(id);
-                    return openWIMSRecordRepository.save(newOpenWIMSRecord);
-                });
-    }*/
+    // Delete a map record
+    @DeleteMapping("/maprecords/{id}")
+    public void deleteMapRecord(@PathVariable Long id) {
+        mapRecordRepository.deleteById(id);
+    }
 
     // Delete all map records
     @DeleteMapping("/maprecords")

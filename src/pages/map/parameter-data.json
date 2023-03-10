@@ -32,7 +32,7 @@
         }
     },
 
-    "Total Alkalinity": {
+    "Alkalinity": {
         "unit": "ppm",
         "values": {
             "0": "#ffff80",
@@ -44,7 +44,7 @@
         }
     },
 
-    "Total Hardness": {
+    "Hardness": {
         "unit": "ppm",
         "values": {
             "0": "#e0f3ff",
@@ -75,7 +75,7 @@
         }
     },
 
-    "Total Chlorine": {
+    "Chlorine": {
         "unit": "ppm",
         "values": {
             "0": "#ffe5f6",
@@ -174,22 +174,6 @@
         }
     },
 
-    "MPS": {
-        "unit": "ppm",
-        "values": {
-            "0": "#ffe6ed",
-            "1": "#ffd2df",
-            "2": "#ffbfd1",
-            "6": "#ffabc3",
-            "10": "#ff96b4",
-            "20": "#ff80a5"
-        },
-        "ideal_range": {
-            "min": 0,
-            "max": 2
-        }
-    },
-
     "Fluoride": {
         "unit": "ppm",
         "values": {
@@ -202,68 +186,6 @@
         "ideal_range": {
             "min": 0,
             "max": 0
-        }
-    },
-
-    "Cyanuric Acid": {
-        "unit": "ppm",
-        "values": {
-            "0": "#ffbf80",
-            "10": "#ffaa84",
-            "50": "#ff9696",
-            "100": "#ff85b2",
-            "250": "#ff7fd4"
-        },
-        "ideal_range": {
-            "min": 0,
-            "max": 50
-        }
-    },
-
-    "Ammonia Chloride": {
-        "unit": "ppm",
-        "values": {
-            "0": "#ff6a4d",
-            "100": "#ff9050",
-            "150": "#ffb25f",
-            "250": "#ffd178",
-            "500": "#ffee99"
-        },
-        "ideal_range": {
-            "min": 0,
-            "max": 0
-        }
-    },
-
-    "Bromine": {
-        "unit": "ppm",
-        "values": {
-            "0": "#ffffb3",
-            "1": "#e8f4a0",
-            "2": "#cfea8f",
-            "6": "#b4df80",
-            "10": "#97d573",
-            "20": "#76cb68"
-        },
-        "ideal_range": {
-            "min": 0,
-            "max": 0
-        }
-    },
-
-    "Carbonate": {
-        "unit": "ppm",
-        "values": {
-            "0": "#fff480",
-            "40": "#bbdf7e",
-            "80": "#80c682",
-            "120": "#4daa85",
-            "180": "#238c81",
-            "240": "#0f6e74"
-        },
-        "ideal_range": {
-            "min": 120,
-            "max": 180
         }
     }
 }
