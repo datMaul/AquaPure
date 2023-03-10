@@ -108,21 +108,60 @@ function OSGB36toWGS84 (E, N) {
     // Algorithm Source: https://www.npmjs.com/package/bngconvert
 }
 
-function mapTileCoords([lng, lat], tile_size = 0.5) {
-    console.log("Input coordinates: ", lat, lng);
+// Get all tiles latitude points for a given tile size
+function getAllTileLatPoints(tile_size) {
+    var latPoints = [];
 
-    // Round the lat and lng to the nearest tile size
-    lng = lng - (lng % tile_size);
-    lat = lat - (lat % (tile_size / 1.6)); // TO DO: Fix this to be more accurate
-    
-    // Get the lat diff taking the Mercator projection scale factor into account
-    var latDiff = (tile_size / (1 / Math.cos(lat * (Math.PI / 180))));
-    console.log(`latDiff at lat ${lat} is ${latDiff}`)
+    var deg2rad = Math.PI / 180;
+    for (var lat = -85; lat < 85; lat += (tile_size / (1 / Math.cos(lat * deg2rad)))) {
+        latPoints.push({
+            lat: lat,
+            correctedTileSize: tile_size / (1 / Math.cos(lat * deg2rad))
+        });
+    }
+
+    return latPoints;
+}
+
+// Get the closest tile latitude point for a given data latitude point
+function getTileLat(dataLat, latPoints) {
+    //var latPoints = getAllTileLatPoints(tile_size);
+
+    // Use a binary search to find the closest lat point, and return a lat point higher than the data lat
+    var min = 0;
+    var max = latPoints.length - 1;
+    var mid = Math.floor((min + max) / 2);
+
+    while (min <= max) {
+        if (latPoints[mid].lat < dataLat) {
+            min = mid + 1;
+        } else if (latPoints[mid].lat > dataLat) {
+            max = mid - 1;
+        } else {
+            break;
+        }
+        mid = Math.floor((min + max) / 2);
+    }
+
+    if (latPoints[mid].lat > dataLat) {
+        mid += 1;
+    }
+
+    return latPoints[mid];
+}
+
+// Get the coordinates of the corners of a tile
+function getTileCoords([lng, lat], tile_size, lat_points) {
+    const tileLat = getTileLat(lat, lat_points);
+
+    // Round the lat and lng to the nearest tile boundary
+    lng = Math.floor(lng / tile_size) * tile_size;
+    lat = tileLat.lat;
 
     // Get the coordinates of the corners of the tile
     var c1 = [lng,              lat];
-    var c2 = [lng,              lat + latDiff];
-    var c3 = [lng + tile_size,  lat + latDiff];
+    var c2 = [lng,              lat + tileLat.correctedTileSize];
+    var c3 = [lng + tile_size,  lat + tileLat.correctedTileSize];
     var c4 = [lng + tile_size,  lat];
 
     return [c1, c2, c3, c4, c1];
@@ -136,6 +175,7 @@ function fetchMapRecords(sourceTypes, waterBodyTypes, parameterName) {
 
 module.exports = {
     OSGB36toWGS84,
-    mapTileCoords,
-    fetchMapRecords
+    getTileCoords,
+    fetchMapRecords,
+    getAllTileLatPoints
 }

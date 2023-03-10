@@ -51,16 +51,16 @@
 
 #search_bar {
     display: flex;
-    top: 85px;
+    top: 88px;
     left: 50%;
     transform: translateX(-50%);
     justify-content: center;
 }
 
 #search_bar>input {
-    width: 25vw;
+    width: 20vw;
     height: 40px;
-    border-radius: 10px 0 0 10px;
+    border-radius: 25px 0 0 25px;
     padding: 16px;
     border: 1px solid #929292;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -79,7 +79,7 @@
     justify-content: center;
     width: 45px;
     height: 40px;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 25px 25px 0;
     padding: 16px;
     border: 1px solid #929292;
     background-color: white;
@@ -134,17 +134,27 @@
     width: 300px;
 }
 
-#water_body_filters>#check_all_waterbody {
+#check_all_waterbody_container {
+    /* put a line separator between the check all and the checkboxes */
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+input[type=checkbox] {
+    margin-right: 5px;
 }
 
 #water_body_filters>.water_body_checkboxes {
     display: grid;
     grid-template-columns: auto auto;
-
+    align-items: center;
+    float: left;
+    gap: 3px;
 }
 
 #parameter_filters {
-    top: 440px;
+    top: 460px;
     left: 15px;
 }
 

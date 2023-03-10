@@ -3,7 +3,7 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./map.css";
 import paramData from "./parameter-data.json";
-import { mapTileCoords } from "./utils.js";
+import { getTileCoords, getAllTileLatPoints } from "./utils.js";
 import axios from "axios";
 
 export default function Map() {
@@ -22,14 +22,28 @@ export default function Map() {
       center: [lng, lat],
       zoom: zoom,
     });
-    map.current.addControl(new maplibregl.NavigationControl(), "top-right");
-    map.current.addControl(new maplibregl.GeolocateControl(), "bottom-right");
+    map.current.addControl(new maplibregl.NavigationControl(), 'bottom-right');
+    map.current.addControl(new maplibregl.GeolocateControl(), 'bottom-right');
     populateParameterFilters();
 
-    map.current.on("load", function () {
-      const searchInput = document.getElementById("search_input");
-      const searchResults = document.getElementById("search_results");
-      const searchButton = document.getElementById("search_button");
+    map.current.popups = [];
+    map.current.records = [];
+    map.current.lastZoomStage = -1;
+    map.current.tileSize = 0.64;
+
+    // On zoom change, update the tile size and redraw the tiles
+    map.current.on("zoom", () => {
+      if (map.current.records.length) updateTiles();
+    });
+
+    map.current.on('load', async function () {
+
+      await fetchMapRecords();
+      if (map.current.records.length) updateTiles();
+
+      const searchInput = document.getElementById('search_input');
+      const searchResults = document.getElementById('search_results');
+      const searchButton = document.getElementById('search_button');
 
       // Make the search input visible when it is focused
       searchInput.addEventListener("focus", () => {
@@ -85,6 +99,25 @@ export default function Map() {
         },
         filter: ["==", "$type", "Point"],
       });
+
+      // Add event listener to checkboxes and parameter dropdown to update the map tiles
+      const checkboxes = document.querySelectorAll(
+        'input[type="checkbox"].body_filter, input[type="checkbox"].source_filter, select#param_filter'
+      );
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", async () => {
+
+          const start = performance.now();
+          await fetchMapRecords();
+          const end = performance.now();
+          console.log("Time taken to fetch map records: " + (end - start) + "ms");
+          clearAllCircles();
+          clearAllTiles();
+          await drawCircleLayer(map.current.records);
+          await drawTileLayer(map.current.records);
+        });
+      });
+      
     });
   });
 
@@ -104,6 +137,9 @@ export default function Map() {
       .map((checkbox) => checkbox.nextElementSibling.textContent)
       .join(",");
 
+    // If no water body types or source types are selected, return
+    if (!waterBodyTypes && !sourceTypes) return;
+
     // Get parameter name
     const parameterName = document.getElementById("param_filter").value;
 
@@ -113,12 +149,14 @@ export default function Map() {
       parameterName: parameterName,
     };
 
-    console.log("params: " + params);
+    //console.log("params: " + params);
 
     const response = await axios.get(
       "http://localhost:8080/maprecordsbyparams",
       { params }
     );
+
+    map.current.records = response.data;
 
     console.log(response.data);
     return response.data;
@@ -128,7 +166,7 @@ export default function Map() {
   function handleSearch() {
     const searchInput = document.getElementById("search_input").value;
     searchPlace(searchInput).then((results) => {
-      console.log(results);
+      //console.log(results);
       map.current.getSource("search-results").setData(results);
       if (results.features[0]) {
         map.current.fitBounds(results.features[0].bbox, { maxZoom: 19 });
@@ -136,12 +174,12 @@ export default function Map() {
     });
   }
 
-  // Populate a list of search results from a search query
+  // Populate a list of location search results from a search query
   function populateSearchResults() {
     var searchResults = document.getElementById("search_results");
     const searchInput = document.getElementById("search_input");
     searchPlace(searchInput.value).then((results) => {
-      console.log(results);
+      //console.log(results);
       map.current.getSource("search-results").setData(results);
       if (results.features[0]) {
         searchResults.innerHTML = "";
@@ -155,8 +193,8 @@ export default function Map() {
       for (var i = 0; i < searchResultItems.length; i++) {
         let item = searchResultItems[i];
         item.addEventListener("click", () => {
-          console.log(searchResultItems);
-          console.log(item.dataset.bbox);
+          //console.log(searchResultItems);
+          //console.log(item.dataset.bbox);
           map.current.fitBounds(
             item.dataset.bbox.split(",").map((value) => parseFloat(value)),
             { maxZoom: 19 }
@@ -168,117 +206,249 @@ export default function Map() {
     });
   }
 
+  // Remove all tile layers from the map
   function clearAllTiles() {
-    // Get the map style
-    const style = map.current.getStyle();
+    map.current.popups.forEach((popup) => popup.remove());
 
-    // Loop through the layers and sources and remove the ones that start with 'sample_'
-    style.layers.forEach((layer) => {
-      const layerId = layer.id;
-      if (layerId.startsWith("sample_")) {
-        map.current.removeLayer(layerId);
+    // Remove the samples_tiles layer
+    if (map.current.getLayer("samples_tiles")) map.current.removeLayer("samples_tiles");
+
+    // Remove the samples_tiles source
+    if (map.current.getSource("samples_tiles")) map.current.removeSource("samples_tiles");
+  }
+
+  // Remove all circle layers from the map
+  function clearAllCircles() {
+    if (map.current.getLayer("samples_circles")) map.current.removeLayer("samples_circles");
+    if (map.current.getSource("samples_circles")) map.current.removeSource("samples_circles");
+  }
+
+  // Function to adjust the tile size based on the zoom level
+  function updateTiles() {
+    clearTimeout(map.current.updateTilesTimeout);
+    map.current.updateTilesTimeout = setTimeout(() => {
+      const zoom = map.current.getZoom();
+      const zoomStage = Math.floor(zoom / 2);
+
+      if (map.current.lastZoomStage !== zoomStage) {
+        clearAllTiles();
+        map.current.tileSize = 4 / Math.pow(2.5, zoomStage);
+        drawTileLayer(map.current.records);
+      }
+
+      map.current.lastZoomStage = zoomStage;
+    }, 100);
+  }
+
+  function drawCircleLayer(records) {
+    // Create a GeoJSON FeatureCollection for circles
+    var circleCollection = {
+      type: "FeatureCollection",
+      features: [],
+    };
+
+    records.forEach((record) => {
+
+      //console.log(`record: ${JSON.stringify(record)}`)
+
+      const sampleId = record.openWIMSRecord?.samplingPoint 
+                    ?? record.testkitPurchase?.id 
+                    ?? record.mapRecord_ID;
+
+      // Create a GeoJSON Feature for each record 
+      var circleFeature = {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [record.longitude, record.latitude],
+        },
+        properties: {
+          sampleId: sampleId,
+          sampleDate: record.recordedDateTime,
+          sourceType: record.sourceType,
+          waterBodyType: record.waterBodyType,
+          parameterName: record.parameterName,
+          parameterValue: record.parameterValue,
+          parameterUnit: record.parameterUnit
+        }
+      };
+
+      // Add the feature to the FeatureCollection
+      circleCollection.features.push(circleFeature);
+    });
+
+    // Add the GeoJSON FeatureCollection to the map
+    map.current.addSource("samples_circles", {
+      type: "geojson",
+      data: circleCollection,
+    });
+
+    // Add a circle layer to the map
+    map.current.addLayer({
+      id: "samples_circles",
+      type: "circle",
+      source: "samples_circles",
+      paint: {
+        'circle-color': '#11b4da',
+        'circle-radius': 4,
+        'circle-stroke-width': 1,
+        'circle-stroke-color': '#fff'
       }
     });
-    Object.keys(style.sources).forEach((sourceId) => {
-      if (sourceId.startsWith("sample_")) {
-        map.current.removeSource(sourceId);
-      }
+
+    // Add a click event to the circles layer
+    map.current.on("click", "samples_circles", (e) => {
+      const coordinates = e.features[0].geometry.coordinates.slice();
+      const sampleId = e.features[0].properties.sampleId;
+      const sourceType = e.features[0].properties.sourceType;
+      const sampleDate = e.features[0].properties.sampleDate;
+      const waterBodyType = e.features[0].properties.waterBodyType;
+      const parameterName = e.features[0].properties.parameterName;
+      const parameterValue = e.features[0].properties.parameterValue;
+      const parameterUnit = e.features[0].properties.parameterUnit;
+
+      // Create a popup
+      var popup = new maplibregl.Popup({ offset: 5 }).setHTML(
+        `<b>Sample ID:</b><br/>${sampleId}<br/><br>` +
+        `<b>Source type:</b><br/>${sourceType}<br/><br>` +
+        `<b>Sample date:</b><br/>${sampleDate}<br/><br>` +
+        `<b>Water Body Type:</b><br/>${waterBodyType}<br/><br>` +
+        `<b>Parameters:</b><br/>` +
+        `${parameterName}: ${parameterValue} ${parameterUnit}`
+      );
+
+      // Add the popup to the map
+      popup.setLngLat(coordinates).addTo(map.current);
+    });
+
+    // Change the cursor to a pointer when the mouse is over the circles layer
+    map.current.on("mouseenter", "samples_circles", () => {
+      map.current.getCanvas().style.cursor = "pointer";
+    });
+
+    // Change it back to a pointer when it leaves
+    map.current.on("mouseleave", "samples_circles", () => {
+      map.current.getCanvas().style.cursor = "";
     });
   }
 
-  async function addTileLayers() {
-    const records = await fetchMapRecords();
-    console.log("records: " + JSON.stringify(records));
+  // Add tile layers to the map with retrieved map record data
+  async function drawTileLayer(records) {
+    // Fetch map records from the backend
+    //const records = map.current.records;
+
+    var latPoints = getAllTileLatPoints(map.current.tileSize);
+
+    // Create a GeoJSON FeatureCollection
+    var tileCollection = {
+      type: "FeatureCollection",
+      features: [],
+    };
 
     records.forEach((record) => {
-      var layerId = null;
 
-      if (record.openWIMSRecord) {
-        layerId = record.openWIMSRecord.samplingPointNotation;
-      } else if (record.testkitPurchase) {
-        layerId = record.testkitPurchase.id;
+      // Get the sample ID
+      const sampleId = record.openWIMSRecord?.samplingPoint 
+                   ?? record.testkitPurchase?.id 
+                   ?? record.mapRecord_ID;
+
+      // Loop through all features in the GeoJSON FeatureCollection
+      // and check if the record is within the same tile bounds as another record
+      var recordInExistingTile = false;
+      for (var i = 0; i < tileCollection.features.length; i++) {
+        const feature = tileCollection.features[i];
+        const coords = feature.geometry.coordinates[0];
+
+        if ((record.longitude >= coords[0][0] && record.longitude <= coords[3][0]) && (record.latitude >= coords[0][1] && record.latitude <= coords[1][1])) {
+          feature.properties.avgParamValue = (feature.properties.avgParamValue + record.parameterValue) / 2;
+          feature.properties.sampleIds.push(sampleId);
+          if (!feature.properties.waterBodyTypes.includes(record.waterBodyType)) {
+            feature.properties.waterBodyTypes.push(record.waterBodyType);
+          }
+          recordInExistingTile = true;
+          break;
+        }
       }
 
-      if (!layerId) layerId = record.mapRecord_ID;
+      // If the record is not within the same tile bounds of another record, create a new tile
+      if (!recordInExistingTile) {
+        tileCollection.features.push({
+          'type': "Feature",
+          'geometry': {
+            'type': "Polygon",
+            'coordinates': [getTileCoords([record.longitude, record.latitude], map.current.tileSize, latPoints)]
+          },
+          'properties': {
+            'sampleIds': [sampleId],
+            'waterBodyTypes': [record.waterBodyType],
+            'parameterName': record.parameterName,
+            'avgParamValue': record.parameterValue,
+            'parameterUnit': record.parameterUnit,
+            'fillColour': '#808080',
+            'popupHTML': 'There is no data to be displayed for this tile.'
+          }
+        });
+      }
+    });
 
+    // Add fill-colour and popupHTML to every tile in GeoJSON FeatureCollection
+    // Add popupHTML to every tile in GeoJSON FeatureCollection
+    tileCollection.features.forEach((feature) => {
       // Calculate fill colour based from parameter-data.json and sample value
-      var colourToFill = "#808080";
-      const paramJSON = paramData[record.parameterName]["values"];
-      console.log("paramJSON: " + JSON.stringify(paramJSON));
-
+      var colourToFill = '#808080';
+      const paramJSON = paramData[feature.properties.parameterName]['values'];
       for (const key in paramJSON) {
-        if (parseFloat(record.parameterValue) >= parseFloat(key)) {
+        if (parseFloat(feature.properties.avgParamValue) >= parseFloat(key)) {
           colourToFill = paramJSON[key];
         }
       }
-      console.log("colourToFill: " + colourToFill);
+      feature.properties.fillColour = colourToFill;
 
-      map.current.addSource("sample_" + layerId, {
-        type: "geojson",
-        data: {
-          type: "Feature",
-          geometry: {
-            type: "Polygon",
-            coordinates: [
-              mapTileCoords([record.longitude, record.latitude], 0.25),
-            ],
-          },
-        },
-      });
-      map.current.addLayer({
-        id: "sample_" + layerId,
-        type: "fill",
-        source: "sample_" + layerId,
-        layout: {},
-        paint: {
-          "fill-color": colourToFill,
-          "fill-opacity": 0.5,
-        },
-      });
-
-      map.current.on("click", "sample_" + layerId, function (e) {
-        new maplibregl.Popup()
-          .setLngLat(e.lngLat)
-          .setHTML(
-            "<b>Sample ID:</b> " +
-              record.mapRecord_ID +
-              "<br/>" +
-              "<b>Source:</b> " +
-              record.sourceType +
-              "<br/>" +
-              "<b>Type:</b> " +
-              record.waterBodyType +
-              "<br/>" +
-              "<b>Sampling Date:</b> " +
-              record.recordedDateTime +
-              "<br/>" +
-              "<b>Parameter</b> " +
-              record.parameterName +
-              ": " +
-              record.parameterValue +
-              " " +
-              record.parameterUnit +
-              "<br/>" +
-              "<b>Latitude:</b> " +
-              record.latitude +
-              "<br/>" +
-              "<b>Longitude:</b> " +
-              record.longitude +
-              "<br/><br/>" +
-              "<b>Effects On Health:</b> " +
-              "<br/>"
-          )
-          .addTo(map.current);
-      });
-
-      map.current.on("mouseenter", "sample_" + layerId, function () {
-        map.current.getCanvas().style.cursor = "pointer";
-      });
-
-      map.current.on("mouseleave", "sample_" + layerId, function () {
-        map.current.getCanvas().style.cursor = "";
-      });
+      // Create popup HTML
+      var popupHTML = `<div class="map_popup"><p>${feature.properties.parameterName}</p>` +
+        `<p>Average Value: ${feature.properties.avgParamValue}</p>` +
+        `<p>Sample Count: ${feature.properties.sampleIds.length}</p>` +
+        `<p>Water Body Types: ${feature.properties.waterBodyTypes.join(', ')}</p>`;
+        //`<p>Sample IDs: ${feature.properties.sampleIds.join(', ')}</p></div>`;
+      feature.properties.popupHTML = popupHTML;
     });
+
+    //console.log(tileCollection);
+
+    // Add tile layers to the map with retrieved map record data
+    map.current.addSource("samples_tiles", {
+      'type': "geojson",
+      'data': tileCollection
+    });
+    map.current.addLayer({
+      'id': "samples_tiles",
+      'type': "fill",
+      'source': "samples_tiles",
+      'layout': {},
+      'paint': {
+        "fill-color": ["get", "fillColour"],
+        "fill-opacity": 0.5
+      }
+    }, 'samples_circles');
+      
+
+    // Add popup to the map
+    // map.current.on('click', 'samples_tiles', function (e) {
+    //   new maplibregl.Popup()
+    //     .setLngLat(e.lngLat)
+    //     .setHTML(e.features[0].properties.popupHTML)
+    //     .addTo(map.current);
+    // });
+
+    // // Change the cursor to a pointer when the mouse is over the samples_tiles layer
+    // map.current.on('mouseenter', 'samples_tiles', function () {
+    //   map.current.getCanvas().style.cursor = 'pointer';
+    // });
+    // // Change it back to a cursor when it leaves
+    // map.current.on('mouseleave', 'samples_tiles', function () {
+    //   map.current.getCanvas().style.cursor = '';
+    // });
+
   }
 
   // Search for a place using MapTiler's geocoding API
@@ -325,15 +495,22 @@ export default function Map() {
   // Check/uncheck all water body checkboxes
   function checkAllBodyFilters() {
     const waterBodyCheckboxes = document.getElementsByClassName("body_filter");
-    const checkAllButton = document.getElementById("check_all_waterbody");
-    for (var i = 0; i < waterBodyCheckboxes.length; i++) {
-      checkAllButton.innerHTML === "All"
-        ? (waterBodyCheckboxes[i].checked = true)
-        : (waterBodyCheckboxes[i].checked = false);
+    //const selectAllLabel = document.getElementById("check_all_waterbody");
+    const selectAllCheckbox = document.getElementById("chk_check_all_waterbody");
+
+    if (selectAllCheckbox.checked) {
+      //selectAllLabel.innerHTML = "Uncheck All";
+      for (var i = 0; i < waterBodyCheckboxes.length; i++) {
+        waterBodyCheckboxes[i].checked = true;
+      }
+    } else {
+      //selectAllLabel.innerHTML = "Check All";
+      for (var i = 0; i < waterBodyCheckboxes.length; i++) {
+        waterBodyCheckboxes[i].checked = false;
+      }
     }
-    checkAllButton.innerHTML === "All"
-      ? (checkAllButton.innerHTML = "None")
-      : (checkAllButton.innerHTML = "All");
+
+    
   }
 
   return (
@@ -342,30 +519,14 @@ export default function Map() {
         <div ref={mapContainer} className="map" />
       </div>
 
-      <button id="test_button" onClick={addTileLayers}>
-        Load Tiles
-      </button>
-      <button id="remove_tiles_button" onClick={clearAllTiles}>
-        Remove Tiles
-      </button>
+      {/* <button id="test_button" onClick={async () => drawClustersLayer(map.current.records)}>Load Tiles</button>
+      <button id="remove_tiles_button" onClick={clearAllTiles}>Remove Tiles</button> */}
 
       <div id="search_bar_container">
-        <div id="search_bar">
-          <input
-            type="text"
-            id="search_input"
-            placeholder="Search Location"
-            spellCheck="false"
-          />
+        <div id="search_bar">           
+          <input type="text" id="search_input" placeholder="Search Location" spellCheck="false"/>
           <button type="submit" id="search_button" onClick={handleSearch}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-search"
-              viewBox="0 0 16 16"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
             </svg>
           </button>
@@ -374,87 +535,34 @@ export default function Map() {
 
       <ul id="search_results" />
 
-      <div className="data_filters_wrap">
+      <div className="data_filters_wrap" id="data_filters_wrap">
         <div id="source_filters" className="source_filters white-box">
           <h3>Sources</h3>
           <div className="source_checkboxes">
-            <input
-              type="checkbox"
-              id="chk_open_wims"
-              className="source_filter"
-              name="chk_open_wims"
-              value="chk_open_wims"
-              defaultChecked
-            />
+            <input type="checkbox" id="chk_open_wims" className="source_filter" name="chk_open_wims" value="chk_open_wims" defaultChecked />
             <label for="open_wims">Open WIMS</label>
-            <input
-              type="checkbox"
-              id="chk_user_testkit_data"
-              className="source_filter"
-              name="chk_user_testkit_data"
-              value="chk_user_testkit_data"
-              defaultChecked
-            />
+            <input type="checkbox" id="chk_user_testkit_data" className="source_filter" name="chk_user_testkit_data" value="chk_user_testkit_data" defaultChecked />
             <label for="user_testkit_data">User Testkit Data</label>
           </div>
         </div>
 
         <div id="water_body_filters" className="water_body_filters white-box">
           <h3>Water Body Filter</h3>
-          <button
-            type="button"
-            id="check_all_waterbody"
-            onClick={checkAllBodyFilters}
-          >
-            All
-          </button>
+          {/* <button type="button" id="check_all_waterbody" onClick={checkAllBodyFilters}>All</button> */}
+          <div id = "check_all_waterbody_container">
+              <input type="checkbox" id="chk_check_all_waterbody" defaultChecked onClick={checkAllBodyFilters} />
+              <label for="selectAllBodyFilters" id="check_all_waterbody">Select All</label>
+            </div>
           <div className="water_body_checkboxes">
-            <input
-              type="checkbox"
-              id="chk_river"
-              className="body_filter"
-              name="chk_river"
-              value="river"
-              defaultChecked
-            />
+            <input type="checkbox" id="chk_river" className="body_filter" name="chk_river" value="river" defaultChecked />
             <label for="river">River / Running Surface Water</label>
-            <input
-              type="checkbox"
-              id="chk_pond_lake_reservoir_water"
-              className="body_filter"
-              name="chk_pond_lake_reservoir_water"
-              value="chk_pond_lake_reservoir_water"
-              defaultChecked
-            />
-            <label for="pond_lake_reservoir_water">
-              Pond / Lake / Reservoir Water
-            </label>
-            <input
-              type="checkbox"
-              id="chk_ground_water"
-              className="body_filter"
-              name="chk_ground_water"
-              value="chk_ground_water"
-              defaultChecked
-            />
+            <input type="checkbox" id="chk_pond_lake_reservoir_water" className="body_filter" name="chk_pond_lake_reservoir_water" value="chk_pond_lake_reservoir_water" defaultChecked />
+            <label for="pond_lake_reservoir_water">Pond / Lake / Reservoir Water</label>
+            <input type="checkbox" id="chk_ground_water" className="body_filter" name="chk_ground_water" value="chk_ground_water" defaultChecked />
             <label for="ground_water">Ground Water</label>
-            <input
-              type="checkbox"
-              id="chk_sea_water"
-              className="body_filter"
-              name="chk_sea_water"
-              value="chk_sea_water"
-              defaultChecked
-            />
+            <input type="checkbox" id="chk_sea_water" className="body_filter" name="chk_sea_water" value="chk_sea_water" defaultChecked />
             <label for="sea_water">Sea Water</label>
-            <input
-              type="checkbox"
-              id="chk_estuarine_water"
-              className="body_filter"
-              name="chk_estuarine_water"
-              value="chk_estuarine_water"
-              defaultChecked
-            />
+            <input type="checkbox" id="chk_estuarine_water" className="body_filter" name="chk_estuarine_water" value="chk_estuarine_water" defaultChecked />
             <label for="estuarine_water">Estuarine Water</label>
           </div>
         </div>
@@ -462,15 +570,9 @@ export default function Map() {
         <div id="parameter_filters" className="parameter_filters white-box">
           <h3>Parameter Filter</h3>
           <div className="select_filter">
-            <select
-              name="param_filter"
-              id="param_filter"
-              onChange={updateFilterLegend}
-            />
-            <div
-              id="parameter_filter_legend"
-              className="parameter_filter_legend"
-            >
+            <select name="param_filter" id="param_filter" onChange={updateFilterLegend}/>
+
+            <div id="parameter_filter_legend" className="parameter_filter_legend">
               <h4 id="legend_text">Legend</h4>
               <ul id="legend_list" className="legend_list">
                 <li className="legend_item"></li>
