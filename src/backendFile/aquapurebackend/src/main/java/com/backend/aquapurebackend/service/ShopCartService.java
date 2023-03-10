@@ -1,4 +1,4 @@
-package com.backend.aquapurebackend.Service;
+package com.backend.aquapurebackend.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,14 +41,18 @@ public class ShopCartService {
 	public void addItems(ShopCart newItem) {
 		cartRepository.save(newItem);
 	}
-
-	public Optional<ShopCart> findByID(int id) {
+	public Optional<ShopCart> findByID(int id){
 		return cartRepository.findById((long) id);
 	}
-
+	public List<ShopCart> findByUserID(int userid){
+		return cartRepository.findByUserid(userid);
+	}
 	public void deleteItem(int id) {
 		cartRepository.deleteById((long) id);
 
 	}
+	
+	
+	
 
 }

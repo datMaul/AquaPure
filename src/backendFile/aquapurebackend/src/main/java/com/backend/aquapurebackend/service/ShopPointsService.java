@@ -1,4 +1,4 @@
-package com.backend.aquapurebackend.Service;
+package com.backend.aquapurebackend.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,5 +41,7 @@ public class ShopPointsService {
 	public Optional<ShopPoints> findByID(int id) {
 		return pointsRep.findById((long) id);
 	}
-
+	public Optional<ShopPoints> findByEmail(String email){
+		return pointsRep.findByemail(email);
+	}
 }

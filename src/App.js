@@ -24,14 +24,25 @@ import Cart from "./pages/accounts/cart/MainCartPage";
 import Account from "./pages/accounts/accountPageSections/Accounts";
 import Item_page from "./pages/shop/item_pages/item_frame";
 import Shop from "./pages/shop/Shop";
-import CheckOut from "./pages/shop/checkout";
-import Water_Bottle_page from "./pages/shop/item_pages/water_bottle";
-import Tote_bag_page from "./pages/shop/item_pages/tote_bag";
-import Bamboo_notebook from "./pages/shop/item_pages/Bamboo_notebook";
-import Sticker from "./pages/shop/item_pages/sticker";
-import Travel_cup from "./pages/shop/item_pages/travel_cup";
-import Shop_purchase from "./pages/shop/purchase_history";
-import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitPurchaseHistory/PurchaseHistoryTestkit";
+import CheckOut from "./pages/shop/checkout"
+import Water_Bottle_page from "./pages/shop/item_pages/water_bottle"
+import Tote_bag_page from "./pages/shop/item_pages/tote_bag"
+import Bamboo_notebook from "./pages/shop/item_pages/Bamboo_notebook"
+import Sticker from "./pages/shop/item_pages/sticker"
+import Tshirt from "./pages/shop/item_pages/T-Shirt"
+import Beverage_mug from "./pages/shop/item_pages/beverage_mug";
+import Water_filter from "./pages/shop/item_pages/water_filter";
+import Mask from "./pages/shop/item_pages/mask";
+import Cap from "./pages/shop/item_pages/cap";
+import Flask from "./pages/shop/item_pages/flask";
+import Pouch from "./pages/shop/item_pages/pouch";
+import Phone_case from "./pages/shop/item_pages/phone_case";
+import Backpack from "./pages/shop/item_pages/Backpack";
+import Hoodie from "./pages/shop/item_pages/hoodie";
+import Travel_cup from "./pages/shop/item_pages/travel_cup"
+import Shop_purchase from "./pages/accounts/accountPageSections/purchasehistory/shopPurchaseHistory/PurchaseHistoryShop"
+import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitpurchasehistory/PurchaseHistoryTestkit";
+
 
 // import { Route, Routes } from "react-router-dom";
 
@@ -114,6 +125,16 @@ function App() {
           <Route path="/sticker" element={<Sticker />} />
           <Route path="/travel_cup" element={<Travel_cup />} />
           <Route path="/shop_purchase" element={<Shop_purchase />} />
+          <Route path="/beverage_mug" element={<Beverage_mug/>}/>
+          <Route path="/water_filter" element={<Water_filter/>}/>
+          <Route path="/hoodie" element={<Hoodie/>}/>
+          <Route path="/T-shirt" element={<Tshirt/>}/>
+          <Route path="/flask" element={<Flask/>}/>
+          <Route path="/pouch" element={<Pouch/>}/>
+          <Route path="/phone_case" element={<Phone_case/>}/>
+          <Route path="/backpack" element={<Backpack/>}/>
+          <Route path="/cap" element={<Cap/>}/>
+          <Route path="/mask" element={<Mask/>}/>
         </Routes>
       </div>
     </>

@@ -42,10 +42,6 @@ export default function Item_page() {
                   return("")
                 }
                 })}
-            
-
-            {/* <h2 className="price item_page_text">£19.99</h2>
-            <h3 className="desc item_page_text">COLOUR:</h3> */}
             <button className="add item_page_text" type="button">Add to Cart</button>
           </div>
 
