@@ -43,11 +43,11 @@ public class ShopCart implements Serializable {
 		this.id = id;
 	}
 
-	public int getUser_id() {
+	public int getUserid() {
 		return userid;
 	}
 
-	public void setUser_id(int userid) {
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
 

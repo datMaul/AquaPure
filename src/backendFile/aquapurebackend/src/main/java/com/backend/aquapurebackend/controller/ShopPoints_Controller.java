@@ -35,7 +35,7 @@ public class ShopPoints_Controller {
 	}
 
 	@PutMapping("/points/findByEmail")
-	public Optional<ShopPoints> updatePoints(@RequestBody ShopPoints newPoints, @PathVariable String email){
+	public Optional<ShopPoints> updatePoints(@RequestBody ShopPoints newPoints, @RequestParam String email){
 		return pointsService.findByEmail(email).map(userPoints -> {
 			userPoints.setScore(newPoints.getScore());
 			return(pointsRep.save(userPoints));

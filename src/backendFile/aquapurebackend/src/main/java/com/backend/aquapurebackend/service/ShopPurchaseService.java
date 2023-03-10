@@ -27,7 +27,7 @@ public class ShopPurchaseService {
     public int getCurrentID(){
         return currentID;
     }
-    public void setCurrentID(){
+    public void setCurrentID(int currentID){
         this.currentID = currentID;
     }
     public int incCurrentID(){

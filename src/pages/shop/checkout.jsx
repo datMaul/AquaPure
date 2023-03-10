@@ -118,8 +118,13 @@ export default function Checkout() {
                 "quantity":item.quantity
             }).then(res=>{console.log(res.data,"items post to data base")})
             
-            axios.delete(`http://localhost:8080/item/${item.product_id}`).then(res => {console.log(res.data,"delete from cart");loadItems();})
             
+            axios.delete(`http://localhost:8080/item/${item.product_id}`).then(res => {console.log(res.data,"delete from cart");loadItems();})
+            // Userpoints.map(user=>{
+            //     axios.put(`http:localhost:8080/points/${user.email}`,{
+            //         'score':user.score*0,
+            //     })
+            // })
         })
     }
 

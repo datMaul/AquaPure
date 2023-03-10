@@ -41,7 +41,7 @@ public class ShopCart_Controller {
 //    	if (newItemDTO.getId()==null) {
 //            return new ResponseEntity<>(Optional.ofNullable(null), HttpStatus.BAD_REQUEST);
 //        }
-        ShopCart cart = new ShopCart(newItemDTO.getId(),newItemDTO.getUser_id(),newItemDTO.getProduct_id(),newItemDTO.getquantity());
+        ShopCart cart = new ShopCart(newItemDTO.getId(),newItemDTO.getUserid(),newItemDTO.getProduct_id(),newItemDTO.getquantity());
     	cartService.addItems(cart);
     	return new ResponseEntity<>(Optional.ofNullable(cart),HttpStatus.CREATED);
 	}

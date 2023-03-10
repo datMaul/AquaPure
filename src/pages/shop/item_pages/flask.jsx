@@ -58,7 +58,7 @@ export default function Flask() {
     console.log(productid,"post add product id")
     axios.post('http://localhost:8080/item',{
       "id":productid,
-      "user_id":storeuserid,
+      "userid":storeuserid,
       "product_id":productid,
       "quantity":quantity,
       }).then(res => {console.log(res.data)})

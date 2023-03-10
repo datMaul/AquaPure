@@ -1,6 +1,5 @@
 package com.backend.aquapurebackend.model;
 import java.io.Serializable;
-import java.util.Date;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
