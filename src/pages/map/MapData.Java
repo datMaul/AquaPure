@@ -49,3 +49,75 @@ public class MapRecord_Controller {
         
         return mapRecordRepository.findBySelectedParams(sourceTypesList, waterBodyTypesList, parameterName);
     }
+
+    @PutMapping("/maprecords/{id}")
+    public MapRecord updateMapRecord(@RequestBody MapRecord newMapRecord, @PathVariable Long id) {
+        return mapRecordRepository.findById(id)
+                .map(mapRecord -> {
+                    mapRecord.setRecordedDateTime(newMapRecord.getRecordedDateTime());
+                    mapRecord.setLatitude(newMapRecord.getLatitude());
+                    mapRecord.setLongitude(newMapRecord.getLongitude());
+                    mapRecord.setWaterBodyType(newMapRecord.getWaterBodyType());
+                    mapRecord.setParameterName(newMapRecord.getParameterName());
+                    mapRecord.setParameterValue(newMapRecord.getParameterValue());
+                    mapRecord.setParameterUnit(newMapRecord.getParameterUnit());
+                    mapRecord.setSourceType(newMapRecord.getSourceType());
+                    mapRecord.setOpenWIMSRecord(newMapRecord.getOpenWIMSRecord());
+                    mapRecord.setTestkitPurchase(newMapRecord.getTestkitPurchase());
+                    return mapRecordRepository.save(mapRecord);
+                })
+                .orElseGet(() -> {
+                    newMapRecord.setMapRecord_ID(id);
+                    return mapRecordRepository.save(newMapRecord);
+                });
+    }
+
+    // Get all openWIMS records
+    @GetMapping("/openwimsrecords")
+    public List<OpenWIMSRecord> getAllOpenWIMSRecords() {
+        return openWIMSRecordRepository.findAll();
+    }
+
+    // Create a new openWIMS record with a manually assigned ID
+    @PostMapping("/openwimsrecords")
+    public OpenWIMSRecord createOpenWIMSRecord(@RequestBody OpenWIMSRecord openWIMSRecord) {
+        return openWIMSRecordRepository.save(openWIMSRecord);
+    }
+
+    // Update an openWIMS record with a manually assigned ID
+    @PutMapping("/openwimsrecords/{id}")
+    public OpenWIMSRecord updateOpenWIMSRecord(@RequestBody OpenWIMSRecord newOpenWIMSRecord, @PathVariable String id) {
+        return openWIMSRecordRepository.findById(id)
+                .map(openWIMSRecord -> {
+                    openWIMSRecord.setSamplingPoint(newOpenWIMSRecord.getSamplingPoint());
+                    openWIMSRecord.setSamplingPointNotation(newOpenWIMSRecord.getSamplingPointNotation());
+                    openWIMSRecord.setSamplingPointLabel(newOpenWIMSRecord.getSamplingPointLabel());
+                    openWIMSRecord.setSamplingPurposeLabel(newOpenWIMSRecord.getSamplingPurposeLabel());
+                    openWIMSRecord.setIsComplianceSample(newOpenWIMSRecord.getIsComplianceSample());
+                    //openWIMSRecord.setMapRecord(newOpenWIMSRecord.getMapRecord());
+                    return openWIMSRecordRepository.save(openWIMSRecord);
+                })
+                .orElseGet(() -> {
+                    newOpenWIMSRecord.setOpenWIMSRecord_ID(id);
+                    return openWIMSRecordRepository.save(newOpenWIMSRecord);
+                });
+    }
+
+    // Delete a map record
+    @DeleteMapping("/maprecords/{id}")
+    public void deleteMapRecord(@PathVariable Long id) {
+        mapRecordRepository.deleteById(id);
+    }
+
+    // Delete all map records
+    @DeleteMapping("/maprecords")
+    public void deleteAllMapRecords() {
+        mapRecordRepository.deleteAll();
+    }
+
+    // Delete all openWIMS records
+    @DeleteMapping("/openwimsrecords")
+    public void deleteAllOpenWIMSRecords() {
+        openWIMSRecordRepository.deleteAll();
+    }
+}
