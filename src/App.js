@@ -21,18 +21,17 @@ import TestkitEntry from "./pages/accounts/accountPageSections/TestkitEntry";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cart from "./pages/accounts/cart/MainCartPage";
-import Account from "./pages/accounts/accountPageSections/Accounts"
+import Account from "./pages/accounts/accountPageSections/Accounts";
 import Item_page from "./pages/shop/item_pages/item_frame";
 import Shop from "./pages/shop/Shop";
-import CheckOut from "./pages/shop/checkout"
-import Water_Bottle_page from "./pages/shop/item_pages/water_bottle"
-import Tote_bag_page from "./pages/shop/item_pages/tote_bag"
-import Bamboo_notebook from "./pages/shop/item_pages/Bamboo_notebook"
-import Sticker from "./pages/shop/item_pages/sticker"
-import Travel_cup from "./pages/shop/item_pages/travel_cup"
-import Shop_purchase from "./pages/shop/purchase_history"
-import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitpurchasehistory/PurchaseHistoryTestkit";
-
+import CheckOut from "./pages/shop/checkout";
+import Water_Bottle_page from "./pages/shop/item_pages/water_bottle";
+import Tote_bag_page from "./pages/shop/item_pages/tote_bag";
+import Bamboo_notebook from "./pages/shop/item_pages/Bamboo_notebook";
+import Sticker from "./pages/shop/item_pages/sticker";
+import Travel_cup from "./pages/shop/item_pages/travel_cup";
+import Shop_purchase from "./pages/shop/purchase_history";
+import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitPurchaseHistory/PurchaseHistoryTestkit";
 
 // import { Route, Routes } from "react-router-dom";
 
