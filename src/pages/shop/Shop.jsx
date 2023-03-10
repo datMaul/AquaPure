@@ -214,7 +214,7 @@ export default function Shop() {
       
       <div className="page">
       
-        <h1 className="shop_title">Shop</h1>
+        <h1 className="shop_title">AquaShop</h1>
         
         <nav>
           <ul className="item_list">

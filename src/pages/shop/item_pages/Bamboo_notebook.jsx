@@ -1,5 +1,5 @@
 import "./item_frame_style.css";
-import water from "./shop_assets/water_bottle.PNG";
+import bamboo from "./shop_assets/APNotebook.png"
 import { Link } from "react-router-dom";
 import {React, useEffect, useState} from 'react';
 import axios from 'axios';
@@ -72,7 +72,7 @@ export default function Bamboo() {
           </div>
 
           <center>
-            <img alt="water" className="item_page_img" src={water}/>
+            <img alt="water" className="item_page_img" src={bamboo}/>
           </center>
           
           <div className="item_page_text">

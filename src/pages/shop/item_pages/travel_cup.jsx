@@ -1,5 +1,5 @@
 import "./item_frame_style.css";
-import water from "./shop_assets/water_bottle.PNG";
+import water from "./shop_assets/BambooCup.png";
 import { Link } from "react-router-dom";
 import {React, useEffect, useState} from 'react';
 import axios from 'axios';
