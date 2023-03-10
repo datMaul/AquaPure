@@ -22,8 +22,8 @@ export default function Map() {
       center: [lng, lat],
       zoom: zoom,
     });
-    map.current.addControl(new maplibregl.NavigationControl(), 'bottom-right');
-    map.current.addControl(new maplibregl.GeolocateControl(), 'bottom-right');
+    map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
+    map.current.addControl(new maplibregl.GeolocateControl(), 'top-right');
     populateParameterFilters();
 
     map.current.popups = [];
