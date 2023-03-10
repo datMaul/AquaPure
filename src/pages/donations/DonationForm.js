@@ -24,7 +24,7 @@ fetch('/api/donationData', {
 .then(data => console.log(data))
 .catch(error => console.error(error));
 
-fetch('/api/data?id=#&name=John')
+fetch('/api/data?donationId=&name=')
 .then(response => response.text())
 .then(data => console.log(data))
 .catch(error => console.error(error));
