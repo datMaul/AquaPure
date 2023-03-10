@@ -67,7 +67,7 @@ export default function Backpack() {
     return(
       <div>
         <div className="page_item">
-
+          
           <div className="back">
             <Link to="/shop"className="back_button">{"<"}</Link>
           </div>
@@ -84,6 +84,7 @@ export default function Backpack() {
                   <h1 className="title" key={product}>{product.product_name}</h1>
                   <h1 className="price">£{product.product_price}</h1>
                   <button className="add" type="button" onClick={()=>postAdd(product.productID,item)}>Add to Cart</button>
+                  <h2>Description</h2>
                   <h3 className="desc">{product.product_desc}</h3>
                 </>
               )
