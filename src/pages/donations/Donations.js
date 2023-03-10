@@ -7,7 +7,7 @@ import RSPDImage from "./image/RSPD.jpg";
 import "./Donations.css";
 import { Link } from "react-router-dom";
 
-const data = {
+/*const data = {
   charity: 'John',
   phone_no: 'something',
   first_name: 'something',
@@ -15,11 +15,11 @@ const data = {
   email: 'address',
   postcode: 'yea',
   address_user: 'skrr'
-};
+};*/
 
 export default function Donations() {
   const [name, setName] = useState("");
-const [donationId, setdonationId] = useState("");
+  const [donationId, setdonationId] = useState("");
 
 const handleClick = () => {
   // Generate random ID
@@ -88,7 +88,7 @@ const handleClick = () => {
             <div className="WaterAid-Buttons">
               <center>
                 <Link to="/donations/DonationForm">
-                <input type="text" value={name} onChange={event => setName(event.target.value)}/> 
+                <input type="text" value={name} onChange={event => setName("WaterAid")}/> 
                   <button id="Donate-Button" onClick={handleClick}>Donate</button> 
                   {donationId && <p>Your ID is: {donationId}</p>}
                 </Link>

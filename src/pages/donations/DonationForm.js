@@ -3,6 +3,16 @@ import './form.css';
 import './donationFormLink.js';
 import { Link } from "react-router-dom";
 
+const data = {
+    charity: 'name',
+    phone_no: 'something',
+    first_name: 'something',
+    last_name: 'yeat',
+    email: 'address',
+    postcode: 'yea',
+    address_user: 'skrr'
+};
+
 fetch('/api/donationData', {
     method: 'POST',
     headers: {
@@ -18,8 +28,6 @@ fetch('/api/data?id=#&name=John')
 .then(response => response.text())
 .then(data => console.log(data))
 .catch(error => console.error(error));
-
-
 
 export default function DonationForm() {
     return (
