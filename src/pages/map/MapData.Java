@@ -33,4 +33,19 @@ public class MapRecord_Controller {
                 .orElseThrow(() -> new MapRecordNotFoundException(id));
     }
 
-    /*
+    @GetMapping("/maprecords/{id}")
+    public MapRecord getMapRecordById(@PathVariable Long id) {
+        return mapRecordRepository.findById(id)
+                .orElseThrow(() -> new MapRecordNotFoundException(id));
+    }
+
+    @GetMapping("/maprecordsbyparams")
+    public List<MapRecord> getMapRecordsByParams(@Param(value = "sourceTypes") String sourceTypes,
+                                                 @Param(value = "waterBodyTypes") String waterBodyTypes,
+                                                 @Param(value = "parameterName") String parameterName) {
+        
+        List<String> sourceTypesList = Arrays.asList(sourceTypes.split(","));
+        List<String> waterBodyTypesList =  Arrays.asList(waterBodyTypes.split(","));
+        
+        return mapRecordRepository.findBySelectedParams(sourceTypesList, waterBodyTypesList, parameterName);
+    }
