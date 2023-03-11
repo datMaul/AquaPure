@@ -18,6 +18,15 @@ export default function DonationForm() {
               <span>email :</span>
               <input type="email" placeholder="example@example.com" />
             </div>
+            <div className="inputBox">
+              <label>Charty:</label>
+                <select id="cars" name="cars">
+                  <option value="WaterAid">WaterAid</option>
+                  <option value="Soil Assosiation">Soil Assosiation</option>
+                  <option value="RSPB">RSPB</option>
+                  <option value="WWF">WWF</option>
+                </select>
+            </div>
           </div>
           <div className="col">
             <h3 className="title">payment</h3>
