@@ -27,20 +27,174 @@ body {
     color: white;
 }
 
+/* .MainPage-Info {
+    padding: 0 12.5%;
+} */
+
+.Narrow-Content {
+    padding: 0 12.5%;
+}
+
 .MainPage-Info h3 {
+    font-size: 32px;
+    color: #008faf;
     text-align: center;
 }
 
 .MainPage-Info p {
     text-align: justify;
-    padding: 0 12.5%;
+    line-height: 1.6;
+    color: #5b5b5b;
+    font-size: 16px;
 }
 
 .MainPage-Info #ContactUs {
     text-align: center;
 }
 
-.SDGImages {
+.AquaPure-Section {
+    padding: 32px 0;
+    width: 65%;
+    margin: 0 auto;
+}
+
+.AquaPure-Section p {
+    text-align: center;
+}
+
+.Map-Section-Container {
+    background-color: #f3f3f3;
+}
+
+.Map-Section {
+    display: flex;
+    align-items: center;
+    padding: 64px 5%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  
+.Map-Section > .Map-Image {
+    flex: 1;
+    margin-right: 64px;
+}
+
+.Map-Section > .Map-Image img {
+    width: clamp(350px, 40vw, 500px);
+}
+
+.Map-Section > .Map-Info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Map-Section > .Map-Info > h3 {
+    text-align: left;
+}
+
+.Map-Section .Map-Buttons {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.Map-Section .Map-Button {
+    margin: 0 auto;
+}
+
+.Map-Section .Map-Button a {
+    text-decoration: none;
+    color: white;
+    background-color: #008faf;
+    border: 2px solid #008faf;
+    padding: 8px 16px;
+    border-radius: 10px;
+}
+
+.Map-Button>a:hover {
+    background-color: #ffffff00;
+    color: #008faf;
+    text-decoration: none;
+    transition: ease-in-out 0.2s;
+  }
+
+.DYK-Section {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.DYK-Section p {
+    text-align: center;
+    padding: 0 16px;
+}
+
+.DYK-Description {
+    text-align: center;
+    padding: 0 12.5%;
+}
+
+.DYK-Columns {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 32px;
+    margin-top: 32px;
+}
+
+.DYK-Column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f3f3f3;
+    padding: 0px;
+    border-radius: 10px;
+}
+
+.DYK-Image {
+    display: block;
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.SDG-Section {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    background-color: #f3f3f3;
+}
+
+.SDG-Section p {
+    text-align: center;
+}
+
+.SDG-Columns {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 10%;
+    margin-top: 32px;
+}
+
+.SDG-Column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SDG-Image {
+    display: block;
+    width: 200px;
+    height: 200px;
+}
+
+/* .SDG-Section {
+    background-color: #3d686b;
+    color: white;
+    padding: 5% 0;
+} */
+
+/* .SDGImages {
     text-align: center;
 }
 
@@ -57,11 +211,15 @@ body {
 #SDG14Image {
     max-width: 150px;
     flex: 1;
+} */
+
+.AboutUs-Section {
+    padding-top: 32px;
+    padding-bottom: 32px;
 }
 
-.DYK-Section p {
-    padding: 0 25%;
-    text-align: justify;
+.AboutUs-Section p {
+    text-align: center;
 }
 
 .Text-Overlay-Container {

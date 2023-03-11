@@ -22,8 +22,8 @@ export default function Map() {
       center: [lng, lat],
       zoom: zoom,
     });
-    map.current.addControl(new maplibregl.NavigationControl(), 'bottom-right');
-    map.current.addControl(new maplibregl.GeolocateControl(), 'bottom-right');
+    map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
+    map.current.addControl(new maplibregl.GeolocateControl(), 'top-right');
     populateParameterFilters();
 
     map.current.popups = [];
@@ -105,21 +105,24 @@ export default function Map() {
         'input[type="checkbox"].body_filter, input[type="checkbox"].source_filter, select#param_filter'
       );
       checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener("change", async () => {
-
-          const start = performance.now();
-          await fetchMapRecords();
-          const end = performance.now();
-          console.log("Time taken to fetch map records: " + (end - start) + "ms");
-          clearAllCircles();
-          clearAllTiles();
-          await drawCircleLayer(map.current.records);
-          await drawTileLayer(map.current.records);
+        checkbox.addEventListener("change", () => {
+          filterEvent()
         });
       });
       
     });
   });
+
+  async function filterEvent() {
+    const start = performance.now();
+    await fetchMapRecords();
+    const end = performance.now();
+    console.log("Time taken to fetch map records: " + (end - start) + "ms");
+    clearAllCircles();
+    clearAllTiles();
+    await drawCircleLayer(map.current.records);
+    await drawTileLayer(map.current.records);
+  }
 
   // Fetch map records by parameters
   async function fetchMapRecords() {
@@ -495,22 +498,19 @@ export default function Map() {
   // Check/uncheck all water body checkboxes
   function checkAllBodyFilters() {
     const waterBodyCheckboxes = document.getElementsByClassName("body_filter");
-    //const selectAllLabel = document.getElementById("check_all_waterbody");
     const selectAllCheckbox = document.getElementById("chk_check_all_waterbody");
 
     if (selectAllCheckbox.checked) {
-      //selectAllLabel.innerHTML = "Uncheck All";
       for (var i = 0; i < waterBodyCheckboxes.length; i++) {
         waterBodyCheckboxes[i].checked = true;
       }
     } else {
-      //selectAllLabel.innerHTML = "Check All";
       for (var i = 0; i < waterBodyCheckboxes.length; i++) {
         waterBodyCheckboxes[i].checked = false;
       }
     }
 
-    
+    filterEvent();
   }
 
   return (

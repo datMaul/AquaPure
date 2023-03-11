@@ -1,9 +1,10 @@
 .map-wrap {
     position: relative;
     width: 100%;
-    height: calc(100vh - 70px); /* calculate height of the screen minus the navbar */
+    height: calc(100vh - 70px);
+    /* calculate height of the screen minus the navbar */
 }
-  
+
 .map {
     position: absolute;
     width: 100%;
@@ -11,7 +12,10 @@
     z-index: 0;
 }
 
-#search_bar, #water_body_filters, #parameter_filters, #source_filters{
+#search_bar,
+#water_body_filters,
+#parameter_filters,
+#source_filters {
     position: absolute;
     z-index: 1;
 }
@@ -154,8 +158,8 @@ input[type=checkbox] {
 }
 
 #parameter_filters {
-    right: 15px;
-    bottom: 30px;
+    top: 460px;
+    left: 15px;
 }
 
 #param_filter {
@@ -192,7 +196,7 @@ input[type=checkbox] {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-h3, h4 {
+h3,
+h4 {
     margin: 0 0 8px;
 }
-

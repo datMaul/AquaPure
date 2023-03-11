@@ -98,7 +98,7 @@ export default function TestkitCart() {
 
   const testkitreturn = async () => {
     try {
-      const kitrls = await axios.get(`http://localhost:8080/testkitrepository`);
+      const kitrls = await axios.get(`http://localhost:8080/kiturl`);
       setKitrl(kitrls.data);
       console.log(kitrls.data);
       setButtonPopsup(true);

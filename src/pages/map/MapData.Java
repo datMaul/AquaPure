@@ -33,4 +33,107 @@ public class MapRecord_Controller {
                 .orElseThrow(() -> new MapRecordNotFoundException(id));
     }
 
-    /*
+    @GetMapping("/maprecords/{id}")
+    public MapRecord getMapRecordById(@PathVariable Long id) {
+        return mapRecordRepository.findById(id)
+                .orElseThrow(() -> new MapRecordNotFoundException(id));
+    }
+
+    @GetMapping("/maprecordsbyparams")
+    public List<MapRecord> getMapRecordsByParams(@Param(value = "sourceTypes") String sourceTypes,
+                                                 @Param(value = "waterBodyTypes") String waterBodyTypes,
+                                                 @Param(value = "parameterName") String parameterName) {
+        
+        List<String> sourceTypesList = Arrays.asList(sourceTypes.split(","));
+        List<String> waterBodyTypesList =  Arrays.asList(waterBodyTypes.split(","));
+        
+        return mapRecordRepository.findBySelectedParams(sourceTypesList, waterBodyTypesList, parameterName);
+    }
+
+    @PutMapping("/maprecords/{id}")
+    public MapRecord updateMapRecord(@RequestBody MapRecord newMapRecord, @PathVariable Long id) {
+        return mapRecordRepository.findById(id)
+                .map(mapRecord -> {
+                    mapRecord.setRecordedDateTime(newMapRecord.getRecordedDateTime());
+                    mapRecord.setLatitude(newMapRecord.getLatitude());
+                    mapRecord.setLongitude(newMapRecord.getLongitude());
+                    mapRecord.setWaterBodyType(newMapRecord.getWaterBodyType());
+                    mapRecord.setParameterName(newMapRecord.getParameterName());
+                    mapRecord.setParameterValue(newMapRecord.getParameterValue());
+                    mapRecord.setParameterUnit(newMapRecord.getParameterUnit());
+                    mapRecord.setSourceType(newMapRecord.getSourceType());
+                    mapRecord.setOpenWIMSRecord(newMapRecord.getOpenWIMSRecord());
+                    mapRecord.setTestkitPurchase(newMapRecord.getTestkitPurchase());
+                    return mapRecordRepository.save(mapRecord);
+                })
+                .orElseGet(() -> {
+                    newMapRecord.setMapRecord_ID(id);
+                    return mapRecordRepository.save(newMapRecord);
+                });
+    }
+
+    // Get all openWIMS records
+    @GetMapping("/openwimsrecords")
+    public List<OpenWIMSRecord> getAllOpenWIMSRecords() {
+        return openWIMSRecordRepository.findAll();
+    }
+
+    // Create a new openWIMS record with a manually assigned ID
+    @PostMapping("/openwimsrecords")
+    public OpenWIMSRecord createOpenWIMSRecord(@RequestBody OpenWIMSRecord openWIMSRecord) {
+        return openWIMSRecordRepository.save(openWIMSRecord);
+    }
+
+    // Update an openWIMS record with a manually assigned ID
+    @PutMapping("/openwimsrecords/{id}")
+    public OpenWIMSRecord updateOpenWIMSRecord(@RequestBody OpenWIMSRecord newOpenWIMSRecord, @PathVariable String id) {
+        return openWIMSRecordRepository.findById(id)
+                .map(openWIMSRecord -> {
+                    openWIMSRecord.setSamplingPoint(newOpenWIMSRecord.getSamplingPoint());
+                    openWIMSRecord.setSamplingPointNotation(newOpenWIMSRecord.getSamplingPointNotation());
+                    openWIMSRecord.setSamplingPointLabel(newOpenWIMSRecord.getSamplingPointLabel());
+                    openWIMSRecord.setSamplingPurposeLabel(newOpenWIMSRecord.getSamplingPurposeLabel());
+                    openWIMSRecord.setIsComplianceSample(newOpenWIMSRecord.getIsComplianceSample());
+                    //openWIMSRecord.setMapRecord(newOpenWIMSRecord.getMapRecord());
+                    return openWIMSRecordRepository.save(openWIMSRecord);
+                })
+                .orElseGet(() -> {
+                    newOpenWIMSRecord.setOpenWIMSRecord_ID(id);
+                    return openWIMSRecordRepository.save(newOpenWIMSRecord);
+                });
+    }
+
+    // Delete a map record
+    @DeleteMapping("/maprecords/{id}")
+    public void deleteMapRecord(@PathVariable Long id) {
+        mapRecordRepository.deleteById(id);
+    }
+
+    // Delete all map records
+    @DeleteMapping("/maprecords")
+    public void deleteAllMapRecords() {
+        mapRecordRepository.deleteAll();
+    }
+
+    // Delete all openWIMS records
+    @DeleteMapping("/openwimsrecords")
+    public void deleteAllOpenWIMSRecords() {
+        openWIMSRecordRepository.deleteAll();
+    }
+}
+
+package com.backend.aquapurebackend.repository;
+
+import java.util.List;
+import com.backend.aquapurebackend.model.MapRecord;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+public interface MapRecordRepository extends JpaRepository <MapRecord, Long> {
+    @Query("SELECT m FROM MapRecord m WHERE (m.SourceType IN (:sourceTypes))"
+            + " AND (m.WaterBodyType IN (:waterBodyTypes))"
+            + " AND (m.ParameterName = :parameterName)")
+    List<MapRecord> findBySelectedParams(List<String> sourceTypes, List<String> waterBodyTypes, String parameterName);
+    //List<MapRecord> findByAuthorId(Long Author_ID);
+    //List<MapRecord> findByTestKitUUID(String TestKit_UUID);
+}
