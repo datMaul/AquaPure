@@ -18,20 +18,6 @@ export default function DonationForm() {
               <span>email :</span>
               <input type="email" placeholder="example@example.com" />
             </div>
-            {/* <div className="inputBox">
-              <span>address :</span>
-              <input type="text" placeholder="room - street - locality" />
-            </div>
-            <div className="inputBox">
-              <span>city :</span>
-              <input type="text" placeholder="Lonmdon" />
-            </div> */}
-            {/* <div className="flex">
-              <div className="inputBox">
-                <span>state :</span>
-                <input type="text" placeholder="United Kingdom" />
-              </div>
-            </div> */}
           </div>
           <div className="col">
             <h3 className="title">payment</h3>
@@ -65,7 +51,7 @@ export default function DonationForm() {
           <div className="remember-forgot">
             <label>
               <input type="checkbox" />
-              I agree with the term and condition
+              I agree with the terms and conditions
             </label>
           </div>
         </div>
