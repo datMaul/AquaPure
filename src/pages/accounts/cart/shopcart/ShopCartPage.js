@@ -2,8 +2,21 @@ import { Await, Link } from "react-router-dom";
 import {React, useState, useEffect} from 'react';
 import axios from 'axios';
 import "./cartStyle.css"
-import water from "./shop_assets/water_bottle.PNG"
 import PopupShop from "../../../shop/EmptyCart"
+import tote from "../../../shop/item_pages/shop_assets/AquaPureToteBag.png";
+import notebook from "../../../shop/item_pages/shop_assets/APNotebook.png"
+import cup from "../../../shop/item_pages/shop_assets/BambooCup.png"
+import mug from "../../../shop/item_pages/shop_assets/Beverage Mug.png"
+import filter from "../../../shop/item_pages/shop_assets/water filter.png"
+import hoodie from "../../../shop/item_pages/shop_assets/APHoodie.png"
+import shirt from "../../../shop/item_pages/shop_assets/tshirtAP.png"
+import mask from "../../../shop/item_pages/shop_assets/FaceMaskAP.png"
+import cap from "../../../shop/item_pages/shop_assets/APcap.png"
+import flask from "../../../shop/item_pages/shop_assets/metalFlask.png"
+import pouch from "../../../shop/item_pages/shop_assets/APPouch.png"
+import phone from "../../../shop/item_pages/shop_assets/PhoneCaseAP.png"
+import backpack from "../../../shop/item_pages/shop_assets/APBackpack.png"
+import water from "../../../shop/item_pages/shop_assets/water_bottle.PNG";
 
 
 export default function ShopCartPage() {
@@ -15,6 +28,23 @@ export default function ShopCartPage() {
   const storeuserid = localStorage.getItem("user_ID");
   const [user, setuser] = useState([]);
   const [empty, setempty] = useState(false)
+  const productimg = {
+    "Recycled Sports Bottle": water,
+    Backpack: backpack,
+    "Phone Case": phone,
+    "Laptop Pouch":pouch,
+    "Metal Flask":flask,
+    Cap:cap,
+    "Face Mask Pack of 3":mask,
+    "T-Shirt": shirt,
+    Hoodie:hoodie,
+    "Water Filter": filter,
+    "Coffee/Tea Hot Beverage Mug": mug,
+    "Bamboo Travel Cup":cup,
+    "Bamboo Covered Note Book":notebook,
+    "Recycled Tote Bag Large":tote,
+
+  }
   
   useEffect(() => {
     loadItems();
@@ -152,7 +182,7 @@ export default function ShopCartPage() {
                     if (product.productID === item.product_id && notEmpty) {
                       return(<>{notEmpty ? <tbody>
                         <tr key={"cart"}>
-                          <td><img className="item_image" src={water} alt="water"></img></td>
+                          <td><img className="item_image" src={productimg[product.product_name]} alt="water"></img></td>
                           <td className="product_header" key={product.product_name}>{product.product_name}</td>
                           <td className="quant_td" key={"count"}><button className="quant_button_minus" onClick={()=>{decrease(item.product_id,item.id);}}>-</button><p className="quant">{item.quantity}</p><button className="quant_button_plus" onClick={()=>{increment(item.product_id,item.id);}}>+</button></td>
                           <td className="price_td" key={product.product_price}>£{product.product_price}</td>
