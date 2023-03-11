@@ -4,6 +4,20 @@ import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 import water from './item_pages/shop_assets/water_bottle.PNG'
 import Poppup from "./confirmation";
+import tote from "./item_pages/shop_assets/AquaPureToteBag.png";
+import notebook from "./item_pages/shop_assets/APNotebook.png"
+import cup from "./item_pages/shop_assets/BambooCup.png"
+import mug from "./item_pages/shop_assets/Beverage Mug.png"
+import filter from "./item_pages/shop_assets/water filter.png"
+import hoodie from "./item_pages/shop_assets/APHoodie.png"
+import shirt from "./item_pages/shop_assets/tshirtAP.png"
+import mask from "./item_pages/shop_assets/FaceMaskAP.png"
+import cap from "./item_pages/shop_assets/APcap.png"
+import flask from "./item_pages/shop_assets/metalFlask.png"
+import pouch from "./item_pages/shop_assets/APPouch.png"
+import phone from "./item_pages/shop_assets/PhoneCaseAP.png"
+import backpack from "./item_pages/shop_assets/APBackpack.png"
+
 
 export default function Checkout() {
     const [cartItems, setcartItems] = useState([]);
@@ -14,7 +28,24 @@ export default function Checkout() {
     const storeuserid = localStorage.getItem("user_ID")
     const [date, setdate] = useState();
     const [Userpoints, setUserpoints] = useState([]);
-
+    const productimg = {
+        "Recycled Sports Bottle": water,
+        Backpack: backpack,
+        "Phone Case": phone,
+        "Laptop Pouch":pouch,
+        "Metal Flask":flask,
+        Cap:cap,
+        "Face Mask Pack of 3":mask,
+        "T-Shirt": shirt,
+        Hoodie:hoodie,
+        "Water Filter": filter,
+        "Coffee/Tea Hot Beverage Mug": mug,
+        "Bamboo Travel Cup":cup,
+        "Bamboo Covered Note Book":notebook,
+        "Recycled Tote Bag Large":tote,
+    
+      }
+    
 
     useEffect(() => {
         loadItems();
@@ -175,7 +206,7 @@ export default function Checkout() {
                                                 return (
                                                     <>
                                                     <tr>
-                                                        <td><img className="checkout_product_img" src={water} alt="water"></img></td>
+                                                        <td><img className="checkout_product_img" src={productimg[product.product_name]} alt="water"></img></td>
                                                         <td><b className="checkout_name">{product.product_name}</b></td>
                                                         <td><p>£{product.product_price}</p></td>
                                                         <td>{item.quantity}</td>
