@@ -3,31 +3,31 @@ import './form.css';
 //import { Link } from "react-router-dom";
 
 export default function DonationForm() {
-    const [formData, setFormData] = useState({
-        fullName: "",
-        email: "",
-        charity: "",
-        amount: "",
-        cardName: "",
-        creditCardNumber: "",
-        expMonth: "",
-        expYear: "",
-        agreeToTerms: false
-      });
-    
-      const handleInputChange = (event) => {
-        const { name, value, type, checked } = event.target;
-        setFormData((prevState) => ({
-          ...prevState,
-          [name]: type === "checkbox" ? checked : value
-        }));
-      };
-    
-      const handleSubmit = (event) => {
-        event.preventDefault();
-        // Send formData to your database here
-        console.log(formData);
-      };
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    charity: "",
+    amount: "",
+    cardName: "",
+    creditCardNumber: "",
+    expMonth: "",
+    expYear: "",
+    agreeToTerms: false
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value, type, checked } = event.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: type === "checkbox" ? checked : value
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Send formData to your database here
+    console.log(formData);
+  };
 
   return (
     <div className="container">
@@ -37,11 +37,11 @@ export default function DonationForm() {
             <h3 className="title">billing address</h3>
             <div className="inputBox">
               <span>full name :</span>
-              <input type="text" placeholder="Full name" onChange={(event) => setFormData({...formData, amount: event.target.value})}/>
+              <input type="text" placeholder="Full name" onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
             <div className="inputBox">
               <span>email :</span>
-              <input type="email" placeholder="example@example.com" onChange={(event) => setFormData({...formData, amount: event.target.value})}/>
+              <input type="email" placeholder="example@example.com" onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
             <div className="inputBox">
               <label>Charity:</label>
@@ -54,7 +54,7 @@ export default function DonationForm() {
             </div>
             <div className="inputBox">
               <span>Amount to donate:</span>
-              <input type="text" placeholder="£0.00" className='price' onChange={(event) => setFormData({...formData, amount: event.target.value})} />
+              <input type="text" placeholder="£0.00" className='price' onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
           </div>
           <div className="col">
@@ -65,20 +65,16 @@ export default function DonationForm() {
             </div>
             <div className="inputBox">
               <span>name on card :</span>
-              <input type="text" placeholder="mr. full name" onChange={(event) => setFormData({...formData, amount: event.target.value})}/>
+              <input type="text" placeholder="mr. full name" onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
             <div className="inputBox">
               <span>credit card number :</span>
-              <input type="number" placeholder="1111-2222-3333-4444" onChange={(event) => setFormData({...formData, amount: event.target.value})}/>
-            </div>
-            <div className="inputBox">
-              <span>exp month :</span>
-              <input type="text" placeholder="january" onChange={(event) => setFormData({...formData, amount: event.target.value})}/>
+              <input type="number" placeholder="1111-2222-3333-4444" onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
             <div className="flex">
               <div className="inputBox">
-                <span>exp year :</span>
-                <input type="date" placeholder="2022" onChange={(event) => setFormData({...formData, amount: event.target.value})}/>
+                <span>Exp date :</span>
+                <input type="date" placeholder="2022" />
               </div>
               <div className="inputBox">
                 <span>CVV :</span>
