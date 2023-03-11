@@ -154,8 +154,8 @@ input[type=checkbox] {
 }
 
 #parameter_filters {
-    top: 460px;
-    left: 15px;
+    right: 15px;
+    bottom: 30px;
 }
 
 #param_filter {

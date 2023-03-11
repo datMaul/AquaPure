@@ -10,6 +10,9 @@ export default function Water_bottle() {
   const [productData, setData] = useState([]);
   const [cartItems,setcartItems] = useState([]);
   const [item,setvalue] = useState(1);
+  const [user, setuser] = useState(null);
+  const storeuserid = localStorage.getItem("user_ID")
+  const itempageid = 1;
 
 
   useEffect(()=>{
@@ -26,6 +29,7 @@ export default function Water_bottle() {
   }
   const loadItems = () => {
     axios.get('http://localhost:8080/item').then(res=>{setcartItems(res.data);console.log(res.data,"loaded cart items")})
+    setuser(storeuserid)
   }
   
 
@@ -37,7 +41,7 @@ export default function Water_bottle() {
 
   const updateStates = ()=>{
     cartItems.map(item=>{
-      if(item.id === 1){
+      if(item.id === itempageid){
         const increment = item.quantity+1
         setvalue(increment)  
       }
@@ -47,11 +51,14 @@ export default function Water_bottle() {
   
 
   const postAdd = (productid,quantity) => {
+    if(!user){
+      return(window.location.href = "/accounts/login")
+    }
     setvalue((increment)=>(increment+1))
     console.log(productid,"post add product id")
     axios.post('http://localhost:8080/item',{
       "id":productid,
-      "user_id":123123,
+      "userid":storeuserid,
       "product_id":productid,
       "quantity":quantity,
       }).then(res => {console.log(res.data)})
@@ -71,12 +78,13 @@ export default function Water_bottle() {
           
           <div className="item_page_text">
           {productData.map(product => {
-            if(product.productID === 1){
+            if(product.productID === itempageid){
               return(
                 <>
                   <h1 className="title" key={product}>{product.product_name}</h1>
                   <h1 className="price">£{product.product_price}</h1>
                   <button className="add" type="button" onClick={()=>postAdd(product.productID,item)}>Add to Cart</button>
+                  <h2>Description</h2>
                   <h3 className="desc">{product.product_desc}</h3>
                 </>
               )

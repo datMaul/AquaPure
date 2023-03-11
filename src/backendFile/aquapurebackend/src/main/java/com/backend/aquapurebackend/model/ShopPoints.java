@@ -15,7 +15,14 @@ public class ShopPoints implements Serializable {
 	@Column(unique=true)
 	int user_ID;
 	int score;
+	String email;
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public ShopPoints() {
 		super();
 	}

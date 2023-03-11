@@ -2,48 +2,95 @@ import { Await, Link } from "react-router-dom";
 import {React, useState, useEffect} from 'react';
 import axios from 'axios';
 import "./cartStyle.css"
-import water from "./shop_assets/water_bottle.PNG"
+import PopupShop from "../../../shop/EmptyCart"
+import tote from "../../../shop/item_pages/shop_assets/AquaPureToteBag.png";
+import notebook from "../../../shop/item_pages/shop_assets/APNotebook.png"
+import cup from "../../../shop/item_pages/shop_assets/BambooCup.png"
+import mug from "../../../shop/item_pages/shop_assets/Beverage Mug.png"
+import filter from "../../../shop/item_pages/shop_assets/water filter.png"
+import hoodie from "../../../shop/item_pages/shop_assets/APHoodie.png"
+import shirt from "../../../shop/item_pages/shop_assets/tshirtAP.png"
+import mask from "../../../shop/item_pages/shop_assets/FaceMaskAP.png"
+import cap from "../../../shop/item_pages/shop_assets/APcap.png"
+import flask from "../../../shop/item_pages/shop_assets/metalFlask.png"
+import pouch from "../../../shop/item_pages/shop_assets/APPouch.png"
+import phone from "../../../shop/item_pages/shop_assets/PhoneCaseAP.png"
+import backpack from "../../../shop/item_pages/shop_assets/APBackpack.png"
+import water from "../../../shop/item_pages/shop_assets/water_bottle.PNG";
+
 
 export default function ShopCartPage() {
   
   const [cartItems, setcartItems] = useState([]);
   const [productData, setData] = useState([]);
-  const [count, setcount] = useState(0);
   const [subtotal, setsubtotal] = useState(0);
   const [Userpoints, setUserpoints] = useState([]);
+  const storeuserid = localStorage.getItem("user_ID");
+  const [user, setuser] = useState([]);
+  const [empty, setempty] = useState(false)
+  const productimg = {
+    "Recycled Sports Bottle": water,
+    Backpack: backpack,
+    "Phone Case": phone,
+    "Laptop Pouch":pouch,
+    "Metal Flask":flask,
+    Cap:cap,
+    "Face Mask Pack of 3":mask,
+    "T-Shirt": shirt,
+    Hoodie:hoodie,
+    "Water Filter": filter,
+    "Coffee/Tea Hot Beverage Mug": mug,
+    "Bamboo Travel Cup":cup,
+    "Bamboo Covered Note Book":notebook,
+    "Recycled Tote Bag Large":tote,
+
+  }
   
   useEffect(() => {
     loadItems();
     loadProducts();
     loadUserPoints();
     
+    
+
   },[]);
 
   useEffect(()=>{
     total();
-    
-  },[cartItems])
+    loadUser();
+    if(cartItems.length===0){
+      setempty(true);
+    }
+    else if(cartItems.length>0){
+      setempty(false)
+    }
+  },[cartItems,productData])
 
+  const loadUser = () => {
+    axios.get("http://localhost:8080/Sign_Up_log").then(res=>{setuser(res.data)})
+  }
   const loadUserPoints = () => {
     axios.get("http://localhost:8080/points")
-    .then(res=>{setUserpoints(res.data);console.log(res.data,"user points loaded")})
+    .then(res=>{setUserpoints(res.data);loadUser();})
   }
   
   const loadProducts = () => {
     axios.get('http://localhost:8080/product')
     .then(res => {
-      setData(res.data)
+      setData(res.data);
     })
    
   }
   const loadItems = () => {
-    axios.get('http://localhost:8080/item')
+    axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`)
     .then(res => {
-      setcartItems(res.data)
+      setcartItems(res.data);
+      console.log(res.data);
     })
   }
 
   const total = () => {
+    
     var total_price = 0;
     cartItems.map(item => {
       productData.map(product => {
@@ -53,38 +100,9 @@ export default function ShopCartPage() {
       })
     })
     setsubtotal(total_price)
-  }
-
-  const apply_points = (userid) => {
-    Userpoints.map(score => {
-      if(score.user_ID === userid){
-        var points = score.score
-        // var points = 2500
-        if(points >= 100){
-          if(!IsCheck && subtotal!=0){
-          
-            console.log("discounted")
-            let discount = points/1000;
-            let newtotal = subtotal-discount
-            setsubtotal(newtotal);
-            
-          }
-          else if(IsCheck && subtotal!==0){
-            console.log("discounted revoked")
-            let discount = points/1000;
-            let newtotal = subtotal+discount
-            setsubtotal(newtotal);
-          }
-
-        }
-        else{
-          setsubtotal(subtotal)
-        }
-
-      }       
-    })
     
   }
+
 
   const deleteItem = async (id) => {
     await axios.delete(`http://localhost:8080/item/${id}`).then(console.log("deleted item"))
@@ -93,7 +111,7 @@ export default function ShopCartPage() {
     loadItems();
   }
 
-  const increment = (productid) => {
+  const increment = (productid,id) => {
     cartItems.map(item => {
       if(productid === item.product_id){
         if(item.quantity>=50){
@@ -101,11 +119,8 @@ export default function ShopCartPage() {
         }
         else{
           let add = item.quantity+1
-          axios.post('http://localhost:8080/item',{
-            'id':productid,
-            'user_id':123123,
-            'product_id':productid,
-            'quantity':add
+          axios.put(`http://localhost:8080/item/${id}`,{
+            "quantity":add
           }).then(res => {loadItems();console.log(res.data);})
 
         }
@@ -113,7 +128,7 @@ export default function ShopCartPage() {
     })
   }
 
-  const decrease = (productid) => {
+  const decrease = (productid,id) => {
     cartItems.map(item => {
       if(productid === item.product_id){
         if(item.quantity<=1){
@@ -121,46 +136,32 @@ export default function ShopCartPage() {
         }
         else{
           let add = item.quantity-1
-          axios.post('http://localhost:8080/item',{
-            'id':productid,
-            'user_id':123123,
-            'product_id':productid,
-            'quantity':add
+          axios.put(`http://localhost:8080/item/${id}`,{
+            "quantity":add
           }).then(res => {loadItems();console.log(res.data);})
         }
       }
     })
   }
-  const [IsCheck,setcheck] = useState(false);
-  const checkhandler = () => {
-    setcheck(!IsCheck);
-    apply_points(0);
-  }
+  
+
   var notEmpty = true;
   return(
     <div>
       <div className="cart_page">
         <h1 className="cart_title">SHOP CART</h1>
         <span className="containerSum">
-          <h3>subtotal</h3>
-          {
-            Userpoints.map(score => {
-              // only used to test functionality supposed to be the id of the user that's logged in
-              var testid = 0
-              if(score.user_ID === testid){
-                return(<><h3>You have {score.score} points to your account</h3></>)
-              }
-            })
-          }
-          <div className="discount">
-            <label htmlFor="checkbox">Apply Points Discount</label>
-            <input type="checkbox" checked={IsCheck} onChange={() => checkhandler()}></input>
-          </div>
-          <h2>£{subtotal}</h2>
+          <h2>Total: £{subtotal}</h2>
           <Link to="/checkout"><button className="checkout">CHECKOUT</button></Link>
-          <Link to="/shop_purchase">history</Link>
-          </span>
+        </span>
+        <PopupShop trigger={empty} setTrigger={setempty}>
+          <div>
+            EMPTY
+            <Link to="/shop"><br></br><button className="empty_btn">BACK TO SHOP</button></Link>
+          </div>
+        </PopupShop>
           <table className="cart_items">
+           
             <thead>
               <tr key={"headers"}>
                 <th className="item_image_header table_h">PRODUCT</th>
@@ -172,21 +173,23 @@ export default function ShopCartPage() {
             </thead>
           {
             cartItems.map(item => {
+              
               return(
               <>
                 {
                   productData.map(product => {
+                    
                     if (product.productID === item.product_id && notEmpty) {
                       return(<>{notEmpty ? <tbody>
                         <tr key={"cart"}>
-                          <td><img className="item_image" src={water} alt="water"></img></td>
+                          <td><img className="item_image" src={productimg[product.product_name]} alt="water"></img></td>
                           <td className="product_header" key={product.product_name}>{product.product_name}</td>
-                          <td className="quant_td" key={count}><button className="quant_button_minus" onClick={()=>{decrease(item.product_id);}}>-</button><p className="quant">{item.quantity}</p><button className="quant_button_plus" onClick={()=>increment(item.product_id)}>+</button></td>
+                          <td className="quant_td" key={"count"}><button className="quant_button_minus" onClick={()=>{decrease(item.product_id,item.id);}}>-</button><p className="quant">{item.quantity}</p><button className="quant_button_plus" onClick={()=>{increment(item.product_id,item.id);}}>+</button></td>
                           <td className="price_td" key={product.product_price}>£{product.product_price}</td>
                           <td><button className="delete_button" onClick={() => deleteItem(item.id)}>X</button></td>
                         </tr>
                         </tbody>
-                         : ""}
+                         : "empty"}
                          </>)
                     }
                   })

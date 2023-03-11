@@ -11,7 +11,7 @@ function OSGB36toWGS84 (E, N) {
     var n = (a - b) / (a + b);
 
     //Initialise the iterative variables
-    lat = lat0;
+    var lat = lat0;
     var M = 0;
 
     while (N - N0 - M >= 0.00001) { //Accurate to 0.01mm

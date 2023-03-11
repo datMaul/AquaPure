@@ -1,4 +1,4 @@
-.Testkitcart_Container{
+.Testkitcart_Container {
     width: 100%;
 }
 
@@ -36,12 +36,14 @@
     border: 2px solid #008CBA;
     box-shadow: inset 150px 0 0 0 #ffffff;
 }
-.Shark_Btn{
+
+.Shark_Btn {
     text-decoration: none;
     background-color: transparent;
     border: transparent;
-    cursor:context-menu;
+    cursor: default;
 }
+
 .Delete_User {
     padding: 5px;
     background-color: #e12929;
@@ -111,7 +113,7 @@
     background-color: #5bced5;
     width: 30%;
 } */
- 
+
 .Empty_Div {
     margin: 0 120;
     background-color: #ffffff;
@@ -119,23 +121,24 @@
     border: 2px solid #008CBA;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-end; 
+    align-items: flex-end;
     padding: 10px 10px;
-    }
-    
-    .Empty_Context {
+}
+
+.Empty_Context {
     width: 70%;
-    margin-bottom: 10px; 
-    }
-    
-    .Shark_div {
+    margin-bottom: 10px;
+}
+
+.Shark_div {
     width: 30%;
-    margin-bottom: 10px; 
-    }
-    .Shark_div img{
-        height: 200px;
-        width: 200px;
-    }
+    margin-bottom: 10px;
+}
+
+.Shark_div img {
+    height: 200px;
+    width: 200px;
+}
 
 .Checkout_Btn {
     padding: 5px;
