@@ -34,6 +34,8 @@ export default function TestkitCart() {
     Pool: WaterTestKit7,
   };
 
+  console.log(TestkitHistory)
+
   return (
     <div>
       <div className="Testkit_hist">

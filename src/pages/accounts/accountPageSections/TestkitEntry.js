@@ -1,24 +1,26 @@
+import axios from "axios";
 import { Link } from "react-router-dom";
 import "./AccountPageSections.css";
 
 export default function TestkitEntry() {
-  // if (!localStorage.getItem("token")) {
-  //   return <Link to="/" />;
-  // }
+  if (!localStorage.getItem("token")) {
+    return <Link to="/" />;
+  }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const form = new FormData(e.target);
 
-    if (form.get("confirmation") == null) {
-      alert("Please click the checkbox");
-      return;
-    }
-
     const data = Object.fromEntries(form.entries());
 
     console.log(data);
+
+    const response = await axios.put(
+      `http://localhost:8080/testkit/activate/${data.uniqueID}`
+    );
+
+    console.log(response)
   }
 
   return (
