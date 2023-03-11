@@ -59,10 +59,10 @@ export default function DonationForm() {
           </div>
           <div className="col">
             <h3 className="title">payment</h3>
-            <div className="inputBox">
+            {/* <div className="inputBox">
               <span>cards accepted :</span>
               <img src="images/card_img.png" alt="" />
-            </div>
+            </div> */}
             <div className="inputBox">
               <span>name on card :</span>
               <input type="text" placeholder="mr. full name" required onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
