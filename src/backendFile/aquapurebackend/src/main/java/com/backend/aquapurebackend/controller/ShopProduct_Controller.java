@@ -1,4 +1,5 @@
 package com.backend.aquapurebackend.controller;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -18,57 +19,51 @@ import com.backend.aquapurebackend.dto.ShopProductPostDTO;
 import com.backend.aquapurebackend.model.ShopProduct;
 import com.backend.aquapurebackend.service.ShopProductService;
 
-
-
 @CrossOrigin
-@RestController  
+@RestController
 
 public class ShopProduct_Controller {
     @Autowired
-	ShopProductService productService;
+    ShopProductService productService;
 
+    // ToDo: Implement GET /user
+    @GetMapping("/product")
+    public List<ShopProduct> get_product() {
+        return productService.getProducts();
 
-	// ToDo: Implement GET /user
-	@GetMapping("/product")
-	public List<ShopProduct> get_product()
-	{
-		return productService.getProducts();
-		
-	}
-    //ToDo: Implement POST /user
+    }
+
+    // ToDo: Implement POST /user
     @PostMapping("/product")
     public ResponseEntity<Optional<ShopProduct>> addProduct(@RequestBody ShopProductPostDTO newProductDTO) {
-    	
-    	if (newProductDTO.getProduct_name()==null) {
+
+        if (newProductDTO.getProduct_name() == null) {
             return new ResponseEntity<>(Optional.ofNullable(null), HttpStatus.BAD_REQUEST);
         }
-    	
-    	
-    	
-    	ShopProduct newProduct = new ShopProduct(productService.incCurrentID(), newProductDTO.getProduct_name(), newProductDTO.getProduct_price(), newProductDTO.getProduct_desc(), newProductDTO.getCatagoryID());
-    	productService.addProduct(newProduct);
-    	return new ResponseEntity<>(Optional.ofNullable(newProduct),HttpStatus.CREATED);
-        //Otherwise create new user from newUserDTO's attributes, 
-        //Add the user through UserService
-        //Return response entity with the new user and CREATED status
+
+        ShopProduct newProduct = new ShopProduct(productService.incCurrentID(), newProductDTO.getProduct_name(),
+                newProductDTO.getProduct_price(), newProductDTO.getProduct_desc(), newProductDTO.getCatagoryID());
+        productService.addProduct(newProduct);
+        return new ResponseEntity<>(Optional.ofNullable(newProduct), HttpStatus.CREATED);
+        // Otherwise create new user from newUserDTO's attributes,
+        // Add the user through UserService
+        // Return response entity with the new user and CREATED status
     }
-	 
-    
-    //Implement GET /user/{id}
-    //You will need to use @PathVariable annotation
+
+    // Implement GET /user/{id}
+    // You will need to use @PathVariable annotation
     @GetMapping("/product/{id}")
     public Optional<ShopProduct> getProductById(@PathVariable(value = "id") int Id) {
-    	return Optional.ofNullable(productService.findByID(Id));
+        return Optional.ofNullable(productService.findByID(Id));
     }
-    
-    
-    //Implement DELETE /user{id}
+
+    // Implement DELETE /user{id}
     @DeleteMapping("/product/{id}")
     public String deleteProduct(@PathVariable(value = "id") int Id) {
-    	if(productService.deleteProduct(Id) == true) {
-    		return "product Deleted";
-    	}
-    	return "Delete error";
+        if (productService.deleteProduct(Id) == true) {
+            return "product Deleted";
+        }
+        return "Delete error";
     }
 
 }

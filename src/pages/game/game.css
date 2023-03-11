@@ -170,6 +170,7 @@ button{
     text-align: center;
 }
 
+.save-button,
 .restart-button{
     text-align: center;
     cursor: pointer;
@@ -185,6 +186,7 @@ button{
     border: 1px solid lightblue;
 }
 
+.save-button:hover,
 .restart-button:hover{
     box-shadow: 0 0 5px lightblue;
     transform: scale(1.05) translateX(+70%);

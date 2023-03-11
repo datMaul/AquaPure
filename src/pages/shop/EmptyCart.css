@@ -1,0 +1,34 @@
+.popupcart {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100vh;
+    margin-left:230px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(240, 248, 255);
+}
+
+.popupinnercart {
+
+    padding: 32px;
+    width: 100%;
+    
+    height:200px;
+    max-width: 340px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow:rgba(0, 0, 0, 0.33) 0 0 2px 2px;
+    font-size: 20px;
+
+}
+
+.popup-innercart {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+
+}

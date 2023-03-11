@@ -3,13 +3,13 @@ package com.backend.aquapurebackend.dto;
 
 public class ShopCartPostDTO {
     int id;
-	int user_id;
+	int userid;
 	int product_id;
 	int quantity;
 	
-	public ShopCartPostDTO(int id, int user_id, int product_id, int quantity) {
+	public ShopCartPostDTO(int id, int userid, int product_id, int quantity) {
 		this.id = id;
-		this.user_id = user_id;
+		this.userid = userid;
 		this.product_id = product_id;
 		this.quantity = quantity;
 		
@@ -23,12 +23,12 @@ public class ShopCartPostDTO {
 		this.id = id;
 	}
 
-	public int getUser_id() {
-		return user_id;
+	public int getUserid() {
+		return userid;
 	}
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 
 	public int getProduct_id() {

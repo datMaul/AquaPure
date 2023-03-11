@@ -1,4 +1,5 @@
 package com.backend.aquapurebackend.controller;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -22,31 +23,35 @@ import org.springframework.http.HttpStatus;
 @RestController
 public class ShopPurchase_Controller {
     @Autowired
-	ShopPurchaseService purchaseService;
-	
-	@GetMapping("/history")
-	public List<ShopPurchase> get_purchase()
-	{
-		return purchaseService.getHistory();
-		
-	}
-		
-	//get by id
-	@GetMapping("/history/{id}")
+    ShopPurchaseService purchaseService;
+
+    @GetMapping("/history")
+    public List<ShopPurchase> get_purchase() {
+        return purchaseService.getHistory();
+
+    }
+
+    // get by id
+    @GetMapping("/history/{id}")
     public Optional<ShopPurchase> getPurchaseByID(@PathVariable(value = "id") int Id) {
-    	return purchaseService.findByID(Id);
+        return purchaseService.findByID(Id);
+    }
+    @GetMapping("/history/user/{userid}")
+    public List<ShopPurchase> getUserByID(@PathVariable(value = "userid")int userID){
+        return purchaseService.findByUserID(userID);
     }
 
     @PostMapping("/history")
     public ResponseEntity<Optional<ShopPurchase>> addPurchase(@RequestBody ShopPurchasePostDTO newPurchaseDTO){
-        ShopPurchase purchase = new ShopPurchase(newPurchaseDTO.getPurchase_id(),newPurchaseDTO.getUser_id(),newPurchaseDTO.getProduct_id());
+        ShopPurchase purchase = new ShopPurchase(newPurchaseDTO.getPurchase_id(),newPurchaseDTO.getUser_id(),newPurchaseDTO.getProduct_id(), newPurchaseDTO.getQuantity());
         purchaseService.add_Purchase(purchase);
-        return new ResponseEntity<>(Optional.ofNullable(purchase),HttpStatus.CREATED);
+        return new ResponseEntity<>(Optional.ofNullable(purchase), HttpStatus.CREATED);
     }
+
     @DeleteMapping("/history/{id}")
-    public String deletePurchase(@PathVariable(value="id")int Id){
+    public String deletePurchase(@PathVariable(value = "id") int Id) {
         purchaseService.deletePurchase(Id);
-        return("purchase removed from history, no refund");
- 
+        return ("purchase removed from history, no refund");
+
     }
 }

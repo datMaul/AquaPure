@@ -1,6 +1,6 @@
 .check_page{
     background-color: grey;
-    margin:30px 300px auto;
+    margin:30px 200px auto;
 }
 .check_title{
 
@@ -38,6 +38,9 @@ input[type=number]::-webkit-inner-spin-button{
     border-bottom-style:solid;
     border-bottom-width: 2px;
     border-bottom-color:rgb(199, 199, 199);
+    border-top-style:solid;
+    border-top-width: 2px;
+    border-top-color:rgb(199, 199, 199);
 
 }
 .checkout_name{
@@ -58,11 +61,11 @@ input[type=number]::-webkit-inner-spin-button{
 
 .checkout-price-header{
     width: 20%;
-    text-align: right;
+    
     
 }
 .subtotal{
-    padding-top:100px;
+    
 }
 
 .purchase{
