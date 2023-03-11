@@ -1,4 +1,4 @@
-package com.backend.aquapurebackend.service;
+package com.backend.aquapurebackend.ervice;
 import java.util.Iterator;
 import java.util.List;
 
