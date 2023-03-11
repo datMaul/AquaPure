@@ -1,12 +1,12 @@
 package com.backend.aquapurebackend.model;
 
-public class DonationStore {
+public class Donation {
         private String charity;
         private String phoneNo;
         private String email;
         private double price;
         
-        public DonationStore(String charity, String phoneNo, String email, double price) {
+        public Donation(String charity, String phoneNo, String email, double price) {
             this.charity = charity;
             this.phoneNo = phoneNo;
             this.email = email;
