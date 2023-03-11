@@ -4,48 +4,48 @@ import './donationFormLink.js';
 import { Link } from "react-router-dom";
 
 export default function DonationForm() {
-    const [formData, setFormData] = useState({
-        fullName: "",
-        email: "",
-        charity: "",
-        amount: "",
-        cardName: "",
-        creditCardNumber: "",
-        expMonth: "",
-        expYear: "",
-        agreeToTerms: false
-      });
-    
-      const handleInputChange = (event) => {
-        const { name, value, type, checked } = event.target;
-        setFormData((prevState) => ({
-          ...prevState,
-          [name]: type === "checkbox" ? checked : value
-        }));
-      };
-    
-      const handleSubmit = (event) => {
-        event.preventDefault();
-        // Send formData to your database here
-        console.log(formData);
-      };
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    charity: "",
+    amount: "",
+    cardName: "",
+    creditCardNumber: "",
+    expMonth: "",
+    expYear: "",
+    agreeToTerms: false
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value, type, checked } = event.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: type === "checkbox" ? checked : value
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Send formData to your database here
+    console.log(formData);
+  };
 
   return (
     <div className="container">
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col">
             <h3 className="title">billing address</h3>
             <div className="inputBox">
               <span>full name :</span>
-              <input type="text" placeholder="Full name" />
+              <input type="text" placeholder="Full name" onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
             <div className="inputBox">
               <span>email :</span>
-              <input type="email" placeholder="example@example.com" />
+              <input type="email" placeholder="example@example.com" onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
             <div className="inputBox">
-              <label>Charty:</label>
+              <label>Charity:</label>
               <select id="cars" name="cars">
                 <option value="WaterAid">WaterAid</option>
                 <option value="Soil Assosiation">Soil Assosiation</option>
@@ -54,8 +54,8 @@ export default function DonationForm() {
               </select>
             </div>
             <div className="inputBox">
-              <span>Aamount to donate:</span>
-              <input type="text" placeholder="£00" className='price' />
+              <span>Amount to donate:</span>
+              <input type="text" placeholder="£0.00" className='price' onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
           </div>
           <div className="col">
@@ -66,11 +66,11 @@ export default function DonationForm() {
             </div>
             <div className="inputBox">
               <span>name on card :</span>
-              <input type="text" placeholder="mr. full name" />
+              <input type="text" placeholder="mr. full name" onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
             <div className="inputBox">
               <span>credit card number :</span>
-              <input type="number" placeholder="1111-2222-3333-4444" />
+              <input type="number" placeholder="1111-2222-3333-4444" onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
             <div className="flex">
               <div className="inputBox">
