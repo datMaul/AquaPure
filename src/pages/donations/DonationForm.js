@@ -69,6 +69,12 @@ export default function DonationForm() {
               I agree with the term and condition
             </label>
           </div>
+        </div>
+        <input type="submit" value="proceed to checkout" className="submit-btn" />
+      </form>
+    </div>
+  );
+}
 =======
     const [charity, setCharity] = useState('');
   const [phoneNo, setPhoneNo] = useState('');
@@ -257,13 +263,7 @@ export default function DonationForm() {
                     </div>          
                 </form>
             </div>     
->>>>>>> 981489fbae4c0054706ba8362493391694675257
         </div>
-        <input type="submit" value="proceed to checkout" className="submit-btn" />
-      </form>
-    </div>
-  );
+    );
 }
-
-
-
+>>>>>>> 82b067235b4d96b1ccbed9b28a99fc5fcf6913c2
