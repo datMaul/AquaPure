@@ -53,7 +53,7 @@ export default function DonationForm() {
             <div className="flex">
               <div className="inputBox">
                 <span>exp year :</span>
-                <input type="number" placeholder="2022" />
+                <input type="date" placeholder="2022" />
               </div>
               <div className="inputBox">
                 <span>CVV :</span>
