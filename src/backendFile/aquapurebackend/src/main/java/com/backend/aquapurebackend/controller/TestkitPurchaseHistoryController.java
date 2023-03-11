@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
@@ -27,5 +29,14 @@ public class TestkitPurchaseHistoryController {
     public List<TestkitPurchaseHistory> getAllTestkitPurchaseHistory() {
         return testkitPurchaseHistoryRepository.findAll();
     }
-
+    @PutMapping("/testkit/activate/{id}")
+    public TestkitPurchaseHistory activateTestKit(@PathVariable UUID id) {
+        Optional<TestkitPurchaseHistory> testKitPurchaseHistory = testkitPurchaseHistoryRepository.findById(id);
+        if (testKitPurchaseHistory.isEmpty()) {
+            return null;
+        }
+        testKitPurchaseHistory.get().setUsestatus(true);
+        testkitPurchaseHistoryRepository.save(testKitPurchaseHistory.get());
+        return testKitPurchaseHistory.get();
+    }
 }
