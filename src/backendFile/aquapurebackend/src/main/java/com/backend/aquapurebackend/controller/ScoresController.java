@@ -1,6 +1,6 @@
 package com.backend.aquapurebackend.controller;
-import com.backend.aquapurebackend.model.Scores;
 import com.backend.aquapurebackend.service.ScoresService;
+import com.backend.aquapurebackend.model.Scores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
