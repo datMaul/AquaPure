@@ -552,8 +552,8 @@ export default function Shop() {
         
         <ShopNotification trigger={showpopup} setTrigger={setshowpopup}>
                 <center className="popupShop">
+                <button className="close-btn" onClick={()=>{setshowpopup(false)}}>X</button>
                   <h3>Item added to shopping cart!</h3>
-                  <button className="close-btn" onClick={()=>{setshowpopup(false)}}>CLOSE</button>
                 </center>
         </ShopNotification>
         

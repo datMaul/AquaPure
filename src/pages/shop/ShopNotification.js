@@ -1,5 +1,5 @@
 import React from "react";
-import "./PopupStyle.css"
+import "./ShopNotification.css"
 
 export default function ShopNotification(props) {
 
