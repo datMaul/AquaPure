@@ -23,7 +23,9 @@ export default function Donations() {
 
 const handleClick = () => {
   // Generate random ID
-  const randomId = Math.floor(Math.random() * 1000);
+  /*const randomId = Math.floor(Math.random() * 1000);*/
+
+  const randomId = 1
 
   // Send POST request to backend with custom name and ID
   axios
