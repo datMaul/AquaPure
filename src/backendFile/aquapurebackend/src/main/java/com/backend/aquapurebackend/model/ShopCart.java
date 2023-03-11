@@ -16,7 +16,7 @@ public class ShopCart implements Serializable {
 	@Id
 	@Column(unique=true)
 	int id;
-	@Column(unique = true)
+	@Column(unique = false)
 	int userid;
 	
 	int product_id;
