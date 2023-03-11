@@ -17,6 +17,7 @@ import pouch from "../../../shop/item_pages/shop_assets/APPouch.png"
 import phone from "../../../shop/item_pages/shop_assets/PhoneCaseAP.png"
 import backpack from "../../../shop/item_pages/shop_assets/APBackpack.png"
 import water from "../../../shop/item_pages/shop_assets/water_bottle.PNG";
+import sticker from "../../../shop/item_pages/shop_assets/APSticker.png"
 
 
 export default function ShopCartPage() {
@@ -43,6 +44,7 @@ export default function ShopCartPage() {
     "Bamboo Travel Cup":cup,
     "Bamboo Covered Note Book":notebook,
     "Recycled Tote Bag Large":tote,
+    "AquaPure Sticker & Badge": sticker
 
   }
   
@@ -151,8 +153,7 @@ export default function ShopCartPage() {
       <div className="cart_page">
         <h1 className="cart_title">SHOP CART</h1>
         <span className="containerSum">
-          <h2>Total: £{subtotal}</h2>
-          <Link to="/checkout"><button className="checkout">CHECKOUT</button></Link>
+          <h2 className="total">Total: £{subtotal}</h2>
         </span>
         <PopupShop trigger={empty} setTrigger={setempty}>
           <div>
@@ -160,6 +161,7 @@ export default function ShopCartPage() {
             <Link to="/shop"><br></br><button className="empty_btn">BACK TO SHOP</button></Link>
           </div>
         </PopupShop>
+        
           <table className="cart_items">
            
             <thead>
@@ -199,6 +201,8 @@ export default function ShopCartPage() {
             })
           }
           </table>
+          <Link to="/checkout"><button className="checkout">CHECKOUT</button></Link>
+
       </div>
     </div>
   );

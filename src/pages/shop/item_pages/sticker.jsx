@@ -1,5 +1,5 @@
 import "./item_frame_style.css";
-import water from "./shop_assets/aqlogo.png";
+import water from "./shop_assets/APSticker.png";
 import { Link } from "react-router-dom";
 import {React, useEffect, useState} from 'react';
 import axios from 'axios';

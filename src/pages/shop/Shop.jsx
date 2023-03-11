@@ -1,6 +1,6 @@
 import "./Shop_Style.css";
 import water from "./item_pages/shop_assets/water_bottle.PNG";
-import logo from "../../components/aqlogo.png"
+import logo from "./item_pages/shop_assets/APSticker.png"
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import {React, useCallback, useEffect, useState,useReducer} from 'react';

@@ -66,8 +66,8 @@
 }
 
 .item_img{
-    width:275px;
     height:275px;
+    width:auto;
     cursor: pointer;
     transition: ease-in-out 250ms;
     border-radius: 15px;
