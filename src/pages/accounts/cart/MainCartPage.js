@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ChildComponent2 from "./shopcart/ShopCartPage";
 import ChildComponent1 from "./testkitcart/TestkitCartPage";
-import "./MainCArtPage.css";
+import "./MainCartPage.css";
 
 export default function ParentComponent() {
   const [displayChild, setDisplayChild] = useState(null);
