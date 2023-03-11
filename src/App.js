@@ -42,7 +42,7 @@ import Backpack from "./pages/shop/item_pages/Backpack";
 import Hoodie from "./pages/shop/item_pages/hoodie";
 import Travel_cup from "./pages/shop/item_pages/travel_cup";
 import Shop_purchase from "./pages/accounts/accountPageSections/purchasehistory/shopPurchaseHistory/PurchaseHistoryShop";
-import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitPurchaseHistory/PurchaseHistoryTestkit";
+import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitpurchasehistory/PurchaseHistoryTestkit";
 
 // import { Route, Routes } from "react-router-dom";
 
