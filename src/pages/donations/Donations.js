@@ -7,16 +7,6 @@ import RSPDImage from "./image/RSPD.jpg";
 import "./Donations.css";
 import { Link } from "react-router-dom";
 
-/*const data = {
-  charity: 'John',
-  phone_no: 'something',
-  first_name: 'something',
-  last_name: 'yeat',
-  email: 'address',
-  postcode: 'yea',
-  address_user: 'skrr'
-};*/
-
 export default function Donations() {
   const [name, setName] = useState("");
   const [donationId, setdonationId] = useState("");

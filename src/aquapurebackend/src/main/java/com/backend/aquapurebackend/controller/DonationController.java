@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DonationController {
 
-    @PostMapping("/donations/aquaDonation")
+    @PostMapping("/donations/DonationForm")
     public String receiveDonation(@RequestBody DonationData donationData) {
         // process the donation data, for example:
         System.out.println("Received donation: " + donationData.toString());

@@ -4,6 +4,32 @@ import './donationFormLink.js';
 import { Link } from "react-router-dom";
 
 export default function DonationForm() {
+    const [formData, setFormData] = useState({
+        fullName: "",
+        email: "",
+        charity: "",
+        amount: "",
+        cardName: "",
+        creditCardNumber: "",
+        expMonth: "",
+        expYear: "",
+        agreeToTerms: false
+      });
+    
+      const handleInputChange = (event) => {
+        const { name, value, type, checked } = event.target;
+        setFormData((prevState) => ({
+          ...prevState,
+          [name]: type === "checkbox" ? checked : value
+        }));
+      };
+    
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        // Send formData to your database here
+        console.log(formData);
+      };
+
   return (
     <div className="container">
       <form action="">
