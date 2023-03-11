@@ -1,6 +1,6 @@
 import "./Shop_Style.css";
 import water from "./item_pages/shop_assets/water_bottle.PNG";
-import logo from "../../components/aqlogo.png"
+import logo from "./item_pages/shop_assets/APSticker.png"
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import {React, useCallback, useEffect, useState,useReducer} from 'react';
@@ -201,11 +201,17 @@ export default function Shop() {
       "userid":storeuserid,
       "product_id":productid,
       "quantity":quantity,
-      }).then(res => {console.log(res.data);setshowpopup(true);})
+      }).then(res => {console.log(res.data);setshowpopup(true);addOnClick()})
     }
-
+    const [add_text,setadd_text] = useState("Add to cart")
     const addOnClick = () => {
-      setcheck("OK")
+    //   setadd_text("🗸")
+    //   resolve();
+    // }
+    // const resolve = () => {
+    //   setTimeout(()=>{
+    //     setadd_text("Add to cart")
+    //   },1200)
     }
 
     
@@ -226,7 +232,7 @@ export default function Shop() {
                   <Link to="/water_bottle"><img alt="water" className="item_img" src={water}/></Link>
                   <p className="item_title" key={"watername"}>{product.product_name}</p>
                   <p className="item_price" key={"waterprice"}>£{product.product_price}</p>
-                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{postAdd(product.productID,item1);addOnClick()}}>Quick Add</button>
+                  <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{postAdd(product.productID,item1);}}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -248,7 +254,7 @@ export default function Shop() {
                   <p className="item_price" key={"bagprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item2);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -270,7 +276,7 @@ export default function Shop() {
                   <p className="item_price" key={"bambooprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item3);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -292,7 +298,7 @@ export default function Shop() {
                   <p className="item_price" key={"apprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item4);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -314,7 +320,7 @@ export default function Shop() {
                   <p className="item_price" key={"travelcupprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item5);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -335,7 +341,7 @@ export default function Shop() {
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item6);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -357,7 +363,7 @@ export default function Shop() {
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item7);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -379,7 +385,7 @@ export default function Shop() {
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item8);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -401,7 +407,7 @@ export default function Shop() {
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item9);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -423,7 +429,7 @@ export default function Shop() {
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item10);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -445,7 +451,7 @@ export default function Shop() {
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item11);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -467,7 +473,7 @@ export default function Shop() {
                   <p className="item_price" key={""}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item12);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -489,7 +495,7 @@ export default function Shop() {
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item13);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -511,7 +517,7 @@ export default function Shop() {
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item14);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }
@@ -533,7 +539,7 @@ export default function Shop() {
                   <p className="item_price" key={product.product_price}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item15);
-                    }}>Quick Add</button>
+                    }}>{add_text}</button>
                   </>
                   ) 
                 }

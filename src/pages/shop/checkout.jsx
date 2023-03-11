@@ -17,6 +17,7 @@ import flask from "./item_pages/shop_assets/metalFlask.png"
 import pouch from "./item_pages/shop_assets/APPouch.png"
 import phone from "./item_pages/shop_assets/PhoneCaseAP.png"
 import backpack from "./item_pages/shop_assets/APBackpack.png"
+import Sticker from "./item_pages/shop_assets/APSticker.png"
 
 
 export default function Checkout() {
@@ -43,6 +44,7 @@ export default function Checkout() {
         "Bamboo Travel Cup":cup,
         "Bamboo Covered Note Book":notebook,
         "Recycled Tote Bag Large":tote,
+        "AquaPure Sticker & Badge":Sticker,
     
       }
     

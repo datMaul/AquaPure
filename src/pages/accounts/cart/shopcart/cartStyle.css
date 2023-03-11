@@ -100,7 +100,6 @@ td{
     border:none;
     font-size: 23px;
     transition:350ms;
-    border-radius:50%;
     
     float:left;
 }
@@ -112,7 +111,6 @@ td{
     border:none;
     font-size: 23px;
     transition:350ms;
-    border-radius:50%;
 
     float:right;
 }
@@ -129,7 +127,6 @@ td{
     text-align: left;
     height:50%;
     width:20%;
-    background-color: rgb(236, 236, 236);
 }
 .discount{
     width:70%;
@@ -137,14 +134,35 @@ td{
     float:right;
     text-align: left;
 }
+.total{
+
+}
 .checkout{
-    border:none;
-    font-size:20px;
+    width:200px;
+    margin-top:150px;
     padding:10px;
-    background-color:#5ba4ba;
+    border-color:#1ca1c9;
+    border-style: solid;
+    border-width:3px;
+    border-radius: 10px;
+    font-size:15px;
+    padding:10px;
+    color:white;
+    background-color:#1ca1c9;
+    align-items: center;
+    justify-content: center;
+    transition:ease 150ms;
 }
 .checkout:hover{
     cursor: pointer;
+    background-color: #1ca1c99d;
+
+    border-color:#0096c4;
+    color: #ffffff;
+}
+.checkout:active{
+    scale:0.95;
+    background-color: #00c3d1;
 }
 
 
