@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.aquapurebackend.dto.ShopPurchasePostDTO;
 import com.backend.aquapurebackend.model.ShopPurchase;
-import com.backend.aquapurebackend.Service.ShopPurchaseService;
+import com.backend.aquapurebackend.service.ShopPurchaseService;
 
 import org.springframework.http.HttpStatus;
 
