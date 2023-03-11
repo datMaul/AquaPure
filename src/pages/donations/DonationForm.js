@@ -72,13 +72,9 @@ export default function DonationForm() {
               <span>credit card number :</span>
               <input type="number" placeholder="1111-2222-3333-4444" />
             </div>
-            <div className="inputBox">
-              <span>exp month :</span>
-              <input type="text" placeholder="january" />
-            </div>
             <div className="flex">
               <div className="inputBox">
-                <span>exp year :</span>
+                <span>Exp date :</span>
                 <input type="date" placeholder="2022" />
               </div>
               <div className="inputBox">
