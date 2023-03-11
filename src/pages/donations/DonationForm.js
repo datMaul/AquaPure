@@ -38,11 +38,11 @@ export default function DonationForm() {
             <h3 className="title">billing address</h3>
             <div className="inputBox">
               <span>full name :</span>
-              <input type="text" placeholder="Full name" onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
+              <input type="text" placeholder="Full name" required onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
             <div className="inputBox">
               <span>email :</span>
-              <input type="email" placeholder="example@example.com" onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
+              <input type="email" placeholder="example@example.com" required onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
             <div className="inputBox">
               <label>Charity:</label>
@@ -55,7 +55,7 @@ export default function DonationForm() {
             </div>
             <div className="inputBox">
               <span>Amount to donate:</span>
-              <input type="text" placeholder="£0.00" className='price' onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
+              <input type="text" placeholder="£0.00" className='price' required onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
           </div>
           <div className="col">
@@ -66,26 +66,26 @@ export default function DonationForm() {
             </div>
             <div className="inputBox">
               <span>name on card :</span>
-              <input type="text" placeholder="mr. full name" onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
+              <input type="text" placeholder="mr. full name" required onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
             <div className="inputBox">
               <span>credit card number :</span>
-              <input type="number" placeholder="1111-2222-3333-4444" onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
+              <input type="number" placeholder="1111-2222-3333-4444" required onChange={(event) => setFormData({ ...formData, amount: event.target.value })} />
             </div>
             <div className="flex">
               <div className="inputBox">
                 <span>Exp date :</span>
-                <input type="date" placeholder="2022" />
+                <input type="date" placeholder="2022" required/>
               </div>
               <div className="inputBox">
                 <span>CVV :</span>
-                <input type="text" placeholder="1234" />
+                <input type="text" placeholder="1234" required/>
               </div>
             </div>
           </div>
           <div className="remember-forgot">
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" required/>
               I agree with the terms and conditions
             </label>
           </div>
