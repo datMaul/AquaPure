@@ -20,12 +20,16 @@ export default function DonationForm() {
             </div>
             <div className="inputBox">
               <label>Charty:</label>
-                <select id="cars" name="cars">
-                  <option value="WaterAid">WaterAid</option>
-                  <option value="Soil Assosiation">Soil Assosiation</option>
-                  <option value="RSPB">RSPB</option>
-                  <option value="WWF">WWF</option>
-                </select>
+              <select id="cars" name="cars">
+                <option value="WaterAid">WaterAid</option>
+                <option value="Soil Assosiation">Soil Assosiation</option>
+                <option value="RSPB">RSPB</option>
+                <option value="WWF">WWF</option>
+              </select>
+            </div>
+            <div className="inputBox">
+              <span>Aamount to donate:</span>
+              <input type="text" placeholder="£00" className='price' />
             </div>
           </div>
           <div className="col">
