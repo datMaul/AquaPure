@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import WaterAidImage from "./image/WaterAid.png";
 import WWFImage from "./image/WWF.jpg";
 import SoilAssociationImage from "./image/SoilAssociation.jpg";
@@ -6,7 +7,39 @@ import RSPDImage from "./image/RSPD.jpg";
 import "./Donations.css";
 import { Link } from "react-router-dom";
 
+/*const data = {
+  charity: 'John',
+  phone_no: 'something',
+  first_name: 'something',
+  last_name: 'yeat',
+  email: 'address',
+  postcode: 'yea',
+  address_user: 'skrr'
+};*/
+
 export default function Donations() {
+  const [name, setName] = useState("");
+  const [donationId, setdonationId] = useState("");
+
+const handleClick = () => {
+  // Generate random ID
+  const randomId = Math.floor(Math.random() * 1000);
+
+  // Send POST request to backend with custom name and ID
+  axios
+    .post("http://localhost:3000/aquaDonation", {
+      charity: name,
+      donationId: randomId
+    })
+    .then(response => {
+      console.log(response);
+      setdonationId(response.data.donationId);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
   return (
     <div className="Donations">
       <div className="Donations-Container">
@@ -55,7 +88,8 @@ export default function Donations() {
             <div className="WaterAid-Buttons">
               <center>
                 <Link to="/donations/DonationForm">
-                  <button id="Donate-Button">Donate</button>
+                  <button id="Donate-Button" onChange={event => setName("WaterAid")} onClick={handleClick}>Donate</button> 
+                  {donationId && <p>Your ID is: {donationId}</p>}
                 </Link>
                 <a href="https://www.wateraid.org/uk/donate/donate-to-wateraid-today?id=RA/TPP/01A&utm_source=google&utm_medium=cpc&gclid=Cj0KCQiA54KfBhCKARIsAJzSrdrGIsqHhGw5M2WuWn3x92zIJm2Of15CXN5kQD78GgrzpZ6w2pN2MN4aAvciEALw_wcB&gclsrc=aw.ds">
                   <button id="MoreInfo-Button">More Info</button>
@@ -81,7 +115,7 @@ export default function Donations() {
             </div>
             <div className="WWF-Buttons">
               <center>
-                <button id="Donate-Button">Donate</button>
+                <Link to="/donations/DonationForm"><button id="Donate-Button" onChange={event => setName("WWF")} onClick={handleClick}>Donate</button></Link>
                 <a href="https://support.wwf.org.uk/adopt-an-animal?utm_source=Google-Pure-Brand&utm_medium=PaidSearch-Brand&pc=AVN014001&ds_rl=1263317&ds_rl=1263317&gclid=Cj0KCQiA54KfBhCKARIsAJzSrdq_P7T83pFMhQBnzYrbkAsdZZ1T8c_3KCBGPeG_HWJkpvRZrW1m_0EaAjGCEALw_wcB&gclsrc=aw.ds">
                   <button id="MoreInfo-Button">More Info</button>
                 </a>
@@ -107,7 +141,7 @@ export default function Donations() {
             </div>
             <div className="WaterAid-Buttons">
               <center>
-                <button id="Donate-Button">Donate</button>
+              <Link to="/donations/DonationForm"><button id="Donate-Button" onChange={event => setName("Soil Association")} onClick={handleClick}>Donate</button></Link>
                 <a href="https://www.soilassociation.org/">
                   <button id="MoreInfo-Button">More Info</button>
                 </a>
@@ -131,7 +165,7 @@ export default function Donations() {
             </div>
             <div className="WaterAid-Buttons">
               <center>
-                <button id="Donate-Button">Donate</button>
+                <Link to="/donations/DonationForm"><button id="Donate-Button" onChange={event => setName("RSPB")} onClick={handleClick}>Donate</button></Link>
                 <a href="https://www.rspb.org.uk/join-and-donate/join-us-today/?sourcecode=MRLITH0082&utm_source=google&utm_medium=ppcad&utm_content=membership_various&utm_campaign=membership2122&channel=paidsearch&gclid=Cj0KCQiA54KfBhCKARIsAJzSrdpd9HmzbnfJ7wMr26gRsQBjmIS9dE0MlXmQu-KKOjc1wsftkF2XStEaAt6TEALw_wcB&gclsrc=aw.ds">
                   <button id="MoreInfo-Button">More Info</button>
                 </a>
