@@ -1,4 +1,4 @@
-package com.backend.aquapurebackend.model;
+package com.backend.aquapurebackend.controller;
 
 public class Donation {
         private String charity;
