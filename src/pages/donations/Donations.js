@@ -8,6 +8,7 @@ import "./Donations.css";
 import { Link } from "react-router-dom";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*const data = {
   charity: 'John',
   phone_no: 'something',
@@ -19,6 +20,8 @@ import { Link } from "react-router-dom";
 };*/
 
 
+=======
+>>>>>>> 3c2271e69e490fbaf113b0047cbbb3dfd53f2bfd
 =======
 >>>>>>> 3c2271e69e490fbaf113b0047cbbb3dfd53f2bfd
 export default function Donations() {
