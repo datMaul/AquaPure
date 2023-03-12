@@ -1,4 +1,4 @@
-package com.backend.aquapurebackend.controller;
+package com.backend.aquapurebackend.Service;
 
 public class Donation {
         private String charity;
@@ -43,5 +43,40 @@ public class Donation {
         
         public void setPrice(double price) {
             this.price = price;
+        }
+
+        public Object getFullName() {
+            return null;
+        }
+
+        public void setFullName(Object fullName) {
+        }
+
+        public Object getAmount() {
+            return null;
+        }
+
+        public void setAmount(Object amount) {
+        }
+
+        public Object getCardName() {
+            return null;
+        }
+
+        public void setCardName(Object cardName) {
+        }
+
+        public Object getCreditCardNumber() {
+            return null;
+        }
+
+        public Object getExpDate() {
+            return null;
+        }
+
+        public void setCreditCardNumber(Object creditCardNumber) {
+        }
+
+        public void setExpDate(Object expDate) {
         };
 }

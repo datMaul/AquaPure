@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './form.css';
-import axios from "axios";
+import axios from 'axios';
 //import { Link } from "react-router-dom";
 
 export default function DonationForm() {
@@ -11,8 +11,7 @@ export default function DonationForm() {
     amount: "",
     cardName: "",
     creditCardNumber: "",
-    expDate: "",
-    agreeToTerms: false
+    expDate: ""
   });
 
   const {
@@ -22,8 +21,7 @@ export default function DonationForm() {
     amount,
     cardName,
     creditCardNumber,
-    expDate,
-    agreeToTerms,
+    expDate
   } = DonationData;
   
   const handleInputChange = (event) => {
@@ -36,13 +34,14 @@ export default function DonationForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    axios.post('/donation/DonationForm', DonationData).then(response => console.log(response)).catch(error => console.error(error));
     // Send DonationData to your database here
     console.log(DonationData);
   };
 
   return (
     <div className="container">
-      <form action="" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col">
             <h3 className="title">billing address</h3>
@@ -70,10 +69,6 @@ export default function DonationForm() {
           </div>
           <div className="col">
             <h3 className="title">payment</h3>
-            {/* <div className="inputBox">
-              <span>cards accepted :</span>
-              <img src="images/card_img.png" alt="" />
-            </div> */}
             <div className="inputBox">
               <span>name on card :</span>
               <input type="text" placeholder="mr. full name" required onChange={(event) => setDonationData({ ...DonationData, cardName: event.target.value })} value={cardName}/>
