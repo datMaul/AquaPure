@@ -63,12 +63,11 @@ export default function Checkout() {
     
     const loadUser = () => {
         axios.get("http://localhost:8080/Sign_Up_log").then(res=>{setuser(res.data)})
-        console.log(user,"<-user");
     }
 
     const loadUserPoints = () => {
         axios.get("http://localhost:8080/points")
-        .then(res=>{setUserpoints(res.data);loadUser();})
+        .then(res=>{setUserpoints(res.data);loadUser();console.log(res.data)})
     }
 
     const loadItems = () => {
@@ -137,7 +136,7 @@ export default function Checkout() {
         // var date = DOP.getUTCFullYear() + '-' + (DOP.getMonth()+1) + "-" + DOP.getDate() + ' ' + DOP.getHours() +':'+ DOP.getMinutes();
         // console.log(date)
         cartItems.map(item => {
-            let id = Math.floor(Math.random(10)*111)
+            let id = Math.floor(Math.random(999)*111)
             axios.post('http://localhost:8080/history',{
                 "purchase_id": id,
                 "userid":storeuserid,
@@ -146,7 +145,7 @@ export default function Checkout() {
             }).then(res=>{console.log(res.data,"items post to data base")})
             
             
-            axios.delete(`http://localhost:8080/item/${item.product_id}`).then(res => {console.log(res.data,"delete from cart");loadItems();})
+            axios.delete(`http://localhost:8080/item/user/${storeuserid}`).then(res => {console.log(res.data,"delete from cart");loadItems();})
             Userpoints.map(score=>{
                 user.map(user=>{
                     if(score.email === user.eMail){

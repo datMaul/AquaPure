@@ -107,7 +107,7 @@ export default function ShopCartPage() {
 
 
   const deleteItem = async (id) => {
-    await axios.delete(`http://localhost:8080/item/${id}`).then(console.log("deleted item"))
+    await axios.delete(`http://localhost:8080/item/${id}`).then(res=>{console.log(res.data);})
     // notEmpty=false;
     // console.log(notEmpty)
     loadItems();
