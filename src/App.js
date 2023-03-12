@@ -43,7 +43,7 @@ import Hoodie from "./pages/shop/item_pages/hoodie";
 import Travel_cup from "./pages/shop/item_pages/travel_cup";
 import Shop_purchase from "./pages/accounts/accountPageSections/purchasehistory/shopPurchaseHistory/PurchaseHistoryShop";
 import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitPurchaseHistory/PurchaseHistoryTestkit";
-
+import PurchaseHistoryShop from "./pages/accounts/accountPageSections/purchasehistory/shopPurchaseHistory/PurchaseHistoryShop";
 // import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -99,6 +99,7 @@ function App() {
               element={<Overwritetestkitlog />}
             />
           ) : null}
+          <Route path="/shoppurchase" element={<PurchaseHistoryShop/>}/>
           <Route path="/testkitpurchase" element={<PurchaseHistoryTestkit />} />
 
           {accountType === "Admin" ? (
