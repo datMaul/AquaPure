@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.aquapurebackend.Service.Donation;
+import com.backend.aquapurebackend.Service.DonationService;
 import com.backend.aquapurebackend.repository.DonationRepository;
 
 @RestController
@@ -18,10 +18,10 @@ public class DonationController {
 
 
   @PostMapping("/donation/DonationForm")
-  public ResponseEntity<String> processDonation(@RequestBody Donation donationData) {
+  public ResponseEntity<String> processDonation(@RequestBody DonationService donationData) {
     // Save donation data to your database here
     try {
-        Donation donation = new Donation(null, null, null, 0);
+        DonationService donation = new DonationService(null, null, null, 0);
         donation.setFullName(donationData.getFullName());
         donation.setEmail(donationData.getEmail());
         donation.setCharity(donationData.getCharity());

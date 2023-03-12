@@ -1,12 +1,15 @@
 package com.backend.aquapurebackend.Service;
 
-public class Donation {
+import org.springframework.stereotype.Service;
+
+@Service
+public class DonationService {
         private String charity;
         private String phoneNo;
         private String email;
         private double price;
         
-        public Donation(String charity, String phoneNo, String email, double price) {
+        public DonationService(String charity, String phoneNo, String email, double price) {
             this.charity = charity;
             this.phoneNo = phoneNo;
             this.email = email;
