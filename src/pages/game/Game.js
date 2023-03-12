@@ -1,13 +1,14 @@
 import "./Game.css";
 import React, { useState } from "react";
 
-export default function Gmae() {
+export default function Game() {
   const [currentQuestionIndex, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [background, setBackground] = useState("body");
   const [cardVisibility, setCardVisibility] = useState("card");
   const [endscreenVisibility, setEndscreenVisibility] = useState("invisible");
   const [acceptingAnswer, setAcceptingAnswer] = useState(true);
+  const [disabled, setDisabled] = useState(false);
 
   var classOfButton = [
     "answer-button",
@@ -141,6 +142,23 @@ export default function Gmae() {
     }
   };
 
+  async function saveScore() {
+    setDisabled(true);
+    const email = localStorage.getItem("email");
+    const response = await fetch("http://localhost:8080/scores/addScore", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        score: score,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  }
+
   return (
     <div className={background}>
       <div className="green"></div>
@@ -179,6 +197,9 @@ export default function Gmae() {
       </div>
       <div className={endscreenVisibility}>
         <h1>Score = {score}</h1>
+        <button disabled={disabled} className="save-button" onClick={saveScore}>
+          Save Score
+        </button>
         <button className="restart-button" onClick={newGame}>
           Play Again
         </button>

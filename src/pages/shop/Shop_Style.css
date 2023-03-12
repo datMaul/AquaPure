@@ -1,0 +1,258 @@
+.shop_title{
+    margin-top:-50px;
+
+
+    /* <a href="https://www.123freevectors.com/">Free Vector</a> */
+    background-image:url("./item_pages/shop_assets/shop_background.jpg");
+    box-shadow: 0 0 5px 5px #adadad;
+    text-align: left;
+    /* padding-bottom:10%; */
+    font-size: 150px;
+    
+    color:rgb(43, 188, 255)
+}
+
+.page{  
+    overflow-y:scroll ;
+    width: 100%;
+    margin-top:50px;
+    background-color: none;
+    display:table;
+}
+
+.item{
+    background-color: rgb(255, 255, 255);
+    margin:10px;
+    display:inline-table;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size:12px;
+    padding:5px;
+    border-radius: 20px;
+   
+    transition: ease 500ms;
+    
+
+}
+
+.item:hover{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.725);
+    scale: +1.03;
+    
+    
+}
+.item_price{
+    font-size:20px;
+    text-align: center;
+    color:rgb(55, 142, 192);
+    margin-bottom:6px;
+}
+
+.item_title{
+    font-size: 15px;
+    color:rgb(0, 0, 0);
+    text-align: center;
+    margin-bottom:0px;
+    
+}
+
+.item_list{
+    text-align: center;
+    list-style-type: none;
+    margin-top:50px;
+    justify-content: center;
+    margin-right:4px;
+
+
+}
+
+.item_img{
+    height:275px;
+    width:auto;
+    cursor: pointer;
+    transition: ease-in-out 250ms;
+    border-radius: 15px;
+
+    
+}
+.item_img:hover{
+    background-color:rgb(245, 245, 245);
+    opacity: 50%;
+}
+
+
+
+.item_quick_add{
+    width: 100px;
+    height: 25px;
+    margin-bottom:5px;
+    background-color: transparent;
+    color: #5ba4ba;
+    font-size: 15px;
+    border:solid;
+    border-color: rgba(0, 0, 0, 0.181);
+    border-radius: 20px;
+    border-width: 2px;
+    cursor: pointer;
+    transition: ease 250ms;
+    
+    
+    
+
+}
+.item_quick_add:hover{
+    color:rgb(255, 255, 255);
+    background-color:#2ea6ce;
+    width:80%;
+    border-radius: 20px;
+    border-color: transparent;
+    transition:0.2s;
+} 
+
+.item_quick_add:active{
+    scale:0.9;
+    background-color:#94c18d;
+    
+}
+
+.popupframe {
+    position: fixed;
+    top: 5%;
+    left: 77%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-name:move;
+    animation-duration:2s;
+}
+
+.popupinnerframe {
+    color:white;
+
+    padding-top:10px;
+    width:40px;
+
+    background-color: #ff4545;
+    font-size: 15px;
+    border:none;
+
+    
+    
+
+}
+
+
+@keyframes move {
+    0%{top:-10%}
+    25%{top:12%}
+    50%{top:12%}
+    75%{top:12%}
+    100%{top:-10%}
+}
+/* .item_quick_add:not(:active){
+    animation-name:quick;
+    animation-duration: 1.5s;
+}
+@keyframes quick {
+    0% {width:80%;}
+    25% {width:12%;background-color:#94c18d;color:white;}
+    75% {width:12%;background-color:#94c18d;;color:white;}
+    100%{width: 100px;background-color: transparent;color: #5ba4ba;
+        border:solid;
+        border-color: rgba(0, 0, 0, 0.181);
+        border-radius: 20px;
+        border-width: 2px;
+
+    }
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.item_desc{
+    width:25%;
+    background-color:rgb(207, 207, 207);
+    float:left;
+    margin-top:5%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:30px;
+    margin-left:5%;
+
+}
+
+.item_page_image{
+    background-color:rgb(214, 214, 214);
+    margin-top:5%;
+    float:left;
+    margin-left:20%;
+}
+
+
+
+
+
+
+.cart_num{
+    font-size:.7em;
+    background:rgb(255, 131, 131);
+    color:white;
+    width:18px;height:18px;
+    text-align:center;
+    line-height:18px;
+    border-radius:50%;
+    box-shadow:0 0 1px #333;
+    z-index:1;
+    float:right;
+
+    margin-top:10px;
+}
+
+.cart{
+    width:50px;
+    height:50px;
+    float:right;
+    margin-top:10px;
+    cursor:pointer;
+    background-color:#a5c1ff00;
+}
+
+#checkout{
+    position: fixed;
+    display:inline-block;
+    width: 650px;
+    height:400px;
+    left:35%;
+    top:30%;
+    background-color: rgb(221, 221, 221);
+    z-index: 2;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+}
+.checkout_exit{
+    height: 50px;
+    width: 50px;
+    background-color: #ffffff;
+    font-family:Arial, Helvetica, sans-serif;
+    color: #008CBA;
+    font-size: 20px;
+    border-radius: 4px;
+    border: 2px solid #ffffff;
+    float:right;
+    text-align: center;
+    cursor: pointer;
+}
