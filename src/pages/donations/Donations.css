@@ -55,7 +55,7 @@ body {
     height: auto;
 }
 
-.WWF-Container {
+.drop_in_the_bucket-Container {
     width: 70%;
     /* border: 2px solid rgba(0, 0, 0, 0.19); */
     margin: auto auto;
@@ -67,41 +67,41 @@ body {
     align-items: center;
 }
 
-.WWF-Container img {
+.drop_in_the_bucket-Container img {
     max-width: 300px;
     height: auto;
 }
 
-.SoilAssociation-Container {
+.bloodWater-Container {
     width: 70%;
     /* border: 2px solid rgba(0, 0, 0, 0.19); */
     margin: auto auto;
 }
 
-.SoilAssociation-Info {
+.bloodWater-Info {
     grid-template-columns: 20% 80%;
     display: flex;
     align-items: center;
 }
 
-.SoilAssociation-Container img {
+.bloodWater-Container img {
     max-width: 300px;
     height: auto;
 }
 
-.RSPD-Container {
+.waterOrg-Container {
     width: 70%;
     /* border: 2px solid rgba(0, 0, 0, 0.19); */
     margin: auto auto;
 }
 
-.RSPD-Info {
+.waterOrg-Info {
     grid-template-columns: 20% 80%;
     display: flex;
     align-items: center;
 }
 
-.RSPD-Container img {
+.waterOrg-Container img {
     max-width: 300px;
     height: auto;
 }
