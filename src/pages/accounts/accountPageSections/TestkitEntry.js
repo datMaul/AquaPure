@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Link } from "react-router-dom";
 import "./AccountPageSections.css";
 
@@ -5,108 +6,106 @@ export default function TestkitEntry() {
   if (!localStorage.getItem("token")) {
     return <Link to="/" />;
   }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const form = new FormData(e.target);
+
+    const data = Object.fromEntries(form.entries());
+
+    console.log(data);
+
+    const response = await axios.put(
+      `http://localhost:8080/testkit/activate/${data.uniqueID}`
+    );
+
+    console.log(response)
+  }
+
   return (
     <div className="Accounts-Content">
       <div className="AccountPageSection-Content">
         <div className="Row-1-Content">
-          <h2> Testkit Entry </h2>
+          <h2>Testkit Entry</h2>
         </div>
-
         <div className="Row-2-Content">
           <div className="Labels-Content">
-            <label>Unique ID:</label>
+            <label htmlFor="uniqueID">Unique ID:</label>
             <br />
-            <label>pH:</label>
+            <label htmlFor="pH">pH:</label>
             <br />
-            <label>Total Alkalinity:</label>
+            <label htmlFor="totalAlkalinity">Total Alkalinity:</label>
             <br />
-            <label>Total Hardness:</label>
+            <label htmlFor="totalHardness">Total Hardness:</label>
             <br />
-            <label>Nitrate:</label>
+            <label htmlFor="nitrite">Nitrite:</label>
             <br />
-            <label>Nitrite:</label>
+            <label htmlFor="lead">Lead:</label>
             <br />
-            <label>Lead:</label>
+            <label htmlFor="manganese">Manganese:</label>
             <br />
-            <label>Manganese:</label>
-            <br />
-            <label>Coliform Bacteria:</label>
+            <label htmlFor="coliformBacteria">Coliform Bacteria:</label>
           </div>
-
           <div className="Inputs-Content">
-            <form
-            // onSubmit={(e) => onSubmit(e)}
-            >
+            <form onSubmit={handleSubmit}>
               <input
-                type={"text"}
-                placeholder="Enter Unique ID"
+                type="text"
+                id="uniqueID"
                 name="uniqueID"
-                // value={}
-                // onChange={(e) => onInputChange(e)}
+                placeholder="Enter Unique ID"
+                minLength={1}
               />
               <br />
               <input
-                type={"number"}
-                placeholder="Enter pH"
+                type="number"
+                id="pH"
                 name="pH"
-                // value={}
-                // onChange={(e) => onInputChange(e)}
+                placeholder="Enter pH"
+                min="0"
+                max="14"
               />
               <br />
               <input
-                type={"number"}
-                placeholder="Enter Total Alkalinity"
+                type="number"
+                id="totalAlkalinity"
                 name="totalAlkalinity"
-                // value={}
-                // onChange={(e) => onInputChange(e)}
+                placeholder="Enter Total Alkalinity"
               />
               <br />
               <input
-                type={"number"}
-                placeholder="Enter Total Hardness"
+                type="number"
+                id="totalHardness"
                 name="totalHardness"
-                // value={}
-                // onChange={(e) => onInputChange(e)}
+                placeholder="Enter Total Hardness"
               />
               <br />
               <input
-                type={"number"}
-                placeholder="Enter Nitrite"
+                type="number"
+                id="nitrite"
                 name="nitrite"
-                // value={}
-                // onChange={(e) => onInputChange(e)}
+                placeholder="Enter Nitrite"
               />
               <br />
               <input
-                type={"number"}
-                placeholder="Enter Nitrate"
-                name="nitrate"
-                // value={}
-                // onChange={(e) => onInputChange(e)}
-              />
-              <br />
-              <input
-                type={"number"}
-                placeholder="Enter Lead"
+                type="number"
+                id="lead"
                 name="lead"
-                // value={}
-                // onChange={(e) => onInputChange(e)}
+                placeholder="Enter Lead"
               />
               <br />
               <input
-                type={"number"}
-                placeholder="Enter Manganese"
+                type="number"
+                id="manganese"
                 name="manganese"
-                // value={}
-                // onChange={(e) => onInputChange(e)}
+                placeholder="Enter Manganese"
               />
               <br />
               <input
-                type={"number"}
-                placeholder="Enter Coliform Bacteria"
+                type="number"
+                id="coliformBacteria"
                 name="coliformBacteria"
-                // value={}
-                // onChange={(e) => onInputChange(e)}
+                placeholder="Enter Coliform Bacteria"
               />
               <br />
               <button id="submitButton" type="submit">

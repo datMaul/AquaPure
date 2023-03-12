@@ -40,6 +40,7 @@ body {
 
 .WaterAid-Container {
     width: 70%;
+    /* border: 2px solid rgba(0, 0, 0, 0.19); */
     margin: auto auto;
 }
 
@@ -57,6 +58,7 @@ body {
 
 .WWF-Container {
     width: 70%;
+    /* border: 2px solid rgba(0, 0, 0, 0.19); */
     margin: auto auto;
 }
 
@@ -74,6 +76,7 @@ body {
 
 .SoilAssociation-Container {
     width: 70%;
+    /* border: 2px solid rgba(0, 0, 0, 0.19); */
     margin: auto auto;
 }
 
@@ -91,6 +94,7 @@ body {
 
 .RSPD-Container {
     width: 70%;
+    /* border: 2px solid rgba(0, 0, 0, 0.19); */
     margin: auto auto;
 }
 
@@ -175,6 +179,8 @@ body {
     border: black 2px solid;
 } 
 */
+
+
 
 #Donate-Button {
     margin-left: 2.5%;
