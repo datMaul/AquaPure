@@ -1,13 +1,13 @@
 import React from "react";
-import "./ShopNotification.css"
+import "./Shop_Style.css"
 
 export default function ShopNotification(props) {
 
     return (props.trigger) ? (
         <div className="popupframe">
-            <div className="popupinnerframe">
+            <button className="popupinnerframe">
                 {props.children}
-            </div>
+            </button>
         </div>
     ) : ""
 }

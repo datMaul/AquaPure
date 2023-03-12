@@ -214,7 +214,10 @@ export default function Shop() {
     if(productid===15){
       setvalue15((increment)=>(increment+1))
     }
-
+    setshowpopup(true);
+    setTimeout(()=>{
+      setshowpopup(false)
+    },2500)
 //increment item already in cart
     itemData.map(item=>{
       if(productid === item.product_id){
@@ -236,12 +239,12 @@ export default function Shop() {
     }
   }
 
-
+  
     
   return (
     <div className="wall" key={"shoppage"}>    
       
-      <div className="page">
+      <div className="page" >
       
         <h1 className="shop_title">AquaShop</h1>
         
@@ -580,9 +583,8 @@ export default function Shop() {
         </nav>
         
         <ShopNotification trigger={showpopup} setTrigger={setshowpopup}>
-                <center className="popupShop">
-                <button className="close-btn" onClick={()=>{setshowpopup(false)}}>X</button>
-                  <h3>Item added to shopping cart!</h3>
+                <center className="popupShop" onClick={()=>{setshowpopup(false)}}>
+                  <h3>+1</h3>
                 </center>
         </ShopNotification>
         
