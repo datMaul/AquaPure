@@ -11,26 +11,26 @@ export default function Donations() {
   const [name, setName] = useState("");
   const [donationId, setdonationId] = useState("");
 
-const handleClick = () => {
-  // Generate random ID
-  /*const randomId = Math.floor(Math.random() * 1000);*/
- 
-  const randomId = 1
+  const handleClick = () => {
+    // Generate random ID
+    /*const randomId = Math.floor(Math.random() * 1000);*/
 
-  // Send POST request to backend with custom name and ID
-  axios
-    .post("http://localhost:3000/donations/DonationForm", {
-      charity: name,
-      donationId: randomId
-    })
-    .then(response => {
-      console.log(response);
-      setdonationId(response.data.donationId);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-};
+    const randomId = 1
+
+    // Send POST request to backend with custom name and ID
+    axios
+      .post("http://localhost:3000/donations/DonationForm", {
+        charity: name,
+        donationId: randomId
+      })
+      .then(response => {
+        console.log(response);
+        setdonationId(response.data.donationId);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="Donations">
@@ -80,7 +80,7 @@ const handleClick = () => {
             <div className="WaterAid-Buttons">
               <center>
                 <Link to="/donations/DonationForm">
-                  <button id="Donate-Button" onChange={event => setName("WaterAid")} onClick={handleClick}>Donate</button> 
+                  <button id="Donate-Button" onChange={event => setName("WaterAid")} onClick={handleClick}>Donate</button>
                   {donationId && <p>Your ID is: {donationId}</p>}
                 </Link>
                 <a href="https://www.wateraid.org/uk/donate/donate-to-wateraid-today?id=RA/TPP/01A&utm_source=google&utm_medium=cpc&gclid=Cj0KCQiA54KfBhCKARIsAJzSrdrGIsqHhGw5M2WuWn3x92zIJm2Of15CXN5kQD78GgrzpZ6w2pN2MN4aAvciEALw_wcB&gclsrc=aw.ds">
@@ -90,75 +90,76 @@ const handleClick = () => {
             </div>
           </div>
           <br /> <br />
-          <h3>WWF</h3>
-          <div className="WWF-Container">
+          <h3>Drop in the bucket</h3>
+          <div className="drop_in_the_bucket-Container">
             <div className="WWF-Info">
-              <img id="WWFImage" src={WWFImage} />
+              <img id="drop_in_the_bucketImage" src={WWFImage} />
               <p>
-                WWF UK's animal adoption program aims to protect wildlife by
-                restoring their habitats. Your adoption will make a positive
-                impact on the world and the wildlife that depends on these
-                habitats. There are various animal options available for both
-                kids and adults, including penguins, orangutans, turtles, and
-                rhinos, making it a perfect gift for animal lovers. Your
-                adoption helps bring the world back to life and supports WWF
-                UK's conservation efforts.
+              Drop in the Bucket is a non-profit organization that builds wells 
+              and sanitation systems at schools in sub-Saharan Africa. Their 
+              mission is to enable youth to fully harness the life-changing 
+              power of an education, while their goal is to improve child 
+              health, increase school enrollment rates, and promote gender 
+              equality in schools and communities. The organization was formed 
+              by a group of friends from Los Angeles who were inspired to make 
+              a difference after learning about the impact of contaminated water 
+              on children's health and education in Uganda.
               </p>
             </div>
             <div className="WWF-Buttons">
               <center>
-                <Link to="/donations/DonationForm"><button id="Donate-Button" onChange={event => setName("WWF")} onClick={handleClick}>Donate</button></Link>
-                <a href="https://support.wwf.org.uk/adopt-an-animal?utm_source=Google-Pure-Brand&utm_medium=PaidSearch-Brand&pc=AVN014001&ds_rl=1263317&ds_rl=1263317&gclid=Cj0KCQiA54KfBhCKARIsAJzSrdq_P7T83pFMhQBnzYrbkAsdZZ1T8c_3KCBGPeG_HWJkpvRZrW1m_0EaAjGCEALw_wcB&gclsrc=aw.ds">
+                <Link to="/donations/DonationForm"><button id="Donate-Button" onChange={event => setName("Drop in the bucket")} onClick={handleClick}>Donate</button></Link>
+                <a href="https://dropinthebucket.org/">
                   <button id="MoreInfo-Button">More Info</button>
                 </a>
               </center>
             </div>
           </div>
           <br /> <br />
-          <h3>Soil Association</h3>
-          <div className="SoilAssociation-Container">
+          <h3>Blood: Water</h3>
+          <div className="bloodWater-Container">
             <div className="WWF-Info">
-              <img id="SoilAssociationImage" src={SoilAssociationImage} />
+              <img id="bloodWaterImage" src={SoilAssociationImage} />
               <p>
-                The Soil Association is a British charity founded in 1946 with
-                the mission of promoting organic farming and certification of
-                organic foods. The founders, Lady Eve Balfour, Friend Sykes, and
-                George Scott Williamson, were inspired by the Haughley
-                Experiment which compared organic and chemical-based farming
-                methods and showed the benefits of organic farming. The
-                association was also established due to concerns over the use of
-                herbicides in intensive agriculture.
+              The success of a partnership is measured based on the partner's
+              expanded capacity and reach over an eight-year period. Successful 
+              partners demonstrate viable programs, adequate resources, credible 
+              systems, a clear vision and mission, and buy-in from stakeholders. 
+              They also have strong recruiting, hiring, performance management, and 
+              compensation practices, and create and leverage existing networks of 
+              collaboration.
                 <br />
               </p>
             </div>
             <div className="WaterAid-Buttons">
               <center>
-              <Link to="/donations/DonationForm"><button id="Donate-Button" onChange={event => setName("Soil Association")} onClick={handleClick}>Donate</button></Link>
-                <a href="https://www.soilassociation.org/">
+                <Link to="/donations/DonationForm"><button id="Donate-Button" onChange={event => setName("Blood: Water")} onClick={handleClick}>Donate</button></Link>
+                <a href="https://bloodwater.org/">
                   <button id="MoreInfo-Button">More Info</button>
                 </a>
               </center>
             </div>
           </div>
           <br /> <br />
-          <h3>RSPB</h3>
-          <div className="RSPD-Container">
+          <h3>Water.org</h3>
+          <div className="waterOrg-Container">
             <div className="WWF-Info">
-              <img id="RSPDImage" src={RSPDImage} />
+              <img id="waterOrgImage" src={RSPDImage} />
               <p>
-                The Royal Society for the Protection of Birds (RSPB) is a UK
-                charity that works to conserve birds and their habitats. It has
-                a large presence with £157 million in revenue, 2,200 employees,
-                10,500 volunteers, and 1.1 million members, making it one of the
-                largest wildlife conservation organizations globally. Women have
-                held leadership positions in the RSPB for over 85 years, serving
-                as founders, presidents, and chief officers.
+              Water.org is a non-profit organization that provides safe water 
+              and sanitation to people around the world through affordable 
+              financing, such as small loans. They aim to empower individuals 
+              and communities in need, particularly women and children, by giving 
+              them access to life-changing resources that can unlock educational and 
+              economic opportunities, and improve health. With over 30 years of experience, 
+              Water.org has already helped over 52 million people in 17 countries, and 
+              continues to expand its work and reach more people in need.
               </p>
             </div>
             <div className="WaterAid-Buttons">
               <center>
-                <Link to="/donations/DonationForm"><button id="Donate-Button" onChange={event => setName("RSPB")} onClick={handleClick}>Donate</button></Link>
-                <a href="https://www.rspb.org.uk/join-and-donate/join-us-today/?sourcecode=MRLITH0082&utm_source=google&utm_medium=ppcad&utm_content=membership_various&utm_campaign=membership2122&channel=paidsearch&gclid=Cj0KCQiA54KfBhCKARIsAJzSrdpd9HmzbnfJ7wMr26gRsQBjmIS9dE0MlXmQu-KKOjc1wsftkF2XStEaAt6TEALw_wcB&gclsrc=aw.ds">
+                <Link to="/donations/DonationForm"><button id="Donate-Button" onChange={event => setName("Water.org")} onClick={handleClick}>Donate</button></Link>
+                <a href="https://water.org/">
                   <button id="MoreInfo-Button">More Info</button>
                 </a>
               </center>

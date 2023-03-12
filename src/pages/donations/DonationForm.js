@@ -41,7 +41,7 @@ export default function DonationForm() {
   };
 
   return (
-    <div className="container">
+    <div className="wrapper">
       <form action="" onSubmit={handleSubmit}>
         <div className="row">
           <div className="col">
@@ -55,7 +55,7 @@ export default function DonationForm() {
               <input type="email" placeholder="example@example.com" required onChange={(event) => setDonationData({ ...DonationData, email: event.target.value })} value={email}/>
             </div>
             <div className="inputBox">
-              <label>Charity:</label>
+              <span>Charity:</span>
               <select id="charity" name="charity" value={charity} onChange={(event) => setDonationData({...DonationData, charity: event.target.value})}>
                 <option value="WaterAid">WaterAid</option>
                 <option value="Soil Assosiation">Soil Assosiation</option>
@@ -65,7 +65,7 @@ export default function DonationForm() {
             </div>
             <div className="inputBox">
               <span>Amount to donate:</span>
-              <input type="text" placeholder="£0.00" className='price' required onChange={(event) => setDonationData({ ...DonationData, amount: event.target.value })} value={amount}/>
+              <input type="text" placeholder="£00.00" className='price' required onChange={(event) => setDonationData({ ...DonationData, amount: event.target.value })} value={amount}/>
             </div>
           </div>
           <div className="col">
