@@ -1,5 +1,5 @@
 package com.backend.aquapurebackend.controller;
-import com.backend.aquapurebackend.model.Testkiturl;
+
 import com.backend.aquapurebackend.model.Testkiturl;
 import com.backend.aquapurebackend.repository.TestkiturlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
