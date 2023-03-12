@@ -26,8 +26,8 @@ public class ShopPurchasePostDTO {
     public int getUser_id() {
         return userid;
     }
-    public void setUser_id(int user_id) {
-        this.userid = user_id;
+    public void setUser_id(int userid) {
+        this.userid = userid;
     }
     public int getProduct_id() {
         return product_id;
