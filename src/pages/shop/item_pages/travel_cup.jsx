@@ -40,7 +40,7 @@ export default function Travel_cup() {
 
   const updateStates = ()=>{
     cartItems.map(item=>{
-      if(item.id === 5){
+      if(item.product_id === 5){
         const increment = item.quantity+1
         setvalue(increment)  
       }

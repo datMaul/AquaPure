@@ -40,7 +40,7 @@ export default function Sticker() {
 
   const updateStates = ()=>{
     cartItems.map(item=>{
-      if(item.id === 4){
+      if(item.product_id === 4){
         const increment = item.quantity+1
         setvalue(increment)  
       }

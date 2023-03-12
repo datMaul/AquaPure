@@ -40,7 +40,7 @@ export default function Bamboo() {
 
   const updateStates = ()=>{
     cartItems.map(item=>{
-      if(item.id === 3){
+      if(item.product_id === 3){
         const increment = item.quantity+1
         setvalue(increment)  
       }

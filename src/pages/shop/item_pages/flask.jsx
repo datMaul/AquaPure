@@ -41,7 +41,7 @@ export default function Flask() {
 
   const updateStates = ()=>{
     cartItems.map(item=>{
-      if(item.id === itempageid){
+      if(item.product_id === itempageid){
         const increment = item.quantity+1
         setvalue(increment)  
       }

@@ -44,6 +44,7 @@ import Travel_cup from "./pages/shop/item_pages/travel_cup";
 import Shop_purchase from "./pages/accounts/accountPageSections/purchasehistory/shopPurchaseHistory/PurchaseHistoryShop";
 import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitPurchaseHistory/PurchaseHistoryTestkit";
 import PurchaseHistoryShop from "./pages/accounts/accountPageSections/purchasehistory/shopPurchaseHistory/PurchaseHistoryShop";
+import ShopCart from "./pages/accounts/cart/shopcart/ShopCartPage"
 // import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -116,6 +117,7 @@ function App() {
           ) : null}
 
           <Route path="/cart" element={<Cart />} />
+          <Route path="/shopcart" element={<ShopCart/>}/>
           <Route path="/termsAndConditions" element={<TermsAndContitions />} />
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/accounts/testkitEntry" element={<TestkitEntry />} />
