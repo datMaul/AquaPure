@@ -134,11 +134,11 @@ export default function ShopCartPage() {
     cartItems.map(item => {
       if(productid === item.product_id){
         if(item.quantity<=1){
-          deleteItem(productid)
+          deleteItem(item.id)
         }
         else{
           let add = item.quantity-1
-          axios.put(`http://localhost:8080/item/${id}`,{
+          axios.put(`http://localhost:8080/item/${item.id}`,{
             "quantity":add
           }).then(res => {loadItems();console.log(res.data);})
         }

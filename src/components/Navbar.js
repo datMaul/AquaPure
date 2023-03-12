@@ -134,15 +134,9 @@ export default function Navbar() {
               <CustomLink to="/map">Map</CustomLink>
               <CustomLink to="/testkit">Test Kit</CustomLink>
               {/* <CustomLink to="/game">Game</CustomLink> */}
-              {isSignedIn && (
-                <CustomLink
-                  to="/game"
-                >
-                  Game
-                </CustomLink>
-              )}
               <CustomLink to="/donations">Donations</CustomLink>
-              <CustomLink to="/shop">Shop</CustomLink>
+              {isSignedIn && <CustomLink to="/game">Game</CustomLink>}
+              {isSignedIn && <CustomLink to="/shop">Shop</CustomLink>}
               {isSignedIn && (
                 <CustomLink to="/cart">
                   <GiShoonerSailboat style={iconStyles} />
@@ -157,7 +151,7 @@ export default function Navbar() {
                   Account
                 </CustomLink>
               )}
-              
+
               {isSignedInAdmin && (
                 <CustomLink
                   to="/admin"
