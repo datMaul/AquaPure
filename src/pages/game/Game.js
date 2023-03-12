@@ -1,4 +1,4 @@
-import "./Game.css";
+import "./game.css";
 import React, { useState } from "react";
 
 export default function Gmae() {
