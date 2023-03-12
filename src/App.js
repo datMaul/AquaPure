@@ -1,6 +1,5 @@
 import Navbar from "./components/Navbar";
 import Donations from "./pages/donations/Donations";
-import DonationForm from "./pages/donations/DonationForm";
 import Game from "./pages/game/Game";
 import Home from "./pages/home/Home";
 import Phasetest from "./pages/phasetest/Phasetest";
@@ -71,7 +70,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/donations" element={<Donations />} />
-          <Route path="/donations/DonationForm" element={<DonationForm />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/game" element={<Game />} />
           <Route path="/accounts/login" element={<SignIn />} />
