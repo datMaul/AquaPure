@@ -1,11 +1,11 @@
 import React from "react";
-import "./EmptyCart.css"
+import "./checkout.css"
 
 export default function ConfirmPopUp(props) {
 
     return (props.trigger) ? (
-        <div className="popup">
-            <div className="popupinner">
+        <div className="popupcon">
+            <div className="popupinnercon">
                 {props.children}
             </div>
         </div>

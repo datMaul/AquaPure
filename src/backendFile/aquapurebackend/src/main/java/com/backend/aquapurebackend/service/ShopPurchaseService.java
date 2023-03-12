@@ -5,11 +5,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.backend.aquapurebackend.model.ShopPurchase;
 import com.backend.aquapurebackend.repository.ShopPurchaseRepository;
-
 @Service
+@CrossOrigin("http://localhost:3000")
 public class ShopPurchaseService {
 
     @Autowired
