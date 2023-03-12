@@ -49,7 +49,9 @@ public class ShopCartService {
 	}
 	public void deleteItem(int id) {
 		cartRepository.deleteById((long) id);
-
+	}
+	public void deleteCart(int userid){
+		cartRepository.deleteByUserid(userid);
 	}
 	
 	

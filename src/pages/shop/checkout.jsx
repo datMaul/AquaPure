@@ -23,7 +23,7 @@ import Sticker from "./item_pages/shop_assets/APSticker.png"
 export default function Checkout() {
     const [cartItems, setcartItems] = useState([]);
     const [productData, setproductData] = useState([]);
-    const [subtotal, setsubtotal] = useState(0);
+    const [subtotal, setsubtotal] = useState(null);
     const [show, setshow] = useState(false);
     const [user, setuser] = useState([]);
     const storeuserid = localStorage.getItem("user_ID")
@@ -53,12 +53,22 @@ export default function Checkout() {
         loadItems();
         loadProducts();
         loadUserPoints();
-    }, [])
+
+
+    },[])
 
     useEffect(()=>{
         total();
         loadUser();
-    },[cartItems])
+    },[cartItems,productData])
+
+    const loadItems = () => {
+        axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`)
+            .then(res => {
+                setcartItems(res.data);
+                console.log(res.data);
+            })
+    }
 
     
     const loadUser = () => {
@@ -70,12 +80,7 @@ export default function Checkout() {
         .then(res=>{setUserpoints(res.data);loadUser();console.log(res.data)})
     }
 
-    const loadItems = () => {
-        axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`)
-            .then(res => {
-                setcartItems(res.data)
-            })
-    }
+    
     const loadProducts = () => {
         axios.get("http://localhost:8080/product")
             .then(res => {
@@ -83,15 +88,18 @@ export default function Checkout() {
             })
     }
     const total = () => {
-        var total_price = 0;
+        var total_price=0;
         cartItems.map(item => {
             productData.map(product => {
                 if(item.product_id === product.productID){
                     total_price += product.product_price*item.quantity
+                    console.log(total_price,"total loaded")
+                    
                 }
+            setsubtotal(total_price)
             })
         })
-        setsubtotal(total_price)
+        
     }
 
     const apply_points = (userid) => {
@@ -127,7 +135,11 @@ export default function Checkout() {
         setcheck(!IsCheck);
         apply_points(storeuserid);
         loadUser();
-        }
+    }
+
+    const clearCart = async () => {
+        await axios.delete(`http://localhost:8080/item/user/${storeuserid}`).then(res => {console.log(res.data,"delete from cart");loadItems();})
+    }
 
     const purchase = () => {
         setconfirm(true);
@@ -145,7 +157,6 @@ export default function Checkout() {
             }).then(res=>{console.log(res.data,"items post to data base")})
             
             
-            axios.delete(`http://localhost:8080/item/user/${storeuserid}`).then(res => {console.log(res.data,"delete from cart");loadItems();})
             Userpoints.map(score=>{
                 user.map(user=>{
                     if(score.email === user.eMail){
@@ -163,6 +174,7 @@ export default function Checkout() {
                
             })
         })
+        clearCart();
     }
 
    
@@ -176,8 +188,8 @@ export default function Checkout() {
                     <h2 className="check_subtitle">SHOP</h2>
                     <Poppup trigger={confirm} setTrigger={setconfirm}>
                         <div>
-                            THANKS
-                            <Link to="/accounts"><button>Check order</button></Link>
+                            <h2 className="confirmation">Thank You for your Purchase</h2>
+                            <Link to="/accounts/purchaseHistory"><button>Check order</button></Link>
                         </div>
                     </Poppup>
                     <form className="customer_details">
@@ -199,6 +211,7 @@ export default function Checkout() {
                         </tr>
                     {
                         cartItems.map(item => {
+                            
                             return (
                                 <>
                                     {
