@@ -28,7 +28,7 @@ export default function Backpack() {
     })
   }
   const loadItems = () => {
-    axios.get('http://localhost:8080/item').then(res=>{setcartItems(res.data);console.log(res.data,"loaded cart items")})
+    axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`).then(res=>{setcartItems(res.data);console.log(res.data,"loaded cart items")})
     setuser(storeuserid)
   }
   
@@ -56,12 +56,24 @@ export default function Backpack() {
     }
     setvalue((increment)=>(increment+1))
     console.log(productid,"post add product id")
-    axios.post('http://localhost:8080/item',{
-      "id":productid,
-      "userid":storeuserid,
+    cartItems.map(item=>{
+      if(productid === item.product_id){
+        console.log("running itemdata map incrementation")
+        axios.put(`http://localhost:8080/item/${item.id}`,{
+          "quantity":quantity
+        }).then(res=>{console.log("incremented",res.data);loadItems();})
+      }
+    })
+    if(quantity===1){
+      let id = Math.floor(Math.random(999)*100);
+      console.log(id)
+      axios.post(`http://localhost:8080/item`,{
+      "id":id,
+      "userid": storeuserid,
       "product_id":productid,
-      "quantity":quantity,
-      }).then(res => {console.log(res.data)})
+      "quantity":quantity
+    }).then(res=>{console.log(res.data);loadItems();})
+    }
     }
 
     return(
