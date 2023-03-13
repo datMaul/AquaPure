@@ -157,7 +157,7 @@ export default function ShopCartPage() {
         </span>
         <PopupShop trigger={empty} setTrigger={setempty}>
           <div>
-            EMPTY
+            Empty Cart
             <Link to="/shop"><br></br><button className="empty_btn">BACK TO SHOP</button></Link>
           </div>
         </PopupShop>

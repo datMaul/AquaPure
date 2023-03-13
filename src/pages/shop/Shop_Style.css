@@ -133,7 +133,7 @@
     padding-top:10px;
     width:200px;
 
-    background-color: #4567ff;
+    background-color: #ff4545;
     font-size: 20px;
     border:none;
 
@@ -144,11 +144,11 @@
 
 
 @keyframes appear {
-    0%{scale:0.5;opacity: 0;rotate:0;}
-    25%{scale:1;opacity: 1;rotate: 0;}
-    35%{scale:1;opacity: 1;rotate: 5deg;}
+    0%{scale:0.5;opacity: 0;}
+    25%{scale:1;opacity: 1;}
+    40%{scale:1;opacity: 1;rotate: 0deg;}
     50%{scale:1;opacity: 1;rotate:-5deg}
-    75%{scale:1;opacity: 1;rotate: 5deg;}
+    60%{scale:1;opacity: 1;rotate: 5deg;}
     85%{scale:1;opacity: 1;rotate: 0;}
     100%{scale:0.5;opacity: 0;rotate: 0;}
 }
