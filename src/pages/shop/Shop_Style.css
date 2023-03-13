@@ -113,6 +113,41 @@
     background-color:#94c18d;
     
 }
+
+.popupframe {
+    position: fixed;
+    top: 5%;
+    left: 77%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-name:move;
+    animation-duration:2s;
+}
+
+.popupinnerframe {
+    color:white;
+
+    padding-top:10px;
+    width:40px;
+
+    background-color: #ff4545;
+    font-size: 15px;
+    border:none;
+
+    
+    
+
+}
+
+
+@keyframes move {
+    0%{top:-10%}
+    25%{top:12%}
+    50%{top:12%}
+    75%{top:12%}
+    100%{top:-10%}
+}
 /* .item_quick_add:not(:active){
     animation-name:quick;
     animation-duration: 1.5s;

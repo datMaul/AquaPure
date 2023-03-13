@@ -60,6 +60,11 @@ public class ShopCart_Controller {
 		cartService.deleteItem(Id);
 		return "item removed from cart";
 	}
+	@DeleteMapping("/item/user/{userid}")
+	public String deleteCart(@PathVariable(value = "userid") int userId) {
+		cartRep.deleteAll(cartRep.findByUserid(userId));
+		return "cart cleared";
+	}
 
 	@PutMapping("/item/{id}")
 	public Optional<ShopCart> updateCartItems(@RequestBody ShopCart newItem, @PathVariable int id){

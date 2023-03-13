@@ -24,17 +24,33 @@ import backpack from "./item_pages/shop_assets/APBackpack.png"
 
 
 
-export default function Shop() {  
 
-  // const product = {
-  //   product_name: '',
-  //   product_price: 0,
-  // }
-  const [productData, setData] = useState([]);
+export default function Shop() {  
+  const storeuserid = localStorage.getItem("user_ID");
+  useEffect(()=>{
+    loadUser();
+    loadCart();
+
+  },[])
   const [itemData,setitemData] = useState([]);
+  const [user, setuser] = useState({
+    eMail: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    password: "",
+    addressLine2: "",
+    addressLine1: "",
+    addressTC: "",
+    addressPostcode: "",
+    doB: "",
+    userId: ""
+  });
+  const [productData, setData] = useState([]);
   const productURL = 'http://localhost:8080/product'
-  const itemURL = 'http://localhost:8080/item'
   const [showpopup, setshowpopup] = useState(false)
+  const [add_text,setadd_text] = useState("Add to cart")
+
 
   
   const [item1,setvalue1] = useState(1);
@@ -53,96 +69,98 @@ export default function Shop() {
   const [item14,setvalue14] = useState(1);
   const [item15,setvalue15] = useState(1);
   const [check, setcheck] = useState("Add to cart");
-  const [user, setuser] = useState(null);
-  const storeuserid = localStorage.getItem("user_ID");
 
-  useEffect(()=>{
-    loadUser();
-    setuser(storeuserid);
-  },[])
+ 
   const loadUser = () => {
-    axios.get(`http://localhost:8080/User/${localStorage.getItem("user_ID")}`).then(res=>{setuser(res.data);})
+    axios.get(`http://localhost:8080/User/${localStorage.getItem("user_ID")}`)
+    .then(res=>{
+      setuser(res.data);
+      console.log(res.data);
+    })
   }
-//load products from DB
-  useEffect(() => {
-    axios.get(itemURL).then(res=>{
+  
+  const loadCart = () => {
+    axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`)
+    .then(res=>{
       setitemData(res.data);
+      console.log(res.data,"loaded in LOADCART()");
       
     }) 
+  }
+  
+//load products from DB
+  useEffect(() => {
     axios.get(productURL)
     .then(res => {
       setData(res.data)
     })
+    
   },[])
 
   useEffect(()=>{
-    updateStates(setvalue1)
-    updateStates(setvalue2)
-    updateStates(setvalue3)
-    updateStates(setvalue4)
-    updateStates(setvalue5)
-    updateStates(setvalue6)
-    updateStates(setvalue7)
-    updateStates(setvalue8)
-    updateStates(setvalue9)
-    updateStates(setvalue10)
-    updateStates(setvalue11)
-    updateStates(setvalue12)
-    updateStates(setvalue13)
-    updateStates(setvalue14)
-    updateStates(setvalue15)
+    updateStates();
   },[productData])
 
+  
+  
+
+  
+
   const updateStates = ()=>{
-    itemData.map(item=>{
-      const increment = item.quantity+1
-      if(item.id===1){
-        setvalue1(increment)
-      }
-      if(item.id===2){
-        setvalue2(increment)
-      }
-      if(item.id===3){
-        setvalue3(increment)
-      }
-      if(item.id===4){
-        setvalue4(increment)
-      }
-      if(item.id===5){
-        setvalue5(increment)
-      }
-      if(item.id===6){
-        setvalue6(increment)
-      }
-      if(item.id===7){
-        setvalue7(increment)
-      }
-      if(item.id===8){
-        setvalue8(increment)
-      }
-      if(item.id===9){
-        setvalue9(increment)
-      }
-      if(item.id===10){
-        setvalue10(increment)
-      }
-      if(item.id===11){
-        setvalue11(increment)
-      }
-      if(item.id===12){
-        setvalue12(increment)
-      }
-      if(item.id===13){
-        setvalue13(increment)
-      }
-      if(item.id===14){
-        setvalue14(increment)
-      }
-      if(item.id===15){
-        setvalue15(increment)
-      }
-    })
-  }
+      // console.log("quantity",item.quantity,"product id",item.product_id,"for user id",item.userid)
+      itemData.map(item=>{
+        if(item.userid+'' === storeuserid){
+          const increment = item.quantity+1
+          if(item.product_id===1){
+            setvalue1(increment)
+          }
+          if(item.product_id===2){
+            setvalue2(increment)
+          }
+          if(item.product_id===3){
+            setvalue3(increment)
+          }
+          if(item.product_id===4){
+            setvalue4(increment)
+          }
+          if(item.product_id===5){
+            setvalue5(increment)
+          }
+          if(item.product_id===6){
+            setvalue6(increment)
+          }
+          if(item.product_id===7){
+            setvalue7(increment)
+          }
+          if(item.product_id===8){
+            setvalue8(increment)
+          }
+          if(item.product_id===9){
+            setvalue9(increment)
+          }
+          if(item.product_id===10){
+            setvalue10(increment)
+          }
+          if(item.product_id===11){
+            setvalue11(increment)
+          }
+          if(item.product_id===12){
+            setvalue12(increment)
+          }
+          if(item.product_id===13){
+            setvalue13(increment)
+          }
+          if(item.product_id===14){
+            setvalue1(increment)
+          }
+          if(item.product_id===15){
+            setvalue15(increment)
+          }
+        }
+      })
+    }
+    
+  
 
   
 
@@ -150,6 +168,7 @@ export default function Shop() {
     if(!user){
       return(window.location.href = "/accounts/login")
     }
+    
     if(productid===1){
       setvalue1((increment)=>(increment+1))
     }
@@ -195,30 +214,37 @@ export default function Shop() {
     if(productid===15){
       setvalue15((increment)=>(increment+1))
     }
-    console.log(productid,"post add product id")
-    axios.post(itemURL,{
-      "id":productid,
-      "userid":storeuserid,
+    setshowpopup(true);
+    setTimeout(()=>{
+      setshowpopup(false)
+    },2500)
+//increment item already in cart
+    itemData.map(item=>{
+      if(productid === item.product_id){
+        console.log("running itemdata map incrementation")
+        axios.put(`http://localhost:8080/item/${item.id}`,{
+          "quantity":quantity
+        }).then(res=>{console.log("incremented",res.data);loadCart();})
+      }
+    })
+    if(quantity===1){
+      let id = Math.floor(Math.random(999)*100);
+      console.log(id)
+      axios.post(`http://localhost:8080/item`,{
+      "id":id,
+      "userid": storeuserid,
       "product_id":productid,
-      "quantity":quantity,
-      }).then(res => {console.log(res.data);setshowpopup(true);addOnClick()})
+      "quantity":quantity
+    }).then(res=>{console.log(res.data);loadCart();})
     }
-    const [add_text,setadd_text] = useState("Add to cart")
-    const addOnClick = () => {
-    //   setadd_text("🗸")
-    //   resolve();
-    // }
-    // const resolve = () => {
-    //   setTimeout(()=>{
-    //     setadd_text("Add to cart")
-    //   },1200)
-    }
+  }
 
+  
     
   return (
-    <div className="wall">    
+    <div className="wall" key={"shoppage"}>    
       
-      <div className="page">
+      <div className="page" >
       
         <h1 className="shop_title">AquaShop</h1>
         
@@ -337,8 +363,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/beverage_mug"><img alt="water" className="item_img" src={mug}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"mugname"}>{product.product_name}</p>
+                  <p className="item_price" key={"mugprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item6);
                     }}>{add_text}</button>
@@ -359,8 +385,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/water_filter"><img alt="water" className="item_img" src={filter}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"filter"}>{product.product_name}</p>
+                  <p className="item_price" key={"filterprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item7);
                     }}>{add_text}</button>
@@ -381,8 +407,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/hoodie"><img alt="water" className="item_img" src={hoodie}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"hood"}>{product.product_name}</p>
+                  <p className="item_price" key={"hoodie"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item8);
                     }}>{add_text}</button>
@@ -403,8 +429,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/T-shirt"><img alt="water" className="item_img" src={shirt}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"shirtname"}>{product.product_name}</p>
+                  <p className="item_price" key={"shirtprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item9);
                     }}>{add_text}</button>
@@ -425,8 +451,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/mask"><img alt="water" className="item_img" src={mask}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"maskname"}>{product.product_name}</p>
+                  <p className="item_price" key={"maskprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item10);
                     }}>{add_text}</button>
@@ -447,8 +473,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/cap"><img alt="water" className="item_img" src={cap}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"capname"}>{product.product_name}</p>
+                  <p className="item_price" key={"capprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item11);
                     }}>{add_text}</button>
@@ -469,8 +495,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/flask"><img alt="water" className="item_img" src={flask}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={""}>£{product.product_price}</p>
+                  <p className="item_title" key={"flaskname"}>{product.product_name}</p>
+                  <p className="item_price" key={"flaskprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item12);
                     }}>{add_text}</button>
@@ -491,8 +517,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/pouch"><img alt="water" className="item_img" src={pouch}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"pouchname"}>{product.product_name}</p>
+                  <p className="item_price" key={"pouchprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item13);
                     }}>{add_text}</button>
@@ -513,8 +539,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/phone_case"><img alt="water" className="item_img" src={phone}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"phonename"}>{product.product_name}</p>
+                  <p className="item_price" key={"phoneprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item14);
                     }}>{add_text}</button>
@@ -535,8 +561,8 @@ export default function Shop() {
                   return(
                   <>
                   <Link to="/backpack"><img alt="water" className="item_img" src={backpack}/></Link>
-                  <p className="item_title" key={product.product_name}>{product.product_name}</p>
-                  <p className="item_price" key={product.product_price}>£{product.product_price}</p>
+                  <p className="item_title" key={"backpackname"}>{product.product_name}</p>
+                  <p className="item_price" key={"backpackprice"}>£{product.product_price}</p>
                   <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{
                     postAdd(product.productID,item15);
                     }}>{add_text}</button>
@@ -557,9 +583,8 @@ export default function Shop() {
         </nav>
         
         <ShopNotification trigger={showpopup} setTrigger={setshowpopup}>
-                <center className="popupShop">
-                <button className="close-btn" onClick={()=>{setshowpopup(false)}}>X</button>
-                  <h3>Item added to shopping cart!</h3>
+                <center className="popupShop" onClick={()=>{setshowpopup(false)}}>
+                  <h3>+1</h3>
                 </center>
         </ShopNotification>
         

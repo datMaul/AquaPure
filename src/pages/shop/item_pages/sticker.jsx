@@ -27,7 +27,7 @@ export default function Sticker() {
     })
   }
   const loadItems = () => {
-    axios.get('http://localhost:8080/item').then(res=>{setcartItems(res.data);console.log(res.data,"loaded cart items")})
+    axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`).then(res=>{setcartItems(res.data);console.log(res.data,"loaded cart items")})
     setuser(storeuserid)
   }
   
@@ -40,7 +40,7 @@ export default function Sticker() {
 
   const updateStates = ()=>{
     cartItems.map(item=>{
-      if(item.id === 4){
+      if(item.product_id === 4){
         const increment = item.quantity+1
         setvalue(increment)  
       }
@@ -55,12 +55,24 @@ export default function Sticker() {
     }
     setvalue((increment)=>(increment+1))
     console.log(productid,"post add product id")
-    axios.post('http://localhost:8080/item',{
-      "id":productid,
-      "userid":storeuserid,
+    cartItems.map(item=>{
+      if(productid === item.product_id){
+        console.log("running itemdata map incrementation")
+        axios.put(`http://localhost:8080/item/${item.id}`,{
+          "quantity":quantity
+        }).then(res=>{console.log("incremented",res.data);loadItems();})
+      }
+    })
+    if(quantity===1){
+      let id = Math.floor(Math.random(999)*100);
+      console.log(id)
+      axios.post(`http://localhost:8080/item`,{
+      "id":id,
+      "userid": storeuserid,
       "product_id":productid,
-      "quantity":quantity,
-      }).then(res => {console.log(res.data)})
+      "quantity":quantity
+    }).then(res=>{console.log(res.data);loadItems();})
+    }
     }
 
     return(
@@ -82,7 +94,7 @@ export default function Sticker() {
                 <>
                   <h1 className="title" key={product}>{product.product_name}</h1>
                   <h1 className="price">£{product.product_price}</h1>
-                  <button className="add" type="button" onClick={()=>postAdd(product.productID,item)}>Add to Cart</button>
+                  <Link to='/cart'><button className="add" type="button" onClick={()=>postAdd(product.productID,item)}>Add to Cart</button></Link>
                   <h2>Description</h2>
                   <h3 className="desc">{product.product_desc}</h3>
                 </>

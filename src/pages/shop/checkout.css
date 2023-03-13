@@ -76,4 +76,57 @@ input[type=number]::-webkit-inner-spin-button{
     color:green;
     
 }
+.popupcon {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(240, 248, 255, 0.378);
+}
+
+.popupinnercon {
+    text-align: center;
+
+    width: 100%;
+    
+    height:300px;
+    max-width: 440px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow:rgba(0, 0, 0, 0.33) 0 0 2px 2px;
+    font-size: 20px;
+
+}
+
+.popup-innercon {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+
+}
+.check-btn{
+    margin-top:100px;
+    background-color: rgba(0, 145, 255, 0.581);
+    border-style: solid;
+    border-width:2px;
+    border-color:transparent;
+    color:white;
+    padding:5px;
+    border-radius: 10px;
+    margin-right:15px;
+    opacity: 100%;
+    transition:250ms;
+    font-size:16px;
+
+    
+}
+.check-btn:hover{
+    border-color: rgb(0, 128, 255);
+    opacity: 50%;
+    cursor:pointer;
+}

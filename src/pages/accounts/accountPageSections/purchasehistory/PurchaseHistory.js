@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import ChildComponent1 from "./shopPurchaseHistory/PurchaseHistoryShop";
-import ChildComponent2 from "./testkitpurchasehistory/PurchaseHistoryTestkit";
+import ChildComponent1 from "./testkitPurchaseHistory/PurchaseHistoryTestkit";
+import ChildComponent2 from "./shopPurchaseHistory/PurchaseHistoryShop";
 import "./PurchaseHistory.css";
 
 export default function ParentComponent() {
@@ -17,13 +17,13 @@ export default function ParentComponent() {
           onClick={() => setDisplayChild("ChildComponent1")}
           className="Hist_Side_BTN"
         >
-          Product History
+          Testkit Purchase History
         </button>
         <button
           onClick={() => setDisplayChild("ChildComponent2")}
           className="Hist_Side_BTN"
         >
-          Testkit Purchase History
+          Product History
         </button>
       </div>
       <div className="HistChildContainer">
