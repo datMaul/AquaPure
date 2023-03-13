@@ -138,7 +138,7 @@ export default function Game() {
         ];
         setButtonClasses(classOfButton);
         setAcceptingAnswer(true);
-      }, 2000);
+      }, 10);
     }
   };
 

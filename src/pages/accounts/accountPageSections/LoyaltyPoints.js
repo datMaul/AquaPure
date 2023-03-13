@@ -29,33 +29,16 @@ export default function LoyaltyPoints() {
     <div className = "Loyalty-Page">
       <div className="Container">
       <h1 className = "Loyalty-Title"> Loyalty Points </h1>
-      <p className="Amount-of-Points">loyaltyPoints</p>
-      <h1 className = "Loyalty-Title"> What are Loyalty Points </h1>
-    </div>
-      {/* <div className="AccountPageSection-Content">
-        <div className="Row-1-Content">
-          <h2> Loyalty Points </h2>
-          <br /> <br /> <br /> <br /> <br /> <br />
-          <br /> <br /> <br /> <br /> <br /> <br />
-        </div>
-
-        <div className="Row-2-Content">
-          <div className="Labels-Content">
-            <label>Loyalty Points:</label>
-          </div>
-
-          <div className="Inputs-Content">
-            <form>
-              <input
-                type={"text"}
-                placeholder={loyaltyPoints}
-                name="loyaltyPoints"
-                readOnly={true}
-              />
-            </form>
-          </div>
-        </div>
-      </div> */}
+      <p className="Amount-of-Points">{loyaltyPoints}</p>
+      <h1 className = "Loyalty-Info-Title"> What are Loyalty Points? </h1>
+      <p className="Loyalty-Info">Loyalty points can be attained when playing the Aquapure quiz found under the games tab. these loyalty points can be applied in our shop to serve as a discount</p>
+      <p className="Loyalty-Info">Try our quiz using the button below</p>
+      <ul className="Quiz-Buttons">
+          <li className="Quiz-Info-Button">
+              <a href="/game">Play Game</a>
+          </li>
+      </ul>
+      </div> 
     </div>
   );
 }

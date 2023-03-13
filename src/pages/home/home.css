@@ -184,8 +184,8 @@ body {
 }
 
 .Quiz-Button>a:hover {
-    box-shadow: 0 0 8px lightblue;
-    color: #008faf;
+    box-shadow: 0 0 10px lightblue;
+    color: lightskyblue;
     transition: ease-in-out 0.25s;
   }
 

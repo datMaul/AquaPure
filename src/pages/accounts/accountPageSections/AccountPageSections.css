@@ -146,6 +146,7 @@
     height: 50vh;
     width: 40vw;
     box-shadow: 0 0 3em rgb(0, 0, 0, 0.25);
+    overflow: hidden;
 }
 
 
@@ -168,6 +169,30 @@
     background-clip: text;
     color: transparent;
     background-image: var(--font_color);
+    padding-top: 35px;
+}
+
+.Loyalty-Info-Title{
+    --font_color: linear-gradient(
+        45deg,
+        rgb(0, 93, 208),
+        rgb(47, 163, 205),
+        rgb(147, 214, 234)
+        ) ;    
+    text-align: center;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em; 
+    color: transparent;
+    font-weight: 600;
+    margin: 5px;
+    list-style: 0.5;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-image: var(--font_color);
+    padding-top: 8px;
+    
 }
 
 .Amount-of-Points{
@@ -182,4 +207,48 @@
     -webkit-background-clip: text;
     background-clip: text;
     margin-bottom: 15px;
+    padding-top: 8px;
 }
+
+.Loyalty-Info{
+    text-align: center;
+    font-size: 1.15rem;
+    color: black;
+    margin: 10px;
+    padding: 10px 2.5vw;
+    letter-spacing: 0.07em; 
+    font-weight: 450;
+}
+
+.Loyalty-Page .Quiz-Buttons {
+    list-style-type: none;
+    padding: 10px 10vw;
+    margin: 0;
+    text-align: center;
+}
+
+.Loyalty-Page .Quiz-Info-Button {
+    margin: 0 auto;
+}
+
+.Loyalty-Page .Quiz-Info-Button a {
+    text-decoration: none;
+    color: white;
+    background-color: #24a0ed;
+    border: 2px solid white;
+    border-radius: 22px;
+    z-index: 10;
+    padding: 8px 18px;
+    font-size: 20px;
+    text-align: center;
+    /* text-transform: uppercase; */
+    letter-spacing: 0.07em;
+}
+
+.Quiz-Info-Button>a:hover {
+    box-shadow: 0 0 5px lightskyblue;
+    color: white;
+    background-color: lightskyblue;
+    border: 2px solid lightskyblue;
+    transition: ease-in-out 0.3s;
+  }
