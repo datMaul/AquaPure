@@ -65,7 +65,7 @@ export default function Checkout() {
 
 
         
-    },[cartItems])
+    },[cartItems,productData])
 
     
 
