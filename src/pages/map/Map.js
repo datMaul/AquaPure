@@ -4,6 +4,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import "./map.css";
 import paramData from "./parameter-data.json";
 import { getTileCoords, getAllTileLatPoints } from "./utils.js";
+import { getScore, getGradeColour } from "./scoring.js";
 import axios from "axios";
 
 export default function Map() {
@@ -27,6 +28,9 @@ export default function Map() {
     populateParameterFilters();
 
     map.current.popups = [];
+    // map.current.selectedSources = [];
+    // map.current.selectedWaterBodies = [];
+    // map.current.selectedParameters = [];
     map.current.records = [];
     map.current.lastZoomStage = -1;
     map.current.tileSize = 0.64;
@@ -144,16 +148,22 @@ export default function Map() {
     if (!waterBodyTypes && !sourceTypes) return;
 
     // Get parameter name
-    const parameterName = document.getElementById("param_filter").value;
+    const selectedParameter = document.getElementById("param_filter").value;
+
+    // If there are any sub parameters for the selected parameter, add them to the parameter names array
+    // const parameterNamesArray = [selectedParameter];
+    // paramData[selectedParameter].names?.forEach((name) => {
+    //   parameterNamesArray.push(name);
+    // });
+    // const parameterNames = parameterNamesArray.join(",");
 
     const params = {
       sourceTypes: sourceTypes,
       waterBodyTypes: waterBodyTypes,
-      parameterName: parameterName,
+      parameterNames: selectedParameter,
     };
-
-    //console.log("params: " + params);
-
+    
+    // Send a GET request to the server to fetch map records by parameters
     const response = await axios.get(
       "http://localhost:8080/maprecordsbyparams",
       { params }
@@ -310,14 +320,61 @@ export default function Map() {
       const parameterValue = e.features[0].properties.parameterValue;
       const parameterUnit = e.features[0].properties.parameterUnit;
 
+      // Get quality grade based from parameter-data.json and sample value
+      // getScore(passed_value, min_range, max_range, ideal_value, sensitivity, function_type="sigmoid_unipolar")
+      var qualityGrade = '?';
+
+      const scoringJSON = paramData[parameterName]['scoring_function'];
+      console.log(scoringJSON)
+      if (scoringJSON) {
+        qualityGrade = getScore(
+          parameterValue, 
+          scoringJSON['min_range'], 
+          scoringJSON['max_range'], 
+          scoringJSON['ideal_value'], 
+          scoringJSON['function_sensitivity'],
+          paramData[parameterName].scoring_function.shift_x ?? 0, 
+          scoringJSON['type']
+          );
+        console.log(qualityGrade)
+        
+        // Multiply quality grade by 10 to get a 10-star rating and round to nearest 1 decimal place
+        qualityGrade = Math.round(qualityGrade * 10 * 10) / 10;
+      }
+
+      const gradeHex = getGradeColour(qualityGrade);
+
+      // Get negative effects based on parameter value and quality grade
+      const effects = paramData[parameterName].effects ?? null;
+      var effectsString = '';
+      console.log(effects)
+      if (effects) {
+        console.log(`effects found for ${parameterName}`)
+        if (qualityGrade < 6) {
+          console.log(`low quality grade for ${parameterName}`)
+          // Low parameter value
+          if (parameterValue < scoringJSON.ideal_value && effects.low) {
+            console.log(`low effects found for ${parameterName}`)
+            effectsString = `<br/><br><b>Effects:</b><br/>${effects.low}`;
+          }
+          // High parameter value
+          else if (parameterValue > scoringJSON.ideal_value && effects.high) {
+            console.log(`high effects found for ${parameterName}`)
+            effectsString = `<br/><br><b>Effects:</b><br/>${effects.high}`;
+          }
+        }
+      }
+
       // Create a popup
-      var popup = new maplibregl.Popup({ offset: 5 }).setHTML(
-        `<b>Sample ID:</b><br/>${sampleId}<br/><br>` +
-        `<b>Source type:</b><br/>${sourceType}<br/><br>` +
+      var popup = new maplibregl.Popup({ offset: 5, maxWidth: "320px" }).setHTML(
+        `<b>Sample ID:</b><br/>${sampleId} (${sourceType})<br/><br>` +
+        // `<b>Source type:</b><br/>${sourceType}<br/><br>` +
         `<b>Sample date:</b><br/>${sampleDate}<br/><br>` +
-        `<b>Water Body Type:</b><br/>${waterBodyType}<br/><br>` +
-        `<b>Parameters:</b><br/>` +
-        `${parameterName}: ${parameterValue} ${parameterUnit}`
+        `<b>Water body type:</b><br/>${waterBodyType}<br/><br>` +
+        `<b>Location:</b><br/> ${e.features[0].geometry.coordinates.join(', ')}<br/><br>` +
+        `<b>Parameter(s):</b><br/>` +
+        `${parameterName}: ${parameterValue} ${parameterUnit} (<p style="color:${gradeHex}; display:inline;">${qualityGrade}☆</p>)` +
+        `${effectsString}`
       );
 
       // Add the popup to the map
@@ -408,12 +465,12 @@ export default function Map() {
       feature.properties.fillColour = colourToFill;
 
       // Create popup HTML
-      var popupHTML = `<div class="map_popup"><p>${feature.properties.parameterName}</p>` +
-        `<p>Average Value: ${feature.properties.avgParamValue}</p>` +
-        `<p>Sample Count: ${feature.properties.sampleIds.length}</p>` +
-        `<p>Water Body Types: ${feature.properties.waterBodyTypes.join(', ')}</p>`;
-        //`<p>Sample IDs: ${feature.properties.sampleIds.join(', ')}</p></div>`;
-      feature.properties.popupHTML = popupHTML;
+      // var popupHTML = `<div class="map_popup"><p>${feature.properties.parameterName}</p>` +
+      //   `<p>Average Value: ${feature.properties.avgParamValue}</p>` +
+      //   `<p>Sample Count: ${feature.properties.sampleIds.length}</p>` +
+      //   `<p>Water Body Types: ${feature.properties.waterBodyTypes.join(', ')}</p>`;
+      //   //`<p>Sample IDs: ${feature.properties.sampleIds.join(', ')}</p></div>`;
+      // feature.properties.popupHTML = popupHTML;
     });
 
     //console.log(tileCollection);
