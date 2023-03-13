@@ -84,6 +84,44 @@ export default function Map() {
         }
       });
 
+      // Add circle layer to map
+      map.current.addSource("samples_circles", {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: []
+        }
+      });
+      map.current.addLayer({
+        id: "samples_circles",
+        type: "circle",
+        source: "samples_circles",
+        paint: {
+          'circle-color': '#11b4da',
+          'circle-radius': 4,
+          'circle-stroke-width': 1,
+          'circle-stroke-color': '#fff'
+        }
+      });
+
+      // Add tile layer to map
+      map.current.addSource("samples_tiles", {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: []
+        }
+      });
+      map.current.addLayer({
+        id: "samples_tiles",
+        type: "fill",
+        source: "samples_tiles",
+        paint: {
+          "fill-color": ["get", "fillColour"],
+          "fill-opacity": 0.5
+        }
+      }, "samples_circles");
+
       // Add search results layer
       map.current.addSource("search-results", {
         type: "geojson",
@@ -122,8 +160,8 @@ export default function Map() {
     await fetchMapRecords();
     const end = performance.now();
     console.log("Time taken to fetch map records: " + (end - start) + "ms");
-    clearAllCircles();
-    clearAllTiles();
+    clearSourceData("samples_circles");
+    clearSourceData("samples_tiles");
     await drawCircleLayer(map.current.records);
     await drawTileLayer(map.current.records);
   }
@@ -219,21 +257,12 @@ export default function Map() {
     });
   }
 
-  // Remove all tile layers from the map
-  function clearAllTiles() {
-    map.current.popups.forEach((popup) => popup.remove());
-
-    // Remove the samples_tiles layer
-    if (map.current.getLayer("samples_tiles")) map.current.removeLayer("samples_tiles");
-
-    // Remove the samples_tiles source
-    if (map.current.getSource("samples_tiles")) map.current.removeSource("samples_tiles");
-  }
-
-  // Remove all circle layers from the map
-  function clearAllCircles() {
-    if (map.current.getLayer("samples_circles")) map.current.removeLayer("samples_circles");
-    if (map.current.getSource("samples_circles")) map.current.removeSource("samples_circles");
+  // Remove all FeatureCollection data from a given layer source
+  function clearSourceData(sourceName) {
+    map.current.getSource(sourceName).setData({
+      type: "FeatureCollection",
+      features: [],
+    });
   }
 
   // Function to adjust the tile size based on the zoom level
@@ -244,7 +273,7 @@ export default function Map() {
       const zoomStage = Math.floor(zoom / 2);
 
       if (map.current.lastZoomStage !== zoomStage) {
-        clearAllTiles();
+        clearSourceData("samples_tiles");
         map.current.tileSize = 4 / Math.pow(2.5, zoomStage);
         drawTileLayer(map.current.records);
       }
@@ -291,23 +320,7 @@ export default function Map() {
     });
 
     // Add the GeoJSON FeatureCollection to the map
-    map.current.addSource("samples_circles", {
-      type: "geojson",
-      data: circleCollection,
-    });
-
-    // Add a circle layer to the map
-    map.current.addLayer({
-      id: "samples_circles",
-      type: "circle",
-      source: "samples_circles",
-      paint: {
-        'circle-color': '#11b4da',
-        'circle-radius': 4,
-        'circle-stroke-width': 1,
-        'circle-stroke-color': '#fff'
-      }
-    });
+    map.current.getSource("samples_circles").setData(circleCollection);
 
     // Add a click event to the circles layer
     map.current.on("click", "samples_circles", (e) => {
@@ -473,23 +486,8 @@ export default function Map() {
       // feature.properties.popupHTML = popupHTML;
     });
 
-    //console.log(tileCollection);
-
-    // Add tile layers to the map with retrieved map record data
-    map.current.addSource("samples_tiles", {
-      'type': "geojson",
-      'data': tileCollection
-    });
-    map.current.addLayer({
-      'id': "samples_tiles",
-      'type': "fill",
-      'source': "samples_tiles",
-      'layout': {},
-      'paint': {
-        "fill-color": ["get", "fillColour"],
-        "fill-opacity": 0.5
-      }
-    }, 'samples_circles');
+    // Add tile geoJSON data to the map with retrieved map record data
+    map.current.getSource("samples_tiles").setData(tileCollection);
       
 
     // Add popup to the map
@@ -575,9 +573,6 @@ export default function Map() {
       <div className="map-wrap">
         <div ref={mapContainer} className="map" />
       </div>
-
-      {/* <button id="test_button" onClick={async () => drawClustersLayer(map.current.records)}>Load Tiles</button>
-      <button id="remove_tiles_button" onClick={clearAllTiles}>Remove Tiles</button> */}
 
       <div id="search_bar_container">
         <div id="search_bar">           
