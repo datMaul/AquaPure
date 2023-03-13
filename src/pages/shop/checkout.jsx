@@ -214,17 +214,11 @@ export default function Checkout() {
                     <Poppup trigger={confirm} setTrigger={setconfirm}>
                         <div>
                             <h2 className="confirmation">Thank You for your Purchase</h2>
-                            <Link to="/accounts/purchaseHistory"><button className="check-btn">Check order</button></Link>
+                            <Link to="/accounts"><button className="check-btn">Check order</button></Link>
                             <Link to='/shop'><button className="check-btn">Back to Shopping</button></Link>
                         </div>
                     </Poppup>
-                    <form className="customer_details">
-                        <p>CONTACT INFORMATION</p>
-                        <lable className="details_submit">
-                            <input className="shop_email" type={"text"} name="Email" placeholder="Email" />
-                            <input className="shop_number" type={"number"} name="number" placeholder="Phone Number" />
-                        </lable>
-                    </form>
+                    
                     <Link to='/cart'></Link>
                 </div>
                 <div className="check_cart">
