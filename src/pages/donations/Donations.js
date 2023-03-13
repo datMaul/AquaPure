@@ -5,7 +5,6 @@ import TheWaterProjectImage from "./image/TheWaterProject.png";
 import TheGlobalWaterChallengeImage from "./image/TheGlobalWaterChallenge.png";
 import React from "react";
 import "./Donations.css";
-import { Link } from "react-router-dom";
 
 export default function Donations() {
   return (
