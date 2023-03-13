@@ -115,13 +115,15 @@
 }
 
 .popupframe {
+    scale:0.5;
+    opacity: 0;
     position: fixed;
-    top: -1%;
-    left: 78.5%;
+    top: 15%;
+    left: 74.5%;
     display: flex;
     justify-content: center;
     align-items: center;
-    animation-name:move;
+    animation-name:appear;
     animation-duration:2s;
 }
 
@@ -129,10 +131,10 @@
     color:white;
 
     padding-top:10px;
-    width:40px;
+    width:200px;
 
     background-color: #ff4545;
-    font-size: 15px;
+    font-size: 20px;
     border:none;
 
     
@@ -141,12 +143,14 @@
 }
 
 
-@keyframes move {
-    0%{top:-15%}
-    25%{top:10%}
-    50%{top:10%}
-    75%{top:10%}
-    100%{top:-15%}
+@keyframes appear {
+    0%{scale:0.5;opacity: 0;}
+    25%{scale:1;opacity: 1;}
+    40%{scale:1;opacity: 1;rotate: 0deg;}
+    50%{scale:1;opacity: 1;rotate:-5deg}
+    60%{scale:1;opacity: 1;rotate: 5deg;}
+    85%{scale:1;opacity: 1;rotate: 0;}
+    100%{scale:0.5;opacity: 0;rotate: 0;}
 }
 /* .item_quick_add:not(:active){
     animation-name:quick;

@@ -19,12 +19,14 @@ table{
     margin-bottom:50px;  
 }
 .empty_btn{
+    top:10%;
     cursor: pointer;
     padding:5px;
     background-color: rgb(186, 255, 234);
     border-color:rgb(98, 213, 255);
     border-width:2px;
     border-radius: 5px;
+    border-style: solid;
     color:rgb(21, 113, 83);
     font-size:20px;
 }

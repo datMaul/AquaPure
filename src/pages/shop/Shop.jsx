@@ -584,7 +584,7 @@ export default function Shop() {
         
         <ShopNotification trigger={showpopup} setTrigger={setshowpopup}>
                 <center className="popupShop" onClick={()=>{setshowpopup(false)}}>
-                  <h3>+1</h3>
+                  <h3>+1 Item to Cart</h3>
                 </center>
         </ShopNotification>
         
