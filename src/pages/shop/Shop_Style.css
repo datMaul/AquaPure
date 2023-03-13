@@ -143,9 +143,9 @@
 
 @keyframes move {
     0%{top:-10%}
-    25%{top:12%}
-    50%{top:12%}
-    75%{top:12%}
+    25%{top:10%}
+    50%{top:10%}
+    75%{top:10%}
     100%{top:-10%}
 }
 /* .item_quick_add:not(:active){
