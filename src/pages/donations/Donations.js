@@ -18,8 +18,7 @@ export default function Donations() {
     const randomId = 1
 
     // Send POST request to backend with custom name and ID
-    axios
-      .post("http://localhost:3000/donations/DonationForm", {
+    axios.post("http://localhost:3000/donations/DonationForm", {
         charity: name,
         donationId: randomId
       })
