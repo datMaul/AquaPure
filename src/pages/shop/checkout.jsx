@@ -60,11 +60,14 @@ export default function Checkout() {
     
 
     useEffect(()=>{
-        total();
         loadUser();
+        total();
+
 
         
     },[cartItems])
+
+    
 
     const loadItems = () => {
         axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`)
@@ -111,39 +114,30 @@ export default function Checkout() {
           Userpoints.map(score => {
             if(user.eMail === score.email){
               if(user.userId.toString() === storeuserid){
-                var points = score.score;
-                // var points = tempUserPoints
-                if(points>=100){
-                  if(!IsCheck){
-                    const discount = points/1000;
-                    const newtotal = subtotal-discount;
-                    setdiscount(discount)
-                    console.log(discount)
-                    if(newtotal<0){
+                var points = 12000
+                // var points = score.score;
+                if(IsCheck){
+                    let newTotal = subtotal - (points/1000)
+                    if(newTotal<0){
                         setsubtotal(0)
                     }
                     else{
-                        console.log(newtotal)
-                        setsubtotal(newtotal)
+                        total();
+                        setsubtotal(newTotal)
                     }
-                  }
-                  else if(IsCheck){
-                    const discount = points/1000;
-                    const newtotal = subtotal+discount;
-                    setsubtotal(newtotal)
-                    
-
-                  }
-              }
-              
-            }
-            else{
-              setsubtotal(subtotal)
+                }
+                else if(!IsCheck){
+                    total();
+                }
             }
           }})
       })
       
-      }
+    }
+    useEffect(()=>{
+        apply_points();
+    },[!IsCheck])
+    
    
     
 
@@ -258,12 +252,12 @@ export default function Checkout() {
                     }
                     <div className="discount">
                         <label htmlFor="checkbox">Apply Points Discount</label>
-                        <input type="checkbox" checked={IsCheck} onChange={() => {setcheck(!IsCheck);apply_points();}}></input>
+                        <input type="checkbox" checked={IsCheck} onChange={() => {setcheck(!IsCheck);}}></input>
                     </div>
 
                     <div className="subtotal">
                         <h3 className="total">Total</h3>
-                        <h2 className="subtotal_num">£{IsCheck ? ((subtotal-discount)<0 ? 0 : subtotal-discount):subtotal}</h2>
+                        <h2 className="subtotal_num">£{subtotal}</h2>
                     </div>
                 
                     <button onClick={()=>{purchase();}}>PURCHASE</button>
