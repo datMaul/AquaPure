@@ -29,6 +29,8 @@ export default function Checkout() {
     const storeuserid = localStorage.getItem("user_ID")
     const [date, setdate] = useState();
     const [Userpoints, setUserpoints] = useState([]);
+    const [IsCheck,setcheck] = useState(false);
+    const [subtotalpoints,setsubtotalpoints] = useState(null)
     const productimg = {
         "Recycled Sports Bottle": water,
         Backpack: backpack,
@@ -67,7 +69,9 @@ export default function Checkout() {
             .then(res => {
                 setcartItems(res.data);
                 console.log(res.data);
+                
             })
+            
     }
 
     
@@ -77,7 +81,7 @@ export default function Checkout() {
 
     const loadUserPoints = () => {
         axios.get("http://localhost:8080/points")
-        .then(res=>{setUserpoints(res.data);loadUser();console.log(res.data)})
+        .then(res=>{setUserpoints(res.data);loadUser();})
     }
 
     
@@ -93,56 +97,72 @@ export default function Checkout() {
             productData.map(product => {
                 if(item.product_id === product.productID){
                     total_price += product.product_price*item.quantity
-                    console.log(total_price,"total loaded")
                     
                 }
             setsubtotal(total_price)
+            setsubtotalpoints(total_price)
+
             })
         })
         
     }
-
+    const tempUserPoints = 100000;
+    // 100000 points == 100 pounds
+    // 100 - 18 = 98
+    const [userpoints,setuserpoints] = useState(0)
     const apply_points = (userid) => {
         user.map(user => {
           Userpoints.map(score => {
             if(user.eMail === score.email){
               if(user.userId.toString() === userid){
-                var points = score.score
-                // var points = 2500
-                if(points >= 100){
-                  if(!IsCheck && subtotal!=0){
-                    let discount = points/1000;
-                    let newtotal = subtotal-discount
-                    setsubtotal(newtotal);
-                    
+                var points = score.score;
+                // var points = tempUserPoints
+
+                if(points>=100){
+                  if(!IsCheck){
+                    var discount = points/1000;
+                    var newtotal = subtotal-discount;
+                    console.log(score.score-(subtotalpoints*100),"new points after applied")
+                    if(newtotal<0){
+                        
+                        setsubtotal(0)
+
+
+                    }
+                    else{
+                        
+                        setsubtotal(newtotal)
+
+                    }
                   }
-                  else if(IsCheck && subtotal!==0){
-                    let discount = points/1000;
-                    let newtotal = subtotal+discount
-                    setsubtotal(newtotal);
+                  else if(IsCheck){
+                    console.log("subtotal after applying points",subtotal)
+
+                    total();
                   }
-        
               }
+              
             }
             else{
               setsubtotal(subtotal)
             }
+            
           }})
       })
       }
-    const [IsCheck,setcheck] = useState(false);
     const checkhandler = () => {
         setcheck(!IsCheck);
         apply_points(storeuserid);
         loadUser();
     }
 
+
     const clearCart = async () => {
         await axios.delete(`http://localhost:8080/item/user/${storeuserid}`).then(res => {console.log(res.data,"delete from cart");loadItems();})
     }
-
     const purchase = () => {
         setconfirm(true);
+        
         // var DOP = new Date()
         
         // var date = DOP.getUTCFullYear() + '-' + (DOP.getMonth()+1) + "-" + DOP.getDate() + ' ' + DOP.getHours() +':'+ DOP.getMinutes();
@@ -155,24 +175,22 @@ export default function Checkout() {
                 "product_id":item.product_id,
                 "quantity":item.quantity
             }).then(res=>{console.log(res.data,"items post to data base")})
-            
-            
-            Userpoints.map(score=>{
-                user.map(user=>{
-                    if(score.email === user.eMail){
-                        console.log(score.email)
-                        console.log(user.userId,storeuserid,"ids")
-
-                        if(user.userId.toString() === storeuserid){
-                            console.log("discount updated")
-                            axios.put(`http://localhost:8080/points/findByEmail?email=`+user.eMail+'',{
-                                'score':user.score*0,
-                            })
+            if(IsCheck){
+                Userpoints.map(score=>{
+                    user.map(user=>{
+                        if(score.email === user.eMail){
+                            if(user.userId.toString() === storeuserid){
+                                const points = score.score;
+                                const newPoints = points - (subtotalpoints*100);
+                                axios.put(`http://localhost:8080/points/findByEmail?email=`+user.eMail+'',{
+                                    'score':newPoints,
+                                }).then(res=>{console.log(res.data,newPoints)})
+                            }
                         }
-                    }
+                    })
+                
                 })
-               
-            })
+            }
         })
         clearCart();
     }
@@ -263,7 +281,7 @@ export default function Checkout() {
                             <h1>Thank you for your purchase!</h1>
                         </div>
                     </Popup> */}
-                    <button onClick={()=>purchase()}>PURCHASE</button>
+                    <button onClick={()=>{total();purchase();}}>PURCHASE</button>
                 </div>
             </div>
         </div>
