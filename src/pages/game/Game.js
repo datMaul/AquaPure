@@ -1,4 +1,4 @@
-import "./game.css";
+import "./Game.css";
 import React, { useState } from "react";
 
 export default function Game() {
@@ -22,6 +22,16 @@ export default function Game() {
   const POINTS = 100;
 
   var questions = [
+    {
+      question: "Want more to do with Aquapure?",
+      choices: [
+        "Yes!",
+        "Without Question",
+        "Indubitably",
+        "Maybe",
+      ],
+      answer: 2,
+    },
     {
       question: "What is the primary cause of water pollution?",
       choices: [

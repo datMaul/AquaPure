@@ -120,6 +120,75 @@ body {
     transition: ease-in-out 0.2s;
   }
 
+.Quiz-Section-Container {
+    --gradient: linear-gradient(
+        45deg,
+        rgb(0, 77, 109),
+        rgb(0, 93, 208),
+        rgb(47, 163, 205),
+        rgb(147, 214, 234),
+        rgb(127, 223, 220)
+        ) ;
+    background-image: var(--gradient);
+}
+
+.Quiz-Section {
+    display: flex;
+    align-items: center;
+    padding: 64px 5%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  
+.Quiz-Section > .Quiz-Image {
+    flex: 1;
+    margin-right: 64px;
+}
+
+.Quiz-Section > .Quiz-Image img {
+    width: clamp(350px, 40vw, 500px);
+}
+
+.Quiz-Section > .Quiz-Info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+.Quiz-Section > .Quiz-Info > h3 {
+    text-align: left;
+    
+}
+
+.Quiz-Section .Quiz-Buttons {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.Quiz-Section .Quiz-Button {
+    margin: 0 auto;
+}
+
+.Quiz-Section .Quiz-Button a {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 20px;
+    z-index: 10;
+    padding: 5px 15px;
+    font-size: 20px;
+}
+
+.Quiz-Button>a:hover {
+    box-shadow: 0 0 8px lightblue;
+    color: #008faf;
+    transition: ease-in-out 0.25s;
+  }
+
 .DYK-Section {
     padding-top: 32px;
     padding-bottom: 32px;
@@ -249,11 +318,25 @@ body {
     color: white;
     text-decoration: none;
 }
+.Quiz-Info h3 {
+    font-size: 40px;
+    font-weight: 350;
+    margin: 0;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
 
 .Text-Overlay p {
     font-size: 20px;
     font-weight: 400;
     margin: 0;
+}
+.Quiz-Content p {
+    font-size: 18px;
+    font-weight: 450;
+    margin: 10;
+    color: white;
 }
 
 .AquaBot_button {

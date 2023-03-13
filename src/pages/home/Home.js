@@ -7,6 +7,7 @@ import DYKImage1 from "./home_page_images/DYK1.jpg";
 import DYKImage2 from "./home_page_images/DYK2.jpg";
 import DYKImage3 from "./home_page_images/DYK3.jpeg";
 import MapImage from "./home_page_images/map.png";
+import QuizImage from "./home_page_images/AquaPure_Game.png";
 import Chatbot from "../phasetest/Phasetest";
 import React, { useState, useEffect, useRef } from "react";
 import Footer from "../../components/Footer";
@@ -264,6 +265,27 @@ export default function Home() {
             </div>
           </div>
           <br />
+          <div className="Quiz-Section-Container Narrow-Content">
+            <div className="Quiz-Section">
+              <div className="Quiz-Image">
+                <img id="MapImage" src={QuizImage} />
+              </div>
+              <div className="Quiz-Info">
+                <h3>Aquapure Quiz</h3>
+                <div className="Quiz-Content">
+                  <p>
+                  Aquapure has an exciting feature that challenges users to an interactive quiz on sustainability goals 6 and 14. By signing up, visitors can test their knowledge on important environmental issues and become part of the movement towards a more sustainable future. Head over to sign up and give the quiz a try to gain a deeper understanding of the goals we hold close to our hearts.
+                  </p>
+                  <br/>
+                  <ul className="Quiz-Buttons">
+                    <li className="Quiz-Button">
+                      <a href="/accounts/signup">Sign Up</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
           <div ref={wrapperRef}>
             {isChatbotVisible ? (
               <Chatbot />
