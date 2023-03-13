@@ -116,8 +116,8 @@
 
 .popupframe {
     position: fixed;
-    top: 5%;
-    left: 77%;
+    top: -1%;
+    left: 78.5%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -142,11 +142,11 @@
 
 
 @keyframes move {
-    0%{top:-10%}
-    25%{top:12%}
-    50%{top:12%}
-    75%{top:12%}
-    100%{top:-10%}
+    0%{top:-15%}
+    25%{top:10%}
+    50%{top:10%}
+    75%{top:10%}
+    100%{top:-15%}
 }
 /* .item_quick_add:not(:active){
     animation-name:quick;
