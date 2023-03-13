@@ -17,13 +17,13 @@ body {
     padding: 0 12.5%;
 }
 
-/* .Charities-Container {
+.Charities-Container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-} */
+}
 
 .Charities-Container h2 {
     text-align: center;
