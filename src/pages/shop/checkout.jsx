@@ -263,7 +263,7 @@ export default function Checkout() {
 
                     <div className="subtotal">
                         <h3 className="total">Total</h3>
-                        <h2 className="subtotal_num">£{IsCheck ? (subtotal-discount<0 ? 0 : subtotal-discount ):subtotal}</h2>
+                        <h2 className="subtotal_num">£{IsCheck ? ((subtotal-discount)<0 ? 0 : subtotal-discount):subtotal}</h2>
                     </div>
                 
                     <button onClick={()=>{purchase();}}>PURCHASE</button>
