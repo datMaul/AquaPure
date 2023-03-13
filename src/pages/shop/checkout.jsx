@@ -118,6 +118,7 @@ export default function Checkout() {
                     const discount = points/1000;
                     const newtotal = subtotal-discount;
                     setdiscount(discount)
+                    console.log(discount)
                     if(newtotal<0){
                         setsubtotal(0)
                     }
