@@ -41,12 +41,13 @@ public class MapRecord_Controller {
     @GetMapping("/maprecordsbyparams")
     public List<MapRecord> getMapRecordsByParams(@Param(value = "sourceTypes") String sourceTypes,
                                                  @Param(value = "waterBodyTypes") String waterBodyTypes,
-                                                 @Param(value = "parameterName") String parameterName) {
+                                                 @Param(value = "parameterNames") String parameterNames) {
         
         List<String> sourceTypesList = Arrays.asList(sourceTypes.split(","));
         List<String> waterBodyTypesList =  Arrays.asList(waterBodyTypes.split(","));
+        List<String> parameterNamesList =  Arrays.asList(parameterNames.split(","));
         
-        return mapRecordRepository.findBySelectedParams(sourceTypesList, waterBodyTypesList, parameterName);
+        return mapRecordRepository.findBySelectedParams(sourceTypesList, waterBodyTypesList, parameterNamesList);
     }
 
     // Create a new map record

@@ -21,14 +21,14 @@ import Sticker from "./item_pages/shop_assets/APSticker.png"
 
 
 export default function Checkout() {
+    const [discount, setdiscount] = useState(0);
     const [cartItems, setcartItems] = useState([]);
     const [productData, setproductData] = useState([]);
-    const [subtotal, setsubtotal] = useState(null);
-    const [show, setshow] = useState(false);
+    const [subtotal, setsubtotal] = useState(0);
     const [user, setuser] = useState([]);
     const storeuserid = localStorage.getItem("user_ID")
-    const [date, setdate] = useState();
     const [Userpoints, setUserpoints] = useState([]);
+    const [IsCheck,setcheck] = useState(false);
     const productimg = {
         "Recycled Sports Bottle": water,
         Backpack: backpack,
@@ -47,27 +47,33 @@ export default function Checkout() {
         "AquaPure Sticker & Badge":Sticker,
     
       }
-    
+
 
     useEffect(() => {
         loadItems();
         loadProducts();
         loadUserPoints();
+        
 
 
     },[])
+    
 
     useEffect(()=>{
         total();
         loadUser();
-    },[cartItems,productData])
+
+        
+    },[cartItems])
 
     const loadItems = () => {
         axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`)
             .then(res => {
                 setcartItems(res.data);
                 console.log(res.data);
+                
             })
+            
     }
 
     
@@ -77,7 +83,7 @@ export default function Checkout() {
 
     const loadUserPoints = () => {
         axios.get("http://localhost:8080/points")
-        .then(res=>{setUserpoints(res.data);loadUser();console.log(res.data)})
+        .then(res=>{setUserpoints(res.data);loadUser();})
     }
 
     
@@ -93,56 +99,61 @@ export default function Checkout() {
             productData.map(product => {
                 if(item.product_id === product.productID){
                     total_price += product.product_price*item.quantity
-                    console.log(total_price,"total loaded")
-                    
                 }
-            setsubtotal(total_price)
             })
         })
-        
+        setsubtotal(total_price)
     }
-
-    const apply_points = (userid) => {
+    // 100000 points == 100 pounds
+    // 100 - 18 = 98
+    const apply_points = () => {
         user.map(user => {
           Userpoints.map(score => {
             if(user.eMail === score.email){
-              if(user.userId.toString() === userid){
-                var points = score.score
-                // var points = 2500
-                if(points >= 100){
-                  if(!IsCheck && subtotal!=0){
-                    let discount = points/1000;
-                    let newtotal = subtotal-discount
-                    setsubtotal(newtotal);
+              if(user.userId.toString() === storeuserid){
+                var points = score.score;
+                // var points = tempUserPoints
+                if(points>=100){
+                  if(!IsCheck){
+                    const discount = points/1000;
+                    const newtotal = subtotal-discount;
+                    setdiscount(discount)
+                    console.log(discount)
+                    if(newtotal<0){
+                        setsubtotal(0)
+                    }
+                    else{
+                        console.log(newtotal)
+                        setsubtotal(newtotal)
+                    }
+                  }
+                  else if(IsCheck){
+                    const discount = points/1000;
+                    const newtotal = subtotal+discount;
+                    setsubtotal(newtotal)
                     
+
                   }
-                  else if(IsCheck && subtotal!==0){
-                    let discount = points/1000;
-                    let newtotal = subtotal+discount
-                    setsubtotal(newtotal);
-                  }
-        
               }
+              
             }
             else{
               setsubtotal(subtotal)
             }
           }})
       })
+      
       }
-    const [IsCheck,setcheck] = useState(false);
-    const checkhandler = () => {
-        setcheck(!IsCheck);
-        apply_points(storeuserid);
-        loadUser();
-    }
+   
+    
+
 
     const clearCart = async () => {
         await axios.delete(`http://localhost:8080/item/user/${storeuserid}`).then(res => {console.log(res.data,"delete from cart");loadItems();})
     }
-
     const purchase = () => {
         setconfirm(true);
+        
         // var DOP = new Date()
         
         // var date = DOP.getUTCFullYear() + '-' + (DOP.getMonth()+1) + "-" + DOP.getDate() + ' ' + DOP.getHours() +':'+ DOP.getMinutes();
@@ -155,29 +166,32 @@ export default function Checkout() {
                 "product_id":item.product_id,
                 "quantity":item.quantity
             }).then(res=>{console.log(res.data,"items post to data base")})
-            
-            
-            Userpoints.map(score=>{
-                user.map(user=>{
-                    if(score.email === user.eMail){
-                        console.log(score.email)
-                        console.log(user.userId,storeuserid,"ids")
-
-                        if(user.userId.toString() === storeuserid){
-                            console.log("discount updated")
-                            axios.put(`http://localhost:8080/points/findByEmail?email=`+user.eMail+'',{
-                                'score':user.score*0,
-                            })
+            if(IsCheck){
+                Userpoints.map(score=>{
+                    user.map(user=>{
+                        if(score.email === user.eMail){
+                            if(user.userId.toString() === storeuserid){
+                                const points = score.score;
+                                const newPoints = points - (subtotal*1000);
+                                if(newPoints<0){
+                                    axios.put(`http://localhost:8080/points/findByEmail?email=`+user.eMail+'',{
+                                    'score':0,
+                                    }).then(res=>{console.log(res.data,newPoints)})
+                                }
+                                else{
+                                    axios.put(`http://localhost:8080/points/findByEmail?email=`+user.eMail+'',{
+                                    'score':newPoints,
+                                    }).then(res=>{console.log(res.data,newPoints)})
+                                }
+                            }
                         }
-                    }
+                    })
+                
                 })
-               
-            })
+            }
         })
         clearCart();
     }
-
-   
     const [confirm, setconfirm] = useState(false)
     
     return (
@@ -189,17 +203,11 @@ export default function Checkout() {
                     <Poppup trigger={confirm} setTrigger={setconfirm}>
                         <div>
                             <h2 className="confirmation">Thank You for your Purchase</h2>
-                            <Link to="/accounts/purchaseHistory"><button className="check-btn">Check order</button></Link>
+                            <Link to="/accounts"><button className="check-btn">Check order</button></Link>
                             <Link to='/shop'><button className="check-btn">Back to Shopping</button></Link>
                         </div>
                     </Poppup>
-                    <form className="customer_details">
-                        <p>CONTACT INFORMATION</p>
-                        <lable className="details_submit">
-                            <input className="shop_email" type={"text"} name="Email" placeholder="Email" />
-                            <input className="shop_number" type={"number"} name="number" placeholder="Phone Number" />
-                        </lable>
-                    </form>
+                    
                     <Link to='/cart'></Link>
                 </div>
                 <div className="check_cart">
@@ -250,20 +258,15 @@ export default function Checkout() {
                     }
                     <div className="discount">
                         <label htmlFor="checkbox">Apply Points Discount</label>
-                        <input type="checkbox" checked={IsCheck} onChange={() => checkhandler()}></input>
+                        <input type="checkbox" checked={IsCheck} onChange={() => {setcheck(!IsCheck);apply_points();}}></input>
                     </div>
 
                     <div className="subtotal">
                         <h3 className="total">Total</h3>
-                        <h2 className="subtotal_num">£{subtotal}</h2>
+                        <h2 className="subtotal_num">£{IsCheck ? ((subtotal-discount)<0 ? 0 : subtotal-discount):subtotal}</h2>
                     </div>
-                    {/* Requires npm react-popup installed */}
-                    {/* <Popup trigger={<button>PURCHASE</button>}>
-                        <div className="purchase">
-                            <h1>Thank you for your purchase!</h1>
-                        </div>
-                    </Popup> */}
-                    <button onClick={()=>purchase()}>PURCHASE</button>
+                
+                    <button onClick={()=>{purchase();}}>PURCHASE</button>
                 </div>
             </div>
         </div>

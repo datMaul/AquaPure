@@ -29,6 +29,17 @@
         "ideal_range": {
             "min": 6.4,
             "max": 8.2
+        },
+        "scoring_function": {
+            "type": "sigmoid_bipolar",
+            "min_range": 0,
+            "max_range": 14,
+            "ideal_value": 7.75,
+            "function_sensitivity": 0.3
+        },
+        "effects": {
+            "low": "Low pH can make drinking water acidic, which can cause corrosion of metal pipes and fixtures, leading to increased levels of metals such as lead and copper in drinking water. It can also cause an unpleasant taste and can irritate the eyes, skin, and mucous membranes.",
+            "high": "High pH can make drinking water alkaline, which can cause a bitter taste and leave deposits on plumbing fixtures. High pH can also cause irritation of the eyes, skin, and mucous membranes."
         }
     },
 
@@ -41,6 +52,17 @@
             "120": "#baffcb",
             "180": "#98ffe3",
             "240": "#66fffa"
+        },
+        "scoring_function": {
+            "type": "sigmoid_bipolar",
+            "min_range": 0,
+            "max_range": 1000,
+            "ideal_value": 175,
+            "function_sensitivity": 0.003
+        },
+        "effects": {
+            "low": "Low alkalinity can cause water to be corrosive, leading to increased levels of metals such as lead and copper in drinking water. It can also cause staining of plumbing fixtures and surfaces.",
+            "high": "High alkalinity can cause a bitter taste and leave deposits on plumbing fixtures. It can also interfere with the effectiveness of certain water treatment processes."
         }
     },
 
@@ -56,6 +78,17 @@
             "600": "#002480"
             },
         "ideal_range": {
+        },
+        "scoring_function": {
+            "type": "sigmoid_bipolar",
+            "min_range": 0,
+            "max_range": 1000,
+            "ideal_value": 175,
+            "function_sensitivity": 0.0005
+        },
+        "effects": {
+            "low": "Low hardness does not have significant health effects, but it can cause water to be corrosive, leading to increased levels of metals such as lead and copper in drinking water. It can also cause staining of plumbing fixtures and surfaces.",
+            "high": "High hardness can cause scale buildup in plumbing fixtures and appliances, reducing their lifespan and effectiveness."
         }
     },
 
@@ -72,6 +105,17 @@
         "ideal_range": {
             "min": 0,
             "max": 1
+        },
+        "scoring_function": {
+            "type": "sigmoid_bipolar",
+            "min_range": 0,
+            "max_range": 20,
+            "ideal_value": 0.35,
+            "function_sensitivity": 0.25
+        },
+        "effects": {
+            "low": "Low levels of free chlorine can indicate inadequate disinfection, which can increase the risk of waterborne diseases.",
+            "high": "High levels of free chlorine can cause an unpleasant taste and odor and can irritate the eyes, skin, and mucous membranes."
         }
     },
 
@@ -88,39 +132,72 @@
         "ideal_range": {
             "min": 0,
             "max": 1
+        },
+        "scoring_function": {
+            "type": "sigmoid_bipolar",
+            "min_range": 0,
+            "max_range": 20,
+            "ideal_value": 0.35,
+            "function_sensitivity": 0.25
+        },
+        "effects": {
+            "low": "Low levels of chlorine can indicate inadequate disinfection, which can increase the risk of waterborne diseases.",
+            "high": "High levels of chlorine can cause an unpleasant taste and odor and can irritate the eyes, skin, and mucous membranes. Exposure to high levels of chlorine over long periods of time can also increase the risk of cancer."
         }
     },
 
     "Iron": {
-        "unit": "ppm",
+        "unit": "ppb",
         "values": {
             "0": "#ffedda",
-            "5": "#f9d7b7",
-            "10": "#f2c196",
-            "25": "#ecab76",
-            "50": "#e59358",
-            "100": "#dd7b3c",
-            "250": "#d56121",
-            "500": "#cd4400"
+            "50": "#f9d7b7",
+            "100": "#f2c196",
+            "250": "#ecab76",
+            "500": "#e59358",
+            "1000": "#dd7b3c",
+            "2500": "#d56121",
+            "5000": "#cd4400"
         },
         "ideal_range": {
             "min": 0,
             "max": 0
+        },
+        "scoring_function": {
+            "type": "sigmoid_unipolar",
+            "min_range": 0,
+            "max_range": 5000,
+            "ideal_value": 0,
+            "shift_x": 5,
+            "function_sensitivity": 0.014
+        },
+        "effects": {
+            "high": "High levels of iron can cause staining of plumbing fixtures and surfaces, and can cause an unpleasant taste and odor. High levels of iron in drinking water can also interfere with the absorption of certain medications."
         }
     },
 
     "Copper": {
-        "unit": "ppm",
+        "unit": "ppb",
         "values": {
             "0": "#ffedda",
-            "0.5": "#fed5b8",
-            "1.0": "#ffbb9c",
-            "3.0": "#ff9e89",
-            "10.0": "#ff7f7f"
+            "500": "#fed5b8",
+            "1000": "#ffbb9c",
+            "3000": "#ff9e89",
+            "10000": "#ff7f7f"
         },
         "ideal_range": {
             "min": 0,
-            "max": 0.5
+            "max": 500
+        },
+        "scoring_function": {
+            "type": "sigmoid_unipolar",
+            "min_range": 0,
+            "max_range": 10000,
+            "ideal_value": 0,
+            "shift_x": 5,
+            "function_sensitivity": 0.0045
+        },
+        "effects": {
+            "high": "High levels of copper can cause an unpleasant taste and can cause gastrointestinal symptoms such as nausea, vomiting, and diarrhea. Exposure to high levels of copper over long periods of time can also increase the risk of liver and kidney damage."
         }
     },
 
@@ -136,6 +213,16 @@
         "ideal_range": {
             "min": 0,
             "max": 5
+        },
+        "scoring_function": {
+            "type": "sigmoid_bipolar",
+            "min_range": 0,
+            "max_range": 50,
+            "ideal_value": 0,
+            "function_sensitivity": 0.06
+        },
+        "effects": {
+            "high": "High levels of lead can cause a range of health effects, especially in young children, including developmental delays, lower IQ, and behavioral problems. Exposure to high levels of lead over long periods of time can also increase the risk of high blood pressure, kidney damage, and reproductive problems."
         }
     },
 
@@ -153,6 +240,16 @@
         "ideal_range": {
             "min": 0,
             "max": 10
+        },
+        "scoring_function": {
+            "type": "sigmoid_bipolar",
+            "min_range": 0,
+            "max_range": 500,
+            "ideal_value": 0,
+            "function_sensitivity": 0.09
+        },
+        "effects": {
+            "high": "High levels of nitrate can cause a condition called methemoglobinemia (also known as \"blue baby syndrome\") in infants, which can cause oxygen deprivation and can be life-threatening. High levels of nitrate can also increase the risk of certain cancers."
         }
     },
 
@@ -170,6 +267,16 @@
         "ideal_range": {
             "min": 0,
             "max": 1
+        },
+        "scoring_function": {
+            "type": "sigmoid_bipolar",
+            "min_range": 0,
+            "max_range": 80,
+            "ideal_value": 0,
+            "function_sensitivity": 0.75
+        },
+        "effects": {
+            "high": "High levels of nitrite can cause methemoglobinemia (also known as \"blue baby syndrome\") in infants, which can cause oxygen deprivation and can be life-threatening. High levels of nitrite can also increase the risk of certain cancers."
         }
     },
 
@@ -187,6 +294,16 @@
         "ideal_range": {
             "min": 0,
             "max": 5
+        },
+        "scoring_function": {
+            "type": "sigmoid_bipolar",
+            "min_range": 0,
+            "max_range": 50,
+            "ideal_value": 0,
+            "function_sensitivity": 0.02
+        },
+        "effects": {
+            "high": "High levels of manganese can cause staining of plumbing fixtures and surfaces and can cause an unpleasant taste and odor. Exposure to high levels of manganese over long periods of time can also increase the risk of neurological problems."
         }
     },
 
@@ -202,6 +319,16 @@
         "ideal_range": {
             "min": 0,
             "max": 0
+        },
+        "scoring_function": {
+            "type": "sigmoid_bipolar",
+            "min_range": 0,
+            "max_range": 1000,
+            "ideal_value": 0,
+            "function_sensitivity": 0.75
+        },
+        "effects": {
+            "high": "High levels of E.coli can indicate fecal contamination and can cause gastrointestinal symptoms such as nausea, vomiting, and diarrhea. Exposure to E.coli can also increase the risk of waterborne illnesses such as gastroenteritis, dysentery, and hepatitis A."
         }
     },
 
@@ -217,6 +344,16 @@
         "ideal_range": {
             "min": 0,
             "max": 0
+        },
+        "scoring_function": {
+            "type": "sigmoid_bipolar",
+            "min_range": 0,
+            "max_range": 100,
+            "ideal_value": 1,
+            "function_sensitivity": 0.25
+        },
+        "effects": {
+            "high": "High concentrations of fluoride can cause dental fluorosis, a condition that affects the teeth and causes white spots, streaks, or brown stains. Long-term exposure to high levels of fluoride can also lead to skeletal fluorosis, which causes joint pain and stiffness, and can damage bones and ligaments. Additionally, excessive fluoride can affect the thyroid gland and cause a range of health problems."
         }
     }
 }
