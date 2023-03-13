@@ -114,8 +114,8 @@ export default function Checkout() {
           Userpoints.map(score => {
             if(user.eMail === score.email){
               if(user.userId.toString() === storeuserid){
-                var points = 12000
-                // var points = score.score;
+                // var points = 12000
+                var points = score.score;
                 if(IsCheck){
                     let newTotal = subtotal - (points/1000)
                     if(newTotal<0){
