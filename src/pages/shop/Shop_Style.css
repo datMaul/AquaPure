@@ -118,7 +118,7 @@
     scale:0.5;
     opacity: 0;
     position: fixed;
-    top: 10%;
+    top: 15%;
     left: 74.5%;
     display: flex;
     justify-content: center;
@@ -133,7 +133,7 @@
     padding-top:10px;
     width:200px;
 
-    background-color: #ff4545;
+    background-color: #4567ff;
     font-size: 20px;
     border:none;
 
@@ -144,11 +144,13 @@
 
 
 @keyframes appear {
-    0%{scale:0.5;opacity: 0;}
-    25%{scale:1;opacity: 1;}
-    50%{scale:1;opacity: 1;}
-    75%{scale:1;opacity: 1;}
-    100%{scale:0.5;opacity: 0;}
+    0%{scale:0.5;opacity: 0;rotate:0;}
+    25%{scale:1;opacity: 1;rotate: 0;}
+    35%{scale:1;opacity: 1;rotate: 5deg;}
+    50%{scale:1;opacity: 1;rotate:-5deg}
+    75%{scale:1;opacity: 1;rotate: 5deg;}
+    85%{scale:1;opacity: 1;rotate: 0;}
+    100%{scale:0.5;opacity: 0;rotate: 0;}
 }
 /* .item_quick_add:not(:active){
     animation-name:quick;
