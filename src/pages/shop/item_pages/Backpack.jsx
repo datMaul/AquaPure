@@ -23,12 +23,11 @@ export default function Backpack() {
   const loadProducts = () => {
     axios.get('http://localhost:8080/product')
     .then(res => {
-      console.log(res.data)
       setData(res.data)
     })
   }
   const loadItems = () => {
-    axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`).then(res=>{setcartItems(res.data);console.log(res.data,"loaded cart items")})
+    axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`).then(res=>{setcartItems(res.data);})
     setuser(storeuserid)
   }
   
@@ -41,7 +40,7 @@ export default function Backpack() {
 
   const updateStates = ()=>{
     cartItems.map(item=>{
-      if(item.id === itempageid){
+      if(item.product_id === itempageid){
         const increment = item.quantity+1
         setvalue(increment)  
       }
@@ -51,13 +50,14 @@ export default function Backpack() {
   
 
   const postAdd = (productid,quantity) => {
+    updateStates();
     if(!user){
       return(window.location.href = "/accounts/login")
     }
-    setvalue((increment)=>(increment+1))
-    console.log(productid,"post add product id")
+    console.log(quantity,"the quantity of item in cart")
     cartItems.map(item=>{
       if(productid === item.product_id){
+        setvalue((increment)=>(increment+1))
         console.log("running itemdata map incrementation")
         axios.put(`http://localhost:8080/item/${item.id}`,{
           "quantity":quantity
@@ -95,7 +95,7 @@ export default function Backpack() {
                 <>
                   <h1 className="title" key={product}>{product.product_name}</h1>
                   <h1 className="price">£{product.product_price}</h1>
-                  <button className="add" type="button" onClick={()=>postAdd(product.productID,item)}>Add to Cart</button>
+                  <Link to='/cart'><button className="add" type="button" onClick={()=>postAdd(product.productID,item)}>Add to Cart</button></Link>
                   <h2>Description</h2>
                   <h3 className="desc">{product.product_desc}</h3>
                 </>
