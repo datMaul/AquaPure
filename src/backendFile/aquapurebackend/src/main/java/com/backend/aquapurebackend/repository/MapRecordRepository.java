@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 public interface MapRecordRepository extends JpaRepository <MapRecord, Long> {
     @Query("SELECT m FROM MapRecord m WHERE (m.SourceType IN (:sourceTypes))"
             + " AND (m.WaterBodyType IN (:waterBodyTypes))"
-            + " AND (m.ParameterName = :parameterName)")
-    List<MapRecord> findBySelectedParams(List<String> sourceTypes, List<String> waterBodyTypes, String parameterName);
+            + " AND (m.ParameterName IN (:parameterNames))")
+    List<MapRecord> findBySelectedParams(List<String> sourceTypes, List<String> waterBodyTypes, List<String> parameterNames);
     //List<MapRecord> findByAuthorId(Long Author_ID);
     //List<MapRecord> findByTestKitUUID(String TestKit_UUID);
 }
