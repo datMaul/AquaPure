@@ -182,9 +182,16 @@ export default function Checkout() {
                             if(user.userId.toString() === storeuserid){
                                 const points = score.score;
                                 const newPoints = points - (subtotalpoints*100);
-                                axios.put(`http://localhost:8080/points/findByEmail?email=`+user.eMail+'',{
+                                if(newPoints<0){
+                                    axios.put(`http://localhost:8080/points/findByEmail?email=`+user.eMail+'',{
+                                    'score':0,
+                                    }).then(res=>{console.log(res.data,newPoints)})
+                                }
+                                else{
+                                    axios.put(`http://localhost:8080/points/findByEmail?email=`+user.eMail+'',{
                                     'score':newPoints,
-                                }).then(res=>{console.log(res.data,newPoints)})
+                                    }).then(res=>{console.log(res.data,newPoints)})
+                                }
                             }
                         }
                     })
