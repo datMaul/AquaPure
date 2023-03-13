@@ -26,8 +26,13 @@ export default function LoyaltyPoints() {
     return <Link to="/" />;
   }
   return (
-    <div className="Accounts-Content">
-      <div className="AccountPageSection-Content">
+    <div className = "Loyalty-Page">
+      <div className="Container">
+      <h1 className = "Loyalty-Title"> Loyalty Points </h1>
+      <p className="Amount-of-Points">loyaltyPoints</p>
+      <h1 className = "Loyalty-Title"> What are Loyalty Points </h1>
+    </div>
+      {/* <div className="AccountPageSection-Content">
         <div className="Row-1-Content">
           <h2> Loyalty Points </h2>
           <br /> <br /> <br /> <br /> <br /> <br />
@@ -50,7 +55,7 @@ export default function LoyaltyPoints() {
             </form>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

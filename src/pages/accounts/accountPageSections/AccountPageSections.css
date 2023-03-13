@@ -1,3 +1,5 @@
+
+
 .Accounts-Navbar {
     background-color: #f5f5f5;
     height: calc(100vh - 70px);
@@ -121,4 +123,63 @@
 .AccountLinks.active::before,
 .AccountLinks:hover::before {
     width: 100%;
+}
+
+.Loyalty-Page {
+    --gradient: linear-gradient(
+        45deg,
+        rgb(0, 77, 109),
+        rgb(0, 93, 208),
+        rgb(47, 163, 205),
+        rgb(147, 214, 234),
+        rgb(127, 223, 220)
+        ) ;
+    background-image: var(--gradient) ;
+    height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+.Loyalty-Page .Container{
+    background-color: white;
+    height: 50vh;
+    width: 40vw;
+    box-shadow: 0 0 3em rgb(0, 0, 0, 0.25);
+}
+
+
+.Loyalty-Title{
+    --font_color: linear-gradient(
+        45deg,
+        rgb(0, 93, 208),
+        rgb(47, 163, 205),
+        rgb(147, 214, 234)
+        ) ;    
+    text-align: center;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em; 
+    color: transparent;
+    font-weight: 600;
+    margin: 5px;
+    list-style: 0.5;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-image: var(--font_color);
+}
+
+.Amount-of-Points{
+    text-align: center;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: transparent;
+    margin: 5px;
+    margin-top: 10px;
+    list-style: 0.5;
+    background-image: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    margin-bottom: 15px;
 }
