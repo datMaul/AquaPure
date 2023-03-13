@@ -41,7 +41,7 @@ export default function Phone_case() {
 
   const updateStates = ()=>{
     cartItems.map(item=>{
-      if(item.id === itempageid){
+      if(item.product_id === itempageid){
         const increment = item.quantity+1
         setvalue(increment)  
       }
@@ -95,7 +95,7 @@ export default function Phone_case() {
                 <>
                   <h1 className="title" key={product}>{product.product_name}</h1>
                   <h1 className="price">£{product.product_price}</h1>
-                  <button className="add" type="button" onClick={()=>postAdd(product.productID,item)}>Add to Cart</button>
+                  <Link to='/cart'><button className="add" type="button" onClick={()=>postAdd(product.productID,item)}>Add to Cart</button></Link>
                   <h2>Description</h2>
                   <h3 className="desc">{product.product_desc}</h3>
                 </>

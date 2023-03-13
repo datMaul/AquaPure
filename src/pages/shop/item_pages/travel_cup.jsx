@@ -40,7 +40,7 @@ export default function Travel_cup() {
 
   const updateStates = ()=>{
     cartItems.map(item=>{
-      if(item.id === 5){
+      if(item.product_id === 5){
         const increment = item.quantity+1
         setvalue(increment)  
       }
@@ -94,7 +94,7 @@ export default function Travel_cup() {
                 <>
                   <h1 className="title" key={product}>{product.product_name}</h1>
                   <h1 className="price">£{product.product_price}</h1>
-                  <button className="add" type="button" onClick={()=>postAdd(product.productID,item)}>Add to Cart</button>
+                  <Link to='/cart'><button className="add" type="button" onClick={()=>postAdd(product.productID,item)}>Add to Cart</button></Link>
                   <h2>Description</h2>
                   <h3 className="desc">{product.product_desc}</h3>
                 </>
