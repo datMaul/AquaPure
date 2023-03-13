@@ -16,11 +16,32 @@ export default function TestkitEntry() {
 
     console.log(data);
 
-    const response = await axios.put(
-      `http://localhost:8080/testkit/activate/${data.uniqueID}`
-    );
+    const response = await fetch(`http://localhost:8080/testkit/activate/${data.uniqueID}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        pH: data.pH,
+        longitude: data.longitude,
+        latitude: data.latitude,
+        totalAlkalinity: data.totalAlkalinity,
+        totalHardness: data.totalHardness,
+        nitrite: data.nitrite,
+        lead: data.lead,
+        manganese: data.manganese,
+        coliformBacteria: data.coliformBacteria,
+      }),
+    });
+    
+    const x = await response.json();
 
-    console.log(response)
+    if (x.error != null) {
+      window.alert("You cannot activate this test kit because it's already activated.")
+    } else {
+      window.alert("Successfully activated the test kit.")
+    }
+    console.log(x);
   }
 
   return (
@@ -34,6 +55,10 @@ export default function TestkitEntry() {
             <label htmlFor="uniqueID">Unique ID:</label>
             <br />
             <label htmlFor="pH">pH:</label>
+            <br />
+            <label hitmlFor="longitude">Longitude:</label>
+            <br />
+            <label hitmlFor="latitude">Latitude:</label>
             <br />
             <label htmlFor="totalAlkalinity">Total Alkalinity:</label>
             <br />
@@ -68,44 +93,70 @@ export default function TestkitEntry() {
               <br />
               <input
                 type="number"
+                id="longitude"
+                name="Longitude"
+                placeholder="Entet Logitude"
+                min="-180"
+                max="180"
+                
+              />
+              <br />
+              <input
+                type="number"
+                id="latitude"
+                name="Latitude"
+                placeholder="Entet Latitude"
+                min="-90"
+                max="90"
+
+              />
+              <br />
+              <input
+                type="number"
                 id="totalAlkalinity"
                 name="totalAlkalinity"
-                placeholder="Enter Total Alkalinity"
+                placeholder="Enter Total Alkalinity mg/l"
+                min="0"
               />
               <br />
               <input
                 type="number"
                 id="totalHardness"
                 name="totalHardness"
-                placeholder="Enter Total Hardness"
+                placeholder="Enter Total Hardness mg/l"
+                min="0"
               />
               <br />
               <input
                 type="number"
                 id="nitrite"
                 name="nitrite"
-                placeholder="Enter Nitrite"
+                placeholder="Enter Nitrite mg/l"
+                min="0"
               />
               <br />
               <input
                 type="number"
                 id="lead"
                 name="lead"
-                placeholder="Enter Lead"
+                placeholder="Enter Lead ug/l"
+                min="0"
               />
               <br />
               <input
                 type="number"
                 id="manganese"
                 name="manganese"
-                placeholder="Enter Manganese"
+                placeholder="Enter Manganese ug/l"
+                min="0"
               />
               <br />
               <input
                 type="number"
                 id="coliformBacteria"
                 name="coliformBacteria"
-                placeholder="Enter Coliform Bacteria"
+                placeholder="Enter Coliform Bacteria "
+                min="0"
               />
               <br />
               <button id="submitButton" type="submit">
