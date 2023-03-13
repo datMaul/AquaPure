@@ -21,16 +21,14 @@ import Sticker from "./item_pages/shop_assets/APSticker.png"
 
 
 export default function Checkout() {
+    const [discount, setdiscount] = useState(0);
     const [cartItems, setcartItems] = useState([]);
     const [productData, setproductData] = useState([]);
-    const [subtotal, setsubtotal] = useState(null);
-    const [show, setshow] = useState(false);
+    const [subtotal, setsubtotal] = useState(0);
     const [user, setuser] = useState([]);
     const storeuserid = localStorage.getItem("user_ID")
-    const [date, setdate] = useState();
     const [Userpoints, setUserpoints] = useState([]);
     const [IsCheck,setcheck] = useState(false);
-    const [subtotalpoints,setsubtotalpoints] = useState(null)
     const productimg = {
         "Recycled Sports Bottle": water,
         Backpack: backpack,
@@ -49,20 +47,24 @@ export default function Checkout() {
         "AquaPure Sticker & Badge":Sticker,
     
       }
-    
+
 
     useEffect(() => {
         loadItems();
         loadProducts();
         loadUserPoints();
+        
 
 
     },[])
+    
 
     useEffect(()=>{
         total();
         loadUser();
-    },[cartItems,productData])
+
+        
+    },[cartItems])
 
     const loadItems = () => {
         axios.get(`http://localhost:8080/item/user/${localStorage.getItem("user_ID")}`)
@@ -97,48 +99,39 @@ export default function Checkout() {
             productData.map(product => {
                 if(item.product_id === product.productID){
                     total_price += product.product_price*item.quantity
-                    
                 }
-            setsubtotal(total_price)
-            setsubtotalpoints(total_price)
-
             })
         })
-        
+        setsubtotal(total_price)
     }
-    const tempUserPoints = 100000;
     // 100000 points == 100 pounds
     // 100 - 18 = 98
-    const [userpoints,setuserpoints] = useState(0)
-    const apply_points = (userid) => {
+    const apply_points = () => {
         user.map(user => {
           Userpoints.map(score => {
             if(user.eMail === score.email){
-              if(user.userId.toString() === userid){
+              if(user.userId.toString() === storeuserid){
                 var points = score.score;
                 // var points = tempUserPoints
-
                 if(points>=100){
                   if(!IsCheck){
-                    var discount = points/1000;
-                    var newtotal = subtotal-discount;
-                    console.log(score.score-(subtotalpoints*100),"new points after applied")
+                    const discount = points/1000;
+                    const newtotal = subtotal-discount;
+                    setdiscount(discount)
                     if(newtotal<0){
-                        
                         setsubtotal(0)
-
-
                     }
                     else{
-                        
+                        console.log(newtotal)
                         setsubtotal(newtotal)
-
                     }
                   }
                   else if(IsCheck){
-                    console.log("subtotal after applying points",subtotal)
+                    const discount = points/1000;
+                    const newtotal = subtotal+discount;
+                    setsubtotal(newtotal)
+                    
 
-                    total();
                   }
               }
               
@@ -146,15 +139,12 @@ export default function Checkout() {
             else{
               setsubtotal(subtotal)
             }
-            
           }})
       })
+      
       }
-    const checkhandler = () => {
-        setcheck(!IsCheck);
-        apply_points(storeuserid);
-        loadUser();
-    }
+   
+    
 
 
     const clearCart = async () => {
@@ -181,7 +171,7 @@ export default function Checkout() {
                         if(score.email === user.eMail){
                             if(user.userId.toString() === storeuserid){
                                 const points = score.score;
-                                const newPoints = points - (subtotalpoints*100);
+                                const newPoints = points - (subtotal*1000);
                                 if(newPoints<0){
                                     axios.put(`http://localhost:8080/points/findByEmail?email=`+user.eMail+'',{
                                     'score':0,
@@ -201,8 +191,6 @@ export default function Checkout() {
         })
         clearCart();
     }
-
-   
     const [confirm, setconfirm] = useState(false)
     
     return (
@@ -269,20 +257,15 @@ export default function Checkout() {
                     }
                     <div className="discount">
                         <label htmlFor="checkbox">Apply Points Discount</label>
-                        <input type="checkbox" checked={IsCheck} onChange={() => checkhandler()}></input>
+                        <input type="checkbox" checked={IsCheck} onChange={() => {setcheck(!IsCheck);apply_points();}}></input>
                     </div>
 
                     <div className="subtotal">
                         <h3 className="total">Total</h3>
-                        <h2 className="subtotal_num">£{subtotal}</h2>
+                        <h2 className="subtotal_num">£{IsCheck ? (subtotal-discount<0 ? 0 : subtotal-discount ):subtotal}</h2>
                     </div>
-                    {/* Requires npm react-popup installed */}
-                    {/* <Popup trigger={<button>PURCHASE</button>}>
-                        <div className="purchase">
-                            <h1>Thank you for your purchase!</h1>
-                        </div>
-                    </Popup> */}
-                    <button onClick={()=>{total();purchase();}}>PURCHASE</button>
+                
+                    <button onClick={()=>{purchase();}}>PURCHASE</button>
                 </div>
             </div>
         </div>
