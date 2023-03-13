@@ -30,13 +30,29 @@ public class TestkitPurchaseHistoryController {
         return testkitPurchaseHistoryRepository.findAll();
     }
     @PutMapping("/testkit/activate/{id}")
-    public TestkitPurchaseHistory activateTestKit(@PathVariable UUID id) {
-        Optional<TestkitPurchaseHistory> testKitPurchaseHistory = testkitPurchaseHistoryRepository.findById(id);
-        if (testKitPurchaseHistory.isEmpty()) {
+    public TestkitPurchaseHistory activateTestKit(@PathVariable UUID id, @RequestBody TestkitPurchaseHistory newTestkitPurchaseHistory) {
+        Optional<TestkitPurchaseHistory> optionalTestKitPurchaseHistory = testkitPurchaseHistoryRepository.findById(id);
+        if (optionalTestKitPurchaseHistory.isEmpty()) {
             return null;
         }
-        testKitPurchaseHistory.get().setUsestatus(true);
-        testkitPurchaseHistoryRepository.save(testKitPurchaseHistory.get());
-        return testKitPurchaseHistory.get();
+
+        TestkitPurchaseHistory testKitPurchaseHistory = optionalTestKitPurchaseHistory.get();
+
+        if (testKitPurchaseHistory.getUsestatus()) {
+            throw new RuntimeException("This test kit is already activated.");
+        }
+
+        testKitPurchaseHistory.setUsestatus(true);
+        // testKitPurchaseHistory.setPH(newTestkitPurchaseHistory.getPH());
+        // testKitPurchaseHistory.setLongitude(newTestkitPurchaseHistory.getLongitude());
+        // testKitPurchaseHistory.setLatitude(newTestkitPurchaseHistory.getLatitude());
+        // testKitPurchaseHistory.setTotalAlkalinity(newTestkitPurchaseHistory.getTotalAlkalinity());
+        // testKitPurchaseHistory.setTotalHardness(newTestkitPurchaseHistory.getTotalHardness());
+        // testKitPurchaseHistory.setNitrite(newTestkitPurchaseHistory.getNitrite());
+        // testKitPurchaseHistory.setLead(newTestkitPurchaseHistory.getLead());
+        // testKitPurchaseHistory.setManganese(newTestkitPurchaseHistory.getManganese());
+        // testKitPurchaseHistory.setColiformBacteria(newTestkitPurchaseHistory.getColiformBacteria());
+        
+        return testkitPurchaseHistoryRepository.save(testKitPurchaseHistory);
     }
 }
