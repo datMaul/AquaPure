@@ -1,16 +1,21 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "./AccountPageSections.css";
 import React, { useState } from 'react'
+import { Link, useNavigate } from "react-router-dom";
+
+
+
 
 
 export default function TestkitEntry() {
+
+  const navigate = useNavigate();
   
   const [User, setUser] = useState({
     uniqueID: "",
     pH: "",
-    longitude: "",
-    latitude: "",
+    // longitude: "",
+    // latitude: "",
     totalAlkalinity: "",
     totalHardness: "",
     nitrite: "",
@@ -23,8 +28,8 @@ export default function TestkitEntry() {
   const {
     uniqueID,
     pH,
-    longitude,
-    latitude,
+    // longitude,
+    // latitude,
     totalAlkalinity,
     totalHardness,
     nitrite,
@@ -34,8 +39,8 @@ export default function TestkitEntry() {
     
   } = User;
 
-  const onInputChange = (e) => {
-    setUser({ ...User, [e.target.name]: e.target.value });
+  const onInputChange = (b) => {
+    setUser({ ...User, [b.target.name]: b.target.value });
   };
   
   
@@ -44,17 +49,18 @@ export default function TestkitEntry() {
   if (!localStorage.getItem("token")) {
     return <Link to="/" />;
   }
-  async function handleSubmit(e) {
+  async function handleSubmit(b) {
   
 
     
-    e.preventDefault();
+    b.preventDefault();
 
-    const form = new FormData(e.target);
+    const form = new FormData(b.target);
 
     const data = Object.fromEntries(form.entries());
 
-    console.log(data);
+    // console.log(data);
+    console.log(b);
 
 
 
@@ -83,12 +89,32 @@ export default function TestkitEntry() {
       window.alert("You cannot activate this test kit because it's already activated.")
     } else {
       window.alert("Successfully activated the test kit.")
-      saveUniqueid()
+      
+      
+      
+      
     }
     console.log(x);
     
   }
 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  // const onSubmit = async (b) => {
+  //   console.log(b)
+  //   b.preventDefault();
+  //   User.accountType = "User";
+  //   await axios.post("http://localhost:8080/accounts", User);
+  //   navigate("/");
+    
+  // };
 
   return (
     <div className="Accounts-Content">
@@ -119,7 +145,7 @@ export default function TestkitEntry() {
             <label htmlFor="coliformBacteria">Coliform Bacteria:</label>
           </div>
           <div className="Inputs-Content">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(b) => handleSubmit(b)}>
               <input
                 type="text"
                 id="uniqueID"
@@ -127,7 +153,7 @@ export default function TestkitEntry() {
                 placeholder="Enter Unique ID"
                 minLength={1}
                 value={uniqueID}
-                onChange={(e) => onInputChange(e)}
+                onChange={(b) => onInputChange(b)}
                 
               />
               <br />
@@ -139,18 +165,18 @@ export default function TestkitEntry() {
                 min="0"
                 max="14"
                 value={pH}
-                onChange={(e) => onInputChange(e)}
+                onChange={(b) => onInputChange(b)}
               />
               <br />
               <input
                 type="number"
                 id="longitude"
                 name="Longitude"
-                placeholder="Entet Logitude"
+                placeholder="Enter Logitude"
                 min="-180"
                 max="180"
-                value={longitude}
-                onChange={(e) => onInputChange(e)}
+                // value={longitude}
+                onChange={(b) => onInputChange(b)}
                 
               />
               <br />
@@ -158,11 +184,11 @@ export default function TestkitEntry() {
                 type="number"
                 id="latitude"
                 name="Latitude"
-                placeholder="Entet Latitude"
+                placeholder="Enter Latitude"
                 min="-90"
                 max="90"
-                value={latitude}
-                onChange={(e) => onInputChange(e)}
+                // value={latitude}
+                onChange={(b) => onInputChange(b)}
 
               />
               <br />
@@ -173,7 +199,7 @@ export default function TestkitEntry() {
                 placeholder="Enter Total Alkalinity mg/l"
                 min="0"
                 value={totalAlkalinity}
-                onChange={(e) => onInputChange(e)}
+                onChange={(b) => onInputChange(b)}
               />
               <br />
               <input
@@ -183,7 +209,7 @@ export default function TestkitEntry() {
                 placeholder="Enter Total Hardness mg/l"
                 min="0"
                 value={totalHardness}
-                onChange={(e) => onInputChange(e)}
+                onChange={(b) => onInputChange(b)}
               />
               <br />
               <input
@@ -193,7 +219,7 @@ export default function TestkitEntry() {
                 placeholder="Enter Nitrite mg/l"
                 min="0"
                 value={nitrite}
-                onChange={(e) => onInputChange(e)}
+                onChange={(b) => onInputChange(b)}
               />
               <br />
               <input
@@ -203,7 +229,7 @@ export default function TestkitEntry() {
                 placeholder="Enter Lead ug/l"
                 min="0"
                 value={lead}
-                onChange={(e) => onInputChange(e)}
+                onChange={(b) => onInputChange(b)}
               />
               <br />
               <input
@@ -213,7 +239,7 @@ export default function TestkitEntry() {
                 placeholder="Enter Manganese ug/l"
                 min="0"
                 value={manganese}
-                onChange={(e) => onInputChange(e)}
+                onChange={(b) => onInputChange(b)}
               />
               <br />
               <input
@@ -223,7 +249,7 @@ export default function TestkitEntry() {
                 placeholder="Enter Coliform Bacteria "
                 min="0"
                 value={coliformBacteria}
-                onChange={(e) => onInputChange(e)}
+                onChange={(b) => onInputChange(b)}
               />
               <br />
               <button id="submitButton" type="submit">
