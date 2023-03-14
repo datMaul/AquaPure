@@ -51,15 +51,15 @@ export default function DonationForm() {
             </div>
             <div className="inputBox">
               <span>email :</span>
-              <input type="email" placeholder="example@example.com" required onChange={(event) => setDonationData({ ...DonationData, email: event.target.value })} value={email}/>
+              <input type="email" placeholder="example@example.com" pattern="[^@]+@[^@]+.+" required onChange={(event) => setDonationData({ ...DonationData, email: event.target.value })} value={email}/>
             </div>
             <div className="inputBox">
               <span>Charity:</span>
               <select id="charity" name="charity" value={charity} onChange={(event) => setDonationData({ ...DonationData, charity: event.target.value })}>
                 <option value="WaterAid">WaterAid</option>
-                <option value="Soil Assosiation">Soil Assosiation</option>
-                <option value="RSPB">RSPB</option>
-                <option value="WWF">WWF</option>
+                <option value="drop_in_the_bucket">Drop in the bucket</option>
+                <option value="bloodWater">Blood: Water</option>
+                <option value="waterOrg">Water.org</option>
               </select>
             </div>
             <div className="inputBox">
@@ -75,7 +75,7 @@ export default function DonationForm() {
             </div>
             <div className="inputBox">
               <span>credit card number :</span>
-              <input type="number" placeholder="1111-2222-3333-4444" required onChange={(event) => setDonationData({ ...DonationData, creditCardNumber: event.target.value })} value={creditCardNumber}/>
+              <input type="number" placeholder="1111-2222-3333-4444" maxLength={16} required onChange={(event) => setDonationData({ ...DonationData, creditCardNumber: event.target.value })} value={creditCardNumber}/>
             </div>
             <div className="flex">
               <div className="inputBox">
@@ -84,16 +84,17 @@ export default function DonationForm() {
               </div>
               <div className="inputBox">
                 <span>CVV :</span>
-                <input type="text" placeholder="1234" required/>
+                <input type="text" placeholder="1234" maxLength={3} required/>
               </div>
             </div>
           </div>
-          <div className="remember-forgot">
+          <div class="remember-forgot">
             <label>
-              <input type="checkbox" required/>
-              I agree with the terms and conditions
-            </label>
-          </div>
+              <input required type="checkbox"/>
+              I agree with the term and condition
+              </label>
+              <p>By making a donation, you agree to our terms and conditions. All donations are final and non-refundable. We reserve the right to decline or refund any donation at our discretion. We reserve the right to modify these terms and conditions at any time without prior notice. We take no responsibility for any unauthorized use of your payment method while making a donation.</p>
+            </div>
         </div>
         <input type="submit" value="proceed to checkout" className="submit-btn" />
       </form>

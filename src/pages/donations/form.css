@@ -96,3 +96,11 @@ body {
 .wrapper form .submit-btn:hover {
   background: #5a708b;
 }
+
+.remember-forgot {
+  padding-top: 2%;
+}
+
+p {
+  font-size: 0.7em;
+}
