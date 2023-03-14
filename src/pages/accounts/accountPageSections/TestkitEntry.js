@@ -5,7 +5,42 @@ import React, { useState } from 'react'
 
 
 export default function TestkitEntry() {
-  const [updated, setUpdated] = useState('');
+  
+  const [User, setUser] = useState({
+    uniqueID: "",
+    pH: "",
+    longitude: "",
+    latitude: "",
+    totalAlkalinity: "",
+    totalHardness: "",
+    nitrite: "",
+    lead: "",
+    manganese: "",
+    coliformBacteria: "",
+    
+  });
+
+  const {
+    uniqueID,
+    pH,
+    longitude,
+    latitude,
+    totalAlkalinity,
+    totalHardness,
+    nitrite,
+    lead,
+    manganese,
+    coliformBacteria,
+    
+  } = User;
+
+  const onInputChange = (e) => {
+    setUser({ ...User, [e.target.name]: e.target.value });
+  };
+  
+  
+  
+  
   if (!localStorage.getItem("token")) {
     return <Link to="/" />;
   }
@@ -53,24 +88,6 @@ export default function TestkitEntry() {
     console.log(x);
     
   }
-  
-  
-  async function saveUniqueid() {
-    
-    const email = localStorage.getItem("email");
-    const response = await fetch("http://localhost:8080/testkitid/addTestKitId", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        unique_ID: updated,
-      }),
-    });
-    const data = await response.json();
-    console.log(data);
-  }
 
 
   return (
@@ -108,9 +125,10 @@ export default function TestkitEntry() {
                 id="uniqueID"
                 name="uniqueID"
                 placeholder="Enter Unique ID"
-                value={updated}
                 minLength={1}
-                onChange={event => {setUpdated(event.target.value)}}
+                value={uniqueID}
+                onChange={(e) => onInputChange(e)}
+                
               />
               <br />
               <input
@@ -120,6 +138,8 @@ export default function TestkitEntry() {
                 placeholder="Enter pH"
                 min="0"
                 max="14"
+                value={pH}
+                onChange={(e) => onInputChange(e)}
               />
               <br />
               <input
@@ -129,6 +149,8 @@ export default function TestkitEntry() {
                 placeholder="Entet Logitude"
                 min="-180"
                 max="180"
+                value={longitude}
+                onChange={(e) => onInputChange(e)}
                 
               />
               <br />
@@ -139,6 +161,8 @@ export default function TestkitEntry() {
                 placeholder="Entet Latitude"
                 min="-90"
                 max="90"
+                value={latitude}
+                onChange={(e) => onInputChange(e)}
 
               />
               <br />
@@ -148,6 +172,8 @@ export default function TestkitEntry() {
                 name="totalAlkalinity"
                 placeholder="Enter Total Alkalinity mg/l"
                 min="0"
+                value={totalAlkalinity}
+                onChange={(e) => onInputChange(e)}
               />
               <br />
               <input
@@ -156,6 +182,8 @@ export default function TestkitEntry() {
                 name="totalHardness"
                 placeholder="Enter Total Hardness mg/l"
                 min="0"
+                value={totalHardness}
+                onChange={(e) => onInputChange(e)}
               />
               <br />
               <input
@@ -164,6 +192,8 @@ export default function TestkitEntry() {
                 name="nitrite"
                 placeholder="Enter Nitrite mg/l"
                 min="0"
+                value={nitrite}
+                onChange={(e) => onInputChange(e)}
               />
               <br />
               <input
@@ -172,6 +202,8 @@ export default function TestkitEntry() {
                 name="lead"
                 placeholder="Enter Lead ug/l"
                 min="0"
+                value={lead}
+                onChange={(e) => onInputChange(e)}
               />
               <br />
               <input
@@ -180,6 +212,8 @@ export default function TestkitEntry() {
                 name="manganese"
                 placeholder="Enter Manganese ug/l"
                 min="0"
+                value={manganese}
+                onChange={(e) => onInputChange(e)}
               />
               <br />
               <input
@@ -188,6 +222,8 @@ export default function TestkitEntry() {
                 name="coliformBacteria"
                 placeholder="Enter Coliform Bacteria "
                 min="0"
+                value={coliformBacteria}
+                onChange={(e) => onInputChange(e)}
               />
               <br />
               <button id="submitButton" type="submit">
