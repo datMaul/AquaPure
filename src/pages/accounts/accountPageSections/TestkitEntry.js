@@ -1,13 +1,18 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./AccountPageSections.css";
+import React, { useState } from 'react'
+
 
 export default function TestkitEntry() {
+  const [updated, setUpdated] = useState('');
   if (!localStorage.getItem("token")) {
     return <Link to="/" />;
   }
-
   async function handleSubmit(e) {
+  
+
+    
     e.preventDefault();
 
     const form = new FormData(e.target);
@@ -16,6 +21,9 @@ export default function TestkitEntry() {
 
     console.log(data);
 
+
+
+    
     const response = await fetch(`http://localhost:8080/testkit/activate/${data.uniqueID}`, {
       method: "PUT",
       headers: {
@@ -40,9 +48,30 @@ export default function TestkitEntry() {
       window.alert("You cannot activate this test kit because it's already activated.")
     } else {
       window.alert("Successfully activated the test kit.")
+      saveUniqueid()
     }
     console.log(x);
+    
   }
+  
+  
+  async function saveUniqueid() {
+    
+    const email = localStorage.getItem("email");
+    const response = await fetch("http://localhost:8080/testkitid/addTestKitId", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        unique_ID: updated,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  }
+
 
   return (
     <div className="Accounts-Content">
@@ -79,7 +108,9 @@ export default function TestkitEntry() {
                 id="uniqueID"
                 name="uniqueID"
                 placeholder="Enter Unique ID"
+                value={updated}
                 minLength={1}
+                onChange={event => {setUpdated(event.target.value)}}
               />
               <br />
               <input
@@ -168,4 +199,5 @@ export default function TestkitEntry() {
       </div>
     </div>
   );
+  
 }
