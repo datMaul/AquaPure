@@ -4,15 +4,6 @@ import axios from 'axios';
 //import { Link } from "react-router-dom";
 
 export default function DonationForm() {
-  const mysql = require('mysql');
-
-  const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'G_16',
-    password: '3XcGZG4Sgr',
-    database: 'G_16_DB'
-  });
-
   const [DonationData, setDonationData] = useState({
     fullName: "",
     email: "",
@@ -47,21 +38,18 @@ export default function DonationForm() {
     console.log("Submitting form...");
     
     axios.post('http://localhost:3000/donations/Invoice', DonationData)
-      .then(response => {
-        console.log(response);
-        const sql = `INSERT INTO donations (donor_name, amount, payment_method) VALUES ('${DonationData.fullName}', '${DonationData.email}',
-        '${DonationData.charity}', '${DonationData.amount}', '${DonationData.cardName}', '${DonationData.creditCardNumber}', '${DonationData.expDate}')`;
-        connection.query(sql, (error, results) => {
-          if (error) {
-            console.error(error);
-          } else {
-            console.log("DonationData saved to database");
-          }
-        });
-      })
+  .then(response => {
+    console.log(response);
+    const sql = `INSERT INTO donations (fullName, email, charity, amount, payment_method) VALUES ('${DonationData.fullName}', '${DonationData.email}',
+    '${DonationData.charity}', '${DonationData.amount}', '${DonationData.cardName}', '${DonationData.creditCardNumber}', '${DonationData.expDate}')`;
+    axios.post('http://localhost:3000/donations', sql)
+      .then(response => console.log(response))
       .catch(error => console.error(error));
-    
-    console.log(DonationData);
+  })
+  .catch(error => console.error(error));
+
+console.log(DonationData);
+
   };
 
   // const handleSubmit = (event) => {
