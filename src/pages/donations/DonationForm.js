@@ -4,6 +4,15 @@ import axios from 'axios';
 //import { Link } from "react-router-dom";
 
 export default function DonationForm() {
+  const mysql = require('mysql');
+
+  const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'G_16',
+    password: '3XcGZG4Sgr',
+    database: 'G_16_DB'
+  });
+
   const [DonationData, setDonationData] = useState({
     fullName: "",
     email: "",
@@ -32,12 +41,37 @@ export default function DonationForm() {
     }));
   };
 
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('/donation/DonationForm', DonationData).then(response => console.log(response)).catch(error => console.error(error));
-    // Send DonationData to your database here
+    console.log("Submitting form...");
+    
+    axios.post('http://localhost:3000/donations/Invoice', DonationData)
+      .then(response => {
+        console.log(response);
+        const sql = `INSERT INTO donations (donor_name, amount, payment_method) VALUES ('${DonationData.fullName}', '${DonationData.email}',
+        '${DonationData.charity}', '${DonationData.amount}', '${DonationData.cardName}', '${DonationData.creditCardNumber}', '${DonationData.expDate}')`;
+        connection.query(sql, (error, results) => {
+          if (error) {
+            console.error(error);
+          } else {
+            console.log("DonationData saved to database");
+          }
+        });
+      })
+      .catch(error => console.error(error));
+    
     console.log(DonationData);
   };
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   console.log("Submitting form...");
+  //   axios.post('http://localhost:3000/donations/Invoice', DonationData).then(response => console.log(response)).catch(error => console.error(error));
+  //   // Send DonationData to your database here
+  //   console.log(DonationData);
+  // };
+  
 
   return (
     <div className="wrapper">
@@ -96,11 +130,8 @@ export default function DonationForm() {
               <p>By making a donation, you agree to our terms and conditions. All donations are final and non-refundable. We reserve the right to decline or refund any donation at our discretion. We reserve the right to modify these terms and conditions at any time without prior notice. We take no responsibility for any unauthorized use of your payment method while making a donation.</p>
             </div>
         </div>
-        <input type="submit" value="proceed to checkout" className="submit-btn" />
+        <input type="submit" value="Proceed to Checkout" className="submit-btn" />
       </form>
     </div>
   );
 }
-
-
-
