@@ -1,6 +1,7 @@
 .check_page{
     background-color: grey;
-    margin:30px 200px auto;
+    margin:0 200px auto;
+    
 }
 .check_title{
 
@@ -18,6 +19,7 @@
     padding-top:50px;
     float:right;
     width:50%;
+    padding-bottom:50px;
     
     
 }
