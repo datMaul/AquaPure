@@ -78,6 +78,9 @@ export default function Shop() {
               <Link to='/shop/Shop_appearal'><button className="item">Clothes</button></Link>
             </li>
             <li>
+              <Link to='/shop/Shop_drinks'><button className="item">Drinkware</button></Link>
+            </li>
+            <li>
               
             </li>
           </ul>
