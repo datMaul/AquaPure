@@ -45,6 +45,8 @@ import Shop_purchase from "./pages/accounts/accountPageSections/purchasehistory/
 import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitPurchaseHistory/PurchaseHistoryTestkit";
 import PurchaseHistoryShop from "./pages/accounts/accountPageSections/purchasehistory/shopPurchaseHistory/PurchaseHistoryShop";
 import ShopCart from "./pages/accounts/cart/shopcart/ShopCartPage"
+import Shop_appearal from "./pages/shop/product_pages/Shop_Appearal";
+import Shop_drinks from "./pages/shop/product_pages/Shop_Drinkware"
 // import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -139,6 +141,8 @@ function App() {
           <Route path="/backpack" element={<Backpack />} />
           <Route path="/cap" element={<Cap />} />
           <Route path="/mask" element={<Mask />} />
+          <Route path='/shop/Shop_Appearal' element={<Shop_appearal/>}/>
+          <Route path='/shop/Shop_drinks' element={<Shop_drinks/>}/>
         </Routes>
       </div>
     </>
