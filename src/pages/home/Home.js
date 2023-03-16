@@ -148,7 +148,7 @@ export default function Home() {
                   <br />
                   <ul className="Map-Buttons"></ul>
                   <Link to="/map">
-                    <button id="Game_Play_Btn">View Map</button>
+                    <button id="Map_Btn">View Map</button>
                   </Link>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default function Home() {
                 <img id="MapImage" src={QuizImage} />
               </div>
               <div className="Quiz-Info">
-                <h3>Aquapure Quiz</h3>
+                <h3>AquaPure Quiz</h3>
                 <div className="Quiz-Content">
                   <p>
                     Aquapure has an exciting feature that challenges users to an

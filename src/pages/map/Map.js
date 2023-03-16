@@ -23,8 +23,8 @@ export default function Map() {
       center: [lng, lat],
       zoom: zoom,
     });
-    map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
-    map.current.addControl(new maplibregl.GeolocateControl(), 'top-right');
+    map.current.addControl(new maplibregl.NavigationControl(), "top-right");
+    map.current.addControl(new maplibregl.GeolocateControl(), "top-right");
     populateParameterFilters();
 
     map.current.popups = [];
@@ -40,14 +40,13 @@ export default function Map() {
       if (map.current.records.length) updateTiles();
     });
 
-    map.current.on('load', async function () {
-
+    map.current.on("load", async function () {
       await fetchMapRecords();
       if (map.current.records.length) updateTiles();
 
-      const searchInput = document.getElementById('search_input');
-      const searchResults = document.getElementById('search_results');
-      const searchButton = document.getElementById('search_button');
+      const searchInput = document.getElementById("search_input");
+      const searchResults = document.getElementById("search_results");
+      const searchButton = document.getElementById("search_button");
 
       // Make the search input visible when it is focused
       searchInput.addEventListener("focus", () => {
@@ -89,19 +88,19 @@ export default function Map() {
         type: "geojson",
         data: {
           type: "FeatureCollection",
-          features: []
-        }
+          features: [],
+        },
       });
       map.current.addLayer({
         id: "samples_circles",
         type: "circle",
         source: "samples_circles",
         paint: {
-          'circle-color': '#11b4da',
-          'circle-radius': 4,
-          'circle-stroke-width': 1,
-          'circle-stroke-color': '#fff'
-        }
+          "circle-color": "#11b4da",
+          "circle-radius": 4,
+          "circle-stroke-width": 1,
+          "circle-stroke-color": "#fff",
+        },
       });
 
       // Add tile layer to map
@@ -109,18 +108,21 @@ export default function Map() {
         type: "geojson",
         data: {
           type: "FeatureCollection",
-          features: []
-        }
+          features: [],
+        },
       });
-      map.current.addLayer({
-        id: "samples_tiles",
-        type: "fill",
-        source: "samples_tiles",
-        paint: {
-          "fill-color": ["get", "fillColour"],
-          "fill-opacity": 0.5
-        }
-      }, "samples_circles");
+      map.current.addLayer(
+        {
+          id: "samples_tiles",
+          type: "fill",
+          source: "samples_tiles",
+          paint: {
+            "fill-color": ["get", "fillColour"],
+            "fill-opacity": 0.5,
+          },
+        },
+        "samples_circles"
+      );
 
       // Add search results layer
       map.current.addSource("search-results", {
@@ -148,10 +150,9 @@ export default function Map() {
       );
       checkboxes.forEach((checkbox) => {
         checkbox.addEventListener("change", () => {
-          filterEvent()
+          filterEvent();
         });
       });
-      
     });
   });
 
@@ -200,7 +201,7 @@ export default function Map() {
       waterBodyTypes: waterBodyTypes,
       parameterNames: selectedParameter,
     };
-    
+
     // Send a GET request to the server to fetch map records by parameters
     const response = await axios.get(
       "http://localhost:8080/maprecordsbyparams",
@@ -290,14 +291,14 @@ export default function Map() {
     };
 
     records.forEach((record) => {
-
       //console.log(`record: ${JSON.stringify(record)}`)
 
-      const sampleId = record.openWIMSRecord?.samplingPoint 
-                    ?? record.testkitPurchase?.id 
-                    ?? record.mapRecord_ID;
+      const sampleId =
+        record.openWIMSRecord?.samplingPoint ??
+        record.testkitPurchase?.id ??
+        record.mapRecord_ID;
 
-      // Create a GeoJSON Feature for each record 
+      // Create a GeoJSON Feature for each record
       var circleFeature = {
         type: "Feature",
         geometry: {
@@ -311,8 +312,8 @@ export default function Map() {
           waterBodyType: record.waterBodyType,
           parameterName: record.parameterName,
           parameterValue: record.parameterValue,
-          parameterUnit: record.parameterUnit
-        }
+          parameterUnit: record.parameterUnit,
+        },
       };
 
       // Add the feature to the FeatureCollection
@@ -335,22 +336,22 @@ export default function Map() {
 
       // Get quality grade based from parameter-data.json and sample value
       // getScore(passed_value, min_range, max_range, ideal_value, sensitivity, function_type="sigmoid_unipolar")
-      var qualityGrade = '?';
+      var qualityGrade = "?";
 
-      const scoringJSON = paramData[parameterName]['scoring_function'];
-      console.log(scoringJSON)
+      const scoringJSON = paramData[parameterName]["scoring_function"];
+      console.log(scoringJSON);
       if (scoringJSON) {
         qualityGrade = getScore(
-          parameterValue, 
-          scoringJSON['min_range'], 
-          scoringJSON['max_range'], 
-          scoringJSON['ideal_value'], 
-          scoringJSON['function_sensitivity'],
-          paramData[parameterName].scoring_function.shift_x ?? 0, 
-          scoringJSON['type']
-          );
-        console.log(qualityGrade)
-        
+          parameterValue,
+          scoringJSON["min_range"],
+          scoringJSON["max_range"],
+          scoringJSON["ideal_value"],
+          scoringJSON["function_sensitivity"],
+          paramData[parameterName].scoring_function.shift_x ?? 0,
+          scoringJSON["type"]
+        );
+        console.log(qualityGrade);
+
         // Multiply quality grade by 10 to get a 10-star rating and round to nearest 1 decimal place
         qualityGrade = Math.round(qualityGrade * 10 * 10) / 10;
       }
@@ -359,35 +360,40 @@ export default function Map() {
 
       // Get negative effects based on parameter value and quality grade
       const effects = paramData[parameterName].effects ?? null;
-      var effectsString = '';
-      console.log(effects)
+      var effectsString = "";
+      console.log(effects);
       if (effects) {
-        console.log(`effects found for ${parameterName}`)
+        console.log(`effects found for ${parameterName}`);
         if (qualityGrade < 6) {
-          console.log(`low quality grade for ${parameterName}`)
+          console.log(`low quality grade for ${parameterName}`);
           // Low parameter value
           if (parameterValue < scoringJSON.ideal_value && effects.low) {
-            console.log(`low effects found for ${parameterName}`)
+            console.log(`low effects found for ${parameterName}`);
             effectsString = `<br/><br><b>Effects:</b><br/>${effects.low}`;
           }
           // High parameter value
           else if (parameterValue > scoringJSON.ideal_value && effects.high) {
-            console.log(`high effects found for ${parameterName}`)
+            console.log(`high effects found for ${parameterName}`);
             effectsString = `<br/><br><b>Effects:</b><br/>${effects.high}`;
           }
         }
       }
 
       // Create a popup
-      var popup = new maplibregl.Popup({ offset: 5, maxWidth: "320px" }).setHTML(
+      var popup = new maplibregl.Popup({
+        offset: 5,
+        maxWidth: "320px",
+      }).setHTML(
         `<b>Sample ID:</b><br/>${sampleId} (${sourceType})<br/><br>` +
-        // `<b>Source type:</b><br/>${sourceType}<br/><br>` +
-        `<b>Sample date:</b><br/>${sampleDate}<br/><br>` +
-        `<b>Water body type:</b><br/>${waterBodyType}<br/><br>` +
-        `<b>Location:</b><br/> ${e.features[0].geometry.coordinates.join(', ')}<br/><br>` +
-        `<b>Parameter(s):</b><br/>` +
-        `${parameterName}: ${parameterValue} ${parameterUnit} (<p style="color:${gradeHex}; display:inline;">${qualityGrade}☆</p>)` +
-        `${effectsString}`
+          // `<b>Source type:</b><br/>${sourceType}<br/><br>` +
+          `<b>Sample date:</b><br/>${sampleDate}<br/><br>` +
+          `<b>Water body type:</b><br/>${waterBodyType}<br/><br>` +
+          `<b>Location:</b><br/> ${e.features[0].geometry.coordinates.join(
+            ", "
+          )}<br/><br>` +
+          `<b>Parameter(s):</b><br/>` +
+          `${parameterName}: ${parameterValue} ${parameterUnit} (<p style="color:${gradeHex}; display:inline;">${qualityGrade}☆</p>)` +
+          `${effectsString}`
       );
 
       // Add the popup to the map
@@ -419,11 +425,11 @@ export default function Map() {
     };
 
     records.forEach((record) => {
-
       // Get the sample ID
-      const sampleId = record.openWIMSRecord?.samplingPoint 
-                   ?? record.testkitPurchase?.id 
-                   ?? record.mapRecord_ID;
+      const sampleId =
+        record.openWIMSRecord?.samplingPoint ??
+        record.testkitPurchase?.id ??
+        record.mapRecord_ID;
 
       // Loop through all features in the GeoJSON FeatureCollection
       // and check if the record is within the same tile bounds as another record
@@ -432,10 +438,18 @@ export default function Map() {
         const feature = tileCollection.features[i];
         const coords = feature.geometry.coordinates[0];
 
-        if ((record.longitude >= coords[0][0] && record.longitude <= coords[3][0]) && (record.latitude >= coords[0][1] && record.latitude <= coords[1][1])) {
-          feature.properties.avgParamValue = (feature.properties.avgParamValue + record.parameterValue) / 2;
+        if (
+          record.longitude >= coords[0][0] &&
+          record.longitude <= coords[3][0] &&
+          record.latitude >= coords[0][1] &&
+          record.latitude <= coords[1][1]
+        ) {
+          feature.properties.avgParamValue =
+            (feature.properties.avgParamValue + record.parameterValue) / 2;
           feature.properties.sampleIds.push(sampleId);
-          if (!feature.properties.waterBodyTypes.includes(record.waterBodyType)) {
+          if (
+            !feature.properties.waterBodyTypes.includes(record.waterBodyType)
+          ) {
             feature.properties.waterBodyTypes.push(record.waterBodyType);
           }
           recordInExistingTile = true;
@@ -446,20 +460,26 @@ export default function Map() {
       // If the record is not within the same tile bounds of another record, create a new tile
       if (!recordInExistingTile) {
         tileCollection.features.push({
-          'type': "Feature",
-          'geometry': {
-            'type': "Polygon",
-            'coordinates': [getTileCoords([record.longitude, record.latitude], map.current.tileSize, latPoints)]
+          type: "Feature",
+          geometry: {
+            type: "Polygon",
+            coordinates: [
+              getTileCoords(
+                [record.longitude, record.latitude],
+                map.current.tileSize,
+                latPoints
+              ),
+            ],
           },
-          'properties': {
-            'sampleIds': [sampleId],
-            'waterBodyTypes': [record.waterBodyType],
-            'parameterName': record.parameterName,
-            'avgParamValue': record.parameterValue,
-            'parameterUnit': record.parameterUnit,
-            'fillColour': '#808080',
-            'popupHTML': 'There is no data to be displayed for this tile.'
-          }
+          properties: {
+            sampleIds: [sampleId],
+            waterBodyTypes: [record.waterBodyType],
+            parameterName: record.parameterName,
+            avgParamValue: record.parameterValue,
+            parameterUnit: record.parameterUnit,
+            fillColour: "#808080",
+            popupHTML: "There is no data to be displayed for this tile.",
+          },
         });
       }
     });
@@ -468,8 +488,8 @@ export default function Map() {
     // Add popupHTML to every tile in GeoJSON FeatureCollection
     tileCollection.features.forEach((feature) => {
       // Calculate fill colour based from parameter-data.json and sample value
-      var colourToFill = '#808080';
-      const paramJSON = paramData[feature.properties.parameterName]['values'];
+      var colourToFill = "#808080";
+      const paramJSON = paramData[feature.properties.parameterName]["values"];
       for (const key in paramJSON) {
         if (parseFloat(feature.properties.avgParamValue) >= parseFloat(key)) {
           colourToFill = paramJSON[key];
@@ -488,7 +508,6 @@ export default function Map() {
 
     // Add tile geoJSON data to the map with retrieved map record data
     map.current.getSource("samples_tiles").setData(tileCollection);
-      
 
     // Add popup to the map
     // map.current.on('click', 'samples_tiles', function (e) {
@@ -506,7 +525,6 @@ export default function Map() {
     // map.current.on('mouseleave', 'samples_tiles', function () {
     //   map.current.getCanvas().style.cursor = '';
     // });
-
   }
 
   // Search for a place using MapTiler's geocoding API
@@ -546,14 +564,19 @@ export default function Map() {
       legendItem.innerHTML = `<div style="background-color: ${values[value]}"></div>${value}`;
       legendItem.className = "legend_item";
       legendList.appendChild(legendItem);
-      legendText.innerHTML = `Legend (${unit})`;
+      //legendText.innerHTML = `Legend (${unit})`;
+      selectedFilter === "Select Filter"
+        ? (legendText.innerHTML = "")
+        : (legendText.innerHTML = `Legend (${unit})`);
     }
   }
 
   // Check/uncheck all water body checkboxes
   function checkAllBodyFilters() {
     const waterBodyCheckboxes = document.getElementsByClassName("body_filter");
-    const selectAllCheckbox = document.getElementById("chk_check_all_waterbody");
+    const selectAllCheckbox = document.getElementById(
+      "chk_check_all_waterbody"
+    );
 
     if (selectAllCheckbox.checked) {
       for (var i = 0; i < waterBodyCheckboxes.length; i++) {
@@ -575,10 +598,22 @@ export default function Map() {
       </div>
 
       <div id="search_bar_container">
-        <div id="search_bar">           
-          <input type="text" id="search_input" placeholder="Search Location" spellCheck="false"/>
+        <div id="search_bar">
+          <input
+            type="text"
+            id="search_input"
+            placeholder="Search Location"
+            spellCheck="false"
+          />
           <button type="submit" id="search_button" onClick={handleSearch}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-search"
+              viewBox="0 0 16 16"
+            >
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
             </svg>
           </button>
@@ -591,9 +626,23 @@ export default function Map() {
         <div id="source_filters" className="source_filters white-box">
           <h3>Sources</h3>
           <div className="source_checkboxes">
-            <input type="checkbox" id="chk_open_wims" className="source_filter" name="chk_open_wims" value="chk_open_wims" defaultChecked />
+            <input
+              type="checkbox"
+              id="chk_open_wims"
+              className="source_filter"
+              name="chk_open_wims"
+              value="chk_open_wims"
+              defaultChecked
+            />
             <label for="open_wims">Open WIMS</label>
-            <input type="checkbox" id="chk_user_testkit_data" className="source_filter" name="chk_user_testkit_data" value="chk_user_testkit_data" defaultChecked />
+            <input
+              type="checkbox"
+              id="chk_user_testkit_data"
+              className="source_filter"
+              name="chk_user_testkit_data"
+              value="chk_user_testkit_data"
+              defaultChecked
+            />
             <label for="user_testkit_data">User Testkit Data</label>
           </div>
         </div>
@@ -601,20 +650,64 @@ export default function Map() {
         <div id="water_body_filters" className="water_body_filters white-box">
           <h3>Water Body Filter</h3>
           {/* <button type="button" id="check_all_waterbody" onClick={checkAllBodyFilters}>All</button> */}
-          <div id = "check_all_waterbody_container">
-              <input type="checkbox" id="chk_check_all_waterbody" defaultChecked onClick={checkAllBodyFilters} />
-              <label for="selectAllBodyFilters" id="check_all_waterbody">Select All</label>
-            </div>
+          <div id="check_all_waterbody_container">
+            <input
+              type="checkbox"
+              id="chk_check_all_waterbody"
+              defaultChecked
+              onClick={checkAllBodyFilters}
+            />
+            <label for="selectAllBodyFilters" id="check_all_waterbody">
+              Select All
+            </label>
+          </div>
           <div className="water_body_checkboxes">
-            <input type="checkbox" id="chk_river" className="body_filter" name="chk_river" value="river" defaultChecked />
+            <input
+              type="checkbox"
+              id="chk_river"
+              className="body_filter"
+              name="chk_river"
+              value="river"
+              defaultChecked
+            />
             <label for="river">River / Running Surface Water</label>
-            <input type="checkbox" id="chk_pond_lake_reservoir_water" className="body_filter" name="chk_pond_lake_reservoir_water" value="chk_pond_lake_reservoir_water" defaultChecked />
-            <label for="pond_lake_reservoir_water">Pond / Lake / Reservoir Water</label>
-            <input type="checkbox" id="chk_ground_water" className="body_filter" name="chk_ground_water" value="chk_ground_water" defaultChecked />
+            <input
+              type="checkbox"
+              id="chk_pond_lake_reservoir_water"
+              className="body_filter"
+              name="chk_pond_lake_reservoir_water"
+              value="chk_pond_lake_reservoir_water"
+              defaultChecked
+            />
+            <label for="pond_lake_reservoir_water">
+              Pond / Lake / Reservoir Water
+            </label>
+            <input
+              type="checkbox"
+              id="chk_ground_water"
+              className="body_filter"
+              name="chk_ground_water"
+              value="chk_ground_water"
+              defaultChecked
+            />
             <label for="ground_water">Ground Water</label>
-            <input type="checkbox" id="chk_sea_water" className="body_filter" name="chk_sea_water" value="chk_sea_water" defaultChecked />
+            <input
+              type="checkbox"
+              id="chk_sea_water"
+              className="body_filter"
+              name="chk_sea_water"
+              value="chk_sea_water"
+              defaultChecked
+            />
             <label for="sea_water">Sea Water</label>
-            <input type="checkbox" id="chk_estuarine_water" className="body_filter" name="chk_estuarine_water" value="chk_estuarine_water" defaultChecked />
+            <input
+              type="checkbox"
+              id="chk_estuarine_water"
+              className="body_filter"
+              name="chk_estuarine_water"
+              value="chk_estuarine_water"
+              defaultChecked
+            />
             <label for="estuarine_water">Estuarine Water</label>
           </div>
         </div>
@@ -622,10 +715,17 @@ export default function Map() {
         <div id="parameter_filters" className="parameter_filters white-box">
           <h3>Parameter Filter</h3>
           <div className="select_filter">
-            <select name="param_filter" id="param_filter" onChange={updateFilterLegend}/>
+            <select
+              name="param_filter"
+              id="param_filter"
+              onChange={updateFilterLegend}
+            />
 
-            <div id="parameter_filter_legend" className="parameter_filter_legend">
-              <h4 id="legend_text">Legend</h4>
+            <div
+              id="parameter_filter_legend"
+              className="parameter_filter_legend"
+            >
+              <h4 id="legend_text"></h4>
               <ul id="legend_list" className="legend_list">
                 <li className="legend_item"></li>
               </ul>
