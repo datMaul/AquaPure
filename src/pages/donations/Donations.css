@@ -25,6 +25,10 @@ body {
     flex-wrap: wrap;
 } */
 
+.pDon {
+    font-size: 15px;
+}
+
 .Charities-Container h2 {
     text-align: center;
 }

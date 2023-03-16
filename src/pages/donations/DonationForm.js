@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './form.css';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function DonationForm() {
-  const navigate = useNavigate();
+  const [isFormComplete, setIsFormComplete] = useState(false);
   const [DonationData, setDonationData] = useState({
     fullName: "",
     email: "",
@@ -36,17 +37,9 @@ export default function DonationForm() {
 
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Submitting form...");
-    
-    axios.post('http://localhost:3000/donations/Invoice', DonationData)
-      .then(response => {
-        console.log(response);
-        navigate("/");
-      })
-      .catch(error => console.error(error));
-  
-    console.log(DonationData);
+    event.preventDefault(); // prevent the default form submission behavior
+    // your form submission logic here...
+    setIsFormComplete(true); // set isFormComplete to true when the form is completeete
   };
 
   return (
@@ -85,7 +78,7 @@ export default function DonationForm() {
             </div>
             <div className="inputBox">
               <span>credit card number :</span>
-              <input type="number" placeholder="1111-2222-3333-4444" maxLength={16} required onChange={(event) => setDonationData({ ...DonationData, creditCardNumber: event.target.value })} value={creditCardNumber}/>
+              <input type="text" placeholder="1111-2222-3333-4444" maxLength={16} required onChange={(event) => setDonationData({ ...DonationData, creditCardNumber: event.target.value })} value={creditCardNumber}/>
             </div>
             <div className="flex">
               <div className="inputBox">
@@ -94,7 +87,7 @@ export default function DonationForm() {
               </div>
               <div className="inputBox">
                 <span>CVV :</span>
-                <input type="text" placeholder="1234" maxLength={3} required/>
+                <input type="text" placeholder="123" maxLength={3} required/>
               </div>
             </div>
           </div>
@@ -106,8 +99,9 @@ export default function DonationForm() {
               <p>By making a donation, you agree to our terms and conditions. All donations are final and non-refundable. We reserve the right to decline or refund any donation at our discretion. We reserve the right to modify these terms and conditions at any time without prior notice. We take no responsibility for any unauthorized use of your payment method while making a donation.</p>
             </div>
         </div>
+        {isFormComplete}
         <Link to="/donations/Invoice">
-        <input type="submit" value="Proceed to Checkout" className="submit-btn" />
+        <button id="submitButton" type="submit" className='submit-btn'>Proceed to Checkout</button>
         </Link>
       </form>
     </div>

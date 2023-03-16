@@ -8,7 +8,7 @@
     transition: all .2s linear;
 }
 
-.container {
+.containerInv {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +17,7 @@
     background: #22a9ed;
 }
 
-.container form {
+.containerInv form {
     padding: 20px;
     width: 700px;
     background: #fff;
@@ -35,7 +35,7 @@
     text-align: center;
 }
 
-.header {
+.headerInv {
     text-align: center;
 }
 

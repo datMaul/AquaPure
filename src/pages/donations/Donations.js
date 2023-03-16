@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WaterAidImage from "./image/WaterAid.png";
-import WWFImage from "./image/WWF.jpg";
-import SoilAssociationImage from "./image/SoilAssociation.jpg";
-import RSPDImage from "./image/RSPD.jpg";
+import WWFImage from "./image/drop_bucket.png";
+import SoilAssociationImage from "./image/Water_org1.jpg";
+import RSPDImage from "./image/TheWaterProject.png";
 import "./Donations.css";
 import { Link } from "react-router-dom";
 
@@ -27,7 +27,7 @@ const handleClick = () => {
 
   // Send POST request to backend with custom name and ID
   axios
-    .post("http://localhost:3000/aquaDonation", {
+    .post("http://localhost:3000/donations/DonationForm", {
       charity: name,
       donationId: randomId
     })
@@ -47,7 +47,7 @@ const handleClick = () => {
           <h1>Donations</h1>
           <br />
           <h2>Sustainable Water Is Very Essential</h2>
-          <p>
+          <p className="pDon"> 
             Sustainable water management involves using water resources in a way
             that meets the needs of the present without compromising the ability
             of future generations to meet their own needs. This means using
@@ -73,7 +73,7 @@ const handleClick = () => {
           <div className="WaterAid-Container">
             <div className="WaterAid-Info">
               <img id="WaterAidImage" src={WaterAidImage} />
-              <p id="WaterAid">
+              <p className="pDon" id="WaterAid">
                 WaterAid is a non-profit that works to provide access to clean
                 water, toilets, and hygiene to communities in need globally.
                 Since 1981, the organization has directly impacted 28 million
@@ -98,11 +98,11 @@ const handleClick = () => {
             </div>
           </div>
           <br /> <br />
-          <h3>WWF</h3>
+          <h3>Drop in the Bucket</h3>
           <div className="WWF-Container">
             <div className="WWF-Info">
               <img id="WWFImage" src={WWFImage} />
-              <p>
+              <p className="pDon">
                 WWF UK's animal adoption program aims to protect wildlife by
                 restoring their habitats. Your adoption will make a positive
                 impact on the world and the wildlife that depends on these
@@ -123,11 +123,11 @@ const handleClick = () => {
             </div>
           </div>
           <br /> <br />
-          <h3>Soil Association</h3>
+          <h3>Water.org</h3>
           <div className="SoilAssociation-Container">
             <div className="WWF-Info">
               <img id="SoilAssociationImage" src={SoilAssociationImage} />
-              <p>
+              <p className="pDon">
                 The Soil Association is a British charity founded in 1946 with
                 the mission of promoting organic farming and certification of
                 organic foods. The founders, Lady Eve Balfour, Friend Sykes, and
@@ -149,11 +149,11 @@ const handleClick = () => {
             </div>
           </div>
           <br /> <br />
-          <h3>RSPB</h3>
+          <h3>The Global Water Challenge</h3>
           <div className="RSPD-Container">
             <div className="WWF-Info">
               <img id="RSPDImage" src={RSPDImage} />
-              <p>
+              <p className="pDon">
                 The Royal Society for the Protection of Birds (RSPB) is a UK
                 charity that works to conserve birds and their habitats. It has
                 a large presence with £157 million in revenue, 2,200 employees,
