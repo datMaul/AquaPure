@@ -269,10 +269,8 @@ export default function Checkout() {
                         }
                         })
                     }
+                    <label htmlFor="checkbox">Apply Points Discount</label>                        
                     <div className="discount">
-                        <label htmlFor="checkbox">Apply Points Discount</label>
-                        <input type="checkbox" checked={IsCheck} onChange={() => {setcheck(!IsCheck);}}></input>
-                        
                         <button onClick={()=>(increment_point())}>+</button>
                         <h3>{point_amount}</h3>
                         <button onClick={()=>(decrement_point())}>-</button>

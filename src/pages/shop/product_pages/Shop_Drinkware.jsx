@@ -45,8 +45,8 @@ export default function Shop_drinkware() {
   const productlinks = {
     "Recycled Sports Bottle": "/water_bottle",
     "Bamboo Travel Cup":"/travel_cup",
-    "Coffee/Tea Hot Beverage Mug": "/travel_cup",
-    "Water Filter":"/filter",
+    "Coffee/Tea Hot Beverage Mug": "/beverage_mug",
+    "Water Filter":"/water_filter",
     "Metal Flask":"/flask",
   }
     const [check, setcheck] = useState("Add to cart");
