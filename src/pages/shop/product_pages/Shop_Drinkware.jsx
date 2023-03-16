@@ -6,16 +6,15 @@ import ShopNotification from "../ShopNotification";
 import water from "../item_pages/shop_assets/water_bottle.PNG"
 import bamboo from "../item_pages/shop_assets/BambooCup.png"
 import mug from "../item_pages/shop_assets/Beverage Mug.png"
-import flask from "../item_pages/shop_assets/metalFlask.png"
 import filter from "../item_pages/shop_assets/water filter.png"
+import flask from "../item_pages/shop_assets/metalFlask.png"
 
 
 
 
 
 
-
-export default function Shop_appearal() {  
+export default function Shop_drinkware() {  
   const storeuserid = localStorage.getItem("user_ID");
   const [itemData,setitemData] = useState([]);
   const [user, setuser] = useState({
@@ -36,11 +35,19 @@ export default function Shop_appearal() {
   const [showpopup, setshowpopup] = useState(false)
   const [add_text,setadd_text] = useState("Add to cart")
   const productimg = {
-    "Recycled Sports Bottle":water,
+    "Recycled Sports Bottle": water,
     "Bamboo Travel Cup":bamboo,
-    "Coffee/Tea Hot Beverage Mug":mug,
+    "Coffee/Tea Hot Beverage Mug": mug,
     "Water Filter":filter,
-    "Metal Flask":flask
+    "Metal Flask":flask,
+
+  }
+  const productlinks = {
+    "Recycled Sports Bottle": "/water_bottle",
+    "Bamboo Travel Cup":"/travel_cup",
+    "Coffee/Tea Hot Beverage Mug": "/travel_cup",
+    "Water Filter":"/filter",
+    "Metal Flask":"/flask",
   }
     const [check, setcheck] = useState("Add to cart");
 
@@ -48,6 +55,7 @@ export default function Shop_appearal() {
         loadUser();
         loadCart();
         loadProducts();
+        console.log(productimg["BackPack"])
       },[])
  
   const loadUser = () => {
@@ -128,7 +136,7 @@ export default function Shop_appearal() {
                 if(product.catagoryID === 1){ 
                   return(
                     <li className="item">
-                        <Link to="/water_bottle"><img alt="water" className="item_img" src={productimg[product.product_name]}/></Link>
+                        <Link to={productlinks[product.product_name]}><img alt="water" className="item_img" src={productimg[product.product_name]}/></Link>
                         <p className="item_title" key={"watername"}>{product.product_name}</p>
                         <p className="item_price" key={"waterprice"}>£{product.product_price}</p>
                         <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{postAdd(product.productID);}}>{add_text}</button>
