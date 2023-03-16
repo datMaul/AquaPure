@@ -40,11 +40,11 @@ export default function DonationForm() {
     axios.post('http://localhost:3000/donations/Invoice', DonationData)
   .then(response => {
     console.log(response);
-    const sql = `INSERT INTO donations (fullName, email, charity, amount, payment_method) VALUES ('${DonationData.fullName}', '${DonationData.email}',
-    '${DonationData.charity}', '${DonationData.amount}', '${DonationData.cardName}', '${DonationData.creditCardNumber}', '${DonationData.expDate}')`;
-    axios.post('http://localhost:3000/donations', sql)
-      .then(response => console.log(response))
-      .catch(error => console.error(error));
+    // const sql = `INSERT INTO donations (fullName, email, charity, amount, payment_method) VALUES ('${DonationData.fullName}', '${DonationData.email}',
+    // '${DonationData.charity}', '${DonationData.amount}', '${DonationData.cardName}', '${DonationData.creditCardNumber}', '${DonationData.expDate}')`;
+    // axios.post('http://localhost:3000/donations/Invoice', sql)
+      // .then(response => console.log(response)) 
+      // .catch(error => console.error(error));
   })
   .catch(error => console.error(error));
 
@@ -86,7 +86,7 @@ console.log(DonationData);
             </div>
             <div className="inputBox">
               <span>Amount to donate:</span>
-              <input type="text" placeholder="£00.00" className='price' required onChange={(event) => setDonationData({ ...DonationData, amount: event.target.value })} value={amount}/>
+              <input type="text" placeholder="£0.00" className='price' required onChange={(event) => setDonationData({ ...DonationData, amount: event.target.value })} value={amount}/>
             </div>
           </div>
           <div className="col">
