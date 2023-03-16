@@ -1,5 +1,5 @@
 import "./checkout.css";
-import { Link, useSubmit } from "react-router-dom";
+import { Link, useFetcher, useSubmit } from "react-router-dom";
 import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 import water from './item_pages/shop_assets/water_bottle.PNG'
@@ -62,9 +62,16 @@ export default function Checkout() {
     useEffect(()=>{
         loadUser();
         total();
-
-
-        
+        user.map(users=>{
+            Userpoints.map(points=>{
+                if(users.eMail===points.email){
+                    if(users.userId.toString()===storeuserid){
+                        setmax(points.score)
+                        console.log(max)
+                    }
+                }
+            })
+        })
     },[cartItems,productData])
 
     
@@ -86,7 +93,10 @@ export default function Checkout() {
 
     const loadUserPoints = () => {
         axios.get("http://localhost:8080/points")
-        .then(res=>{setUserpoints(res.data);loadUser();})
+        .then(res=>{
+            setUserpoints(res.data);
+            loadUser();
+        })
     }
 
     
@@ -107,38 +117,48 @@ export default function Checkout() {
         })
         setsubtotal(total_price)
     }
-    // 100000 points == 100 pounds
-    // 100 - 18 = 98
-    const apply_points = () => {
-        user.map(user => {
-          Userpoints.map(score => {
-            if(user.eMail === score.email){
-              if(user.userId.toString() === storeuserid){
-                // var points = 12000
-                var points = score.score;
-                if(IsCheck){
-                    let newTotal = subtotal - (points/1000)
-                    if(newTotal<0){
-                        setsubtotal(0)
-                    }
-                    else{
-                        total();
-                        setsubtotal(newTotal)
-                    }
-                }
-                else if(!IsCheck){
-                    total();
-                }
-            }
-          }})
-      })
-      
+
+
+    const [max,setmax] = useState();
+    const [point_amount, setamount] = useState(0);
+    const [increment,setincrement] = useState(false)
+    function apply(inc){
+        if(subtotal>=0){
+            setsubtotal(Math.round((subtotal-(0.1*inc))*100)/100)   
+        }
     }
+    const increment_point = () => {
+        if(subtotal>0){
+            setincrement(true)
+            if(point_amount>=max){
+                setamount(max)
+                console.log("you reached max amount of points available")
+            }
+            else{
+                setamount((amount)=>(amount+100))
+            }
+        }
+    }
+
+    const decrement_point = () => {
+        setincrement(false)
+        if(point_amount>0){
+            setamount((decrement)=>(decrement-100))   
+        }
+        
+    }
+
     useEffect(()=>{
-        apply_points();
-    },[!IsCheck])
+        if(increment){
+            apply(1);
+        }
+        else{
+            apply(-1)
+        }
+    },[increment,point_amount])
+
+
     
-   
     
 
 
@@ -147,9 +167,7 @@ export default function Checkout() {
     }
     const purchase = () => {
         setconfirm(true);
-        
         // var DOP = new Date()
-        
         // var date = DOP.getUTCFullYear() + '-' + (DOP.getMonth()+1) + "-" + DOP.getDate() + ' ' + DOP.getHours() +':'+ DOP.getMinutes();
         // console.log(date)
         cartItems.map(item => {
@@ -160,22 +178,22 @@ export default function Checkout() {
                 "product_id":item.product_id,
                 "quantity":item.quantity
             }).then(res=>{console.log(res.data,"items post to data base")})
-            if(IsCheck){
                 Userpoints.map(score=>{
-                    user.map(user=>{
-                        if(score.email === user.eMail){
-                            if(user.userId.toString() === storeuserid){
-                                const points = score.score;
-                                const newPoints = points - (subtotal*1000);
+                    user.map(users=>{
+                        if(score.email === users.eMail){
+                            if(users.userId+'' === storeuserid){
+                                console.log("points afte purchase",point_amount)
+                                const newPoints = score.score - point_amount
+                                console.log(newPoints,"new points after purchase")
                                 if(newPoints<0){
-                                    axios.put(`http://localhost:8080/points/findByEmail?email=`+user.eMail+'',{
+                                    axios.put(`http://localhost:8080/points/findByEmail?email=`+users.eMail+'',{
                                     'score':0,
                                     }).then(res=>{console.log(res.data,newPoints)})
                                 }
                                 else{
-                                    axios.put(`http://localhost:8080/points/findByEmail?email=`+user.eMail+'',{
+                                    axios.put(`http://localhost:8080/points/findByEmail?email=`+users.eMail+'',{
                                     'score':newPoints,
-                                    }).then(res=>{console.log(res.data,newPoints)})
+                                    }).then(res=>{console.log(res.data,newPoints,"SCORE UPDATED")})
                                 }
                             }
                         }
@@ -183,7 +201,7 @@ export default function Checkout() {
                 
                 })
             }
-        })
+        )
         clearCart();
     }
     const [confirm, setconfirm] = useState(false)
@@ -243,6 +261,7 @@ export default function Checkout() {
                         if(user.userId.toString() === storeuserid){
                             return(
                             Userpoints.map(score=>{
+                                
                             if(user.eMail === score.email){
                                 return(<><h3>You have {score.score} points to your account</h3></>)
                             }
@@ -253,6 +272,10 @@ export default function Checkout() {
                     <div className="discount">
                         <label htmlFor="checkbox">Apply Points Discount</label>
                         <input type="checkbox" checked={IsCheck} onChange={() => {setcheck(!IsCheck);}}></input>
+                        
+                        <button onClick={()=>(increment_point())}>+</button>
+                        <h3>{point_amount}</h3>
+                        <button onClick={()=>(decrement_point())}>-</button>
                     </div>
 
                     <div className="subtotal">
