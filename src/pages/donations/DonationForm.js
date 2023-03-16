@@ -40,20 +40,15 @@ export default function DonationForm() {
     console.log("Submitting form...");
     
     axios.post('http://localhost:3000/donations/Invoice', DonationData)
-  .then(response => {
-    console.log(response);
-    navigate("/");
-    // const sql = `INSERT INTO donations (fullName, email, charity, amount, payment_method) VALUES ('${DonationData.fullName}', '${DonationData.email}',
-    // '${DonationData.charity}', '${DonationData.amount}', '${DonationData.cardName}', '${DonationData.creditCardNumber}', '${DonationData.expDate}')`;
-    // axios.post('http://localhost:3000/donations/Invoice', sql)
-      // .then(response => console.log(response)) 
-      // .catch(error => console.error(error));
-  })
-  .catch(error => console.error(error));
-
-console.log(DonationData);
-
+      .then(response => {
+        console.log(response);
+        navigate("/");
+      })
+      .catch(error => console.error(error));
+  
+    console.log(DonationData);
   };
+  
 
   // const handleSubmit = (event) => {
   //   event.preventDefault();

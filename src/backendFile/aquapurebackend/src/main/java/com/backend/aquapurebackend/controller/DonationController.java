@@ -2,22 +2,25 @@ package com.backend.aquapurebackend.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/donations")
 public class DonationController {
- 
+
     @PostMapping("/Invoice")
-    public ResponseEntity<String> postDonation(@RequestBody DonationController donation) {
-        // Process donation request and return response
-        return new ResponseEntity<>("Donation successful", HttpStatus.OK);
+    public ResponseEntity<String> processDonation(@RequestBody DonationData donationData) {
+        // Code to process donation data goes here
+        String sql = "INSERT INTO donations (fullName, email, charity, amount, payment_method) " +
+                "VALUES ('" + donationData.getFullName() + "', '" + donationData.getEmail() + "', '" +
+                donationData.getCharity() + "', " + donationData.getAmount() + "')";
+
+        // Code to execute SQL query and insert donation data into database goes here
+
+        return new ResponseEntity<>("Donation processed successfully", HttpStatus.OK);
     }
- 
 }
+
 
 
 // @RestController
