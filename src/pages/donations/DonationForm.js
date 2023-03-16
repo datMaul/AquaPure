@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './form.css';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 //import { Link } from "react-router-dom";
 
 export default function DonationForm() {
+  const navigate = useNavigate();
   const [DonationData, setDonationData] = useState({
     fullName: "",
     email: "",
@@ -40,6 +42,7 @@ export default function DonationForm() {
     axios.post('http://localhost:3000/donations/Invoice', DonationData)
   .then(response => {
     console.log(response);
+    navigate("/");
     // const sql = `INSERT INTO donations (fullName, email, charity, amount, payment_method) VALUES ('${DonationData.fullName}', '${DonationData.email}',
     // '${DonationData.charity}', '${DonationData.amount}', '${DonationData.cardName}', '${DonationData.creditCardNumber}', '${DonationData.expDate}')`;
     // axios.post('http://localhost:3000/donations/Invoice', sql)

@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react'; // import the Iconify component
 
 function Invoice() {
   return (
+    <body className='invBody'>
     <div className="container">
       <form action="">
         <div className="row">
@@ -21,6 +22,7 @@ function Invoice() {
         </div>
       </form>
     </div>
+    </body>
   );
 }
 
