@@ -165,8 +165,49 @@ export default function Donations() {
             </div>
           </div>
         </div>
-        <br /> <br />
       </div>
+      <div className="container">
+      <div className="image-slider">
+        <div className="image-slider-track">
+          <div className="slide">
+            <img src="./images/water_aid.jpg" alt="Water Aid" />
+          </div>
+          <div className="slide">
+            <img src="./images/water_aid(donation1).jpg" alt="Water Aid Donation 1" />
+          </div>
+          <div className="slide">
+            <img src="./images/water_org(helpme).jpg" alt="Water Org Help Me" />
+          </div>
+          <div className="slide">
+            <img src="./images/water_org(pic1).jpg" alt="Water Org Pic 1" />
+          </div>
+          <div className="slide">
+            <img src="./images/drop_in_the_bucket.jpg" alt="Drop In The Bucket" />
+          </div>
+          <div className="slide">
+            <img src="./images/dropinthebucket(donation1).jpg" alt="Drop In The Bucket Donation 1" />
+          </div>
+          <div className="slide">
+            <img src="./images/blood_water(donation).jpg" alt="Blood Water Donation" />
+          </div>
+          <div className="slide">
+            <img src="./images/blood_water(donation1).jpg" alt="Blood Water Donation 1" />
+          </div>
+          <div className="slide">
+            <img src="./images/water_aid.jpg" alt="Water Aid" />
+          </div>
+          <div className="slide">
+            <img src="./images/water_aid(donation1).jpg" alt="Water Aid Donation 1" />
+          </div>
+          <div className="slide">
+            <img src="./images/water_org(helpme).jpg" alt="Water Org Help Me" />
+          </div>
+          <div className="slide">
+            <img src="./images/water_org(pic1).jpg" alt="Water Org Pic 1" />
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
   );
 }
