@@ -1,196 +1,115 @@
 import React, { useState } from 'react';
 import './form.css';
-import './donationFormLink.js';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function DonationForm() {
-    const [charity, setCharity] = useState('');
-  const [phoneNo, setPhoneNo] = useState('');
-  const [email, setEmail] = useState('');
-  const [price, setPrice] = useState('');
+  const navigate = useNavigate();
+  const [DonationData, setDonationData] = useState({
+    fullName: "",
+    email: "",
+    charity: "",
+    amount: "",
+    cardName: "",
+    creditCardNumber: "",
+    expDate: ""
+  });
+
+  const {
+    fullName,
+    email,
+    charity,
+    amount,
+    cardName,
+    creditCardNumber,
+    expDate
+  } = DonationData;
+  
+  const handleInputChange = (event) => {
+    const { name, value, type, checked } = event.target;
+    setDonationData((prevState) => ({
+      ...prevState,
+      [name]: type === "checkbox" ? checked : value
+    }));
+  };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = { charity, phone_no: phoneNo, email, price };
-    fetch('/donations/aquaDonation', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-      .then(response => response.text())
-      .then(data => console.log(data))
+    console.log("Submitting form...");
+    
+    axios.post('http://localhost:3000/donations/Invoice', DonationData)
+      .then(response => {
+        console.log(response);
+        navigate("/");
+      })
       .catch(error => console.error(error));
+  
+    console.log(DonationData);
   };
 
-    return (
-        <div class="whole">
-            <div class="from-box login">
-                <h2>Billing Address</h2>
-                <form>
-                    {/* <div>
-                        <label htmlFor="title">Title:</label><br />
-                        <select id="title" name="title">
-                            <option value="Mr">Mr</option>
-                            <option value="Mrs">Mrs</option>
-                            <option value="Ms">Ms</option>
-                            <option value="Miss">Miss</option> 
-                            <option value="Doctor">Doctor</option>
-                            <option value="Other">Other</option>
-                        </select><br />
-                    </div> */}
-                    <div>
-                        <label htmlFor="firstname">Full Name:</label><br />
-                        <input
-                            type="text"
-                            id="firstname"
-                            name="firstname"
-                            onInput={(e) =>
-                                (e.target.value = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))
-                            }
-                        /><br />
-                    </div>
-                    {/* <div>
-                        <label htmlFor="surname">Surname:</label><br />
-                        <input
-                            type="text"
-                            id="surname"
-                            name="surname"
-                            onInput={(e) =>
-                                (e.target.value = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))
-                            }
-                        /><br />
-                    </div> */}
-                    <div class="input-box">
-                        <label htmlFor="email">Email:</label><br />
-                        <input type="email" id="email" name="email" pattern="[^@]+@[^@]+" /><br />
-                    </div>
-                    <div class="input-box">
-                        <label htmlFor="phone">Phone Number:</label><br />
-                        <input
-                            type="text"
-                            id="phone"
-                            name="phone"
-                            pattern="0[0-9]{10}"
-                            maxLength="11"
-                        /><br />
-                    </div>
-                    <div  class="input-box">
-                        <label htmlFor="address">Address:</label><br />
-                        <input type="text" id="address" name="address" /><br />
-                    </div>
-                    <div  class="input-box">
-                        <label htmlFor="county">County:</label><br />
-                        <input type="text" id="county" name="county" /><br />
-                    </div>
-                    <div  class="input-box">
-                        <label htmlFor="postcode">Post Code:</label><br />
-                        <input
-                            type="text"
-                            id="postcode"
-                            name="postcode"
-                            onInput={(e) => (e.target.value = e.target.value.toUpperCase())}
-                        /><br />
-                    </div> 
-                    <div class="remember-forgot">
-                        <label><input type="checkbox"></input>Remember Me</label>
-                    </div>
-                    <div  class="btn">
-                        <input type="submit" value="Submit" />
-                    </div> 
-                    <div class="login-register">
-                        <p>Dont have an account? <a
-                        href="#"
-                        class="register-link">Register </a></p>
-                    </div>             
-                </form>
+  return (
+    <div className="wrapper">
+      <form onSubmit={handleSubmit}>
+        <div className="row">
+          <div className="col">
+            <h3 className="title">billing address</h3>
+            <div className="inputBox">
+              <span>full name :</span>
+              <input type="text" placeholder="Full name" required onChange={(event) => setDonationData({ ...DonationData, fullName: event.target.value })} value={fullName} />
             </div>
-
-            <div class="from-box register">
-                <h2>Card Details</h2>
-                <form>
-                    {/* <div>
-                        <label htmlFor="title">Title:</label><br />
-                        <select id="title" name="title">
-                            <option value="Mr">Mr</option>
-                            <option value="Mrs">Mrs</option>
-                            <option value="Ms">Ms</option>
-                            <option value="Miss">Miss</option> 
-                            <option value="Doctor">Doctor</option>
-                            <option value="Other">Other</option>
-                        </select><br />
-                    </div> */}
-                    <div>
-                        <label htmlFor="firstname">Name of the Card:</label><br />
-                        <input
-                            type="text"
-                            id="firstname"
-                            name="firstname"
-                            onInput={(e) =>
-                                (e.target.value = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))
-                            }
-                        /><br />
-                    </div>
-                    {/* <div>
-                        <label htmlFor="surname">Surname:</label><br />
-                        <input
-                            type="text"
-                            id="surname"
-                            name="surname"
-                            onInput={(e) =>
-                                (e.target.value = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))
-                            }
-                        /><br />
-                    </div> */}
-                    <div class="input-box">
-                        <label htmlFor="email">Email:</label><br />
-                        <input type="email" id="email" name="email" pattern="[^@]+@[^@]+" /><br />
-                    </div>
-                    <div class="input-box">
-                        <label htmlFor="card-numnber">Card Number:</label><br />
-                        <input
-                            type="text"
-                            id="card-numnber"
-                            name="card-numnber"
-                            pattern="0[0-9]{10}"
-                            maxLength="16"
-                        /><br />
-                    </div>
-                    <div  class="input-box">
-                        <label htmlFor="expiry-month">Expiry Month:</label><br />
-                        <input type="text" id="expiry-month" name="expiry-month" /><br />
-                    </div>
-                    <div  class="input-box">
-                        <label htmlFor="county">Expiry years:</label><br />
-                        <select id="expiry-years" name="expiry-years">
-                            <option value="2023">Mr</option>
-                            <option value="2024">Mrs</option>
-                            <option value="2025">Ms</option>
-                            <option value="2026">Miss</option> 
-                            <option value="2027">Doctor</option>
-                            <option value="2028">Other</option>
-                        </select><br />
-                    </div>
-                    <div  class="input-box">
-                        <label htmlFor="postcode">CVV</label><br />
-                        <input type="text" id="CVV" name="CVV" />
-                        <br />
-                    </div> 
-
-                    <div class="remember-forgot">
-                        <label><input type="checkbox"></input>Remember Me</label>
-                    </div>
-                    <div  class="btn">
-                        <input type="submit" value="Submit" />
-                    </div>     
-                    <div class="login-register">
-                        <p>Dont have an account? <a
-                        href="/signin/SignIn"
-                        class="login-link">login </a></p>
-                    </div>          
-                </form>
-            </div>     
+            <div className="inputBox">
+              <span>email :</span>
+              <input type="email" placeholder="example@example.com" pattern="[^@]+@[^@]+.+" required onChange={(event) => setDonationData({ ...DonationData, email: event.target.value })} value={email}/>
+            </div>
+            <div className="inputBox">
+              <span>Charity:</span>
+              <select id="charity" name="charity" value={charity} onChange={(event) => setDonationData({ ...DonationData, charity: event.target.value })}>
+                <option value="WaterAid">WaterAid</option>
+                <option value="drop_in_the_bucket">Drop in the bucket</option>
+                <option value="bloodWater">Blood: Water</option>
+                <option value="waterOrg">Water.org</option>
+              </select>
+            </div>
+            <div className="inputBox">
+              <span>Amount to donate:</span>
+              <input type="text" placeholder="£0.00" className='price' required onChange={(event) => setDonationData({ ...DonationData, amount: event.target.value })} value={amount}/>
+            </div>
+          </div>
+          <div className="col">
+            <h3 className="title">payment</h3>
+            <div className="inputBox">
+              <span>name on card :</span>
+              <input type="text" placeholder="mr. full name" required onChange={(event) => setDonationData({ ...DonationData, cardName: event.target.value })} value={cardName}/>
+            </div>
+            <div className="inputBox">
+              <span>credit card number :</span>
+              <input type="number" placeholder="1111-2222-3333-4444" maxLength={16} required onChange={(event) => setDonationData({ ...DonationData, creditCardNumber: event.target.value })} value={creditCardNumber}/>
+            </div>
+            <div className="flex">
+              <div className="inputBox">
+                <span>Exp date :</span>
+                <input type="date" placeholder="2022" required onChange={(event) => setDonationData({ ...DonationData, expDate: event.target.value })} value={expDate}/>
+              </div>
+              <div className="inputBox">
+                <span>CVV :</span>
+                <input type="text" placeholder="1234" maxLength={3} required/>
+              </div>
+            </div>
+          </div>
+          <div class="remember-forgot">
+            <label>
+              <input required type="checkbox"/>
+              I agree with the term and condition
+              </label>
+              <p>By making a donation, you agree to our terms and conditions. All donations are final and non-refundable. We reserve the right to decline or refund any donation at our discretion. We reserve the right to modify these terms and conditions at any time without prior notice. We take no responsibility for any unauthorized use of your payment method while making a donation.</p>
+            </div>
         </div>
-    );
+        <Link to="/donations/Invoice">
+        <input type="submit" value="Proceed to Checkout" className="submit-btn" />
+        </Link>
+      </form>
+    </div>
+  );
 }
