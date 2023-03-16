@@ -1,4 +1,4 @@
-.whole {
+.wrapper {
     position: relative;
     width: 400px;
     height: 440 px;
@@ -12,16 +12,16 @@
     align-items: center;
 }
 
-.whole .from-box{
+.wrapper .from-box{
     width: 100%;
     padding: 40px;
 }
 
-.whole .from-box.login{
+.wrapper .from-box.login{
     display: none;
 }
 
-.whole .from-box.register{
+.wrapper .from-box.register{
     position: absolute;
     transform: translateX(400px);
 
