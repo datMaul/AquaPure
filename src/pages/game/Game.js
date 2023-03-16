@@ -1,4 +1,4 @@
-import "./game.css";
+import "./Game.css";
 import React, { useState } from "react";
 
 export default function Game() {

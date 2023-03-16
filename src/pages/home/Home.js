@@ -7,9 +7,11 @@ import DYKImage1 from "./home_page_images/DYK1.jpg";
 import DYKImage2 from "./home_page_images/DYK2.jpg";
 import DYKImage3 from "./home_page_images/DYK3.jpeg";
 import MapImage from "./home_page_images/map.png";
+import QuizImage from "./home_page_images/AquaPure_Game.png";
 import Chatbot from "../phasetest/Phasetest";
 import React, { useState, useEffect, useRef } from "react";
 import Footer from "../../components/Footer";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [isChatbotVisible, setIsChatbotVisible] = useState(false);
@@ -46,6 +48,19 @@ export default function Home() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const [userID, setUserID] = useState(null);
+  useEffect(() => {
+    const storedUserID = localStorage.getItem("user_ID");
+    if (storedUserID) {
+      setUserID(storedUserID);
+    }
+  }, []);
+  const Gamecheck = () => {
+    if (!userID) {
+      return (window.location.href = "/accounts/login");
+    }
+    return (window.location.href = "/game");
+  };
   return (
     <div className="MainPage">
       <div className="MainPage-Container">
@@ -65,12 +80,12 @@ export default function Home() {
             <br />
             <h3>The Project</h3>
             <p>
-              AquaPure is a university project dedicated to promoting water 
-              quality and environmental awareness. Our interactive map displays 
-              data on the quality of water sources throughout the UK, allowing 
-              you to explore the areas with the best and worst water quality. 
-              Our mission is to help people understand the importance of clean 
-              water and inspire action to protect our natural resources. 
+              AquaPure is a university project dedicated to promoting water
+              quality and environmental awareness. Our interactive map displays
+              data on the quality of water sources throughout the UK, allowing
+              you to explore the areas with the best and worst water quality.
+              Our mission is to help people understand the importance of clean
+              water and inspire action to protect our natural resources.
             </p>
             {/* <h3> AquaPure </h3>
             <p>
@@ -119,15 +134,47 @@ export default function Home() {
                 <h3>Interactive Map</h3>
                 <div className="Map-Content">
                   <p>
-                    Our interactive map allows users to explore water quality data collected from various sources and displayed in an easy-to-understand format. By clicking on a specific location on the map, users can access detailed information about the water quality in that area.
-                    The map aggregates data from various sources, including government agencies and our own community, to provide a comprehensive view of water quality across different regions. The data is updated regularly, ensuring that users have access to the latest information about the water quality in their area.
+                    Our interactive map allows users to explore water quality
+                    data collected from various sources and displayed in an
+                    easy-to-understand format. By clicking on a specific
+                    location on the map, users can access detailed information
+                    about the water quality in that area. The map aggregates
+                    data from various sources, including government agencies and
+                    our own community, to provide a comprehensive view of water
+                    quality across different regions. The data is updated
+                    regularly, ensuring that users have access to the latest
+                    information about the water quality in their area.
                   </p>
-                  <br/>
-                  <ul className="Map-Buttons">
-                    <li className="Map-Button">
-                      <a href="/map">View Map</a>
-                    </li>
-                  </ul>
+                  <br />
+                  <ul className="Map-Buttons"></ul>
+                  <Link to="/map">
+                    <button id="Game_Play_Btn">View Map</button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="Quiz-Section-Container Narrow-Content">
+            <div className="Quiz-Section">
+              <div className="Quiz-Image">
+                <img id="MapImage" src={QuizImage} />
+              </div>
+              <div className="Quiz-Info">
+                <h3>Aquapure Quiz</h3>
+                <div className="Quiz-Content">
+                  <p>
+                    Aquapure has an exciting feature that challenges users to an
+                    interactive quiz on sustainability goals 6 and 14. By
+                    signing up, visitors can test their knowledge on important
+                    environmental issues and become part of the movement towards
+                    a more sustainable future. Head over to sign up and give the
+                    quiz a try to gain a deeper understanding of the goals we
+                    hold close to our hearts.
+                  </p>
+                  <br />
+                  <button id="Game_Play_Btn" onClick={Gamecheck}>
+                    Play Game
+                  </button>
                 </div>
               </div>
             </div>
@@ -137,49 +184,51 @@ export default function Home() {
             <div className="DYK-Section Narrow-Content">
               <h3>Did You Know</h3>
               <p className="DYK-Description">
-                While the UK is known for its high-quality tap water, the state 
-                of our bodies of water remains a significant concern. In fact, 
-                there are several alarming facts regarding water quality in the 
+                While the UK is known for its high-quality tap water, the state
+                of our bodies of water remains a significant concern. In fact,
+                there are several alarming facts regarding water quality in the
                 UK that cannot be ignored.
               </p>
               <div className="DYK-Columns">
                 <div className="DYK-Column">
                   <img className="DYK-Image" src={DYKImage1} />
                   <p>
-                    Every year, companies in the UK are fined millions of pounds for
-                    pollution incidents - In 2021, the courts fined water companies
-                    a record of £102.49 million for pollution. In 2020 there 
-                    were over 400,000 discharges of untreated sewage into UK rivers 
-                    and almost 5,500 discharges into UK coastal bathing waters. A
-                    recent report by the Environment Agency (EA) found that two
-                    thirds of the sector were rated no better than requiring 
-                    improvement (2 stars) or poor (1 star) according to their EPA
-                    standards.
+                    Every year, companies in the UK are fined millions of pounds
+                    for pollution incidents - In 2021, the courts fined water
+                    companies a record of £102.49 million for pollution. In 2020
+                    there were over 400,000 discharges of untreated sewage into
+                    UK rivers and almost 5,500 discharges into UK coastal
+                    bathing waters. A recent report by the Environment Agency
+                    (EA) found that two thirds of the sector were rated no
+                    better than requiring improvement (2 stars) or poor (1 star)
+                    according to their EPA standards.
                   </p>
                 </div>
                 <div className="DYK-Column">
                   <img className="DYK-Image" src={DYKImage2} />
                   <p>
-                    The UK ranks as one of the worst European countries for coastal 
-                    water quality, and only 14% of its rivers warrant ‘good’ ecological 
-                    status. Poor water quality damages natural ocean ecosystems and 
-                    habitats such as kelp beds and seagrasses, reduces biodiversity 
-                    and the ocean’s ability to store carbon, and threatens human 
-                    health.
+                    The UK ranks as one of the worst European countries for
+                    coastal water quality, and only 14% of its rivers warrant
+                    ‘good’ ecological status. Poor water quality damages natural
+                    ocean ecosystems and habitats such as kelp beds and
+                    seagrasses, reduces biodiversity and the ocean’s ability to
+                    store carbon, and threatens human health.
                   </p>
                 </div>
                 <div className="DYK-Column">
                   <img className="DYK-Image" src={DYKImage3} />
                   <p>
-                    Water pollution can lead to devestating consequences for both wildlife 
-                    and ecosystems. Not only can it diminish biodiversity, but it can also 
-                    have far-reaching effects on food webs, natural cycles, and habitat quality. 
-                    Moreover, it can accelerate the spread of invasive species, increase disease 
-                    outbreaks, impair reproductive and growth rates, and even threaten survival 
-                    rates of a variety of species, including fish, birds, mammals, amphibians, 
-                    reptiles, insects, and plants. An incident that highlights the dangers of 
-                    water pollution occurred in Essex in 2019, where a sewage spill led to the 
-                    death of 5,000 fish.
+                    Water pollution can lead to devestating consequences for
+                    both wildlife and ecosystems. Not only can it diminish
+                    biodiversity, but it can also have far-reaching effects on
+                    food webs, natural cycles, and habitat quality. Moreover, it
+                    can accelerate the spread of invasive species, increase
+                    disease outbreaks, impair reproductive and growth rates, and
+                    even threaten survival rates of a variety of species,
+                    including fish, birds, mammals, amphibians, reptiles,
+                    insects, and plants. An incident that highlights the dangers
+                    of water pollution occurred in Essex in 2019, where a sewage
+                    spill led to the death of 5,000 fish.
                   </p>
                 </div>
               </div>
@@ -213,17 +262,35 @@ export default function Home() {
             <div className="SDG-Section Narrow-Content">
               {/* <h3> Sustainability Development Goal </h3> */}
               <div className="SDG-Columns">
-                <div className = "SDG-Column">
+                <div className="SDG-Column">
                   <img className="SDG-Image" id="SDGImage" src={SDGImage} />
-                  <p>AquaPure is a web-app that supports the Sustainable Development Goals (SDGs), a set of 17 global goals adopted by the United Nations to end poverty, protect the planet and ensure peace and prosperity for all by 2030.</p>
+                  <p>
+                    AquaPure is a web-app that supports the Sustainable
+                    Development Goals (SDGs), a set of 17 global goals adopted
+                    by the United Nations to end poverty, protect the planet and
+                    ensure peace and prosperity for all by 2030.
+                  </p>
                 </div>
-                <div className = "SDG-Column">
+                <div className="SDG-Column">
                   <img className="SDG-Image" id="SDG6Image" src={SDG6Image} />
-                  <p>AquaPure aligns with Goal 6 of the SDGs, which aims to ensure availability and sustainable management of water and sanitation for everyone. AquaPure provides information and tools to monitor water quality, raise awareness about water pollution and promote water conservation and efficiency.</p>
+                  <p>
+                    AquaPure aligns with Goal 6 of the SDGs, which aims to
+                    ensure availability and sustainable management of water and
+                    sanitation for everyone. AquaPure provides information and
+                    tools to monitor water quality, raise awareness about water
+                    pollution and promote water conservation and efficiency.
+                  </p>
                 </div>
-                <div className = "SDG-Column">
+                <div className="SDG-Column">
                   <img className="SDG-Image" id="SDG14Image" src={SDG14Image} />
-                  <p>AquaPure also aligns with Goal 14 of the SDGs, which strives to preserve and enhance the oceans, seas and marine resources for sustainable development. AquaPure informs users about water pollution and its impacts on marine life and ecosystems and encourages them to take action to prevent and reduce it.</p>
+                  <p>
+                    AquaPure also aligns with Goal 14 of the SDGs, which strives
+                    to preserve and enhance the oceans, seas and marine
+                    resources for sustainable development. AquaPure informs
+                    users about water pollution and its impacts on marine life
+                    and ecosystems and encourages them to take action to prevent
+                    and reduce it.
+                  </p>
                 </div>
               </div>
 
@@ -253,13 +320,13 @@ export default function Home() {
               <p>
                 The AquaPure web application is a group project for Group 16 in
                 the second year of Computer Science at Brunel University London.
-                The project is to create a web application called “AquaPure” which
-                follows Goal 6 (Clean Water and Sanitation) of the Sustainable
-                Development Goals and some aspects of Goal 14 (Life Below Water).
-                Our main goal is to raise awareness for people so they understand
-                and take action to clean their water in their local areas. This
-                will hopefully hit our goal for clean water and making life below
-                water more convenient.
+                The project is to create a web application called “AquaPure”
+                which follows Goal 6 (Clean Water and Sanitation) of the
+                Sustainable Development Goals and some aspects of Goal 14 (Life
+                Below Water). Our main goal is to raise awareness for people so
+                they understand and take action to clean their water in their
+                local areas. This will hopefully hit our goal for clean water
+                and making life below water more convenient.
               </p>
             </div>
           </div>
