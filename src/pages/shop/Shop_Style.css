@@ -152,6 +152,10 @@
     85%{scale:1;opacity: 1;rotate: 0;}
     100%{scale:0.5;opacity: 0;rotate: 0;}
 }
+
+.catagory-btn{
+    
+}
 /* .item_quick_add:not(:active){
     animation-name:quick;
     animation-duration: 1.5s;

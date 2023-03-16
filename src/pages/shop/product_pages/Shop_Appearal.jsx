@@ -43,12 +43,21 @@ export default function Shop_appearal() {
     "Recycled Tote Bag Large":tote,
     Cap:cap,
   }
+  const productlinks = {
+    BackPack:"/backpack",
+    "Face Mask Pack of 3":"/mask",
+    "T-Shirt": "/T-shirt",
+    Hoodie:"/hoodie",
+    "Recycled Tote Bag Large":"/tote_bag",
+    Cap:"/cap",
+  }
     const [check, setcheck] = useState("Add to cart");
 
     useEffect(()=>{
         loadUser();
         loadCart();
         loadProducts();
+        console.log(productimg["BackPack"])
       },[])
  
   const loadUser = () => {
@@ -129,7 +138,7 @@ export default function Shop_appearal() {
                 if(product.catagoryID === 5){ 
                   return(
                     <li className="item">
-                        <Link to="/water_bottle"><img alt="water" className="item_img" src={productimg[product.product_name]}/></Link>
+                        <Link to={productlinks[product.product_name]}><img alt="water" className="item_img" src={productimg[product.product_name]}/></Link>
                         <p className="item_title" key={"watername"}>{product.product_name}</p>
                         <p className="item_price" key={"waterprice"}>£{product.product_price}</p>
                         <button className="item_quick_add item_quick_add1" key={product.productID} type="button" name="add" onClick={()=>{postAdd(product.productID);}}>{add_text}</button>
