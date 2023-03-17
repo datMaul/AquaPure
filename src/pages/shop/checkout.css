@@ -67,15 +67,27 @@ input[type=number]::-webkit-inner-spin-button{
     
 }
 .subtotal{
-    
+    float:left;
+}
+.discount_title{
+
+}
+.discount{
+    margin-right:50px;
+    left:2000px;
+    width:10%;
+    background-color: grey;
+    display:flex;
 }
 
 .purchase{
     background-color: aliceblue;
     display: block;
-    position:fixed;
+    position:relative;
     text-align: center;
-    color:green;
+    border-style:solid;
+    
+    color:rgb(96, 96, 96);
     
 }
 .popupcon {

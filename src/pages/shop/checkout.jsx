@@ -269,7 +269,8 @@ export default function Checkout() {
                         }
                         })
                     }
-                    <label htmlFor="checkbox">Apply Points Discount</label>                        
+                    <label htmlFor="checkbox" className="discount_title">Apply Points Discount</label>                        
+
                     <div className="discount">
                         <button onClick={()=>(increment_point())}>+</button>
                         <h3>{point_amount}</h3>
@@ -281,7 +282,7 @@ export default function Checkout() {
                         <h2 className="subtotal_num">£{subtotal}</h2>
                     </div>
                 
-                    <button onClick={()=>{purchase();}}>PURCHASE</button>
+                    <button className="purchase" onClick={()=>{purchase();}}>PURCHASE</button>
                 </div>
             </div>
         </div>

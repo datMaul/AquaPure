@@ -6,20 +6,8 @@ import axios from 'axios';
 import {React, useCallback, useEffect, useState,useReducer} from 'react';
 import placeholder from './item_pages/shop_assets/placeholder.jpg';
 import ShopNotification from "./ShopNotification";
-import wall from "./item_pages/shop_assets/shop_background.jpg";
-import tote from "./item_pages/shop_assets/AquaPureToteBag.png";
-import notebook from "./item_pages/shop_assets/APNotebook.png"
-import cup from "./item_pages/shop_assets/BambooCup.png"
-import mug from "./item_pages/shop_assets/Beverage Mug.png"
-import filter from "./item_pages/shop_assets/water filter.png"
-import hoodie from "./item_pages/shop_assets/APHoodie.png"
-import shirt from "./item_pages/shop_assets/tshirtAP.png"
-import mask from "./item_pages/shop_assets/FaceMaskAP.png"
-import cap from "./item_pages/shop_assets/APcap.png"
-import flask from "./item_pages/shop_assets/metalFlask.png"
-import pouch from "./item_pages/shop_assets/APPouch.png"
-import phone from "./item_pages/shop_assets/PhoneCaseAP.png"
-import backpack from "./item_pages/shop_assets/APBackpack.png"
+import clothes from "./item_pages/shop_assets/shirticon.png";
+import drinkware from "./item_pages/shop_assets/cupicon.png"
 
 export default function Shop() {  
   const storeuserid = localStorage.getItem("user_ID");
@@ -74,11 +62,13 @@ export default function Shop() {
         <h1 className="shop_title">AquaShop</h1>
         <nav>
           <ul className="item_list">
-            <li>
-              <Link to='/shop/Shop_appearal'><button className="item">Clothes</button></Link>
+            <li className="item">
+              <Link to='/shop/Shop_appearal'><img className="item_img" src={clothes} alt="clothes"></img></Link>
+              <p className="catagory-txt">CLOTHES</p>
             </li>
-            <li>
-              <Link to='/shop/Shop_drinks'><button className="item">Drinkware</button></Link>
+            <li className="item">
+              <Link to='/shop/Shop_drinks'><img className="item_img" src={drinkware} alt="drinks"></img></Link>
+              <p className="catagory-txt">DRINKWARE</p>
             </li>
             <li>
               

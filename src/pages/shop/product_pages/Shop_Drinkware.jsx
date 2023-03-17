@@ -129,7 +129,7 @@ export default function Shop_drinkware() {
       <div className="page" >
       
         <h1 className="shop_title">AquaShop</h1>
-        
+        <Link to='/shop'><button className="back">BACK</button></Link>
         <nav>
           <ul className="item_list">
               {productData.map(product => {

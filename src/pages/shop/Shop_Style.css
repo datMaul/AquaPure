@@ -66,6 +66,7 @@
 }
 
 .item_img{
+    position: relative;
     height:275px;
     width:auto;
     cursor: pointer;
@@ -153,8 +154,22 @@
     100%{scale:0.5;opacity: 0;rotate: 0;}
 }
 
-.catagory-btn{
-    
+.catagory-txt{
+    font-size: 20px;
+    cursor: default;
+}
+.back{
+    border-style: none;
+    background-color: transparent;
+    margin-left:150px;
+    width:10%;
+    height:15%;
+    font-size:30px;
+    padding:20px;
+}
+.back:hover{
+    cursor: pointer;
+    background-color: #8cbccb;
 }
 /* .item_quick_add:not(:active){
     animation-name:quick;
