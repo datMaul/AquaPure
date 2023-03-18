@@ -39,7 +39,7 @@ export default function DonationForm() {
     event.preventDefault();
     console.log("Submitting form...");
     
-    axios.post('http://localhost:3000/donations/Invoice', DonationData)
+    axios.post('/donations/DonationForm', DonationData)
       .then(response => {
         console.log(response);
         navigate("/");

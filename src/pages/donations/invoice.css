@@ -8,7 +8,7 @@
     transition: all .2s linear;
 }
 
-.container {
+.containerV {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +17,7 @@
     background: #22a9ed;
 }
 
-.container form {
+.containerV form {
     padding: 20px;
     width: 700px;
     background: #fff;
@@ -35,25 +35,6 @@
     text-align: center;
 }
 
-.header {
+.headerV {
     text-align: center;
 }
-
-
-/* .container form .row{
-    display: flex;
-    flex-wrap: wrap;
-    gap:15px;
-  }
-*/
-/* .container form .row .col{
-    flex:1 1 250px;
-  }
-   */
-/* .container form .row .col .title{
-    font-size: 20px;
-    color:#333;
-    padding-bottom: 5px;
-    text-transform: uppercase;
-  }
-   */

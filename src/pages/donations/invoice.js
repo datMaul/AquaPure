@@ -5,19 +5,19 @@ import { Icon } from '@iconify/react'; // import the Iconify component
 function Invoice() {
   return (
     <body className='invBody'>
-    <div className="container">
+    <div className="containerV">
       <form action="">
-        <div className="row">
+        <div className="rowV">
           <div className="icon">
             <Icon icon="mdi:tick-outline" color="green" />
           </div>
-          <div className="col">
-            <div className="header">
-              <h1 className="title">Thanks for your donation!!</h1>
+          <div className="colV">
+            <div className="headerV">
+              <h1 className="titleV">Thanks for your donation!!</h1>
             </div>
           </div>
-          <div className="col">
-            <h3 className="title">You have completed your payment to charity. Thank you Shashwat Gurung.</h3>
+          <div className="colV">
+            <h3 className="titleV">You have completed your payment to charity. Thank you Shashwat Gurung.</h3>
           </div>
         </div>
       </form>

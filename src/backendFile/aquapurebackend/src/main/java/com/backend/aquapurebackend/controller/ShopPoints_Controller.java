@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.backend.aquapurebackend.model.ShopPoints;
-import com.backend.aquapurebackend.Service.ShopPointsService;
+import com.backend.aquapurebackend.service.ShopPointsService;
 
 @CrossOrigin
 @RestController

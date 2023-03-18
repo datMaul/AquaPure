@@ -7,7 +7,6 @@ import com.backend.aquapurebackend.repository.MapRecordRepository;
 import com.backend.aquapurebackend.repository.OpenWIMSRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.Collections;
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.data.repository.query.Param;

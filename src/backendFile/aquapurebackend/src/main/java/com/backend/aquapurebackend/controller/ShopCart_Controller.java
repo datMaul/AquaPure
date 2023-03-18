@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.backend.aquapurebackend.dto.ShopCartPostDTO;
 import com.backend.aquapurebackend.model.ShopCart;
 import com.backend.aquapurebackend.repository.ShopCartRepository;
-import com.backend.aquapurebackend.Service.ShopCartService;
+import com.backend.aquapurebackend.service.ShopCartService;
 
 @CrossOrigin
 @RestController

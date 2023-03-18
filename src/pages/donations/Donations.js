@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WaterAidImage from "./image/WaterAid.png";
-import WWFImage from "./image/WWF.jpg";
-import SoilAssociationImage from "./image/SoilAssociation.jpg";
-import RSPDImage from "./image/RSPD.jpg";
+import WWFImage from "./image/drop_bucket.jpg";
+import SoilAssociationImage from "./image/blood_water.jpg";
+import RSPDImage from "./image/water_org.jpg";
 import "./Donations.css";
 import { Link } from "react-router-dom";
 
