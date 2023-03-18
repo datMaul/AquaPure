@@ -8,6 +8,7 @@ import bamboo from "../item_pages/shop_assets/BambooCup.png"
 import mug from "../item_pages/shop_assets/Beverage Mug.png"
 import filter from "../item_pages/shop_assets/water filter.png"
 import flask from "../item_pages/shop_assets/metalFlask.png"
+import Navbar from "../Shop_Navbar";
 
 
 
@@ -94,7 +95,7 @@ export default function Shop_drinkware() {
     //new cart entry
     if(itemData.findIndex(item=>item.product_id === productid)===-1){
       console.log("created first entry")
-      let id = Math.floor(Math.random(999)*100);
+      let id = Math.floor(Math.random(999)*100)+1;
       console.log(id)
       axios.post(`http://localhost:8080/item`,{
         "id":id,
@@ -129,6 +130,7 @@ export default function Shop_drinkware() {
       <div className="page" >
       
         <h1 className="shop_title">AquaShop</h1>
+        <Navbar/>
         <Link to='/shop'><button className="back">BACK</button></Link>
         <nav>
           <ul className="item_list">

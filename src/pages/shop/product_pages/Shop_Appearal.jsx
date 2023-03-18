@@ -9,6 +9,7 @@ import tote from "../item_pages/shop_assets/AquaPureToteBag.png";
 import shirt from "../item_pages/shop_assets/tshirtAP.png"
 import hoodie from "../item_pages/shop_assets/APHoodie.png"
 import cap from "../item_pages/shop_assets/APcap.png"
+import Navbar from "../Shop_Navbar";
 
 
 
@@ -96,7 +97,7 @@ export default function Shop_appearal() {
     //new cart entry
     if(itemData.findIndex(item=>item.product_id === productid)===-1){
       console.log("created first entry")
-      let id = Math.floor(Math.random(999)*100);
+      let id = Math.floor(Math.random(999)*100)+1;
       console.log(id)
       axios.post(`http://localhost:8080/item`,{
         "id":id,
@@ -122,7 +123,9 @@ export default function Shop_appearal() {
 
 
   }
+  
 
+  
   
     
   return (
@@ -131,6 +134,7 @@ export default function Shop_appearal() {
       <div className="page" >
       
         <h1 className="shop_title">AquaShop</h1>
+        <Navbar/>
         <Link to='/shop'><button className="back">BACK</button></Link>
         <nav>
           <ul className="item_list">

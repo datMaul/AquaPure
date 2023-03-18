@@ -1,5 +1,7 @@
 .shop_title{
     margin-top:-50px;
+    display:flex;
+
 
 
     /* <a href="https://www.123freevectors.com/">Free Vector</a> */
@@ -8,7 +10,7 @@
     text-align: left;
     /* padding-bottom:10%; */
     font-size: 150px;
-    
+    margin-bottom:-25px;
     color:rgb(43, 188, 255)
 }
 
@@ -16,7 +18,7 @@
     overflow-y:scroll ;
     width: 100%;
     margin-top:50px;
-    background-color: none;
+
     display:table;
 }
 
@@ -33,6 +35,54 @@
     
 
 }
+.navbar_shop{
+    color:white;
+    background-color: rgb(255, 255, 255);
+    width:100%;
+    height: 60px;
+    margin-bottom:30px;
+    position:relative;
+    text-align: center;
+
+
+}
+.navbar_shop>ul{
+    display:inline-flex;
+    overflow: hidden;
+    margin:0;
+    padding:0;
+    color:#333;
+}
+.navbar_shop>ul>li>a{
+    font-size:20px;
+    color:inherit;
+    text-decoration: none;
+    padding:5px;
+    transition:350ms
+}
+.navbar_shop>ul>li>a:hover,
+.navbar_shop ul>.clicked{
+    color:#2ea6ce
+}
+
+.navbar_shop>ul>li::before{
+    content: '';
+    display: block;
+    height: 5px;
+    color:#333;
+    position: absolute;
+    top: 0;
+    width: 0%;
+    transition: all ease-in-out 150ms;
+    
+
+}
+
+
+
+
+
+
 
 .item:hover{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.725);
@@ -170,6 +220,22 @@
 .back:hover{
     cursor: pointer;
     background-color: #8cbccb;
+}
+#viewall{
+    margin:10px;
+    background-color: transparent;
+    border:none;
+    font-size: 20px;
+    transition: 350ms;
+    padding:10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+}
+#viewall:hover{
+    border-color:#008CBA;
+    color:#008CBA;
+    cursor: pointer;
 }
 /* .item_quick_add:not(:active){
     animation-name:quick;
