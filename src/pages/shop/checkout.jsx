@@ -172,11 +172,14 @@ export default function Checkout() {
         // console.log(date)
         cartItems.map(item => {
             let id = Math.floor(Math.random(999)*111)
+            let date = new Date().toDateString();
+            console.log(date)
             axios.post('http://localhost:8080/history',{
                 "purchase_id": id,
                 "userid":storeuserid,
                 "product_id":item.product_id,
-                "quantity":item.quantity
+                "quantity":item.quantity,
+                "date":date,
             }).then(res=>{console.log(res.data,"items post to data base")})
                 Userpoints.map(score=>{
                     user.map(users=>{
@@ -272,9 +275,9 @@ export default function Checkout() {
                     <label htmlFor="checkbox" className="discount_title">Apply Points Discount</label>                        
 
                     <div className="discount">
-                        <button onClick={()=>(increment_point())}>+</button>
-                        <h3>{point_amount}</h3>
-                        <button onClick={()=>(decrement_point())}>-</button>
+                        <button className="discount_button_minus" onClick={()=>(decrement_point())}>-</button>
+                        <h3 className="quant">{point_amount}</h3>
+                        <button className="discount_button_plus" onClick={()=>(increment_point())}>+</button>
                     </div>
 
                     <div className="subtotal">
