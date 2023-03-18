@@ -50,8 +50,10 @@ export default function Shop() {
     loadUser();
     loadCart();
     loadProducts();
+    console.log()
 
   },[])
+
   const loadProducts = () =>{
     axios.get(productURL)
     .then(res => {

@@ -1,3 +1,16 @@
 .productimg{
-    width:100px;
+    width:150px;
+}
+.purchase-table{
+    float: left;
+    width:100%;
+}
+.purchase-table>th{
+    font-size:25px;
+}
+.purchase-name{
+
+}
+.purchase-price{
+    padding:20px;
 }

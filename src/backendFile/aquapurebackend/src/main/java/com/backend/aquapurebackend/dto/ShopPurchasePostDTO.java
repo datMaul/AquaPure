@@ -5,11 +5,19 @@ public class ShopPurchasePostDTO {
     int userid;
     int product_id;
     int quantity;
-    public ShopPurchasePostDTO(int purchase_id, int userid, int product_id, int quantity){
+    String date;
+    public ShopPurchasePostDTO(int purchase_id, int userid, int product_id, int quantity, String date){
         this.purchase_id = purchase_id;
         this.userid = userid;
         this.product_id = product_id;
         this.quantity = quantity;
+        this.date = date;
+    }
+    public String getDate() {
+        return date;
+    }
+    public void setDate(String date) {
+        this.date = date;
     }
     public int getQuantity() {
         return quantity;

@@ -55,11 +55,12 @@ export default function PurchaseHistoryShop() {
       <div>
         <div>
           <h1>Shop Purchase History</h1>
-            <table>
+            <table className="purchase-table">
               <th></th>
               <th>Product</th>
               <th>Price</th>
               <th>Quantity</th>
+              <th>Date</th>
             {
               history.map(purchase => {
                 return(
@@ -67,9 +68,10 @@ export default function PurchaseHistoryShop() {
                     if(product.productID === purchase.product_id){
                       return(<tr>
                         <td><img className="productimg" src={productimg[product.product_name]}></img></td>
-                        <td>{product.product_name}</td>
-                        <td>£{product.product_price}</td>
+                        <td className="purchase-name">{product.product_name}</td>
+                        <td className="purchase-price">£{product.product_price}</td>
                         <td>{purchase.quantity}</td>
+                        <td>{purchase.date}</td>
                       </tr>)
                     }
                   })

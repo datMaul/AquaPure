@@ -69,15 +69,45 @@ input[type=number]::-webkit-inner-spin-button{
 .subtotal{
     float:left;
 }
-.discount_title{
+
+
+.discount{
+    width: 100px;
+    text-align: center;
+    padding:5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(187, 187, 187);
 
 }
-.discount{
-    margin-right:50px;
-    left:2000px;
-    width:10%;
-    background-color: grey;
-    display:flex;
+
+.discount_button_minus{
+    background-color: transparent;
+    cursor:pointer;
+    border:none;
+    font-size: 23px;
+    transition:350ms;
+    color:grey;
+
+}
+.discount_button_plus{
+
+    background-color: transparent;
+    cursor:pointer;
+    border:none;
+    font-size: 23px;
+    transition:350ms;
+    color:grey;
+
+
+}
+.discount_button_minus:hover{
+    cursor: pointer;
+    color:black
+}
+.discount_button_plus:hover{
+    cursor: pointer;
+    color:black
 }
 
 .purchase{
