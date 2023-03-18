@@ -36,23 +36,23 @@ table{
 }
 .th_product_header{
     text-align: center;
-    width:50%;
+    width:70%;
 }
 
-.product_header{
+.product_td{
     text-align: left;
+
 }
 td{
     text-align: center;
-    font-size:20px;
+    font-size:25px;
     
 }
 .quant_header{
-    
+
    
 }
 .price_header{
-
 }
 .item_image{
     width:100%;
@@ -65,7 +65,7 @@ td{
 }
 
 .price_td{
-
+    padding:30px;
 }
 
 .delete_button{
@@ -87,42 +87,56 @@ td{
 .quant_td{
     width:20%;
     cursor:default;
+    font-size: 20px;
+    margin:10px;
+
     
 }
+.quantity{
+    display:inline-block;
+    justify-content: center;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(187, 187, 187);
+
+}
 .quant{
-    display:inline;
-    padding:2px;
+    display:inline-block;
+    margin:5px;
 
 }
 .quant_button_minus{
+    background-color: transparent;
     cursor:pointer;
-    margin-left:15%;
-    width: 20%; 
+    padding:5px 20px;
     text-align: center;
     border:none;
     font-size: 23px;
     transition:350ms;
-    
+    color:grey;
+
     float:left;
 }
 .quant_button_plus{
+    background-color: transparent;
     cursor:pointer;
-    margin-right: 15%;
-    width: 20%;
-    text-align: center;
+    padding:5px 20px;
+    text-align:justify;
+    text-orientation: upright;
     border:none;
     font-size: 23px;
     transition:350ms;
+    color:grey;
 
     float:right;
 }
 .quant_button_minus:hover{
     cursor: pointer;
-    background-color: rgb(0, 174, 255);
+    color:black
 }
 .quant_button_plus:hover{
     cursor: pointer;
-    background-color: rgb(0, 174, 255);
+    color:black
 }
 .containerSum{
     float:right;
@@ -137,9 +151,10 @@ td{
     text-align: left;
 }
 .total{
-
+    text-align: center;
 }
 .checkout{
+    text-align: center;
     width:200px;
     margin-top:150px;
     padding:10px;

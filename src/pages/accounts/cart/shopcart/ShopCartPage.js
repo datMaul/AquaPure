@@ -31,7 +31,7 @@ export default function ShopCartPage() {
   const [empty, setempty] = useState(false)
   const productimg = {
     "Recycled Sports Bottle": water,
-    Backpack: backpack,
+    BackPack: backpack,
     "Phone Case": phone,
     "Laptop Pouch":pouch,
     "Metal Flask":flask,
@@ -185,8 +185,8 @@ export default function ShopCartPage() {
                       return(<>{notEmpty ? <tbody>
                         <tr key={"cart"}>
                           <td><img className="item_image" src={productimg[product.product_name]} alt="water"></img></td>
-                          <td className="product_header" key={product.product_name}>{product.product_name}</td>
-                          <td className="quant_td" key={"count"}><button className="quant_button_minus" onClick={()=>{decrease(item.product_id,item.id);}}>-</button><p className="quant">{item.quantity}</p><button className="quant_button_plus" onClick={()=>{increment(item.product_id,item.id);}}>+</button></td>
+                          <td className="product_td" key={product.product_name}>{product.product_name}</td>
+                          <td className="quant_td" key={"count"}><div className="quantity"><button className="quant_button_minus" onClick={()=>{decrease(item.product_id,item.id);}}>-</button><p className="quant">{item.quantity}</p><button className="quant_button_plus" onClick={()=>{increment(item.product_id,item.id);}}>+</button></div></td>
                           <td className="price_td" key={product.product_price}>£{product.product_price}</td>
                           <td><button className="delete_button" onClick={() => deleteItem(item.id)}>X</button></td>
                         </tr>
