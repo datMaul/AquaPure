@@ -8,9 +8,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/donations")
 public class DonationController {
 
-    @PostMapping("/DonationForm")
+    @PostMapping("/Invoice")
     public ResponseEntity<String> processDonation(@RequestBody DonationData donationData) {
         // Handle the donation data here
+
+        // Code to process donation data goes here
+        //  String sql = "INSERT INTO donations (fullName, email, charity, amount, payment_method) " +
+        //  "VALUES ('" + donationData.getFullName() + "', '" + donationData.getEmail() + "', '" +
+        //  donationData.getCharity() + "', " + donationData.getAmount() + "')";
+
+         // Code to execute SQL query and insert donation data into database goes here
+
         System.out.println(donationData);
         return ResponseEntity.status(HttpStatus.CREATED).body("Donation created successfully");
     }
