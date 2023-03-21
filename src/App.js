@@ -48,6 +48,8 @@ import PurchaseHistoryShop from "./pages/accounts/accountPageSections/purchasehi
 import ShopCart from "./pages/accounts/cart/shopcart/ShopCartPage"
 import Shop_appearal from "./pages/shop/product_pages/Shop_Appearal";
 import Shop_drinks from "./pages/shop/product_pages/Shop_Drinkware"
+import Shop_other from "./pages/shop/product_pages/Shop_Other"
+import Shop_tech from "./pages/shop/product_pages/Shop_Tech";
 // import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -145,6 +147,8 @@ function App() {
           <Route path="/mask" element={<Mask />} />
           <Route path='/shop/Shop_Appearal' element={<Shop_appearal/>}/>
           <Route path='/shop/Shop_drinks' element={<Shop_drinks/>}/>
+          <Route path="/shop/Shop_other" element={<Shop_other/>}/>
+          <Route path="/shop/Shop_tech" element={<Shop_tech/>}/>
         </Routes>
       </div>
     </>

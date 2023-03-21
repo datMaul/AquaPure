@@ -68,34 +68,19 @@
 }
 
 .back{
-    width:10px;
-    height:10px;
-
     margin-top:-80px;
-    transition: ease 350ms;
 }
 .back_button{
-    margin:0 0 0 20px;
+
 
     text-align: center;
     text-decoration: none;
-    color:rgb(0, 0, 0);
+    color:black;
     font-size:80px;
     cursor: pointer;
-    padding:0 0 0 20px;
-    transition: ease 350ms;
-}
-.back_button:hover{
-    
-    animation-name:nudge;
-    animation-duration: 0.5s;
+    transition: ease 150ms;
 }
 
-@keyframes nudge {
-    0%{margin:0px 0px 0px 20px;}
-    25%{margin:0px 0px 0px 10px;}
-    50%{margin:0px 0px 0px 20px;}
-    75%{margin:0px 0px 0px 10px;}
-    100%{margin:0px 0px 0px 20px;}
-}
+
+
 

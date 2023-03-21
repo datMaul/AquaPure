@@ -1,5 +1,4 @@
 .check_page{
-    background-color: grey;
     margin:0 200px auto;
     
 }
@@ -72,7 +71,8 @@ input[type=number]::-webkit-inner-spin-button{
 
 
 .discount{
-    width: 100px;
+    margin-right:50px;
+    width: 150px;
     text-align: center;
     padding:5px;
     border-style: solid;
@@ -80,24 +80,29 @@ input[type=number]::-webkit-inner-spin-button{
     border-color: rgb(187, 187, 187);
 
 }
+.discount_title{
+
+}
 
 .discount_button_minus{
     background-color: transparent;
     cursor:pointer;
     border:none;
-    font-size: 23px;
+    font-size: 25px;
     transition:350ms;
     color:grey;
+    margin-right:15px;
 
 }
 .discount_button_plus{
-
     background-color: transparent;
     cursor:pointer;
     border:none;
-    font-size: 23px;
+    font-size: 25px;
     transition:350ms;
     color:grey;
+    margin-left:15px;
+
 
 
 }
@@ -111,14 +116,18 @@ input[type=number]::-webkit-inner-spin-button{
 }
 
 .purchase{
+    padding:10px;
     background-color: aliceblue;
-    display: block;
-    position:relative;
     text-align: center;
     border-style:solid;
+    border:transparent;
+    font-size: 20px;
+    transition: ease-in-out 150ms;
     
-    color:rgb(96, 96, 96);
-    
+}
+.purchase:hover{
+    cursor: pointer;
+    background-color: transparent;
 }
 .popupcon {
     position: fixed;
