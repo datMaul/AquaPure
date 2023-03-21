@@ -64,7 +64,7 @@ export default function Checkout() {
         total();
         user.map(users=>{
             Userpoints.map(points=>{
-                if(users.eMail===points.email){
+                if(localStorage.getItem("email")===points.email){
                     if(users.userId.toString()===storeuserid){
                         setmax(points.score)
                         console.log(max)
@@ -183,13 +183,13 @@ export default function Checkout() {
             }).then(res=>{console.log(res.data,"items post to data base")})
                 Userpoints.map(score=>{
                     user.map(users=>{
-                        if(score.email === users.eMail){
+                        if(score.email === localStorage.getItem("email")){
                             if(users.userId+'' === storeuserid){
                                 console.log("points afte purchase",point_amount)
                                 const newPoints = score.score - point_amount
                                 console.log(newPoints,"new points after purchase")
                                 if(newPoints<0){
-                                    axios.put(`http://localhost:8080/points/findByEmail?email=`+users.eMail+'',{
+                                    axios.put(`http://localhost:8080/points/findByEmail?email=`+localStorage.getItem("email")+'',{
                                     'score':0,
                                     }).then(res=>{console.log(res.data,newPoints)})
                                 }
@@ -260,21 +260,20 @@ export default function Checkout() {
                     }
                     </table>
                     {
-                        user.map(user => {
-                        if(user.userId.toString() === storeuserid){
+                        user.map(users => {
+                        if(users.userId.toString() === storeuserid){
                             return(
                             Userpoints.map(score=>{
-                                
-                            if(user.eMail === score.email){
-                                return(<><h3>You have {score.score} points to your account</h3></>)
-                            }
+                                if(localStorage.getItem("email") === score.email){
+                                    return(<><h3>You have {score.score} points to your account</h3></>)
+                                }
                             }))
                         }
                         })
                     }
-                    <label htmlFor="checkbox" className="discount_title">Apply Points Discount</label>                        
 
                     <div className="discount">
+                        <p className="discount_title">Apply Points Discount</p>
                         <button className="discount_button_minus" onClick={()=>(decrement_point())}>-</button>
                         <h3 className="quant">{point_amount}</h3>
                         <button className="discount_button_plus" onClick={()=>(increment_point())}>+</button>
@@ -285,8 +284,9 @@ export default function Checkout() {
                         <h2 className="subtotal_num">£{subtotal}</h2>
                     </div>
                 
-                    <button className="purchase" onClick={()=>{purchase();}}>PURCHASE</button>
                 </div>
+                <button className="purchase" onClick={()=>{purchase();}}>PURCHASE</button>
+
             </div>
         </div>
     )
