@@ -5,7 +5,7 @@ import WWFImage from "./image/drop_bucket.jpg";
 import SoilAssociationImage from "./image/blood_water.jpg";
 import RSPDImage from "./image/water_org.jpg";
 import "./Donations.css";
-//import ".DonationCounter.css";
+import "./donationCount.css";
 import { Link } from "react-router-dom";
 
 export default function Donations() {
@@ -221,7 +221,7 @@ export default function Donations() {
       </div>
       <div>
       <div className="DonationCount">
-      <div className="counter">{count.toString().padStart(5, "0")}</div>
+      <h1>Donation Count: {count.toString().padStart(5, "0")}</h1>
       </div>
       </div>
     </div>
