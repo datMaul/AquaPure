@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import WaterAidImage from "./image/WaterAid.png";
 import WWFImage from "./image/drop_bucket.jpg";
 import SoilAssociationImage from "./image/blood_water.jpg";
 import RSPDImage from "./image/water_org.jpg";
 import "./Donations.css";
+//import ".DonationCounter.css";
 import { Link } from "react-router-dom";
 
 export default function Donations() {
@@ -30,6 +31,17 @@ export default function Donations() {
         console.log(error);
       });
   };
+
+  // For the count
+  const [count, setCount] = useState(Math.floor(Math.random() * 99999));
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount((prevCount) => prevCount + Math.floor(Math.random() * 100));
+    }, Math.floor(Math.random() * 37000 + 3000));
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="Donations">
@@ -206,6 +218,11 @@ export default function Donations() {
             <img src="./images/water_org(pic1).jpg" alt="Water Org Pic 1" />
           </div>
         </div>
+      </div>
+      <div>
+      <div className="DonationCount">
+      <div className="counter">{count.toString().padStart(5, "0")}</div>
+      </div>
       </div>
     </div>
     </div>
