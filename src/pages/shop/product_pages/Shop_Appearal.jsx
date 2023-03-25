@@ -135,7 +135,7 @@ export default function Shop_appearal() {
       
         <h1 className="shop_title">AquaShop</h1>
         <Navbar/>
-        <Link to='/shop'><button className="back">BACK</button></Link>
+        <Link to='/shop'><button className="back">SHOP PAGE</button></Link>
         <nav>
           <ul className="item_list">
               {productData.map(product => {

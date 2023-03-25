@@ -82,8 +82,8 @@ export default function Tote_bag() {
       <div>
         <div className="page_item">
 
-          <div className="back">
-            <Link to="/shop"className="back_button">{"<"}</Link>
+          <div>
+            <Link to="/shop"className="container-back-btn"><p className="back-btn">BACK</p></Link>
           </div>
 
           <center>

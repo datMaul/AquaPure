@@ -97,7 +97,7 @@ export default function Shop() {
     "BackPack":backpack,
   }
   const productlinks = {
-    "Recycled Sports Bottle":"/water",
+    "Recycled Sports Bottle":"/water_bottle",
     "Recycled Tote Bag Large":"/tote_bag",
     "Bamboo Covered Note Book":"/bamboo",
     "AquaPure Sticker & Badge":"/sticker",
