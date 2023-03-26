@@ -4,7 +4,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import "./map.css";
 import paramData from "./parameter-data.json";
 import { getTileCoords, getAllTileLatPoints } from "./utils.js";
-import { getScore, getGradeColour } from "./scoring.js";
+import { getScore, getGradeColour, getOverallScore } from "./scoring.js";
 import axios from "axios";
 
 export default function Map() {
@@ -28,6 +28,7 @@ export default function Map() {
     populateParameterFilters();
 
     map.current.popups = [];
+    map.current.onClickEvents = [];
     // map.current.selectedSources = [];
     // map.current.selectedWaterBodies = [];
     // map.current.selectedParameters = [];
@@ -43,7 +44,6 @@ export default function Map() {
     map.current.on('load', async function () {
 
       await fetchMapRecords();
-      if (map.current.records.length) updateTiles();
 
       const searchInput = document.getElementById('search_input');
       const searchResults = document.getElementById('search_results');
@@ -103,6 +103,12 @@ export default function Map() {
           'circle-stroke-color': '#fff'
         }
       });
+
+      // If there are records, draw the tile and circle layers
+      if (map.current.records.length) {
+        updateTiles();
+        drawCircleLayer(map.current.records);
+      }
 
       // Add tile layer to map
       map.current.addSource("samples_tiles", {
@@ -186,14 +192,12 @@ export default function Map() {
     if (!waterBodyTypes && !sourceTypes) return;
 
     // Get parameter name
-    const selectedParameter = document.getElementById("param_filter").value;
+    var selectedParameter = document.getElementById("param_filter").value;
 
-    // If there are any sub parameters for the selected parameter, add them to the parameter names array
-    // const parameterNamesArray = [selectedParameter];
-    // paramData[selectedParameter].names?.forEach((name) => {
-    //   parameterNamesArray.push(name);
-    // });
-    // const parameterNames = parameterNamesArray.join(",");
+    // If the selected parameter is "Overall Quality", request all parameters
+    if (selectedParameter === "Overall Quality") {
+      selectedParameter = Object.keys(paramData).join(",").replace("Overall Quality", "");
+    };
 
     const params = {
       sourceTypes: sourceTypes,
@@ -217,8 +221,6 @@ export default function Map() {
   function handleSearch() {
     const searchInput = document.getElementById("search_input").value;
     searchPlace(searchInput).then((results) => {
-      //console.log(results);
-      map.current.getSource("search-results").setData(results);
       if (results.features[0]) {
         map.current.fitBounds(results.features[0].bbox, { maxZoom: 19 });
       }
@@ -230,8 +232,6 @@ export default function Map() {
     var searchResults = document.getElementById("search_results");
     const searchInput = document.getElementById("search_input");
     searchPlace(searchInput.value).then((results) => {
-      //console.log(results);
-      map.current.getSource("search-results").setData(results);
       if (results.features[0]) {
         searchResults.innerHTML = "";
         results.features.forEach((res) => {
@@ -244,8 +244,10 @@ export default function Map() {
       for (var i = 0; i < searchResultItems.length; i++) {
         let item = searchResultItems[i];
         item.addEventListener("click", () => {
-          //console.log(searchResultItems);
-          //console.log(item.dataset.bbox);
+          map.current.getSource("search-results").setData({
+            type: "FeatureCollection",
+            features: [results.features.find((res) => res["place_name"] === item.innerText)],
+          });
           map.current.fitBounds(
             item.dataset.bbox.split(",").map((value) => parseFloat(value)),
             { maxZoom: 19 }
@@ -263,6 +265,8 @@ export default function Map() {
       type: "FeatureCollection",
       features: [],
     });
+    map.current.popups.forEach(popup => popup.remove()); 
+    map.current.onClickEvents.forEach(e => map.current.off("click", sourceName, e));
   }
 
   // Function to adjust the tile size based on the zoom level
@@ -291,13 +295,29 @@ export default function Map() {
 
     records.forEach((record) => {
 
-      //console.log(`record: ${JSON.stringify(record)}`)
-
       const sampleId = record.openWIMSRecord?.samplingPoint 
                     ?? record.testkitPurchase?.id 
                     ?? record.mapRecord_ID;
 
-      // Create a GeoJSON Feature for each record 
+      // Check if a feature with the same coordinates and water body type already exists in the collection
+      const existingFeature = circleCollection.features.find((feature) => {
+        return (
+          feature.properties.sampleId === sampleId
+        );
+      });
+
+      // If it exists, add the parameter to the existing feature
+      if (existingFeature) {
+        existingFeature.properties.parameters.push({
+          parameterName: record.parameterName,
+          parameterValue: record.parameterValue,
+          parameterUnit: record.parameterUnit,
+          sampleDate: record.recordedDateTime,
+        });
+        return;
+      }
+
+      // If it doesn't exist, create a new feature
       var circleFeature = {
         type: "Feature",
         geometry: {
@@ -306,12 +326,14 @@ export default function Map() {
         },
         properties: {
           sampleId: sampleId,
-          sampleDate: record.recordedDateTime,
           sourceType: record.sourceType,
           waterBodyType: record.waterBodyType,
-          parameterName: record.parameterName,
-          parameterValue: record.parameterValue,
-          parameterUnit: record.parameterUnit
+          parameters: [{
+            parameterName: record.parameterName,
+            parameterValue: record.parameterValue,
+            parameterUnit: record.parameterUnit,
+            sampleDate: record.recordedDateTime,
+          }]
         }
       };
 
@@ -324,74 +346,80 @@ export default function Map() {
 
     // Add a click event to the circles layer
     map.current.on("click", "samples_circles", (e) => {
+      map.current.onClickEvents.push(e);
       const coordinates = e.features[0].geometry.coordinates.slice();
       const sampleId = e.features[0].properties.sampleId;
       const sourceType = e.features[0].properties.sourceType;
-      const sampleDate = e.features[0].properties.sampleDate;
       const waterBodyType = e.features[0].properties.waterBodyType;
-      const parameterName = e.features[0].properties.parameterName;
-      const parameterValue = e.features[0].properties.parameterValue;
-      const parameterUnit = e.features[0].properties.parameterUnit;
+      const parameters = JSON.parse(e.features[0].properties.parameters);
 
-      // Get quality grade based from parameter-data.json and sample value
-      // getScore(passed_value, min_range, max_range, ideal_value, sensitivity, function_type="sigmoid_unipolar")
-      var qualityGrade = '?';
-
-      const scoringJSON = paramData[parameterName]['scoring_function'];
-      console.log(scoringJSON)
-      if (scoringJSON) {
-        qualityGrade = getScore(
-          parameterValue, 
-          scoringJSON['min_range'], 
-          scoringJSON['max_range'], 
-          scoringJSON['ideal_value'], 
-          scoringJSON['function_sensitivity'],
-          paramData[parameterName].scoring_function.shift_x ?? 0, 
-          scoringJSON['type']
-          );
-        console.log(qualityGrade)
-        
-        // Multiply quality grade by 10 to get a 10-star rating and round to nearest 1 decimal place
-        qualityGrade = Math.round(qualityGrade * 10 * 10) / 10;
-      }
-
-      const gradeHex = getGradeColour(qualityGrade);
-
-      // Get negative effects based on parameter value and quality grade
-      const effects = paramData[parameterName].effects ?? null;
+      var parametersString = '';
       var effectsString = '';
-      console.log(effects)
-      if (effects) {
-        console.log(`effects found for ${parameterName}`)
-        if (qualityGrade < 6) {
-          console.log(`low quality grade for ${parameterName}`)
-          // Low parameter value
-          if (parameterValue < scoringJSON.ideal_value && effects.low) {
-            console.log(`low effects found for ${parameterName}`)
-            effectsString = `<br/><br><b>Effects:</b><br/>${effects.low}`;
-          }
-          // High parameter value
-          else if (parameterValue > scoringJSON.ideal_value && effects.high) {
-            console.log(`high effects found for ${parameterName}`)
-            effectsString = `<br/><br><b>Effects:</b><br/>${effects.high}`;
+      var paramScores = [];
+
+      for (var i = 0; i < parameters.length; i++) {
+        var p = parameters[i];
+
+        // Get quality grade based from parameter-data.json and sample value
+        // getScore(passed_value, min_range, max_range, ideal_value, sensitivity, function_type="sigmoid_unipolar")
+        var qualityGrade = '?';
+
+        const scoringJSON = paramData[p.parameterName]['scoring_function'];
+        if (scoringJSON) {
+          qualityGrade = getScore(
+            p.parameterValue, 
+            scoringJSON['min_range'], 
+            scoringJSON['max_range'], 
+            scoringJSON['ideal_value'], 
+            scoringJSON['function_sensitivity'],
+            paramData[p.parameterName].scoring_function.shift_x ?? 0, 
+            scoringJSON['type']
+            );
+
+          paramScores.push(qualityGrade);
+          
+          // Multiply quality grade by 10 to get a 10-star rating and round to nearest 1 decimal place
+          qualityGrade = Math.round(qualityGrade * 10 * 10) / 10;
+        }
+
+        const gradeHex = getGradeColour(qualityGrade);
+
+        // Add parameter to parameters string
+        parametersString += `<br/>${p.parameterName}: ${p.parameterValue} ${p.parameterUnit} (<p style="color:${gradeHex}; display:inline;">${qualityGrade}☆</p>) ♦️ ${p.sampleDate}`;
+
+        // Get negative effects based on parameter value and quality grade
+        const effects = paramData[p.parameterName].effects ?? null;
+        
+        if (effects) {
+          if (qualityGrade < 6) {
+            // Low parameter value
+            if (p.parameterValue < scoringJSON.ideal_value && effects.low) {
+              if (!effectsString.includes(effects.low)) effectsString += `<br/>${effects.low}`;
+            }
+            // High parameter value
+            else if (p.parameterValue > scoringJSON.ideal_value && effects.high) {
+              if (!effectsString.includes(effects.high)) effectsString += `<br/>${effects.high}`;
+            }
           }
         }
-      }
+      };
+
+      const overallScore = Math.round(getOverallScore(paramScores) * 10 * 10) / 10;
 
       // Create a popup
-      var popup = new maplibregl.Popup({ offset: 5, maxWidth: "320px" }).setHTML(
-        `<b>Sample ID:</b><br/>${sampleId} (${sourceType})<br/><br>` +
-        // `<b>Source type:</b><br/>${sourceType}<br/><br>` +
-        `<b>Sample date:</b><br/>${sampleDate}<br/><br>` +
+      var popup = new maplibregl.Popup({ offset: 5, maxWidth: "350px" }).setHTML(
+        `<b>Sampling Point ID:</b><br/>${sampleId} (${sourceType})<br/><br>` +
         `<b>Water body type:</b><br/>${waterBodyType}<br/><br>` +
         `<b>Location:</b><br/> ${e.features[0].geometry.coordinates.join(', ')}<br/><br>` +
-        `<b>Parameter(s):</b><br/>` +
-        `${parameterName}: ${parameterValue} ${parameterUnit} (<p style="color:${gradeHex}; display:inline;">${qualityGrade}☆</p>)` +
-        `${effectsString}`
+        `<b>Parameter(s):</b>` +
+        ((paramScores.length > 1) ? `<br/>Combined Quality Score: <p style="color:${getGradeColour(overallScore)}; display:inline;">${overallScore}☆</p>` : '') +
+        parametersString +
+        ((effectsString == '') ? '' : `<br/><br><b>Effects:</b>${effectsString}`)
       );
 
       // Add the popup to the map
       popup.setLngLat(coordinates).addTo(map.current);
+      map.current.popups.push(popup);
     });
 
     // Change the cursor to a pointer when the mouse is over the circles layer
@@ -407,10 +435,11 @@ export default function Map() {
 
   // Add tile layers to the map with retrieved map record data
   async function drawTileLayer(records) {
-    // Fetch map records from the backend
-    //const records = map.current.records;
 
     var latPoints = getAllTileLatPoints(map.current.tileSize);
+
+    var selectedParameter = document.getElementById("param_filter").value;
+    //const paramJSON = paramData[selectedParameter]['values'];
 
     // Create a GeoJSON FeatureCollection
     var tileCollection = {
@@ -425,6 +454,10 @@ export default function Map() {
                    ?? record.testkitPurchase?.id 
                    ?? record.mapRecord_ID;
 
+      const paramJSON = paramData[record.parameterName];
+
+      const paramScore = getScore(record.parameterValue, paramJSON.scoring_function.min_range, paramJSON.scoring_function.max_range, paramJSON.scoring_function.ideal_value, paramJSON.scoring_function.function_sensitivity, paramJSON.scoring_function.shift_x ?? 0, paramJSON.scoring_function.type);
+
       // Loop through all features in the GeoJSON FeatureCollection
       // and check if the record is within the same tile bounds as another record
       var recordInExistingTile = false;
@@ -435,6 +468,7 @@ export default function Map() {
         if ((record.longitude >= coords[0][0] && record.longitude <= coords[3][0]) && (record.latitude >= coords[0][1] && record.latitude <= coords[1][1])) {
           feature.properties.avgParamValue = (feature.properties.avgParamValue + record.parameterValue) / 2;
           feature.properties.sampleIds.push(sampleId);
+          feature.properties.parameterScores.push(paramScore);
           if (!feature.properties.waterBodyTypes.includes(record.waterBodyType)) {
             feature.properties.waterBodyTypes.push(record.waterBodyType);
           }
@@ -454,59 +488,43 @@ export default function Map() {
           'properties': {
             'sampleIds': [sampleId],
             'waterBodyTypes': [record.waterBodyType],
+            'parameterScores': [paramScore],
             'parameterName': record.parameterName,
             'avgParamValue': record.parameterValue,
             'parameterUnit': record.parameterUnit,
             'fillColour': '#808080',
-            'popupHTML': 'There is no data to be displayed for this tile.'
           }
         });
       }
     });
 
-    // Add fill-colour and popupHTML to every tile in GeoJSON FeatureCollection
-    // Add popupHTML to every tile in GeoJSON FeatureCollection
+    // Add fill-colour to every tile in GeoJSON FeatureCollection
     tileCollection.features.forEach((feature) => {
-      // Calculate fill colour based from parameter-data.json and sample value
-      var colourToFill = '#808080';
-      const paramJSON = paramData[feature.properties.parameterName]['values'];
-      for (const key in paramJSON) {
-        if (parseFloat(feature.properties.avgParamValue) >= parseFloat(key)) {
-          colourToFill = paramJSON[key];
+
+      const featureProps = feature.properties;
+      const paramJSON = selectedParameter === 'Overall Quality'
+        ? paramData['Overall Quality']['values']
+        : paramData[featureProps.parameterName]['values'];
+      const valueToCompare = selectedParameter === 'Overall Quality'
+        ? getOverallScore(featureProps.parameterScores) * 10
+        : parseFloat(featureProps.avgParamValue);
+
+      const keys = Object.keys(paramJSON);
+      let colourToFill = paramJSON[keys[0]];
+      for (let i = 0; i < keys.length; i++) {
+        const key = parseFloat(keys[i]);
+        if (valueToCompare >= key) {
+          colourToFill = paramJSON[keys[i]];
+        } else {
+          break;
         }
       }
-      feature.properties.fillColour = colourToFill;
-
-      // Create popup HTML
-      // var popupHTML = `<div class="map_popup"><p>${feature.properties.parameterName}</p>` +
-      //   `<p>Average Value: ${feature.properties.avgParamValue}</p>` +
-      //   `<p>Sample Count: ${feature.properties.sampleIds.length}</p>` +
-      //   `<p>Water Body Types: ${feature.properties.waterBodyTypes.join(', ')}</p>`;
-      //   //`<p>Sample IDs: ${feature.properties.sampleIds.join(', ')}</p></div>`;
-      // feature.properties.popupHTML = popupHTML;
+      
+      featureProps.fillColour = colourToFill;
     });
 
     // Add tile geoJSON data to the map with retrieved map record data
     map.current.getSource("samples_tiles").setData(tileCollection);
-      
-
-    // Add popup to the map
-    // map.current.on('click', 'samples_tiles', function (e) {
-    //   new maplibregl.Popup()
-    //     .setLngLat(e.lngLat)
-    //     .setHTML(e.features[0].properties.popupHTML)
-    //     .addTo(map.current);
-    // });
-
-    // // Change the cursor to a pointer when the mouse is over the samples_tiles layer
-    // map.current.on('mouseenter', 'samples_tiles', function () {
-    //   map.current.getCanvas().style.cursor = 'pointer';
-    // });
-    // // Change it back to a cursor when it leaves
-    // map.current.on('mouseleave', 'samples_tiles', function () {
-    //   map.current.getCanvas().style.cursor = '';
-    // });
-
   }
 
   // Search for a place using MapTiler's geocoding API

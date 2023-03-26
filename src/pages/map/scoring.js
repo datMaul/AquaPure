@@ -1,5 +1,4 @@
 // Calculate the score for a given value based on the min and max range, ideal value, sensitivity and function type
-
 function getScore(passed_value, min_range, max_range, ideal_value, sensitivity, shift_x=0, function_type="sigmoid_unipolar") {
     if (!["linear", "sigmoid_unipolar", "sigmoid_bipolar"].includes(function_type)) {
         throw new Error("Invalid function type");
@@ -30,6 +29,7 @@ function getScore(passed_value, min_range, max_range, ideal_value, sensitivity, 
     return 1-y;
 }
 
+// Get the colour for a given score
 function getGradeColour(score) {
     if (score >= 9) {
         return "#00cb00";
@@ -44,8 +44,23 @@ function getGradeColour(score) {
     }
 }
 
+// Get the overall score for a given set of parameter scores
+function getOverallScore(paramScores) {
+    let weightedSum = 0;
+    let weightSum = 0;
+
+    for (let i = 0; i < paramScores.length; i++) {
+        let weight = 1 - paramScores[i];
+        weightedSum += paramScores[i] * weight;
+        weightSum += weight;
+    }
+
+    if (weightedSum == 0 && weightSum == 0) return 1;
+    return weightedSum / weightSum;
+}
 
 module.exports = {
     getScore,
-    getGradeColour
+    getGradeColour,
+    getOverallScore
 }

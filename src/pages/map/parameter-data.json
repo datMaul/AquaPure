@@ -1,17 +1,18 @@
 {
-    "Drinking Quality": {
+    "Overall Quality": {
         "unit": "Score",
         "values": {
             "10": "#00ff00",
-            "9": "#80ff00",
-            "8": "#bfff00",
-            "7": "#ffff00",
-            "6": "#ffbf00",
-            "5": "#ff9900",
-            "4": "#ff7300",
-            "3": "#ff4c00",
-            "2": "#ff2600",
-            "1": "#ff0000"  
+            "9": "#6aef00",
+            "8": "#91df00",
+            "7": "#aecd00",
+            "6": "#c4ba00",
+            "5": "#d7a700",
+            "4": "#e59100",
+            "3": "#f17a00",
+            "2": "#f96000",
+            "1": "#fe4000",
+            "0": "#ff0000" 
         }
     },
 
@@ -82,7 +83,7 @@
         "scoring_function": {
             "type": "sigmoid_bipolar",
             "min_range": 0,
-            "max_range": 1000,
+            "max_range": 2000,
             "ideal_value": 175,
             "function_sensitivity": 0.0005
         },
