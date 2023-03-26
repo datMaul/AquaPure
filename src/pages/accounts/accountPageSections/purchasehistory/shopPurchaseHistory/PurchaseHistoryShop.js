@@ -41,10 +41,10 @@ export default function PurchaseHistoryShop() {
     }
 
     const loadHistory = () => {
-        axios.get(`http://localhost:8080/history/user/${localStorage.getItem("user_ID")}`).then(res=>{sethistory(res.data);console.log("histroy loaded")})
+        axios.get(`http://localhost:8080/history/user/${localStorage.getItem("user_ID")}`).then(res=>{sethistory(res.data);console.log("histroy loaded",res.data)})
     }
     const loadProducts = () => {
-      axios.get('http://localhost:8080/product').then(res=>{setData(res.data);console.log("loaded Data")})
+      axios.get('http://localhost:8080/product').then(res=>{setData(res.data);console.log("loaded Data",res.data)})
     }
     useEffect(()=>{
         loadHistory();

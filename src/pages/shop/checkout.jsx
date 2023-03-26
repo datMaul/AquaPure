@@ -67,7 +67,6 @@ export default function Checkout() {
                 if(localStorage.getItem("email")===points.email){
                     if(users.userId.toString()===storeuserid){
                         setmax(points.score)
-                        console.log(max)
                     }
                 }
             })
@@ -167,13 +166,9 @@ export default function Checkout() {
     }
     const purchase = () => {
         setconfirm(true);
-        // var DOP = new Date()
-        // var date = DOP.getUTCFullYear() + '-' + (DOP.getMonth()+1) + "-" + DOP.getDate() + ' ' + DOP.getHours() +':'+ DOP.getMinutes();
-        // console.log(date)
         cartItems.map(item => {
             let id = Math.floor(Math.random(999)*111)
             let date = new Date().toDateString();
-            console.log(date)
             axios.post('http://localhost:8080/history',{
                 "purchase_id": id,
                 "userid":storeuserid,
@@ -185,9 +180,7 @@ export default function Checkout() {
                     user.map(users=>{
                         if(score.email === localStorage.getItem("email")){
                             if(users.userId+'' === storeuserid){
-                                console.log("points afte purchase",point_amount)
                                 const newPoints = score.score - point_amount
-                                console.log(newPoints,"new points after purchase")
                                 if(newPoints<0){
                                     axios.put(`http://localhost:8080/points/findByEmail?email=`+localStorage.getItem("email")+'',{
                                     'score':0,

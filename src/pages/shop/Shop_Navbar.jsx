@@ -5,7 +5,6 @@ import './Shop_Style.css'
 function NavLink({to, children, ...props}) {
     const Path = useResolvedPath(to);
     const isActive = useMatch({ path: Path.pathname, end: true });
-    console.log(Path.pathname)
     return(
         <li className={isActive ? "clicked": ""}>
             <Link to={to} {...props}>

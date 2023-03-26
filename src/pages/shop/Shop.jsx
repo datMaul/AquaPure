@@ -11,7 +11,7 @@ import drinkware from "./item_pages/shop_assets/cupicon.png"
 import Navbar from "./Shop_Navbar.jsx"
 import book from "./item_pages/shop_assets/APNotebook.png"
 import hoodie from "./item_pages/shop_assets/APHoodie.png"
-import pouch from "./item_pages/shop_assets/APNotebook.png"
+import pouch from "./item_pages/shop_assets/APPouch.png"
 import sticker from "./item_pages/shop_assets/APSticker.png"
 import tote from "./item_pages/shop_assets/AquaPureToteBag.png"
 import cap from "./item_pages/shop_assets/APcap.png"
@@ -50,14 +50,13 @@ export default function Shop() {
     loadUser();
     loadCart();
     loadProducts();
-    console.log()
-
   },[])
 
   const loadProducts = () =>{
     axios.get(productURL)
     .then(res => {
       setData(res.data)
+      console.log(res.data)
     })
   }
 
@@ -105,7 +104,7 @@ export default function Shop() {
     "Coffee/Tea Hot Beverage Mug":"/beverage_mug",
     "Water Filter":"/water_filter",
     "Hoodie":"/hoodie",
-    "T-Shirt":"T-shirt",
+    "T-Shirt":"/T-shirt",
     "Face Mask Pack of 3":"/mask",
     "Cap":"/cap",
     "Metal Flask":"/flask",
@@ -126,7 +125,6 @@ export default function Shop() {
     if(itemData.findIndex(item=>item.product_id === productid)===-1){
       console.log("created first entry")
       let id = Math.floor(Math.random(999)*100)+1;
-      console.log(id)
       axios.post(`http://localhost:8080/item`,{
         "id":id,
         "userid": storeuserid,
@@ -138,7 +136,7 @@ export default function Shop() {
       //increment
       itemData.map(item=>{
         if(item.product_id === productid){
-          console.log("incremented")
+          console.log("incremented entry")
           let add = item.quantity+1;
           axios.put(`http://localhost:8080/item/${item.id}`,{
           "quantity":add
