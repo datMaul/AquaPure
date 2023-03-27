@@ -39,25 +39,15 @@ export default function DonationForm() {
     event.preventDefault();
     console.log("Submitting form...");
     
-    axios.post('/donations/DonationForm', DonationData)
+    axios.post('http://localhost:8080/donations/DonationForm', DonationData)
       .then(response => {
         console.log(response);
-        navigate("/");
+        navigate("/donations/Invoice");
       })
       .catch(error => console.error(error));
   
     console.log(DonationData);
   };
-  
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   console.log("Submitting form...");
-  //   axios.post('http://localhost:3000/donations/Invoice', DonationData).then(response => console.log(response)).catch(error => console.error(error));
-  //   // Send DonationData to your database here
-  //   console.log(DonationData);
-  // };
-  
 
   return (
     <div className="wrapper">
