@@ -9,6 +9,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/donations")
 public class DonationController {
   
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public DonationController(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
   @PostMapping("/DonationForm")
   public ResponseEntity<String> handleDonation(@RequestBody DonationData form) {
     // Do something with the form data (e.g. save to a database)
@@ -38,6 +45,7 @@ public class DonationController {
     if (rowsAffected > 0) {
 
     };
+
     // Return a response indicating success
    
 
