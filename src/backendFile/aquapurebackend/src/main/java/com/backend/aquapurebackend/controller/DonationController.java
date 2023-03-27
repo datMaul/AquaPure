@@ -20,6 +20,27 @@ public class DonationController {
     System.out.println(form.getCreditCardNumber());
     System.out.println(form.getExpDate());
     
+    // Insert the form data into the database
+    String sql = "INSERT INTO donations (full_name, email, charity, amount, card_name, credit_card_number, exp_date, created_at) " +
+    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    int rowsAffected = jdbcTemplate.update(
+    sql,
+    form.getFullName(),
+    form.getEmail(),
+    form.getCharity(),
+    form.getAmount(),
+    form.getCardName(),
+    form.getCreditCardNumber(),
+    form.getExpDate(),
+    new Timestamp(System.currentTimeMillis())
+    );
+
+    if (rowsAffected > 0) {
+
+    };
+    // Return a response indicating success
+   
+
     // Return a response indicating success
     return ResponseEntity.ok("Donation received!");
     //ResponseEntity.status(HttpStatus.CREATED).body("Donation created successfully");
