@@ -1,8 +1,15 @@
 package com.backend.aquapurebackend.controller;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.backend.aquapurebackend.repository.DonationRepository;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
@@ -29,9 +36,6 @@ public class DonationController {
     //ResponseEntity.status(HttpStatus.CREATED).body("Donation created successfully");
   }
   
-  
-
-
   public static class DonationForm {
     private String fullName;
     private String email;
