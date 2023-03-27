@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("http://localhost:3000")
 @RequestMapping("/donations")
 public class DonationController {
+
+    @Autowired
+  private DonationRepository donationRepository;
   
   @PostMapping("/DonationForm")
   public ResponseEntity<String> handleDonation(@RequestBody DonationData form) {
@@ -20,11 +23,15 @@ public class DonationController {
     System.out.println(form.getCreditCardNumber());
     System.out.println(form.getExpDate());
     
+    donationRepository.save(form);
     // Return a response indicating success
     return ResponseEntity.ok("Donation received!");
     //ResponseEntity.status(HttpStatus.CREATED).body("Donation created successfully");
   }
   
+  
+
+
   public static class DonationForm {
     private String fullName;
     private String email;
