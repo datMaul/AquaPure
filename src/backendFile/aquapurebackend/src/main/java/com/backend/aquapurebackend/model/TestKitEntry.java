@@ -58,13 +58,7 @@ public class TestKitEntry {
         TotalAlkalinity = totalAlkalinity;
     }
 
-    // public String getTotalHardenss() {
-    //     return Total_Hardness;
-    // }
-
-    // public void setTotalHardness(String totalHardness) {
-    //     TotalHardness = totalHardness;
-    // }
+    
 
     public String getNitrite() {
         return Nitrite;
