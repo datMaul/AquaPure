@@ -88,6 +88,15 @@ public class MapRecord_Controller {
                     mapRecord.setSourceType(newMapRecord.getSourceType());
                     mapRecord.setOpenWIMSRecord(newMapRecord.getOpenWIMSRecord());
                     mapRecord.setTestkitPurchase(newMapRecord.getTestkitPurchase());
+                    mapRecord.setPH(newMapRecord.getpH());
+                    mapRecord.setTotalAlkalinity(newMapRecord.getTotalAlkalinity());
+                    mapRecord.setTotalHardness(newMapRecord.getTotalHardness());
+                    mapRecord.setNitrite(newMapRecord.getNitrite());
+                    mapRecord.setLead(newMapRecord.getLead());
+                    mapRecord.setManganese(newMapRecord.getManganese());
+                    mapRecord.setColiformBacteria(newMapRecord.getColiformBacteria());
+
+
                     return mapRecordRepository.save(mapRecord);
                 })
                 .orElseGet(() -> {
