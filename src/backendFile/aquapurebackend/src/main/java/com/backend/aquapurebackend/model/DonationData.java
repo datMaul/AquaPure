@@ -1,27 +1,43 @@
-package com.backend.aquapurebackend.controller;
+package com.backend.aquapurebackend.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "donations")
 public class DonationData {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "full_name")
     private String fullName;
+
     private String email;
+
     private String charity;
+
     private int amount;
+
+    @Column(name = "card_name")
     private String cardName;
+
+    @Column(name = "credit_card_number")
     private String creditCardNumber;
+
+    @Column(name = "exp_date")
     private String expDate;
 
-    // Constructor
-    public DonationData(String fullName, String email, String charity, int amount,
-                        String cardName, String creditCardNumber, String expDate) {
-        this.fullName = fullName;
-        this.email = email;
-        this.charity = charity;
-        this.amount = amount;
-        this.cardName = cardName;
-        this.creditCardNumber = creditCardNumber;
-        this.expDate = expDate;
+    @Column(name = "token")
+    private String token;
+
+    public Long getId() {
+        return id;
     }
 
-    // Getters and Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getFullName() {
         return fullName;
     }
@@ -77,5 +93,12 @@ public class DonationData {
     public void setExpDate(String expDate) {
         this.expDate = expDate;
     }
-}
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+}
