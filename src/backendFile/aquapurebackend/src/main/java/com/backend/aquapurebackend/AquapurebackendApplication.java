@@ -13,7 +13,7 @@ public class AquapurebackendApplication {
 	public JwtUtil jwtUtil() {
 		return new JwtUtil();
 	}
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(AquapurebackendApplication.class, args);
 	}

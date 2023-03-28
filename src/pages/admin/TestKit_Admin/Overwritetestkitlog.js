@@ -23,6 +23,7 @@ export default function Overwritetestkitlog() {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios.put(`http://localhost:8080/Test_Kit/${test_Kit_ID}`, kit);
+    console.log("The changes were made successfully!")
     navigate("/admin");
   };
 
