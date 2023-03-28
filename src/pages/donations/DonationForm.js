@@ -63,7 +63,7 @@ export default function DonationForm() {
               <span>email :</span>
               <input type="email" placeholder="example@example.com" pattern="[^@]+@[^@]+.+" required onChange={(event) => setDonationData({ ...DonationData, email: event.target.value })} value={email}/>
             </div>
-            <div className="inputBox">
+            {/* <div className="inputBox">
               <span>Charity:</span>
               <select id="charity" name="charity" value={charity} onChange={(event) => setDonationData({ ...DonationData, charity: event.target.value })}>
                 <option value="WaterAid">WaterAid</option>
@@ -71,7 +71,7 @@ export default function DonationForm() {
                 <option value="bloodWater">Blood: Water</option>
                 <option value="waterOrg">Water.org</option>
               </select>
-            </div>
+            </div> */}
             <div className="inputBox">
               <span>Amount to donate:</span>
               <input type="text" placeholder="£0.00" className='price' required onChange={(event) => setDonationData({ ...DonationData, amount: event.target.value })} value={amount}/>

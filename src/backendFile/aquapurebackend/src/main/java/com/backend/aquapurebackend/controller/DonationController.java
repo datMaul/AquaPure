@@ -1,10 +1,12 @@
 package com.backend.aquapurebackend.controller;
 
+import java.util.Optional;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.backend.aquapurebackend.model.DonationData;
-//import com.backend.aquapurebackend.repository.DonationRepository;
+import com.backend.aquapurebackend.repository.DonationRepository;
 import com.backend.aquapurebackend.service.DonationService;
 
 @RestController
@@ -12,7 +14,7 @@ import com.backend.aquapurebackend.service.DonationService;
 @RequestMapping("/donations")
 public class DonationController {
 
-    //private DonationRepository donationRepository;
+    private DonationRepository donationRepository;
     @Autowired
     private DonationService donationService;
 
@@ -44,6 +46,28 @@ public class DonationController {
         return ResponseEntity.ok("Donation received!");
         //ResponseEntity.status(HttpStatus.CREATED).body("Donation created successfully");
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateDonation(@PathVariable Long id, @RequestBody DonationData updatedDonation) {
+        Optional<DonationData> optionalDonation = donationRepository.findById(id);
+        if (!optionalDonation.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        DonationData donation = optionalDonation.get();
+        donation.setAmount(updatedDonation.getAmount());
+        donation.setFullName(updatedDonation.getFullName());
+        donation.setEmail(updatedDonation.getEmail());
+        donation.setCharity(updatedDonation.getCharity());
+        donation.setCardName(updatedDonation.getCardName());
+        donation.setCreditCardNumber(updatedDonation.getCreditCardNumber());
+        donation.setExpDate(updatedDonation.getExpDate());
+
+        donationRepository.save(donation);
+
+        return ResponseEntity.ok("Donation updated!");
+    }
+
   
   public static class DonationForm {
     private String fullName;
