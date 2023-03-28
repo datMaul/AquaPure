@@ -96,8 +96,7 @@ export default function TestkitEntry() {
     }
     console.log(x);
     
-  } 
-  const onSubmit = async (b) => {
+  } const onSubmit = async (b) => {
      console.log(b)
      b.preventDefault();
      User.accountType = "User";
