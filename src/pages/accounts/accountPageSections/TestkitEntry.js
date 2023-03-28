@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function TestkitEntry() {
 
   const navigate = useNavigate();
-  
+
   const [User, setUser] = useState({
     uniqueID: "",
     pH: "",
@@ -22,7 +22,7 @@ export default function TestkitEntry() {
     lead: "",
     manganese: "",
     coliformBacteria: "",
-    
+
   });
 
   const {
@@ -36,23 +36,23 @@ export default function TestkitEntry() {
     lead,
     manganese,
     coliformBacteria,
-    
+
   } = User;
 
   const onInputChange = (b) => {
     setUser({ ...User, [b.target.name]: b.target.value });
   };
-  
-  
-  
-  
+
+
+
+
   if (!localStorage.getItem("token")) {
     return <Link to="/" />;
   }
   async function handleSubmit(b) {
-  
 
-    
+
+
     b.preventDefault();
 
     const form = new FormData(b.target);
@@ -64,7 +64,7 @@ export default function TestkitEntry() {
 
 
 
-    
+
     const response = await fetch(`http://localhost:8080/testkit/activate/${data.uniqueID}`, {
       method: "PUT",
       headers: {
@@ -82,38 +82,38 @@ export default function TestkitEntry() {
         coliformBacteria: data.coliformBacteria,
       }),
     });
-    
+
     const x = await response.json();
 
     if (x.error != null) {
       window.alert("You cannot activate this test kit because it's already activated.")
     } else {
       window.alert("Successfully activated the test kit.")
-      
-      
-      
-      
+
+
+
+
     }
     console.log(x);
-    
+
   }
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
   // const onSubmit = async (b) => {
   //   console.log(b)
   //   b.preventDefault();
   //   User.accountType = "User";
   //   await axios.post("http://localhost:8080/accounts", User);
   //   navigate("/");
-    
+
   // };
 
   return (
@@ -154,7 +154,7 @@ export default function TestkitEntry() {
                 minLength={1}
                 value={uniqueID}
                 onChange={(b) => onInputChange(b)}
-                
+
               />
               <br />
               <input
@@ -177,7 +177,7 @@ export default function TestkitEntry() {
                 max="180"
                 // value={longitude}
                 onChange={(b) => onInputChange(b)}
-                
+
               />
               <br />
               <input
@@ -255,11 +255,14 @@ export default function TestkitEntry() {
               <button id="submitButton" type="submit">
                 Submit
               </button>
+              <section>
+                <h2 class="title">FAQs</h2>
+              </section>
             </form>
           </div>
         </div>
       </div>
     </div>
   );
-  
+
 }

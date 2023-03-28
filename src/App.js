@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar";
 import Donations from "./pages/donations/Donations";
 import DonationForm from "./pages/donations/DonationForm";
-import Invoice from "./pages/donations/Invoice";
+import Invoice from "./pages/donations/invoice";
 import Game from "./pages/game/Game";
 import Home from "./pages/home/Home";
 import Phasetest from "./pages/phasetest/Phasetest";
@@ -78,7 +78,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/donations" element={<Donations />} />
           <Route path="/donations/DonationForm" element={<DonationForm />} />
-          <Route path="/donations/Invoice" element={<Invoice/>} />
+          <Route path="/donations/Invoice" element={<Invoice />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/game" element={<Game />} />
           <Route path="/accounts/login" element={<SignIn />} />
@@ -106,7 +106,7 @@ function App() {
               element={<Overwritetestkitlog />}
             />
           ) : null}
-          <Route path="/shoppurchase" element={<PurchaseHistoryShop/>}/>
+          <Route path="/shoppurchase" element={<PurchaseHistoryShop />} />
           <Route path="/testkitpurchase" element={<PurchaseHistoryTestkit />} />
 
           {accountType === "Admin" ? (
@@ -123,7 +123,7 @@ function App() {
           ) : null}
 
           <Route path="/cart" element={<Cart />} />
-          <Route path="/shopcart" element={<ShopCart/>}/>
+          <Route path="/shopcart" element={<ShopCart />} />
           <Route path="/termsAndConditions" element={<TermsAndContitions />} />
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/accounts/testkitEntry" element={<TestkitEntry />} />
@@ -145,10 +145,10 @@ function App() {
           <Route path="/backpack" element={<Backpack />} />
           <Route path="/cap" element={<Cap />} />
           <Route path="/mask" element={<Mask />} />
-          <Route path='/shop/Shop_Appearal' element={<Shop_appearal/>}/>
-          <Route path='/shop/Shop_drinks' element={<Shop_drinks/>}/>
-          <Route path="/shop/Shop_other" element={<Shop_other/>}/>
-          <Route path="/shop/Shop_tech" element={<Shop_tech/>}/>
+          <Route path='/shop/Shop_Appearal' element={<Shop_appearal />} />
+          <Route path='/shop/Shop_drinks' element={<Shop_drinks />} />
+          <Route path="/shop/Shop_other" element={<Shop_other />} />
+          <Route path="/shop/Shop_tech" element={<Shop_tech />} />
         </Routes>
       </div>
     </>
