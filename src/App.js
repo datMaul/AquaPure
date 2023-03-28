@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar";
 import Donations from "./pages/donations/Donations";
 import DonationForm from "./pages/donations/DonationForm";
-import Invoice from "./pages/donations/Invoice";
+import Invoice from "./pages/donations/invoice";
 import Game from "./pages/game/Game";
 import Home from "./pages/home/Home";
 import Phasetest from "./pages/phasetest/Phasetest";
@@ -43,7 +43,7 @@ import Backpack from "./pages/shop/item_pages/Backpack";
 import Hoodie from "./pages/shop/item_pages/hoodie";
 import Travel_cup from "./pages/shop/item_pages/travel_cup";
 import Shop_purchase from "./pages/accounts/accountPageSections/purchasehistory/shopPurchaseHistory/PurchaseHistoryShop";
-import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitPurchaseHistory/PurchaseHistoryTestkit";
+import PurchaseHistoryTestkit from "./pages/accounts/accountPageSections/purchasehistory/testkitpurchasehistory/PurchaseHistoryTestkit";
 import PurchaseHistoryShop from "./pages/accounts/accountPageSections/purchasehistory/shopPurchaseHistory/PurchaseHistoryShop";
 import ShopCart from "./pages/accounts/cart/shopcart/ShopCartPage"
 import Shop_appearal from "./pages/shop/product_pages/Shop_Appearal";

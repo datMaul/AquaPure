@@ -96,25 +96,14 @@ export default function TestkitEntry() {
     }
     console.log(x);
     
-  }
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  // const onSubmit = async (b) => {
-  //   console.log(b)
-  //   b.preventDefault();
-  //   User.accountType = "User";
-  //   await axios.post("http://localhost:8080/accounts", User);
-  //   navigate("/");
+  } const onSubmit = async (b) => {
+     console.log(b)
+     b.preventDefault();
+     User.accountType = "User";
+     await axios.post("http://localhost:8080/accounts", User);
+    navigate("/");
     
-  // };
+   };
 
   return (
     <div className="Accounts-Content">

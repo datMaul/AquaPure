@@ -2,7 +2,7 @@ package com.backend.aquapurebackend.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "haider")
+@Table(name = "TestKitEntry")
 public class TestKitEntry {
     @Id
     @GeneratedValue
