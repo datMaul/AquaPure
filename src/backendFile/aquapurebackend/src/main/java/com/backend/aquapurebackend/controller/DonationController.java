@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.backend.aquapurebackend.model.DonationData;
 //import com.backend.aquapurebackend.repository.DonationRepository;
+import com.backend.aquapurebackend.service.DonationService;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
@@ -12,6 +13,8 @@ import com.backend.aquapurebackend.model.DonationData;
 public class DonationController {
 
     //private DonationRepository donationRepository;
+    @Autowired
+    private DonationService donationService;
 
     @PostMapping("/DonationForm")
     public ResponseEntity<String> handleDonation(@RequestBody DonationData form) {
