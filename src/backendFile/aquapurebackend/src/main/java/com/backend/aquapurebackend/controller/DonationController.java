@@ -1,40 +1,29 @@
 package com.backend.aquapurebackend.controller;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.backend.aquapurebackend.repository.DonationRepository;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
 @RequestMapping("/donations")
 public class DonationController {
 
-    @Autowired
-  private DonationRepository donationRepository;
-  
-  @PostMapping("/DonationForm")
-  public ResponseEntity<String> handleDonation(@RequestBody DonationData form) {
-    // Do something with the form data (e.g. save to a database)
-    System.out.println(form.getAmount());
-    System.out.println(form.getFullName());
-    System.out.println(form.getEmail());
-    System.out.println(form.getCharity());
-    System.out.println(form.getCardName());
-    System.out.println(form.getCreditCardNumber());
-    System.out.println(form.getExpDate());
-    
-    donationRepository.save(form);
-    // Return a response indicating success
-    return ResponseEntity.ok("Donation received!");
-    //ResponseEntity.status(HttpStatus.CREATED).body("Donation created successfully");
-  }
+    @PostMapping("/DonationForm")
+    public ResponseEntity<String> handleDonation(@RequestBody DonationData form) {
+        // Do something with the form data (e.g. save to a database)
+        System.out.println(form.getAmount());
+        System.out.println(form.getFullName());
+        System.out.println(form.getEmail());
+        System.out.println(form.getCharity());
+        System.out.println(form.getCardName());
+        System.out.println(form.getCreditCardNumber());
+        System.out.println(form.getExpDate());
+        
+        // Return a response indicating success
+        return ResponseEntity.ok("Donation received!");
+        //ResponseEntity.status(HttpStatus.CREATED).body("Donation created successfully");
+    }
   
   public static class DonationForm {
     private String fullName;
