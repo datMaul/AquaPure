@@ -22,6 +22,13 @@ public class MapRecord {
     private Float ParameterValue;
     private String ParameterUnit;
     private String SourceType;
+    private String PH;
+    private String TotalAlkalinity;
+    private String TotalHardness;
+    private String Nitrite;
+    private String Lead;
+    private String Manganese;
+    private String ColiformBacteria;
 
     @OneToOne
     @JoinColumn(name = "openwimsrecord_id")
@@ -119,4 +126,62 @@ public class MapRecord {
     public void setOpenWIMSRecord(OpenWIMSRecord openWIMSRecord) {
         this.OpenWIMSRecord = openWIMSRecord;
     }
+
+    public String getTotalAlkalinity() {
+        return TotalAlkalinity;
+    }
+
+    public void setTotalAlkalinity(String totalAlkalinity) {
+        TotalAlkalinity = totalAlkalinity;
+    }
+
+    
+
+    public String getNitrite() {
+        return Nitrite;
+    }
+
+    public void setNitrite(String nitrite) {
+        Nitrite = nitrite;
+    }
+
+    public String getLead() {
+        return Lead;
+    }
+
+    public void setLead(String lead) {
+        Lead = lead;
+    }
+
+    public String getManganese() {
+        return Manganese;
+    }
+
+    public void setManganese(String manganese) {
+        Manganese = manganese;
+    }
+
+    public String getColiformBacteria() {
+        return ColiformBacteria;
+    }
+
+    public void setColiformBacteria(String coliformBacteria) {
+        ColiformBacteria = coliformBacteria;
+    }
+
+    public String getTotalHardness() {
+        return TotalHardness;
+    }
+
+    public void setTotalHardness(String totalHardness) {
+        TotalHardness = totalHardness;
+    }
+
+    public String getpH() {
+            return PH;
+    }
+    
+    public void setPH(String pH) {
+            PH = pH;
+        }
 }
