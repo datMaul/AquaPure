@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class DonationData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long donationId;
 
     @Column(name = "full_name")
     private String fullName;
@@ -30,12 +30,12 @@ public class DonationData {
     @Column(name = "token")
     private String token;
 
-    public Long getId() {
-        return id;
+    public Long getDonationId() {
+        return donationId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setDonationId(Long donationId) {
+        this.donationId = donationId;
     }
 
     public String getFullName() {
