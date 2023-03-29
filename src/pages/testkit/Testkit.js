@@ -1,4 +1,4 @@
-import "./testkit.css";
+import "./Testkit.css";
 import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
 import Chatbot from "../phasetest/Phasetest";

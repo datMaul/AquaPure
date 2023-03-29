@@ -1,4 +1,4 @@
-import "./game.css";
+import "./Game.css";
 import React, { useState } from "react";
 
 export default function Game() {
@@ -138,7 +138,7 @@ export default function Game() {
         ];
         setButtonClasses(classOfButton);
         setAcceptingAnswer(true);
-      }, 10);
+      }, 2000);
     }
   };
 
