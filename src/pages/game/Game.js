@@ -105,8 +105,10 @@ export default function Game() {
     setAcceptingAnswer(false);
     if (selection == questions[currentQuestionIndex].answer) {
       setScore(score + POINTS);
+      console.log("Question answered correctly award 100");
       setBackground("body correct");
     } else {
+      console.log("Question answered incorrectly award NOTHING");
       setBackground("body wrong");
     }
 
@@ -125,8 +127,8 @@ export default function Game() {
       }, 2000);
     } else {
       const nextQuestion = currentQuestionIndex + 1;
-
-      console.log(score);
+      
+      console.log("Previous Score was = ", score);
       setTimeout(() => {
         setCurrentQuestion(nextQuestion);
         setBackground("body");
