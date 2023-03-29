@@ -89,11 +89,10 @@ export default function Donations() {
             </div>
             <div className="WaterAid-Buttons">
               <center>
-                <Link to="/donations/DonationForm">
-                  <button id="Donate-Button" onChange={event => setName("WaterAid")} onClick={handleClick}>Donate</button>
-                  {token && <p>Your ID is: {token}</p>}
-                  {name && <p>Your charity is: {(name="Water Aid")}</p>}
-                </Link>
+              <Link to="/donations/DonationForm"><button id="Donate-Button" onClick={() => {setName("WaterAid");handleClick();}}>Donate</button>
+                {token && <p>Your ID is: {token}</p>}
+                {/* {name && <p>Your charity is: {name}</p>} */}
+              </Link>
                 <a href="https://www.wateraid.org/uk/donate/donate-to-wateraid-today?id=RA/TPP/01A&utm_source=google&utm_medium=cpc&gclid=Cj0KCQiA54KfBhCKARIsAJzSrdrGIsqHhGw5M2WuWn3x92zIJm2Of15CXN5kQD78GgrzpZ6w2pN2MN4aAvciEALw_wcB&gclsrc=aw.ds">
                   <button id="MoreInfo-Button">More Info</button>
                 </a>

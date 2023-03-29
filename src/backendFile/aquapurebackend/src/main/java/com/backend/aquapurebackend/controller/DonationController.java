@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.backend.aquapurebackend.model.DonationData;
 import com.backend.aquapurebackend.repository.DonationRepository;
-import com.backend.aquapurebackend.service.DonationService;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
@@ -15,8 +14,6 @@ import com.backend.aquapurebackend.service.DonationService;
 public class DonationController {
 
     private DonationRepository donationRepository;
-    @Autowired
-    private DonationService donationService;
 
     @PostMapping("/DonationForm")
     public ResponseEntity<String> handleDonation(@RequestBody DonationData form) {
@@ -37,8 +34,10 @@ public class DonationController {
             System.out.println("Card Name: " + form.getCardName());
             System.out.println("Credit Card Number: " + form.getCreditCardNumber());
             System.out.println("Expiration Date: " + form.getExpDate());
+            //donationRepository.save(form);
         } else if (form.getToken() != null) {
             System.out.println("Token received: " + form.getToken());
+            System.out.println("Charity: " + form.getCharity());
         }
 
 
@@ -77,6 +76,7 @@ public class DonationController {
     private String cardName;
     private String creditCardNumber;
     private String expDate;
+    private String token;
     
     // Getters and setters omitted for brevity
      // Getters and Setters
@@ -134,6 +134,12 @@ public class DonationController {
 
     public void setExpDate(String expDate) {
         this.expDate = expDate;
+    }
+    public String getToken() {
+        return token;
+    }
+    public void setToken(String token) {
+        this.token = token;
     }
   }
 }
