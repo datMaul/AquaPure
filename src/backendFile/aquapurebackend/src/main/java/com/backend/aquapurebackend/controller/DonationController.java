@@ -34,7 +34,7 @@ public class DonationController {
             System.out.println("Card Name: " + form.getCardName());
             System.out.println("Credit Card Number: " + form.getCreditCardNumber());
             System.out.println("Expiration Date: " + form.getExpDate());
-            //donationRepository.save(form);
+            donationRepository.save(form);
         } else if (form.getToken() != null) {
             System.out.println("Token received: " + form.getToken());
             System.out.println("Charity: " + form.getCharity());
