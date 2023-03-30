@@ -6,7 +6,7 @@
 
 .banner {
     padding: 200px;
-    background-image: url(./image/banner.png);
+    background-image: url(./image/banner3.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -178,9 +178,10 @@
     text-align: center;
 }
 
-.water_aid1{
+.water_aid1 {
     background-image: url(./image/WaterAid.png);
 }
+
 .slide {
     height: 150px;
     width: 200px;
@@ -252,7 +253,7 @@ img:hover {
 }
 
 
-.count-container{
+.count-container {
     border: 0.5px solid black;
 }
 

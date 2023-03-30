@@ -191,7 +191,7 @@ export default function Donations() {
       <br></br>
       <div className="image-container">
         <div className="hq">
-          <h1>About Us!!</h1>
+          <h1>Our Secondary Mission!</h1>
         </div>
         <div className="image-slider">
           <div className="image-slider-track">
