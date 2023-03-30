@@ -1,8 +1,10 @@
 package com.backend.aquapurebackend.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,16 +39,31 @@ public class DonationController {
             System.out.println("Credit Card Number: " + form.getCreditCardNumber());
             System.out.println("Expiration Date: " + form.getExpDate());
             donationRepository.save(form);
+
+            // // Return a response indicating success and include the form.fullName in the response body
+            // return ResponseEntity.ok("Donation received! " + form.getFullName());
+
         } else if (form.getToken() != null) {
             System.out.println("Token received: " + form.getToken());
             System.out.println("Charity: " + form.getCharity());
         }
 
-
         // Return a response indicating success
         return ResponseEntity.ok("Donation received!");
         //ResponseEntity.status(HttpStatus.CREATED).body("Donation created successfully");
     }
+
+    @GetMapping("/Invoice")
+    public ResponseEntity<String> getFullNameOfLastDonation() {
+        List<DonationData> donations = donationRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        if (!donations.isEmpty()) {
+            DonationData lastDonation = donations.get(0);
+            return ResponseEntity.ok(lastDonation.getFullName());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateDonation(@PathVariable Long id, @RequestBody DonationData updatedDonation) {
