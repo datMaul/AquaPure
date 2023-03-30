@@ -55,7 +55,7 @@ public class DonationController {
 
     @GetMapping("/Invoice")
     public ResponseEntity<String> getFullNameOfLastDonation() {
-        List<DonationData> donations = donationRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        List<DonationData> donations = donationRepository.findAll(Sort.by(Sort.Direction.DESC, "donationId"));
         if (!donations.isEmpty()) {
             DonationData lastDonation = donations.get(0);
             return ResponseEntity.ok(lastDonation.getFullName());
