@@ -5,6 +5,7 @@ import axios from 'axios';
 
 function Invoice() {
   const [fullName, setFullName] = useState('');
+  const [charity] = useState('')
 
   useEffect(() => {
     axios.get('http://localhost:8080/donations/Invoice')
@@ -30,7 +31,7 @@ function Invoice() {
             </div>
           </div>
           <div className="colV">
-          <h3>You have completed your payment to charity. Thank you {fullName}.</h3>
+          <h3>You have completed your payment to {charity}. Thank you {fullName}.</h3>
           </div>
         </div>
       </form>

@@ -10,20 +10,19 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Donations() {
-  const [name, setName] = useState("");
   const [token, setToken] = useState("");
 
-  const handleClick = () => {
+  const handleClick = (charityName) => {
     // Generate unique token
     const token = uuidv4();
 
     // Send POST request to backend with custom name and ID
     axios.post("http://localhost:8080/donations/DonationForm", {
-        charity: name,
+        charity: charityName,
         token: token
       })
       .then(response => {
-        console.log(response);
+        console.log(response); //formerly just response
         setToken(response.data.token);
       })
       .catch(error => {
@@ -89,7 +88,7 @@ export default function Donations() {
             </div>
             <div className="WaterAid-Buttons">
               <center>
-              <Link to="/donations/DonationForm"><button id="Donate-Button" onClick={() => {setName("WaterAid");handleClick();}}>Donate</button>
+              <Link to="/donations/DonationForm"><button id="Donate-Button" onClick={() => handleClick('Water Aid')}>Donate</button>
                 {token && <p>Your ID is: {token}</p>}
               </Link>
                 <a href="https://www.wateraid.org/uk/donate/donate-to-wateraid-today?id=RA/TPP/01A&utm_source=google&utm_medium=cpc&gclid=Cj0KCQiA54KfBhCKARIsAJzSrdrGIsqHhGw5M2WuWn3x92zIJm2Of15CXN5kQD78GgrzpZ6w2pN2MN4aAvciEALw_wcB&gclsrc=aw.ds">
@@ -117,7 +116,7 @@ export default function Donations() {
             </div>
             <div className="WWF-Buttons">
               <center>
-                <Link to="/donations/DonationForm"><button id="Donate-Button" onChange={event => setName("Drop in the bucket")} onClick={handleClick}>Donate</button></Link>
+                <Link to="/donations/DonationForm"><button id="Donate-Button" onClick={() => handleClick('Drop in the Bucket')}>Donate</button></Link>
                 <a href="https://dropinthebucket.org/">
                   <button id="MoreInfo-Button">More Info</button>
                 </a>
@@ -142,7 +141,7 @@ export default function Donations() {
             </div>
             <div className="WaterAid-Buttons">
               <center>
-                <Link to="/donations/DonationForm"><button id="Donate-Button" onChange={event => setName("Blood: Water")} onClick={handleClick}>Donate</button></Link>
+                <Link to="/donations/DonationForm"><button id="Donate-Button" onClick={() => handleClick('Blood Water')}>Donate</button></Link>
                 <a href="https://bloodwater.org/">
                   <button id="MoreInfo-Button">More Info</button>
                 </a>
@@ -167,7 +166,7 @@ export default function Donations() {
             </div>
             <div className="WaterAid-Buttons">
               <center>
-                <Link to="/donations/DonationForm"><button id="Donate-Button" onChange={event => setName("Water.org")} onClick={handleClick}>Donate</button></Link>
+                <Link to="/donations/DonationForm"><button id="Donate-Button" onClick={() => handleClick('Water.org')}>Donate</button></Link>
                 <a href="https://water.org/">
                   <button id="MoreInfo-Button">More Info</button>
                 </a>
