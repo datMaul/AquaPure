@@ -221,6 +221,33 @@ export default function Donations() {
       <h1>Donation Count: {count.toString().padStart(5, "0")}</h1>
       </div>
       </div>
+      <div className="footer-container">
+        <div className="footer">
+          <div>
+           <p> All right reserve. 2022 AquaPure</p>
+          </div>
+          <div>
+            <ul>
+              <li>
+                <a href="mailto:aquapure.customerservice@gmail.com">Contact use
+                </a>
+              </li>
+              <li>
+                <a>|</a>
+              </li>
+              <li>
+                <a href="/termAndConditions">Terms & Conditions</a>
+              </li>
+              <li>
+                <a>|</a>
+              </li>
+              <li>
+                <a herf="/privacyPolicy">Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
     </div>
   );
