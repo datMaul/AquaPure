@@ -223,3 +223,22 @@ img {
 img:hover {
     transform: translateZ(20px);
 }
+
+.footer ul>li {
+    display: inline-block;
+    padding-left: 1vh;
+    padding-right: 1vh;
+}
+
+.footer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-container {
+    background-color: rgh(230, 230, 230);
+    padding-top: 0.6em;
+    padding-bottom: 1.2em;
+    text-align: center;
+}
