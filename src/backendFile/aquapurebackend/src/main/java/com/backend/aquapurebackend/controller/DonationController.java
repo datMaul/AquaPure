@@ -25,7 +25,6 @@ public class DonationController {
 
         if (form.getFullName() != null &&
             form.getEmail() != null &&
-            form.getCharity() != null &&
             form.getAmount() != 0 &&
             form.getCardName() != null &&
             form.getCreditCardNumber() != null &&
@@ -40,12 +39,14 @@ public class DonationController {
             System.out.println("Expiration Date: " + form.getExpDate());
             donationRepository.save(form);
 
-            // // Return a response indicating success and include the form.fullName in the response body
-            // return ResponseEntity.ok("Donation received! " + form.getFullName());
-
-        } else if (form.getToken() != null) {
+        } else if (form.getToken() != null && form.getCharity() != null) {
             System.out.println("Token received: " + form.getToken());
             System.out.println("Charity: " + form.getCharity());
+
+            DonationData combinedForm = new DonationData();
+            combinedForm.setToken(form.getToken());
+            combinedForm.setCharity(form.getCharity());
+            donationRepository.save(combinedForm);
         }
 
         // Return a response indicating success
