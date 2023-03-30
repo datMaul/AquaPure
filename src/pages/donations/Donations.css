@@ -154,6 +154,11 @@
     box-shadow: inset 150px 0 0 0 #ffffff;
 }
 
+.container{
+    display: block;
+    background-color: black;
+    box-sizing: border-box;
+}
 .slide {
     height: 150px;
     width: 200px;
@@ -177,7 +182,7 @@ img {
     overflow: hidden;
     height: 250px;
     width: 100%;
-    padding-top: 70%;
+    padding-top: 20%;
     padding-bottom: 20%;
 }
 
