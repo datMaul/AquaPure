@@ -4,6 +4,14 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
+.banner {
+    padding: 200px;
+    background-image: url(./image/banner.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 .Donations-Info-Container h1 {
     text-align: center;
 }
@@ -154,9 +162,11 @@
     box-shadow: inset 150px 0 0 0 #ffffff;
 }
 
-.container{
+.image-container{
+    height: 500px;
+    width: 1500px;
     display: block;
-    background-color: black;
+    background-color: rgb(230, 230, 230);
     box-sizing: border-box;
 }
 .slide {

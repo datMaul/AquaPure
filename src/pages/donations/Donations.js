@@ -32,7 +32,7 @@ export default function Donations() {
   };
 
   // For the count
-  const [count, setCount] = useState(Math.floor(Math.random() * 99999));
+  const [count, setCount] = useState(Math.floor(Math.random() * 99));
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -46,7 +46,10 @@ export default function Donations() {
     <div className="Donations">
       <div className="Donations-Container">
         <div className="Donations-Info-Container">
-          <h1>Donations</h1>
+          <div>
+            <div className="banner">
+            </div>
+          </div>
           <br />
           <h2>Sustainable Water Is Very Essential</h2>
           <p>
@@ -176,7 +179,10 @@ export default function Donations() {
           </div>
         </div>
       </div>
-      <div className="container">
+      <br></br>
+      <br></br>
+      <br></br>
+      <div className="image-container">
       <div className="image-slider">
         <div className="image-slider-track">
           <div className="slide">
