@@ -54,15 +54,17 @@ public class DonationController {
     }
 
     @GetMapping("/Invoice")
-    public ResponseEntity<String> getFullNameOfLastDonation() {
+    public ResponseEntity<Object[]> getFullNameAndCharityOfLastDonation() {
         List<DonationData> donations = donationRepository.findAll(Sort.by(Sort.Direction.DESC, "donationId"));
         if (!donations.isEmpty()) {
             DonationData lastDonation = donations.get(0);
-            return ResponseEntity.ok(lastDonation.getFullName());
+            Object[] result = new Object[]{lastDonation.getFullName(), lastDonation.getCharity()};
+            return ResponseEntity.ok(result);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+    
 
 
     @PutMapping("/{id}")

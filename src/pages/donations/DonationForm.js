@@ -9,7 +9,6 @@ export default function DonationForm() {
   const [DonationData, setDonationData] = useState({
     fullName: "",
     email: "",
-    charity: "",
     amount: "",
     cardName: "",
     creditCardNumber: "",
@@ -19,7 +18,6 @@ export default function DonationForm() {
   const {
     fullName,
     email,
-    charity,
     amount,
     cardName,
     creditCardNumber,
