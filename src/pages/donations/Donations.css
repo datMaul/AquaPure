@@ -10,6 +10,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    height: 20px;
 }
 
 .Donations-Info-Container h1 {
@@ -162,12 +163,23 @@
     box-shadow: inset 150px 0 0 0 #ffffff;
 }
 
-.image-container{
-    height: 500px;
+.image-container {
+    height: 450px;
     width: 1500px;
     display: block;
     background-color: rgb(230, 230, 230);
     box-sizing: border-box;
+}
+
+.hq {
+    text-align: center;
+    font-size: 30px;
+    font-style: bold;
+    text-align: center;
+}
+
+.water_aid1{
+    background-image: url(./image/WaterAid.png);
 }
 .slide {
     height: 150px;
@@ -239,6 +251,28 @@ img:hover {
     transform: translateZ(20px);
 }
 
+
+.count-container{
+    border: 0.5px solid black;
+}
+
+.DonationCount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+}
+
+h2 {
+    font-size: 30px;
+    font-style: bold;
+    text-align: center;
+    background-color: rgh(230, 230, 230);
+    padding-top: 0.6em;
+    /* padding-bottom: 1.2em; */
+}
+
+
 .footer ul>li {
     display: inline-block;
     padding-left: 1vh;
@@ -252,7 +286,7 @@ img:hover {
 }
 
 .footer-container {
-    background-color: rgh(230, 230, 230);
+    /* background-color: rgb(240, 231, 231); */
     padding-top: 0.6em;
     padding-bottom: 1.2em;
     text-align: center;
