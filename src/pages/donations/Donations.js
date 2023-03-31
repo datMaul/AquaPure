@@ -47,7 +47,7 @@ export default function Donations() {
         <div><div className="banner"></div></div>
         <div className="count-container"></div>
         <div className="DonationCount"></div>
-        <h2 className="DonationCH2">Donation Count: {count.toString().padStart(5, "0")}</h2>
+        <h2 className="DonationCH2">Donation Counter: {count.toString().padStart(5, "0")}</h2>
           {/* <h1>Donations</h1> */}
           <br />
           <h2>Sustainable Water Is Very Essential</h2>
