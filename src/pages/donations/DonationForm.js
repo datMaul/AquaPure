@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './form.css';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4} from 'uuid';
 import { Link } from "react-router-dom";
 
 export default function DonationForm() {
-  const [isFormComplete, setIsFormComplete] = useState(false);
+  const navigate = useNavigate();
+  const [token, setToken] = useState("");
   const [DonationData, setDonationData] = useState({
     fullName: "",
     email: "",
@@ -35,11 +36,20 @@ export default function DonationForm() {
     }));
   };
 
-
   const handleSubmit = (event) => {
+    const token = uuidv4();
     event.preventDefault(); // prevent the default form submission behavior
-    // your form submission logic here...
-    setIsFormComplete(true); // set isFormComplete to true when the form is completeete
+    console.log("Submitting donation form...")
+
+    axios.post('http://localhost:8080/donations/DonationForm', {fullName: fullName, email: email, charity: charity, amount: amount, cardName: cardName,
+      creditCardNumber: creditCardNumber, expDate: expDate, token: token})
+      .then(response => {
+        console.log(response);
+        navigate("/donations/Invoice");
+      })
+      .catch(error => console.error(error));
+      
+      console.log(DonationData);
   };
 
   return (
@@ -49,44 +59,45 @@ export default function DonationForm() {
           <div className="col">
             <h3 className="title">billing address</h3>
             <div className="inputBox">
-              <span>full name :</span>
+              <span>Full Name:</span>
               <input type="text" placeholder="Full name" required onChange={(event) => setDonationData({ ...DonationData, fullName: event.target.value })} value={fullName} />
+              {token && <p>Your ID is: {token}</p>}
             </div>
             <div className="inputBox">
-              <span>email :</span>
+              <span>Email Address:</span>
               <input type="email" placeholder="example@example.com" pattern="[^@]+@[^@]+.+" required onChange={(event) => setDonationData({ ...DonationData, email: event.target.value })} value={email}/>
             </div>
             <div className="inputBox">
               <span>Charity:</span>
               <select id="charity" name="charity" value={charity} onChange={(event) => setDonationData({ ...DonationData, charity: event.target.value })}>
                 <option value="WaterAid">WaterAid</option>
-                <option value="drop_in_the_bucket">Drop in the bucket</option>
+                <option value="drop_in_the_bucket">Drop in the Bucket</option>
                 <option value="bloodWater">Blood: Water</option>
                 <option value="waterOrg">Water.org</option>
               </select>
             </div>
             <div className="inputBox">
-              <span>Amount to donate:</span>
+              <span>Amount to Donate:</span>
               <input type="text" placeholder="£0.00" className='price' required onChange={(event) => setDonationData({ ...DonationData, amount: event.target.value })} value={amount}/>
             </div>
           </div>
           <div className="col">
             <h3 className="title">payment</h3>
             <div className="inputBox">
-              <span>name on card :</span>
+              <span>Name on Card :</span>
               <input type="text" placeholder="mr. full name" required onChange={(event) => setDonationData({ ...DonationData, cardName: event.target.value })} value={cardName}/>
             </div>
             <div className="inputBox">
-              <span>credit card number :</span>
+              <span>Credit Card Number :</span>
               <input type="text" placeholder="1111-2222-3333-4444" maxLength={16} required onChange={(event) => setDonationData({ ...DonationData, creditCardNumber: event.target.value })} value={creditCardNumber}/>
             </div>
             <div className="flex">
               <div className="inputBox">
-                <span>Exp date :</span>
+                <span>Expiry Date :</span>
                 <input type="date" placeholder="2022" required onChange={(event) => setDonationData({ ...DonationData, expDate: event.target.value })} value={expDate}/>
               </div>
               <div className="inputBox">
-                <span>CVV :</span>
+                <span>CVV:</span>
                 <input type="text" placeholder="123" maxLength={3} required/>
               </div>
             </div>
@@ -94,15 +105,12 @@ export default function DonationForm() {
           <div class="remember-forgot">
             <label>
               <input required type="checkbox"/>
-              I agree with the term and condition
+              I agree with the terms and conditions.
               </label>
-              <p>By making a donation, you agree to our terms and conditions. All donations are final and non-refundable. We reserve the right to decline or refund any donation at our discretion. We reserve the right to modify these terms and conditions at any time without prior notice. We take no responsibility for any unauthorized use of your payment method while making a donation.</p>
+              <p>By making this donation, you agree to AquaPure's terms and conditions. All donations are final and non-refundable. We reserve the right to decline or refund any donation at our discretion. We also reserve the right to modify these terms and conditions at any time without prior notice. We take no responsibility for any unauthorized use of your payment method while making a donation.</p>
             </div>
         </div>
-        {isFormComplete}
-        <Link to="/donations/Invoice">
-        <button id="submitButton" type="submit" className='submit-btn'>Proceed to Checkout</button>
-        </Link>
+        <input type="submit" value="Proceed to Checkout" className="submit-btn" />
       </form>
     </div>
   );

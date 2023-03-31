@@ -4,6 +4,15 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
+.banner {
+    padding: 200px;
+    background-image: url(./image/banner3.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 20px;
+}
+
 .Donations-Info-Container h1 {
     text-align: center;
 }
@@ -26,7 +35,7 @@ body {
 } */
 
 .pDon {
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .Charities-Container h2 {
@@ -57,7 +66,7 @@ body {
 .WaterAid-Container img {
     max-width: 300px;
     height: auto;
-    border: black 2px solid;
+    border: rgb(250, 249, 249) 2px solid;
 }
 
 .WWF-Container {
@@ -75,7 +84,7 @@ body {
 .WWF-Container img {
     max-width: 300px;
     height: auto;
-    border: black 2px solid;
+    border: rgb(250, 249, 249) 2px solid;
 }
 
 .SoilAssociation-Container {
@@ -93,7 +102,7 @@ body {
 .SoilAssociation-Container img {
     max-width: 300px;
     height: auto;
-    border: black 2px solid;
+    border: rgb(255, 255, 255) 2px solid;
 }
 
 .RSPD-Container {
@@ -111,80 +120,8 @@ body {
 .RSPD-Container img {
     max-width: 300px;
     height: auto;
-    border: black 2px solid;
+    border: rgb(255, 255, 255) 2px solid;
 }
-
-/* 
-.Charity_Water-Container {
-    width: 70%;
-    margin: auto auto;
-}
-
-.Charity_Water-Info {
-    grid-template-columns: 20% 80%;
-    display: flex;
-    align-items: center;
-}
-
-.Charity_Water-Container img {
-    max-width: 300px;
-    height: auto;
-    border: black 2px solid;
-}
-
-.Water_org-Container {
-    width: 70%;
-    margin: auto auto;
-}
-
-.Water_org-Info {
-    grid-template-columns: 20% 80%;
-    display: flex;
-    align-items: center;
-}
-
-.Water_org-Container img {
-    max-width: 300px;
-    height: auto;
-    border: black 2px solid;
-}
-
-.TheWaterProject-Container {
-    width: 70%;
-    margin: auto auto;
-}
-
-.TheWaterProject-Info {
-    grid-template-columns: 20% 80%;
-    display: flex;
-    align-items: center;
-}
-
-.TheWaterProject-Container img {
-    max-width: 300px;
-    height: auto;
-    border: black 2px solid;
-}
-
-.TheGlobalWaterChallenge-Container {
-    width: 70%;
-    margin: auto auto;
-}
-
-.TheGlobalWaterChallenge-Info {
-    grid-template-columns: 20% 80%;
-    display: flex;
-    align-items: center;
-}
-
-.TheGlobalWaterChallenge-Container img {
-    max-width: 300px;
-    height: auto;
-    border: black 2px solid;
-} 
-*/
-
-
 
 #Donate-Button {
     margin-left: 2.5%;
@@ -232,4 +169,213 @@ body {
     color: #008CBA;
     border: 2px solid #008CBA;
     box-shadow: inset 150px 0 0 0 #ffffff;
+}
+
+.image-container {
+    height: 400px;
+    width: 1990;
+    display: block;
+    background-color: rgb(230, 230, 230);
+    box-sizing: border-box;
+}
+
+.DonationHQ {
+    text-align: center;
+    font-size: 30px;
+    font-style: bold;
+    text-align: center;
+}
+
+.water_aid1 {
+    padding: 120px 75px;
+    background-image: url(./image/WaterAid.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.globalwater_chall {
+    padding: 120px 75px;
+    background-image: url(./image/TheGlobalWaterChallenge.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.water_project{
+    padding: 120px 75px;
+    background-image: url(./image/TheWaterProject.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.dropbucket{
+    padding: 120px 75px;
+    background-image: url(./image/drop_bucket.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.waterorgpic{
+    padding: 120px 75px;
+    background-image: url(./image/water_orgpic1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.wateraiddono{
+    padding: 120px 75px;
+    background-image: url(./image/water_aiddonation1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.waterorg1{
+    padding: 120px 75px;
+    background-image: url(./image/Water_org2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.waterorg2{
+    padding: 120px 75px;
+    background-image: url(./image/Water_org1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.dropbucket2{
+    padding: 120px 75px;
+    background-image: url(./image/dropinthebucketdonation1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.bloodwater2{
+    padding: 120px 75px;
+    background-image: url(./image/blood_waterdonation1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.charitywater{
+    padding: 120px 75px;
+    background-image: url(./image/Charity_Water.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.blood_waterdono{
+    padding: 120px 75px;
+    background-image: url(./image/blood_waterdonation.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.slide {
+    height: 150px;
+    width: 200px;
+    display: grid;
+    place-items: center;
+    padding: 15px;
+    perspective: 100px;
+}
+
+.image-slider {
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+    width: 100%;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.image-slider-track {
+    display: flex;
+    width: calc(200px*12);
+    animation: play 40s linear infinite;
+}
+
+@keyframes play {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-250px*6));
+    }
+}
+
+.image-slider::before {
+    left: 0;
+    top: 0;
+}
+
+.image-slider::after {
+    right: 0;
+    top: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 1)0%, rgba(255, 255, 255, 0)100%);
+
+}
+
+#bannerImg:hover {
+    transform: translateZ(20px);
+}
+
+.HeartWarmer {
+    text-align: center;
+    font-size: 15px;
+    font-style: italic;
+    text-align: center;
+}
+
+.count-container {
+    border: 0.5px solid black;
+}
+
+.DonationCount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+}
+
+.DonationCH2 {
+    font-size: 30px;
+    font-style: bold;
+    text-align: center;
+    background-color: rgh(230, 230, 230);
+    padding-top: 0.6em;
+    /* padding-bottom: 1.2em; */
+}
+
+.footer ul>li {
+    display: inline-block;
+    padding-left: 1vh;
+    padding-right: 1vh;
+}
+
+.footer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-container {
+    /* background-color: rgb(240, 231, 231); */
+    padding-top: 0.6em;
+    padding-bottom: 1.2em;
+    text-align: center;
 }
