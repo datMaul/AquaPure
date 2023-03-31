@@ -83,19 +83,20 @@ export default function Testkit() {
       const result = await axios.get(
         `http://localhost:8080/Test_Kit/${id}`
       );
+      console.log(result.data)
       setTestKit(result.data);
     };
     return testKit;
   }
 
   const testKit1 = useTestKit(1);
-  console.log(testKit1)
   const testKit2 = useTestKit(2);
   const testKit3 = useTestKit(3);
   const testKit4 = useTestKit(4);
   const testKit5 = useTestKit(5);
   const testKit6 = useTestKit(6);
   const testKit7 = useTestKit(7);
+
 
 
   const [user, setUser] = useState({
@@ -213,7 +214,7 @@ export default function Testkit() {
     }
     axios.post('http://localhost:8080/TestkitCartItem', BasicData)
       .then(res => {
-        console.log("okay")
+        console.log("Basic Testkit Was Added")
         console.log(res);
         setButtonPopup(true)
       })
@@ -227,6 +228,7 @@ export default function Testkit() {
     }
     axios.post('http://localhost:8080/TestkitCartItem', StandardData)
       .then(res => {
+        console.log("Standard Testkit Was Added")
         console.log(res);
         setButtonPopup(true)
       })
@@ -240,6 +242,7 @@ export default function Testkit() {
     }
     axios.post('http://localhost:8080/TestkitCartItem', PlusData)
       .then(res => {
+        console.log("Plus Testkit Was Added")
         console.log(res);
         setButtonPopup(true)
       })
@@ -253,6 +256,7 @@ export default function Testkit() {
     }
     axios.post('http://localhost:8080/TestkitCartItem', PremiumData)
       .then(res => {
+        console.log("Premium Testkit Was Added")
         console.log(res);
         setButtonPopup(true)
       })
@@ -266,6 +270,7 @@ export default function Testkit() {
     }
     axios.post('http://localhost:8080/TestkitCartItem', LegionellaData)
       .then(res => {
+        console.log("Legionella Testkit Was Added")
         console.log(res);
         setButtonPopup(true)
       })
@@ -279,6 +284,7 @@ export default function Testkit() {
     }
     axios.post('http://localhost:8080/TestkitCartItem', BacteriaData)
       .then(res => {
+        console.log("Bacteria Testkit Was Added")
         console.log(res);
         setButtonPopup(true)
       })
@@ -292,6 +298,7 @@ export default function Testkit() {
     }
     axios.post('http://localhost:8080/TestkitCartItem', PoolData)
       .then(res => {
+        console.log("Pool Testkit Was Added")
         console.log(res);
         setButtonPopup(true)
       })

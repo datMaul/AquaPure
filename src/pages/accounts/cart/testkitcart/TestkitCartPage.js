@@ -60,6 +60,7 @@ export default function TestkitCart() {
 
   const deleteUser = async (id) => {
     await axios.delete(`http://localhost:8080/Cart/${id}`);
+    console.log("Test Kit was removed")
     loadTestkit();
   };
   const [Kitrl, setKitrl] = useState([]);
@@ -83,6 +84,7 @@ export default function TestkitCart() {
         )}`
       );
       console.log(postResponse);
+      console.log("Checkout successful!")
       await new Promise((resolve) => setTimeout(resolve, 1000));
       const deleteResponse = await axios.delete(
         `http://localhost:8080/TestkitCartItem/user/${localStorage.getItem(
