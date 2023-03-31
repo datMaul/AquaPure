@@ -25,28 +25,28 @@ public class DonationController {
 
         if (form.getFullName() != null &&
             form.getEmail() != null &&
+            form.getCharity() != null &&
             form.getAmount() != 0 &&
             form.getCardName() != null &&
             form.getCreditCardNumber() != null &&
             form.getExpDate() != null) {
             
-            System.out.println("Full Name: " + form.getFullName());
+            System.out.println("User Full Name: " + form.getFullName());
             System.out.println("Email: " + form.getEmail());
             System.out.println("Charity: " + form.getCharity());
             System.out.println("Amount: " + form.getAmount());
             System.out.println("Card Name: " + form.getCardName());
             System.out.println("Credit Card Number: " + form.getCreditCardNumber());
             System.out.println("Expiration Date: " + form.getExpDate());
+            System.out.println("The Valid Token is: " + form.getToken());
             donationRepository.save(form);
 
-        } else if (form.getToken() != null && form.getCharity() != null) {
+            // // Return a response indicating success and include the form.fullName in the response body
+            // return ResponseEntity.ok("Donation received! " + form.getFullName());
+
+        } else if (form.getToken() != null) {
             System.out.println("Token received: " + form.getToken());
             System.out.println("Charity: " + form.getCharity());
-
-            DonationData combinedForm = new DonationData();
-            combinedForm.setToken(form.getToken());
-            combinedForm.setCharity(form.getCharity());
-            donationRepository.save(combinedForm);
         }
 
         // Return a response indicating success
@@ -55,19 +55,16 @@ public class DonationController {
     }
 
     @GetMapping("/Invoice")
-    public ResponseEntity<Object[]> getFullNameAndCharityOfLastDonation() {
+    public ResponseEntity<String> getFullNameOfLastDonation() {
         List<DonationData> donations = donationRepository.findAll(Sort.by(Sort.Direction.DESC, "donationId"));
         if (!donations.isEmpty()) {
             DonationData lastDonation = donations.get(0);
-            Object[] result = new Object[]{lastDonation.getFullName(), lastDonation.getCharity()};
-            return ResponseEntity.ok(result);
+            return ResponseEntity.ok(lastDonation.getFullName());
         } else {
             return ResponseEntity.notFound().build();
         }
     }
     
-
-
     @PutMapping("/{id}")
     public ResponseEntity<String> updateDonation(@PathVariable Long id, @RequestBody DonationData updatedDonation) {
         Optional<DonationData> optionalDonation = donationRepository.findById(id);

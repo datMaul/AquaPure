@@ -31,7 +31,7 @@ function Invoice() {
             </div>
           </div>
           <div className="colV">
-          <h3>You have completed your payment to {charity}. Thank you {fullName}.</h3>
+          <h3>You have completed your payment to charity. Thank you {fullName}.</h3>
           </div>
         </div>
       </form>

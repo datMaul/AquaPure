@@ -2,26 +2,30 @@ import React, { useState } from 'react';
 import './form.css';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 //import { Link } from "react-router-dom";
 
-export default function DonationForm() {
+export default function DonationForm({ charityName }) {
   const navigate = useNavigate();
+  const [token, setToken] = useState("");
   const [DonationData, setDonationData] = useState({
     fullName: "",
     email: "",
+    charity: "",
     amount: "",
     cardName: "",
     creditCardNumber: "",
-    expDate: ""
+    expDate: "",
   });
 
   const {
     fullName,
     email,
+    charity,
     amount,
     cardName,
     creditCardNumber,
-    expDate
+    expDate,
   } = DonationData;
   
   const handleInputChange = (event) => {
@@ -32,12 +36,13 @@ export default function DonationForm() {
     }));
   };
 
-
   const handleSubmit = (event) => {
+    const token = uuidv4();
     event.preventDefault();
     console.log("Submitting form...");
     
-    axios.post('http://localhost:8080/donations/DonationForm', DonationData)
+    axios.post('http://localhost:8080/donations/DonationForm', {fullName: fullName, email: email, charity: charity, amount: amount, cardName: cardName,
+    creditCardNumber: creditCardNumber, expDate: expDate, token: token} )//DonationData)
       .then(response => {
         console.log(response);
         navigate("/donations/Invoice");
@@ -56,12 +61,13 @@ export default function DonationForm() {
             <div className="inputBox">
               <span>Full Name :</span>
               <input type="text" placeholder="Full name" required onChange={(event) => setDonationData({ ...DonationData, fullName: event.target.value })} value={fullName} />
+              {token && <p>Your ID is: {token}</p>}
             </div>
             <div className="inputBox">
               <span>Email :</span>
               <input type="email" placeholder="example@example.com" pattern="[^@]+@[^@]+.+" required onChange={(event) => setDonationData({ ...DonationData, email: event.target.value })} value={email}/>
             </div>
-            {/* <div className="inputBox">
+            <div className="inputBox">
               <span>Charity:</span>
               <select id="charity" name="charity" value={charity} onChange={(event) => setDonationData({ ...DonationData, charity: event.target.value })}>
                 <option value="WaterAid">WaterAid</option>
@@ -69,7 +75,7 @@ export default function DonationForm() {
                 <option value="bloodWater">Blood: Water</option>
                 <option value="waterOrg">Water.org</option>
               </select>
-            </div> */}
+            </div>
             <div className="inputBox">
               <span>Amount to Donate:</span>
               <input type="text" placeholder="£0.00" className='price' required onChange={(event) => setDonationData({ ...DonationData, amount: event.target.value })} value={amount}/>

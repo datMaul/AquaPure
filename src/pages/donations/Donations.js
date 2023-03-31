@@ -9,6 +9,8 @@ import "./donationCount.css";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 
+export let selectedCharity = ""; // declare the variable outside the component
+
 export default function Donations() {
   const [token, setToken] = useState("");
 
@@ -19,7 +21,7 @@ export default function Donations() {
     // Send POST request to backend with custom name and ID
     axios.post("http://localhost:8080/donations/DonationForm", {
       charity: charityName,
-      token: token
+      token: "Invalid Test-Token"
     })
       .then(response => {
         console.log(response); //formerly just response
@@ -29,6 +31,7 @@ export default function Donations() {
         console.log(error);
       });
   };
+
 
   // For the count
   const [count, setCount] = useState(Math.floor(Math.random() * 99));
@@ -45,12 +48,8 @@ export default function Donations() {
     <div className="Donations">
       <div className="Donations-Container">
         <div className="Donations-Info-Container">
-          <div>
-            <div className="banner">
-            </div>
+          <div><div className="banner"></div>
           </div>
-          <div className="count-container">
-        </div>
           <div className="count-container">
             <div className="DonationCount">
               <h2>Donation Count: {count.toString().padStart(5, "0")}</h2>
@@ -99,7 +98,7 @@ export default function Donations() {
             </div>
             <div className="WaterAid-Buttons">
               <center>
-                <Link to="/donations/DonationForm"><button id="Donate-Button" onClick={() => handleClick('Water Aid')}>Donate</button>
+                <Link to="/donations/DonationForm"><button id="Donate-Button" onClick={() => handleClick('Water Aid')} >Donate</button>
                   {token && <p>Your ID is: {token}</p>}
                 </Link>
                 <a href="https://www.wateraid.org/uk/donate/donate-to-wateraid-today?id=RA/TPP/01A&utm_source=google&utm_medium=cpc&gclid=Cj0KCQiA54KfBhCKARIsAJzSrdrGIsqHhGw5M2WuWn3x92zIJm2Of15CXN5kQD78GgrzpZ6w2pN2MN4aAvciEALw_wcB&gclsrc=aw.ds">
